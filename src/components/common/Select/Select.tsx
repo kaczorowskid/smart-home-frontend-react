@@ -24,7 +24,9 @@ export const Select = ({
         <SelectGroup>
           {label && <SelectLabel>{label}</SelectLabel>}
           {items.map(({ name, value }) => (
-            <SelectItem value={value}>{name}</SelectItem>
+            <SelectItem key={value} value={value}>
+              {name}
+            </SelectItem>
           ))}
         </SelectGroup>
       </SelectContent>

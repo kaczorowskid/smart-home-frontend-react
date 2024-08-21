@@ -4,7 +4,9 @@ import { Thermometer } from "lucide-react";
 import { useGetTemperatureDevice } from "./TemperatureCard.hooks";
 
 export const TemperatureCard = ({ id, icon }: TemperatureCardProps) => {
-  const { data } = useGetTemperatureDevice(id);
+  const { data } = useGetTemperatureDevice({ id });
+
+  const values = data?.thermometers[0];
 
   return (
     <CardWithHeader
@@ -13,9 +15,9 @@ export const TemperatureCard = ({ id, icon }: TemperatureCardProps) => {
       icon={Thermometer || icon}
       hasSmallHeader
     >
-      <div className="text-2xl font-bold">{data?.temperature}</div>
+      <div className="text-2xl font-bold">{values?.temperature || "-"}</div>
       <p className="text-xs text-muted-foreground">
-        Humidity: {data?.humidity}%
+        Humidity: {values?.humidity || "-"}%
       </p>
     </CardWithHeader>
   );
