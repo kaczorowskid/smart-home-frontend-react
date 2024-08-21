@@ -28,13 +28,14 @@ export const DevicesTable = ({ isDashboardPart }: DevicesTableProps) => {
         value={selectedValue}
         onValueChange={handleValueChange}
       >
-        {data?.map(({ id, name, type }) => (
+        {data?.map(({ id, name, type, device_id: deviceId }) => (
           <AccordionItem key={id} value={id}>
             <TableHeader id={id} name={name} status="online" type={type} />
             <TableItem
               id={id}
               name={name}
               type={type}
+              deviceId={deviceId}
               selectedValue={selectedValue}
               isDashboardPart={!!isDashboardPart}
             />

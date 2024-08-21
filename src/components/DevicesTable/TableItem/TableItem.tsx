@@ -16,6 +16,7 @@ export const TableItem = ({
   id,
   name,
   type,
+  deviceId,
   selectedValue,
   isDashboardPart,
 }: TableItemProps) => {
@@ -26,6 +27,7 @@ export const TableItem = ({
     values: {
       name,
       type,
+      device_id: deviceId,
     },
   });
 
@@ -34,7 +36,7 @@ export const TableItem = ({
   const { mutate: updateDevice, isPending: isPendingUpdateDevice } =
     useUpdateDevice();
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: FormSchema) => {
     if (id) {
       updateDevice({ id, ...values });
     } else {
@@ -64,28 +66,31 @@ export const TableItem = ({
   return (
     <AccordionContent>
       <Form {...form}>
-        <form>
-          <FormField
-            label="Name"
-            control={form.control}
-            name={formFields.name}
-            component={(field) => <Input disabled={!isEditMode} {...field} />}
-          />
-
-          <FormField
-            label="Device Type"
-            control={form.control}
-            name={formFields.type}
-            component={({ onChange, ...field }) => (
-              <Select
-                disabled={!isEditMode}
-                items={typeItems}
-                onValueChange={onChange}
-                {...field}
-              />
-            )}
-          />
-        </form>
+        <FormField
+          label="Name"
+          control={form.control}
+          name={formFields.name}
+          component={(field) => <Input disabled={!isEditMode} {...field} />}
+        />
+        <FormField
+          label="Device ID"
+          control={form.control}
+          name={formFields.deviceId}
+          component={(field) => <Input disabled={!isEditMode} {...field} />}
+        />
+        <FormField
+          label="Device Type"
+          control={form.control}
+          name={formFields.type}
+          component={({ onChange, ...field }) => (
+            <Select
+              disabled={!isEditMode}
+              items={typeItems}
+              onValueChange={onChange}
+              {...field}
+            />
+          )}
+        />
       </Form>
       <ActionButtons
         isDashboardPart={isDashboardPart}

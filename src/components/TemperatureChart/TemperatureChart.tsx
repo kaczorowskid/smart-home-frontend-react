@@ -4,6 +4,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
   XAxis,
+  YAxis,
 } from "recharts";
 import {
   ChartContainer,
@@ -11,9 +12,14 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { CardWithHeader } from "../common/CardWithHeader/CardWithHeader";
-import { TemperatureChartProps } from "./TemperatureChart.types";
+import { useGetDeviceTemperatureForGraph } from "./TemperatureChart.hooks";
+import { config } from "./TemperatureChart.schema";
 
-export const TemperatureChart = ({ data, config }: TemperatureChartProps) => {
+export const TemperatureChart = () => {
+  const { data } = useGetDeviceTemperatureForGraph({
+    deviceId: "c8e16bcf-7bda-426c-bd99-4e2d3f5092f9",
+  });
+
   return (
     <CardWithHeader
       title="Temperature"
@@ -26,22 +32,28 @@ export const TemperatureChart = ({ data, config }: TemperatureChartProps) => {
           <AreaChart accessibilityLayer data={data}>
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="month"
+              dataKey="date"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
+              tickFormatter={(value) => value.slice(0, 5)}
+            />
+            <YAxis
+              dataKey="temperature"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
             />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent indicator="dot" />}
             />
             <Area
-              dataKey="mobile"
+              dataKey="temperature"
               type="natural"
-              fill="var(--color-mobile)"
+              fill="var(--color-temperature)"
               fillOpacity={0.4}
-              stroke="var(--color-mobile)"
+              stroke="var(--color-temperature)"
               stackId="a"
             />
           </AreaChart>

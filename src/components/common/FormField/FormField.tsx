@@ -21,7 +21,7 @@ export const FormField = <T extends FieldValues>({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem key={field.value}>
+        <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>{component(field)}</FormControl>
           <FormDescription>{description}</FormDescription>

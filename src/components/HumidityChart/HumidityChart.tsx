@@ -1,85 +1,66 @@
 import {
-  Label,
-  PolarRadiusAxis,
-  RadialBar,
-  RadialBarChart,
+  Area,
+  AreaChart,
+  CartesianGrid,
   ResponsiveContainer,
+  XAxis,
+  YAxis,
 } from "recharts";
-
 import {
-  ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { CardWithHeader } from "../common/CardWithHeader/CardWithHeader";
-
-const chartData = [{ month: "january", desktop: 60 }];
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "hsl(var(--chart-1))",
-  },
-} satisfies ChartConfig;
+import { useGetDeviceHumidityForGraph } from "./HumidityChart.hooks";
+import { config } from "./HumidityChart.schema";
 
 export const HumidityChart = () => {
-  const totalVisitors = 100;
+  const { data } = useGetDeviceHumidityForGraph({
+    deviceId: "c8e16bcf-7bda-426c-bd99-4e2d3f5092f9",
+  });
+
+  console.log("data ", data);
 
   return (
-    <>
-      <CardWithHeader
-        title="Humidity"
-        description="Outdoor humidity"
-        cardClassName="flex-grow"
-        contentClassName="h-80"
-      >
-        <ResponsiveContainer width="100%" height="100%">
-          <ChartContainer
-            config={chartConfig}
-            className="mx-auto aspect-square w-full max-w-[250px]"
-          >
-            <RadialBarChart
-              data={chartData}
-              endAngle={180}
-              innerRadius={150}
-              outerRadius={200}
-              cx="50%"
-              cy="70%"
-            >
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
-              />
-              <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
-                <Label
-                  content={({ viewBox }) => {
-                    if (viewBox && "cx" in viewBox && "cy" in viewBox) {
-                      return (
-                        <text x={viewBox.cx} y={viewBox.cy} textAnchor="middle">
-                          <tspan
-                            x={viewBox.cx}
-                            y={(viewBox.cy || 0) - 16}
-                            className="fill-foreground text-2xl font-bold"
-                          >
-                            {totalVisitors.toLocaleString()}
-                          </tspan>
-                        </text>
-                      );
-                    }
-                  }}
-                />
-              </PolarRadiusAxis>
-              <RadialBar
-                dataKey="desktop"
-                stackId="a"
-                cornerRadius={5}
-                fill="var(--color-desktop)"
-                className="stroke-transparent stroke-4"
-              />
-            </RadialBarChart>
-          </ChartContainer>
-        </ResponsiveContainer>
-      </CardWithHeader>
-    </>
+    <CardWithHeader
+      title="Humidity"
+      description="Outdoor humidity"
+      cardClassName="flex-grow"
+      contentClassName="h-80"
+    >
+      <ResponsiveContainer width="100%" height="100%">
+        <ChartContainer config={config}>
+          <AreaChart accessibilityLayer data={data}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="date"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              tickFormatter={(value) => value.slice(0, 5)}
+            />
+            <YAxis
+              dataKey="humidity"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent indicator="dot" />}
+            />
+            <Area
+              dataKey="humidity"
+              type="natural"
+              fill="var(--color-humidity)"
+              fillOpacity={0.4}
+              stroke="var(--color-humidity)"
+              stackId="a"
+            />
+          </AreaChart>
+        </ChartContainer>
+      </ResponsiveContainer>
+    </CardWithHeader>
   );
 };
