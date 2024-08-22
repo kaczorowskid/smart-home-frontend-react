@@ -20,8 +20,6 @@ export const HumidityChart = () => {
     deviceId: "c8e16bcf-7bda-426c-bd99-4e2d3f5092f9",
   });
 
-  console.log("data ", data);
-
   return (
     <CardWithHeader
       title="Humidity"

@@ -13,7 +13,7 @@ export const TableHeader = ({ id, name, status, type }: TableHeaderProps) => {
       <div className="w-[15%]">
         <Badge variant="outline">{status}</Badge>
       </div>
-      <div>{id}</div>
+      <div className="w-[25%]">{id}</div>
     </AccordionTrigger>
   );
 };

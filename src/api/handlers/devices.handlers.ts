@@ -3,6 +3,8 @@ import { apiUrls } from "../apiUrls";
 import {
   CreateDevicePayload,
   CreateDeviceResponse,
+  DeleteDevicePayload,
+  DeleteDeviceResponse,
   GetDeviceHumidityForGraphPayload,
   GetDeviceHumidityForGraphResponse,
   GetDeviceResponse,
@@ -47,3 +49,8 @@ export const getDeviceHumidityForGraph = async (
   payload: GetDeviceHumidityForGraphPayload
 ): Promise<GetDeviceHumidityForGraphResponse[]> =>
   request.get(apiUrls.devices.getDeviceHumidityForGraph(payload.deviceId));
+
+export const deleteDevice = async (
+  payload: DeleteDevicePayload
+): Promise<DeleteDeviceResponse> =>
+  request.delete(apiUrls.devices.getDevice(payload.id));

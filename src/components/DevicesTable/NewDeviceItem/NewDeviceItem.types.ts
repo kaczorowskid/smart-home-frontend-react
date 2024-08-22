@@ -1,10 +1,6 @@
 import { SetStateAction } from "react";
 
-export type TableItemProps = {
-  id?: string;
-  name?: string;
-  type?: "THERMOMETER" | "BLIND";
-  deviceId?: string;
+export type NewDeviceItemProps = {
   selectedValue: string;
   setSelectedValue: (value: SetStateAction<string>) => void;
   isDashboardPart: boolean;

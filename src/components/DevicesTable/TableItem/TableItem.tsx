@@ -1,7 +1,11 @@
 import { useForm } from "react-hook-form";
 import { formFields, formSchema, FormSchema } from "./TableItem.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCreateDevice, useUpdateDevice } from "./TableItem.hooks";
+import {
+  useCreateDevice,
+  useDeleteDevice,
+  useUpdateDevice,
+} from "./TableItem.hooks";
 import { FormField } from "@/components/common/FormField/FormField";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/common/Select/Select";
@@ -18,16 +22,17 @@ export const TableItem = ({
   type,
   deviceId,
   selectedValue,
+  setSelectedValue,
   isDashboardPart,
 }: TableItemProps) => {
-  const [isEditMode, setIsEditMode] = useState(false);
+  const [isLocked, setIsLocked] = useState(true);
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     values: {
-      name,
-      type,
-      device_id: deviceId,
+      name: name || "",
+      type: type || "THERMOMETER",
+      device_id: deviceId || "",
     },
   });
 
@@ -35,6 +40,8 @@ export const TableItem = ({
     useCreateDevice();
   const { mutate: updateDevice, isPending: isPendingUpdateDevice } =
     useUpdateDevice();
+  const { mutate: deleteDevice, isPending: isPendingDeleteDevice } =
+    useDeleteDevice();
 
   const onSubmit = async (values: FormSchema) => {
     if (id) {
@@ -42,19 +49,26 @@ export const TableItem = ({
     } else {
       createDevice(values);
     }
+
+    handleResetEditMode();
+    setSelectedValue("");
   };
 
   const handleSetEditMode = () => {
-    setIsEditMode(true);
+    setIsLocked(false);
   };
 
   const handleResetEditMode = () => {
-    setIsEditMode(false);
+    setIsLocked(true);
     form.reset();
   };
 
   const handleSave = () => {
     form.handleSubmit(onSubmit)();
+  };
+
+  const handleDelete = () => {
+    deleteDevice({ id: id || "" });
   };
 
   useEffect(() => {
@@ -70,13 +84,13 @@ export const TableItem = ({
           label="Name"
           control={form.control}
           name={formFields.name}
-          component={(field) => <Input disabled={!isEditMode} {...field} />}
+          component={(field) => <Input disabled={isLocked} {...field} />}
         />
         <FormField
           label="Device ID"
           control={form.control}
           name={formFields.deviceId}
-          component={(field) => <Input disabled={!isEditMode} {...field} />}
+          component={(field) => <Input disabled={isLocked} {...field} />}
         />
         <FormField
           label="Device Type"
@@ -84,7 +98,7 @@ export const TableItem = ({
           name={formFields.type}
           component={({ onChange, ...field }) => (
             <Select
-              disabled={!isEditMode}
+              disabled={isLocked}
               items={typeItems}
               onValueChange={onChange}
               {...field}
@@ -93,11 +107,14 @@ export const TableItem = ({
         />
       </Form>
       <ActionButtons
-        isDashboardPart={isDashboardPart}
-        isEditMode={isEditMode}
+        isLocked={isLocked}
+        isExistingRecord={!!id}
         handleSave={handleSave}
+        handleDelete={handleDelete}
         handleSetEditMode={handleSetEditMode}
         handleResetEditMode={handleResetEditMode}
+        isDashboardPart={isDashboardPart}
+        isDeleting={isPendingDeleteDevice}
         isLoading={isPendingCreateDevice || isPendingUpdateDevice}
       />
     </AccordionContent>

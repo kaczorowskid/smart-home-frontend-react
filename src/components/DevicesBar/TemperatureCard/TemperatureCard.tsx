@@ -3,7 +3,7 @@ import { TemperatureCardProps } from "./TemperatureCard.types";
 import { Thermometer } from "lucide-react";
 import { useGetTemperatureDevice } from "./TemperatureCard.hooks";
 
-export const TemperatureCard = ({ id, icon }: TemperatureCardProps) => {
+export const TemperatureCard = ({ id }: TemperatureCardProps) => {
   const { data } = useGetTemperatureDevice({ id });
 
   const values = data?.thermometers[0];
@@ -11,8 +11,8 @@ export const TemperatureCard = ({ id, icon }: TemperatureCardProps) => {
   return (
     <CardWithHeader
       cardClassName="flex-grow"
-      title={data?.name as string}
-      icon={Thermometer || icon}
+      title={data?.name || ""}
+      icon={Thermometer}
       hasSmallHeader
     >
       <div className="text-2xl font-bold">{values?.temperature || "-"}</div>

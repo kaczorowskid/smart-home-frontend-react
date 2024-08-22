@@ -7,6 +7,7 @@ import { useState } from "react";
 import { ExtraButton } from "./ExtraButton/ExtraButton";
 import { DevicesTableProps } from "./DevicesTable.types";
 import { useGetAllDevices } from "./DevicesTable.hooks";
+import { NewDeviceItem } from "./NewDeviceItem/NewDeviceItem";
 
 export const DevicesTable = ({ isDashboardPart }: DevicesTableProps) => {
   const [selectedValue, setSelectedValue] = useState("");
@@ -28,6 +29,11 @@ export const DevicesTable = ({ isDashboardPart }: DevicesTableProps) => {
         value={selectedValue}
         onValueChange={handleValueChange}
       >
+        <NewDeviceItem
+          selectedValue={selectedValue}
+          setSelectedValue={setSelectedValue}
+          isDashboardPart={!!isDashboardPart}
+        />
         {data?.map(({ id, name, type, device_id: deviceId }) => (
           <AccordionItem key={id} value={id}>
             <TableHeader id={id} name={name} status="online" type={type} />
@@ -37,6 +43,7 @@ export const DevicesTable = ({ isDashboardPart }: DevicesTableProps) => {
               type={type}
               deviceId={deviceId}
               selectedValue={selectedValue}
+              setSelectedValue={setSelectedValue}
               isDashboardPart={!!isDashboardPart}
             />
           </AccordionItem>
