@@ -1,7 +1,13 @@
-import { createDevice, udpateDevice } from "@/api/handlers/devices.handlers";
+import {
+  createDevice,
+  deleteDevice,
+  udpateDevice,
+} from "@/api/handlers/devices.handlers";
 import {
   CreateDevicePayload,
   CreateDeviceResponse,
+  DeleteDevicePayload,
+  DeleteDeviceResponse,
   UpdateDevicePayload,
   UpdateDeviceResponse,
 } from "@/api/types/devices.types";
@@ -36,6 +42,24 @@ export const useUpdateDevice = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: udpateDevice,
+    onSuccess: async () => {
+      toast.success("essa");
+      await queryClient.invalidateQueries({
+        queryKey: [queryKeys.getAllDevices],
+      });
+    },
+    onError: () => {
+      toast.error("dupa");
+    },
+  });
+
+export const useDeleteDevice = (): UseMutationResult<
+  DeleteDeviceResponse,
+  AxiosError,
+  DeleteDevicePayload
+> =>
+  useMutation({
+    mutationFn: deleteDevice,
     onSuccess: async () => {
       toast.success("essa");
       await queryClient.invalidateQueries({

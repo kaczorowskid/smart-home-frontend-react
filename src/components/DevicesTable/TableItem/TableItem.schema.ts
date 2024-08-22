@@ -14,7 +14,7 @@ export const formSchema = z.object({
 
 export const defaultValues = {
   [formFields.name]: "",
-  [formFields.deviceId]: "",
+  [formFields.deviceId]: "THERMOMETER",
   [formFields.type]: "",
 };
 

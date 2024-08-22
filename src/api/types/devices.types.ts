@@ -75,3 +75,16 @@ export type GetDeviceHumidityForGraphResponse = {
   humidity: number;
   date: string;
 };
+
+export type DeleteDevicePayload = {
+  id: string;
+};
+
+export type DeleteDeviceResponse = {
+  id: string;
+  type: "THERMOMETER" | "BLIND";
+  name: string;
+  device_id: string;
+  created_at: Date;
+  updated_at: Date;
+};
