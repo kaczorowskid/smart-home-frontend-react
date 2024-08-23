@@ -1,6 +1,6 @@
 export const queryKeys = {
-  getTemperatureDevice: "getTemperatureDevice",
   getAllDevices: "getAllDevices",
+  getDevice: "getDevice",
   getDeviceTemperatureForGraph: "getDeviceTemperatureForGraph",
   getDeviceHumidityForGraph: "getDeviceHumidityForGraph",
 };

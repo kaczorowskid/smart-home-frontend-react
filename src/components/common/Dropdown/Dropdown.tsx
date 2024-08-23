@@ -23,7 +23,9 @@ export const Dropdown = ({
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         {items.map(({ label, onClick }) => (
-          <DropdownMenuItem onClick={onClick}>{label}</DropdownMenuItem>
+          <DropdownMenuItem key={label} onClick={onClick}>
+            {label}
+          </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
