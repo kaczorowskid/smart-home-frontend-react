@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,18 +8,12 @@ import { DropdownProps } from "./Dropdown.types";
 
 export const Dropdown = ({
   items,
-  triggerIcon: Icon,
+  triggerComponent,
   ...props
 }: DropdownProps) => {
   return (
     <DropdownMenu {...props}>
-      <DropdownMenuTrigger asChild>
-        {Icon ? (
-          <Icon className="cursor-pointer text-muted-foreground hover:text-white" />
-        ) : (
-          <Button variant="outline">Open</Button>
-        )}
-      </DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>{triggerComponent}</DropdownMenuTrigger>
       <DropdownMenuContent>
         {items.map(({ label, onClick }) => (
           <DropdownMenuItem key={label} onClick={onClick}>
