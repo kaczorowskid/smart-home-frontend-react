@@ -10,23 +10,11 @@ import {
   GetDeviceResponse,
   GetDeviceTemperatureForGraphPayload,
   GetDeviceTemperatureForGraphResponse,
-  GetDeviceToBeDisplayedIdResponse,
-  GetTemperatureDevicePayload,
-  GetTemperatureDeviceResponse,
   UpdateDevicePayload,
   UpdateDeviceResponse,
 } from "../types/devices.types";
 
 const request = new Request();
-
-export const getTemperatureDevice = async (
-  payload: GetTemperatureDevicePayload
-): Promise<GetTemperatureDeviceResponse> =>
-  request.get(apiUrls.devices.getDevice(payload.id));
-
-export const getDevicesToBeDisplayedIds = async (): Promise<
-  GetDeviceToBeDisplayedIdResponse[]
-> => request.get(apiUrls.devices.getDevicesToBeDisplayedIds);
 
 export const getAllDevices = async (): Promise<GetDeviceResponse[]> =>
   request.get(apiUrls.devices.base);

@@ -7,26 +7,6 @@ export type GetDeviceResponse = {
   updated_at: Date;
 };
 
-export type GetTemperatureDevicePayload = {
-  id: string;
-};
-
-export type GetTemperatureDeviceResponse = {
-  id: string;
-  name: string;
-  created_at: Date;
-  updated_at: Date;
-  thermometers: {
-    date: string;
-    humidity: number;
-    temperature: number;
-  }[];
-};
-
-export type GetDeviceToBeDisplayedIdResponse = {
-  id: string;
-};
-
 export type CreateDevicePayload = {
   name: string;
   device_id: string;

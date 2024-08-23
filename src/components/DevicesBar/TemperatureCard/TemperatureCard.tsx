@@ -1,23 +1,24 @@
 import { CardWithHeader } from "@/components/common/CardWithHeader/CardWithHeader";
 import { TemperatureCardProps } from "./TemperatureCard.types";
-import { Thermometer } from "lucide-react";
-import { useGetTemperatureDevice } from "./TemperatureCard.hooks";
+import { Dropdown } from "@/components/common/Dropdown/Dropdown";
+import { CircleEllipsis } from "lucide-react";
+import { useGetDeviceToDisplay } from "./TemperatureCard.hooks";
 
-export const TemperatureCard = ({ id }: TemperatureCardProps) => {
-  const { data } = useGetTemperatureDevice({ id });
-
-  const values = data?.thermometers[0];
+export const TemperatureCard = ({ order, items }: TemperatureCardProps) => {
+  const { data } = useGetDeviceToDisplay({ order: String(order) });
 
   return (
     <CardWithHeader
       cardClassName="flex-grow"
       title={data?.name || ""}
-      icon={Thermometer}
+      extra={<Dropdown items={items} triggerIcon={CircleEllipsis} />}
       hasSmallHeader
     >
-      <div className="text-2xl font-bold">{values?.temperature || "-"}</div>
+      <div className="text-2xl font-bold">
+        {data?.thermometers?.temperature}
+      </div>
       <p className="text-xs text-muted-foreground">
-        Humidity: {values?.humidity || "-"}%
+        Humidity: {data?.thermometers?.humidity}%
       </p>
     </CardWithHeader>
   );

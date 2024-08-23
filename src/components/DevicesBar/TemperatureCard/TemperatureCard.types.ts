@@ -1,4 +1,6 @@
+import { DropdownProps } from "@/components/common/Dropdown/Dropdown.types";
+
 export type TemperatureCardProps = {
-  id: string;
-  className?: string;
+  order: number;
+  items: DropdownProps["items"];
 };

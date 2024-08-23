@@ -14,6 +14,7 @@ import {
 import { CardWithHeader } from "../common/CardWithHeader/CardWithHeader";
 import { useGetDeviceHumidityForGraph } from "./HumidityChart.hooks";
 import { config } from "./HumidityChart.schema";
+import { Droplet } from "lucide-react";
 
 export const HumidityChart = () => {
   const { data } = useGetDeviceHumidityForGraph({
@@ -24,6 +25,7 @@ export const HumidityChart = () => {
     <CardWithHeader
       title="Humidity"
       description="Outdoor humidity"
+      icon={Droplet}
       cardClassName="flex-grow"
       contentClassName="h-80"
     >

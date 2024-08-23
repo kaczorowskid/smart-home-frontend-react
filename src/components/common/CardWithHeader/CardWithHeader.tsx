@@ -29,7 +29,7 @@ export const CardWithHeader = ({
         {extra ? (
           extra
         ) : (
-          <>{Icon && <Icon className="h-4 w-4 text-muted-foreground" />}</>
+          <>{Icon && <Icon className="text-muted-foreground" />}</>
         )}
       </CardHeader>
       <CardContent className={contentClassName}>{children}</CardContent>

@@ -1,16 +1,18 @@
-import { getTemperatureDevice } from "@/api/handlers/devices.handlers";
+import { getDeviceToDisplay } from "@/api/handlers/displayedDevice.handlers";
 import {
-  GetTemperatureDevicePayload,
-  GetTemperatureDeviceResponse,
-} from "@/api/types/devices.types";
+  GetDeviceToDisplayPayload,
+  GetDeviceToDisplayResponse,
+} from "@/api/types/displayedDevice.types";
 import { queryKeys } from "@/utils/queryKeys";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
-export const useGetTemperatureDevice = (
-  payload: GetTemperatureDevicePayload
-): UseQueryResult<GetTemperatureDeviceResponse> =>
+export const useGetDeviceToDisplay = (
+  payload: GetDeviceToDisplayPayload
+): UseQueryResult<GetDeviceToDisplayResponse> =>
   useQuery({
-    queryKey: [queryKeys.getTemperatureDevice, ...Object.values(payload)],
-    queryFn: () => getTemperatureDevice(payload),
-    enabled: !!payload.id,
+    queryKey: [
+      queryKeys.getTemperatureDevice,
+      { order: Number(payload.order) },
+    ],
+    queryFn: () => getDeviceToDisplay(payload),
   });
