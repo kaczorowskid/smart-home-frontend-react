@@ -57,4 +57,18 @@ export class Request {
     const response = await axiosInstance(requestConfig);
     return response.data;
   };
+
+  put = async <RequestData, ResponseData>(
+    url: string,
+    data?: RequestData
+  ): Promise<ResponseData> => {
+    const requestConfig: AxiosRequestConfig = {
+      method: "PUT",
+      url,
+      data,
+    };
+
+    const response = await axiosInstance(requestConfig);
+    return response.data;
+  };
 }

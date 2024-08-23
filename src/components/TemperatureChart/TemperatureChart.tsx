@@ -14,6 +14,7 @@ import {
 import { CardWithHeader } from "../common/CardWithHeader/CardWithHeader";
 import { useGetDeviceTemperatureForGraph } from "./TemperatureChart.hooks";
 import { config } from "./TemperatureChart.schema";
+import { Thermometer } from "lucide-react";
 
 export const TemperatureChart = () => {
   const { data } = useGetDeviceTemperatureForGraph({
@@ -24,6 +25,7 @@ export const TemperatureChart = () => {
     <CardWithHeader
       title="Temperature"
       description="Outdoor temperature"
+      icon={Thermometer}
       cardClassName="flex-grow"
       contentClassName="h-80"
     >
