@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 export type CardWithHeaderProps = {
   cardClassName?: string;
   contentClassName?: string;
-  title: string;
+  title: ReactNode;
   description?: string;
   hasSmallHeader?: boolean;
   extra?: ReactNode;

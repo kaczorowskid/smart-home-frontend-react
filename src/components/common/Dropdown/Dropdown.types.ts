@@ -1,6 +1,5 @@
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
-import { LucideIcon } from "lucide-react";
-import { ComponentProps } from "react";
+import { ComponentProps, ReactNode } from "react";
 
 type DropdownItem = {
   label: string;
@@ -9,5 +8,5 @@ type DropdownItem = {
 
 export type DropdownProps = {
   items: DropdownItem[];
-  triggerIcon?: LucideIcon;
+  triggerComponent: ReactNode;
 } & ComponentProps<typeof DropdownMenu>;
