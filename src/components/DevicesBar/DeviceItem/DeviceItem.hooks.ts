@@ -10,9 +10,6 @@ export const useGetDeviceToDisplay = (
   payload: GetDeviceToDisplayPayload
 ): UseQueryResult<GetDeviceToDisplayResponse> =>
   useQuery({
-    queryKey: [
-      queryKeys.getTemperatureDevice,
-      { order: Number(payload.order) },
-    ],
+    queryKey: [queryKeys.getDevice, { order: Number(payload.order) }],
     queryFn: () => getDeviceToDisplay(payload),
   });

@@ -20,7 +20,7 @@ export const useCreateOrUpdateDevice = (): UseMutationResult<
     onSuccess: async (data) => {
       toast.success("essa");
       await queryClient.invalidateQueries({
-        queryKey: [queryKeys.getTemperatureDevice, { order: data.order }],
+        queryKey: [queryKeys.getDevice, { order: data.order }],
       });
     },
     onError: () => {

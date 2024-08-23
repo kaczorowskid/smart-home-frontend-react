@@ -1,13 +1,10 @@
-import { useChangeDisplayedDevice } from "./DevicesBar.hooks";
-import { TemperatureCard } from "./TemperatureCard/TemperatureCard";
+import { DeviceItem } from "./DeviceItem/DeviceItem";
 
 export const DevicesBar = () => {
-  const items = useChangeDisplayedDevice();
-
   return (
     <div className="grid grid-cols-4 gap-5">
       {Array.from({ length: 4 }).map((_, index) => (
-        <TemperatureCard items={items(index) || []} order={index} />
+        <DeviceItem key={index} order={index} />
       ))}
     </div>
   );
