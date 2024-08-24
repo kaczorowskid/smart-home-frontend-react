@@ -1,11 +1,12 @@
 import {
+  ChartArea,
   LayoutDashboard,
   LucideIcon,
   RadioTower,
   Settings,
 } from "lucide-react";
 
-export type Views = "dashboard" | "devices" | "settings";
+export type Views = "dashboard" | "devices" | "graphs" | "settings";
 
 type ViewsData = {
   [key in Views]: {
@@ -18,6 +19,10 @@ export const viewsData: ViewsData = {
   dashboard: {
     title: "Dashboard",
     icon: LayoutDashboard,
+  },
+  graphs: {
+    title: "Graphs",
+    icon: ChartArea,
   },
   devices: {
     title: "Devices",

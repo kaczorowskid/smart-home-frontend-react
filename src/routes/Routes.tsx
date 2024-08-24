@@ -12,6 +12,7 @@ import { Devices } from "@/views/app/Devices/Devices";
 import { Settings } from "@/views/app/Settings/Settings";
 import { Error } from "@/layouts/Error";
 import { Error404 } from "@/views/error/Error404/Error404";
+import { Graphs } from "@/views/app/Graphs/Graphs";
 
 export const Routes = (): JSX.Element => {
   const router = createBrowserRouter(
@@ -23,6 +24,7 @@ export const Routes = (): JSX.Element => {
         />
         <Route element={<PrivateLayout />}>
           <Route path={routesPath.app.dashboard} element={<Dashboard />} />
+          <Route path={routesPath.app.graphs} element={<Graphs />} />
           <Route path={routesPath.app.devices} element={<Devices />} />
           <Route path={routesPath.app.settings} element={<Settings />} />
         </Route>
