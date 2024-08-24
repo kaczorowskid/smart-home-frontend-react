@@ -5,11 +5,9 @@ import {
   CreateDeviceResponse,
   DeleteDevicePayload,
   DeleteDeviceResponse,
-  GetDeviceHumidityForGraphPayload,
-  GetDeviceHumidityForGraphResponse,
+  GetDeviceDataForGraphPayload,
+  GetDeviceDataForGraphResponse,
   GetDeviceResponse,
-  GetDeviceTemperatureForGraphPayload,
-  GetDeviceTemperatureForGraphResponse,
   UpdateDevicePayload,
   UpdateDeviceResponse,
 } from "../types/devices.types";
@@ -28,15 +26,10 @@ export const udpateDevice = async (
 ): Promise<UpdateDeviceResponse> =>
   request.patch(apiUrls.devices.getDevice(String(payload.id)), payload);
 
-export const getDeviceTemperatureForGraph = async (
-  payload: GetDeviceTemperatureForGraphPayload
-): Promise<GetDeviceTemperatureForGraphResponse[]> =>
-  request.get(apiUrls.devices.getDeviceTemperatureForGraph(payload.deviceId));
-
-export const getDeviceHumidityForGraph = async (
-  payload: GetDeviceHumidityForGraphPayload
-): Promise<GetDeviceHumidityForGraphResponse[]> =>
-  request.get(apiUrls.devices.getDeviceHumidityForGraph(payload.deviceId));
+export const getDeviceDataForGraph = async (
+  payload: GetDeviceDataForGraphPayload
+): Promise<GetDeviceDataForGraphResponse[]> =>
+  request.get(apiUrls.devices.getDeviceDataForGraph(payload.deviceId));
 
 export const deleteDevice = async (
   payload: DeleteDevicePayload

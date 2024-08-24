@@ -14,6 +14,11 @@ export const menuItems: MenuItem[] = [
     icon: "LayoutDashboard",
   },
   {
+    title: "Graphs",
+    path: routesPath.app.graphs,
+    icon: "ChartArea",
+  },
+  {
     title: "Devices",
     path: routesPath.app.devices,
     icon: "RadioTower",

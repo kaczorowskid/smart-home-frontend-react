@@ -12,12 +12,13 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { CardWithHeader } from "../common/CardWithHeader/CardWithHeader";
-import { useGetDeviceTemperatureForGraph } from "./TemperatureChart.hooks";
-import { config } from "./TemperatureChart.schema";
 import { Thermometer } from "lucide-react";
+import { DeviceChartProps } from "./DeviceChart.types";
+import { useGetDeviceDataForGraph } from "./DeviceChart.hooks";
+import { config } from "./DeviceChart.schemas";
 
-export const TemperatureChart = () => {
-  const { data } = useGetDeviceTemperatureForGraph({
+export const DeviceChart = ({ chartType }: DeviceChartProps) => {
+  const { data } = useGetDeviceDataForGraph({
     deviceId: "c8e16bcf-7bda-426c-bd99-4e2d3f5092f9",
   });
 
@@ -40,24 +41,31 @@ export const TemperatureChart = () => {
               tickMargin={8}
               tickFormatter={(value) => value.slice(0, 5)}
             />
-            <YAxis
-              dataKey="temperature"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-            />
+            <YAxis tickLine={false} axisLine={false} tickMargin={8} />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent indicator="dot" />}
             />
-            <Area
-              dataKey="temperature"
-              type="natural"
-              fill="var(--color-temperature)"
-              fillOpacity={0.4}
-              stroke="var(--color-temperature)"
-              stackId="a"
-            />
+            {(chartType === "temperature" || chartType === "all") && (
+              <Area
+                dataKey="temperature"
+                type="natural"
+                fill="var(--color-temperature)"
+                fillOpacity={0.4}
+                stroke="var(--color-temperature)"
+                stackId="a"
+              />
+            )}
+            {(chartType === "humidity" || chartType === "all") && (
+              <Area
+                dataKey="humidity"
+                type="natural"
+                fill="var(--color-humidity)"
+                fillOpacity={0.4}
+                stroke="var(--color-humidity)"
+                stackId="a"
+              />
+            )}
           </AreaChart>
         </ChartContainer>
       </ResponsiveContainer>

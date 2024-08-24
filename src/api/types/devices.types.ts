@@ -38,20 +38,12 @@ export type UpdateDeviceResponse = {
   updated_at: Date;
 };
 
-export type GetDeviceTemperatureForGraphPayload = {
+export type GetDeviceDataForGraphPayload = {
   deviceId: string;
 };
 
-export type GetDeviceTemperatureForGraphResponse = {
+export type GetDeviceDataForGraphResponse = {
   temperature: number;
-  date: string;
-};
-
-export type GetDeviceHumidityForGraphPayload = {
-  deviceId: string;
-};
-
-export type GetDeviceHumidityForGraphResponse = {
   humidity: number;
   date: string;
 };
