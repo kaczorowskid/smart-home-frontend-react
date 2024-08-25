@@ -1,15 +1,17 @@
-import { LocalStorageKey } from "@/utils/localStorageKeys";
+import { DisplayedDevicesKey } from "@/utils/localStorageKeys";
 import { useState } from "react";
 
-export const useLocalStorageDevice = (localStorageKey: LocalStorageKey) => {
+export const useLocalStorageDevice = (
+  displayedDevicesKeys: DisplayedDevicesKey
+) => {
   const [localValue, setLocalValue] = useState(
-    localStorage.getItem(localStorageKey) || ""
+    localStorage.getItem(displayedDevicesKeys) || ""
   );
 
-  const deviceId = localStorage.getItem(localStorageKey) || localValue;
+  const deviceId = localStorage.getItem(displayedDevicesKeys) || localValue;
 
   const setDeviceId = (value: string) => {
-    localStorage.setItem(localStorageKey, value);
+    localStorage.setItem(displayedDevicesKeys, value);
     setLocalValue(value);
   };
 

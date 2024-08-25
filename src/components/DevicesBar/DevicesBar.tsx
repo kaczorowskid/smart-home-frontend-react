@@ -1,19 +1,19 @@
-import { localShorageKeys } from "@/utils/localStorageKeys";
+import { displayedDevicesKeys } from "@/utils/localStorageKeys";
 import { DeviceItem } from "./DeviceItem/DeviceItem";
 
 export const DevicesBar = () => (
   <div className="grid grid-cols-4 gap-5">
     <DeviceItem
-      localStorageKey={localShorageKeys.dashboardTopDeviceLeftCorner}
+      displayedDevicesKeys={displayedDevicesKeys.dashboardTopDeviceLeftCorner}
     />
     <DeviceItem
-      localStorageKey={localShorageKeys.dashboardTopDeviceLeftMiddle}
+      displayedDevicesKeys={displayedDevicesKeys.dashboardTopDeviceLeftMiddle}
     />
     <DeviceItem
-      localStorageKey={localShorageKeys.dashboardTopDeviceRightMiddle}
+      displayedDevicesKeys={displayedDevicesKeys.dashboardTopDeviceRightMiddle}
     />
     <DeviceItem
-      localStorageKey={localShorageKeys.dashboardTopDeviceRightCorner}
+      displayedDevicesKeys={displayedDevicesKeys.dashboardTopDeviceRightCorner}
     />
   </div>
 );
