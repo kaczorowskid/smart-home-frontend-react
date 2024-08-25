@@ -8,12 +8,9 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
 export const useGetDeviceDataForGraph = (
   payload: GetDeviceDataForGraphPayload
-): UseQueryResult<GetDeviceDataForGraphResponse[]> =>
+): UseQueryResult<GetDeviceDataForGraphResponse> =>
   useQuery({
-    queryKey: [
-      queryKeys.getDeviceTemperatureForGraph,
-      ...Object.values(payload),
-    ],
+    queryKey: [queryKeys.getDeviceDataForGraph, ...Object.values(payload)],
     queryFn: () => getDeviceDataForGraph(payload),
     enabled: !!payload.deviceId,
   });

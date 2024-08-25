@@ -1,3 +1,5 @@
+import { LocalStorageKey } from "@/utils/localStorageKeys";
+
 export type DeviceItemProps = {
-  order: number;
+  localStorageKey: LocalStorageKey;
 };

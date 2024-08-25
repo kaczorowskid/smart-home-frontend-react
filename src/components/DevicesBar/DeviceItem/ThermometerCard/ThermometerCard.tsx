@@ -24,9 +24,11 @@ export const ThermometerCard = ({
       }
       hasSmallHeader
     >
-      <div className="text-6xl font-bold mb-5">{thermometers?.temperature}</div>
+      <div className="text-6xl font-bold mb-5">
+        {thermometers?.[0]?.temperature}
+      </div>
       <p className="text-xs text-muted-foreground">
-        Humidity: {thermometers?.humidity}%
+        Humidity: {thermometers?.[0]?.humidity}%
       </p>
     </CardWithHeader>
   );

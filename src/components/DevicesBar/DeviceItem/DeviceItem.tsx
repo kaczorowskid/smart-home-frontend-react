@@ -1,25 +1,27 @@
-import { useChangeDisplayedDevice } from "../DevicesBar.hooks";
+import { useChangeDisplayedDevice } from "@/hooks/useChangedDisplayedDevice.hook";
 import { BlindCard } from "./BlindCard/BlindCard";
-import { useGetDeviceToDisplay } from "./DeviceItem.hooks";
 import { DeviceItemProps } from "./DeviceItem.types";
 import { EmptyDevice } from "./EmptyDevice/EmptyDevice";
 import { ThermometerCard } from "./ThermometerCard/ThermometerCard";
+import { useLocalStorageDevice } from "@/hooks/useLocalStorageDevice.hook";
+import { useGetDevice } from "./DeviceItem.hooks";
 
-export const DeviceItem = ({ order }: DeviceItemProps) => {
-  const items = useChangeDisplayedDevice();
-  const { data } = useGetDeviceToDisplay({ order: String(order) });
+export const DeviceItem = ({ localStorageKey }: DeviceItemProps) => {
+  const { deviceId } = useLocalStorageDevice(localStorageKey);
+  const items = useChangeDisplayedDevice(localStorageKey);
+  const { data } = useGetDevice({ id: deviceId || "" });
 
-  if (data?.order === undefined) {
-    return <EmptyDevice items={items(order) || []} />;
+  if (data?.id === undefined) {
+    return <EmptyDevice items={items || []} />;
   }
 
   return data?.type === "THERMOMETER" ? (
     <ThermometerCard
       name={data?.name || ""}
-      items={items(order) || []}
+      items={items || []}
       thermometers={data?.thermometers}
     />
   ) : (
-    <BlindCard name={data?.name || ""} items={items(order) || []} blinds={{}} />
+    <BlindCard name={data?.name || ""} items={items || []} blinds={{}} />
   );
 };

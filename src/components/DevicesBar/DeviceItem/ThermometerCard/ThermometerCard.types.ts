@@ -1,8 +1,8 @@
-import { GetDeviceToDisplayResponse } from "@/api/types/displayedDevice.types";
+import { GetDeviceResponse } from "@/api/types/devices.types";
 import { DropdownProps } from "@/components/common/Dropdown/Dropdown.types";
 
 export type ThermometerCardProps = {
   name: string;
-  thermometers: GetDeviceToDisplayResponse["thermometers"];
+  thermometers: GetDeviceResponse["thermometers"];
   items: DropdownProps["items"];
 };
