@@ -12,27 +12,45 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { CardWithHeader } from "../common/CardWithHeader/CardWithHeader";
-import { Thermometer } from "lucide-react";
 import { DeviceChartProps } from "./DeviceChart.types";
 import { useGetDeviceDataForGraph } from "./DeviceChart.hooks";
 import { config } from "./DeviceChart.schemas";
+import { useLocalStorageDevice } from "@/hooks/useLocalStorageDevice.hook";
+import { useChangeDisplayedDevice } from "@/hooks/useChangedDisplayedDevice.hook";
+import { Dropdown } from "../common/Dropdown/Dropdown";
 
-export const DeviceChart = ({ chartType }: DeviceChartProps) => {
+export const DeviceChart = ({
+  chartType,
+  description,
+  icon,
+  localStorageKey,
+}: DeviceChartProps) => {
+  const { deviceId } = useLocalStorageDevice(localStorageKey);
+  const items = useChangeDisplayedDevice(localStorageKey);
   const { data } = useGetDeviceDataForGraph({
-    deviceId: "c8e16bcf-7bda-426c-bd99-4e2d3f5092f9",
+    deviceId: deviceId || "",
   });
 
   return (
     <CardWithHeader
-      title="Temperature"
-      description="Outdoor temperature"
-      icon={Thermometer}
+      title={
+        <Dropdown
+          items={items || []}
+          triggerComponent={
+            <div className="cursor-pointer hover:text-muted-foreground">
+              {data?.name}
+            </div>
+          }
+        />
+      }
+      description={description}
+      icon={icon}
       cardClassName="flex-grow"
       contentClassName="h-80"
     >
       <ResponsiveContainer width="100%" height="100%">
         <ChartContainer config={config}>
-          <AreaChart accessibilityLayer data={data}>
+          <AreaChart accessibilityLayer data={data?.thermometers}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="date"

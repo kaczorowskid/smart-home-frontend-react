@@ -7,6 +7,7 @@ import {
   DeleteDeviceResponse,
   GetDeviceDataForGraphPayload,
   GetDeviceDataForGraphResponse,
+  GetDevicePayload,
   GetDeviceResponse,
   UpdateDevicePayload,
   UpdateDeviceResponse,
@@ -16,6 +17,11 @@ const request = new Request();
 
 export const getAllDevices = async (): Promise<GetDeviceResponse[]> =>
   request.get(apiUrls.devices.base);
+
+export const getOneDevice = async (
+  payload: GetDevicePayload
+): Promise<GetDeviceResponse> =>
+  request.get(apiUrls.devices.getDevice(payload.id));
 
 export const createDevice = async (
   payload: CreateDevicePayload
@@ -28,7 +34,7 @@ export const udpateDevice = async (
 
 export const getDeviceDataForGraph = async (
   payload: GetDeviceDataForGraphPayload
-): Promise<GetDeviceDataForGraphResponse[]> =>
+): Promise<GetDeviceDataForGraphResponse> =>
   request.get(apiUrls.devices.getDeviceDataForGraph(payload.deviceId));
 
 export const deleteDevice = async (

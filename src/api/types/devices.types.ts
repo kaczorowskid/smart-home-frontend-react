@@ -1,3 +1,7 @@
+export type GetDevicePayload = {
+  id: string;
+};
+
 export type GetDeviceResponse = {
   id: string;
   type: "THERMOMETER" | "BLIND";
@@ -5,6 +9,11 @@ export type GetDeviceResponse = {
   device_id: string;
   created_at: Date;
   updated_at: Date;
+  thermometers: {
+    humidity: number;
+    temperature: number;
+    date: string;
+  }[];
 };
 
 export type CreateDevicePayload = {
@@ -43,9 +52,12 @@ export type GetDeviceDataForGraphPayload = {
 };
 
 export type GetDeviceDataForGraphResponse = {
-  temperature: number;
-  humidity: number;
-  date: string;
+  name: string;
+  thermometers: {
+    temperature: number;
+    humidity: number;
+    date: string;
+  }[];
 };
 
 export type DeleteDevicePayload = {

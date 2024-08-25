@@ -1,15 +1,12 @@
-import { getDeviceToDisplay } from "@/api/handlers/displayedDevice.handlers";
-import {
-  GetDeviceToDisplayPayload,
-  GetDeviceToDisplayResponse,
-} from "@/api/types/displayedDevice.types";
+import { getOneDevice } from "@/api/handlers/devices.handlers";
+import { GetDevicePayload, GetDeviceResponse } from "@/api/types/devices.types";
 import { queryKeys } from "@/utils/queryKeys";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
-export const useGetDeviceToDisplay = (
-  payload: GetDeviceToDisplayPayload
-): UseQueryResult<GetDeviceToDisplayResponse> =>
+export const useGetDevice = (
+  payload: GetDevicePayload
+): UseQueryResult<GetDeviceResponse> =>
   useQuery({
-    queryKey: [queryKeys.getDevice, { order: Number(payload.order) }],
-    queryFn: () => getDeviceToDisplay(payload),
+    queryKey: [queryKeys.getDevice, payload.id],
+    queryFn: () => getOneDevice(payload),
   });
