@@ -1,5 +1,5 @@
-import { LocalStorageKey } from "@/utils/localStorageKeys";
+import { DisplayedDevicesKey } from "@/utils/localStorageKeys";
 
 export type DeviceItemProps = {
-  localStorageKey: LocalStorageKey;
+  displayedDevicesKeys: DisplayedDevicesKey;
 };

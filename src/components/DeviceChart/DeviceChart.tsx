@@ -23,10 +23,10 @@ export const DeviceChart = ({
   chartType,
   description,
   icon,
-  localStorageKey,
+  displayedDeviceKeys,
 }: DeviceChartProps) => {
-  const { deviceId } = useLocalStorageDevice(localStorageKey);
-  const items = useChangeDisplayedDevice(localStorageKey);
+  const { deviceId } = useLocalStorageDevice(displayedDeviceKeys);
+  const items = useChangeDisplayedDevice(displayedDeviceKeys);
   const { data } = useGetDeviceDataForGraph({
     deviceId: deviceId || "",
   });

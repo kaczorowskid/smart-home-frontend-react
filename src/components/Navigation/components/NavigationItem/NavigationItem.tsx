@@ -12,8 +12,8 @@ export const NavigationItem = ({ title, icon, path }: NavigationItemProps) => {
     <Link
       to={path}
       className={cn(
-        "flex items-center gap-3 rounded-lg px-3 py-4 my-2 text-muted-foreground transition-all hover:text-primary hover:bg-gray-700",
-        isActive && "bg-gray-700"
+        "flex items-center gap-3 rounded-lg px-3 py-4 my-2 text-muted-foreground transition-all hover:text-primary hover:bg-secondary",
+        isActive && "bg-secondary"
       )}
     >
       <Icon name={icon} />

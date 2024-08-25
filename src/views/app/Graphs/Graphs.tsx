@@ -1,23 +1,23 @@
 import { DeviceChart } from "@/components/DeviceChart/DeviceChart";
-import { localShorageKeys } from "@/utils/localStorageKeys";
+import { displayedDevicesKeys } from "@/utils/localStorageKeys";
 import { Cloud, Droplet, Thermometer } from "lucide-react";
 
 export const Graphs = () => (
   <div className="flex flex-col gap-5">
     <DeviceChart
-      localStorageKey={localShorageKeys.graphsTemperatureChart}
+      displayedDeviceKeys={displayedDevicesKeys.graphsTemperatureChart}
       chartType="temperature"
       description="Temperature"
       icon={Thermometer}
     />
     <DeviceChart
-      localStorageKey={localShorageKeys.graphsHumidityChart}
+      displayedDeviceKeys={displayedDevicesKeys.graphsHumidityChart}
       chartType="humidity"
       description="Humidity"
       icon={Droplet}
     />
     <DeviceChart
-      localStorageKey={localShorageKeys.grapshAllCharts}
+      displayedDeviceKeys={displayedDevicesKeys.grapshAllCharts}
       chartType="all"
       description="Temperature & Humidity"
       icon={Cloud}

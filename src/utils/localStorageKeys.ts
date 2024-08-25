@@ -1,4 +1,4 @@
-export const localShorageKeys = {
+export const displayedDevicesKeys = {
   dashboardTopDeviceLeftCorner: "dashboardTopDeviceLeftCorner",
   dashboardTopDeviceLeftMiddle: "dashboardTopDeviceLeftMiddle",
   dashboardTopDeviceRightMiddle: "dashboardTopDeviceRightMiddle",
@@ -10,4 +10,9 @@ export const localShorageKeys = {
   grapshAllCharts: "grapshAllCharts",
 } as const;
 
-export type LocalStorageKey = keyof typeof localShorageKeys;
+export const themeKeys = {
+  theme: "theme",
+} as const;
+
+export type DisplayedDevicesKey = keyof typeof displayedDevicesKeys;
+export type ThemeKey = keyof typeof themeKeys;

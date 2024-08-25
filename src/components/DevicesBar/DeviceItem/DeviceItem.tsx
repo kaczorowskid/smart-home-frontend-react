@@ -6,9 +6,9 @@ import { ThermometerCard } from "./ThermometerCard/ThermometerCard";
 import { useLocalStorageDevice } from "@/hooks/useLocalStorageDevice.hook";
 import { useGetDevice } from "./DeviceItem.hooks";
 
-export const DeviceItem = ({ localStorageKey }: DeviceItemProps) => {
-  const { deviceId } = useLocalStorageDevice(localStorageKey);
-  const items = useChangeDisplayedDevice(localStorageKey);
+export const DeviceItem = ({ displayedDevicesKeys }: DeviceItemProps) => {
+  const { deviceId } = useLocalStorageDevice(displayedDevicesKeys);
+  const items = useChangeDisplayedDevice(displayedDevicesKeys);
   const { data } = useGetDevice({ id: deviceId || "" });
 
   if (data?.id === undefined) {
