@@ -5,7 +5,7 @@ import { ThermometerCardProps } from "./ThermometerCard.types";
 
 export const ThermometerCard = ({
   name,
-  thermometers,
+  thermometerData,
   items,
 }: ThermometerCardProps) => {
   return (
@@ -25,10 +25,10 @@ export const ThermometerCard = ({
       hasSmallHeader
     >
       <div className="text-6xl font-bold mb-5">
-        {thermometers?.[0]?.temperature}
+        {thermometerData?.[0]?.temperature}
       </div>
       <p className="text-xs text-muted-foreground">
-        Humidity: {thermometers?.[0]?.humidity}%
+        Humidity: {thermometerData?.[0]?.humidity}%
       </p>
     </CardWithHeader>
   );

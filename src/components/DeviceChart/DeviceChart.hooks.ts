@@ -1,5 +1,9 @@
-import { getDeviceDataForGraph } from "@/api/handlers/devices.handlers";
 import {
+  getAllThermometers,
+  getDeviceDataForGraph,
+} from "@/api/handlers/devices.handlers";
+import {
+  GetAllThermometersResponse,
   GetDeviceDataForGraphPayload,
   GetDeviceDataForGraphResponse,
 } from "@/api/types/devices.types";
@@ -14,3 +18,10 @@ export const useGetDeviceDataForGraph = (
     queryFn: () => getDeviceDataForGraph(payload),
     enabled: !!payload.deviceId,
   });
+
+export const useGetAllThermometers =
+  (): UseQueryResult<GetAllThermometersResponse> =>
+    useQuery({
+      queryKey: [queryKeys.getAllThermometers],
+      queryFn: getAllThermometers,
+    });

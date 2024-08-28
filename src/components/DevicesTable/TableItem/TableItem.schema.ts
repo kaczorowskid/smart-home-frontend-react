@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const formFields = {
   name: "name",
-  deviceId: "device_id",
+  deviceId: "deviceId",
   type: "type",
 } as const;
 

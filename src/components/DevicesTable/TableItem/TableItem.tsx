@@ -15,6 +15,7 @@ import { AccordionContent } from "@/components/ui/accordion";
 import { TableItemProps } from "./TableItem.types";
 import { useEffect, useState } from "react";
 import { ActionButtons } from "./ActionButtons/ActionButtons";
+import { DeviceType } from "@/api/types/common.types";
 
 export const TableItem = ({
   id,
@@ -32,7 +33,7 @@ export const TableItem = ({
     values: {
       name: name || "",
       type: type || "THERMOMETER",
-      device_id: deviceId || "",
+      deviceId: deviceId || "",
     },
   });
 
@@ -68,7 +69,7 @@ export const TableItem = ({
   };
 
   const handleDelete = () => {
-    deleteDevice({ id: id || "" });
+    deleteDevice({ id: id || "", type: type as DeviceType });
   };
 
   useEffect(() => {

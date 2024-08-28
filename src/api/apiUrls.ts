@@ -1,10 +1,8 @@
 export const apiUrls = {
   devices: {
-    base: `/devices`,
+    base: "/devices",
+    thermometers: "/devices/thermometers",
     getDevice: (id: string) => `/devices/${id}`,
     getDeviceDataForGraph: (deviceId: string) => `/devices/${deviceId}/data`,
-  },
-  displayedDevice: {
-    getDevice: (order: string) => `/displayed-device/${order}`,
   },
 };

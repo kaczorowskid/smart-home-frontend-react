@@ -13,7 +13,10 @@ import {
 } from "@/components/ui/chart";
 import { CardWithHeader } from "../common/CardWithHeader/CardWithHeader";
 import { DeviceChartProps } from "./DeviceChart.types";
-import { useGetDeviceDataForGraph } from "./DeviceChart.hooks";
+import {
+  useGetAllThermometers,
+  useGetDeviceDataForGraph,
+} from "./DeviceChart.hooks";
 import { config } from "./DeviceChart.schemas";
 import { useLocalStorageDevice } from "@/hooks/useLocalStorageDevice.hook";
 import { useChangeDisplayedDevice } from "@/hooks/useChangedDisplayedDevice.hook";
@@ -26,19 +29,20 @@ export const DeviceChart = ({
   displayedDeviceKeys,
 }: DeviceChartProps) => {
   const { deviceId } = useLocalStorageDevice(displayedDeviceKeys);
-  const items = useChangeDisplayedDevice(displayedDeviceKeys);
+  const { data: allThermometers } = useGetAllThermometers();
   const { data } = useGetDeviceDataForGraph({
     deviceId: deviceId || "",
   });
+  const items = useChangeDisplayedDevice(displayedDeviceKeys, allThermometers);
 
   return (
     <CardWithHeader
       title={
         <Dropdown
-          items={items || []}
+          items={items}
           triggerComponent={
             <div className="cursor-pointer hover:text-muted-foreground">
-              {data?.name}
+              {data?.name || "Click to attach device"}
             </div>
           }
         />
@@ -50,14 +54,14 @@ export const DeviceChart = ({
     >
       <ResponsiveContainer width="100%" height="100%">
         <ChartContainer config={config}>
-          <AreaChart accessibilityLayer data={data?.thermometers}>
+          <AreaChart accessibilityLayer data={data?.data}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="date"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 5)}
+              tickFormatter={(value) => value.substring(11, 16)}
             />
             <YAxis tickLine={false} axisLine={false} tickMargin={8} />
             <ChartTooltip
