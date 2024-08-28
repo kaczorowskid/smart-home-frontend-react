@@ -1,15 +1,21 @@
-import { useGetAllDevices } from "@/components/DevicesTable/DevicesTable.hooks";
 import { useLocalStorageDevice } from "./useLocalStorageDevice.hook";
 import { DisplayedDevicesKey } from "@/utils/localStorageKeys";
 
-export const useChangeDisplayedDevice = (
-  displayedDevicesKeys: DisplayedDevicesKey
+type DataType = {
+  id: string;
+  name: string;
+};
+
+export const useChangeDisplayedDevice = <T extends DataType[]>(
+  displayedDevicesKeys: DisplayedDevicesKey,
+  data?: T
 ) => {
-  const { data } = useGetAllDevices();
   const { setDeviceId } = useLocalStorageDevice(displayedDevicesKeys);
 
-  return data?.map(({ id, name }) => ({
-    label: name,
-    onClick: () => setDeviceId(id),
-  }));
+  return (
+    data?.map(({ id, name }) => ({
+      label: name,
+      onClick: () => setDeviceId(id),
+    })) || []
+  );
 };

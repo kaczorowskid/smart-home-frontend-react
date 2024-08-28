@@ -14,7 +14,9 @@ export const EmptyDevice = ({ items }: EmptyDeviceProps) => {
       <div className="w-full h-[70%] flex justify-center items-center">
         <Dropdown
           items={items}
-          triggerComponent={<Button variant="outline">Attach device</Button>}
+          triggerComponent={
+            <Button variant="outline">Click to attach device</Button>
+          }
         />
       </div>
     </CardWithHeader>

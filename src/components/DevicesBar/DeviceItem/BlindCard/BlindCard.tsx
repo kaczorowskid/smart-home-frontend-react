@@ -5,11 +5,11 @@ import { BlindCardProps } from "./BlindCard.types";
 import { Slider } from "@/components/ui/slider";
 import { useState } from "react";
 
-export const BlindCard = ({ name, blinds, items }: BlindCardProps) => {
-  const [val, setVal] = useState(0);
+export const BlindCard = ({ name, blindValue, items }: BlindCardProps) => {
+  const [value, setValue] = useState(blindValue);
 
   const handleChangeBlind = (value: [number]) => {
-    setVal(value[0]);
+    setValue(value[0]);
   };
 
   return (
@@ -28,8 +28,13 @@ export const BlindCard = ({ name, blinds, items }: BlindCardProps) => {
       }
       hasSmallHeader
     >
-      <div className="text-6xl font-bold mb-5">{val}%</div>
-      <Slider onValueChange={handleChangeBlind} max={100} step={25} />
+      <div className="text-6xl font-bold mb-5">{value}%</div>
+      <Slider
+        onValueChange={handleChangeBlind}
+        defaultValue={[value]}
+        max={100}
+        step={25}
+      />
     </CardWithHeader>
   );
 };

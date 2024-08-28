@@ -5,22 +5,28 @@ import {
   CreateDeviceResponse,
   DeleteDevicePayload,
   DeleteDeviceResponse,
+  GetAllDevicesResponse,
+  GetAllThermometersResponse,
   GetDeviceDataForGraphPayload,
   GetDeviceDataForGraphResponse,
-  GetDevicePayload,
-  GetDeviceResponse,
+  GetOneDevicePayload,
+  GetOneDevicesResponse,
   UpdateDevicePayload,
   UpdateDeviceResponse,
 } from "../types/devices.types";
 
 const request = new Request();
 
-export const getAllDevices = async (): Promise<GetDeviceResponse[]> =>
+export const getAllDevices = async (): Promise<GetAllDevicesResponse> =>
   request.get(apiUrls.devices.base);
 
+export const getAllThermometers =
+  async (): Promise<GetAllThermometersResponse> =>
+    request.get(apiUrls.devices.thermometers);
+
 export const getOneDevice = async (
-  payload: GetDevicePayload
-): Promise<GetDeviceResponse> =>
+  payload: GetOneDevicePayload
+): Promise<GetOneDevicesResponse> =>
   request.get(apiUrls.devices.getDevice(payload.id));
 
 export const createDevice = async (
@@ -32,12 +38,12 @@ export const udpateDevice = async (
 ): Promise<UpdateDeviceResponse> =>
   request.patch(apiUrls.devices.getDevice(String(payload.id)), payload);
 
+export const deleteDevice = async (
+  payload: DeleteDevicePayload
+): Promise<DeleteDeviceResponse> =>
+  request.delete(apiUrls.devices.getDevice(payload.id), payload);
+
 export const getDeviceDataForGraph = async (
   payload: GetDeviceDataForGraphPayload
 ): Promise<GetDeviceDataForGraphResponse> =>
   request.get(apiUrls.devices.getDeviceDataForGraph(payload.deviceId));
-
-export const deleteDevice = async (
-  payload: DeleteDevicePayload
-): Promise<DeleteDeviceResponse> =>
-  request.delete(apiUrls.devices.getDevice(payload.id));

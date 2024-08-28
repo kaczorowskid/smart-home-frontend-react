@@ -1,51 +1,31 @@
-export type GetDevicePayload = {
+import { Blind, DeviceType, Thermometer } from "./common.types";
+
+export type GetAllDevicesResponse = (Thermometer | Blind)[];
+
+export type GetAllThermometersResponse = Thermometer[];
+
+export type GetOneDevicePayload = {
   id: string;
 };
 
-export type GetDeviceResponse = {
-  id: string;
-  type: "THERMOMETER" | "BLIND";
-  name: string;
-  device_id: string;
-  created_at: Date;
-  updated_at: Date;
-  thermometers: {
-    humidity: number;
-    temperature: number;
-    date: string;
-  }[];
-};
+export type GetOneDevicesResponse = Thermometer | Blind;
 
 export type CreateDevicePayload = {
   name: string;
-  device_id: string;
-  type: "THERMOMETER" | "BLIND";
+  deviceId: string;
+  type: DeviceType;
 };
 
-export type CreateDeviceResponse = {
-  id: string;
-  type: "THERMOMETER" | "BLIND";
-  name: string;
-  device_id: string;
-  created_at: Date;
-  updated_at: Date;
-};
+export type CreateDeviceResponse = Thermometer | Blind;
 
 export type UpdateDevicePayload = Partial<{
   id: string;
   name: string;
-  device_id: string;
-  type: "THERMOMETER" | "BLIND";
+  deviceId: string;
+  type: DeviceType;
 }>;
 
-export type UpdateDeviceResponse = {
-  id: string;
-  type: "THERMOMETER" | "BLIND";
-  name: string;
-  device_id: string;
-  created_at: Date;
-  updated_at: Date;
-};
+export type UpdateDeviceResponse = Thermometer | Blind;
 
 export type GetDeviceDataForGraphPayload = {
   deviceId: string;
@@ -53,7 +33,7 @@ export type GetDeviceDataForGraphPayload = {
 
 export type GetDeviceDataForGraphResponse = {
   name: string;
-  thermometers: {
+  data: {
     temperature: number;
     humidity: number;
     date: string;
@@ -62,13 +42,7 @@ export type GetDeviceDataForGraphResponse = {
 
 export type DeleteDevicePayload = {
   id: string;
+  type: DeviceType;
 };
 
-export type DeleteDeviceResponse = {
-  id: string;
-  type: "THERMOMETER" | "BLIND";
-  name: string;
-  device_id: string;
-  created_at: Date;
-  updated_at: Date;
-};
+export type DeleteDeviceResponse = Thermometer | Blind;
