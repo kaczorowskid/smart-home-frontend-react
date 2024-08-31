@@ -1,7 +1,7 @@
 import { useTheme } from "@/contexts/ThemeContext/ThemeContext.hooks";
-import { menuItems } from "./Navigation.data";
-import { NavigationItem } from "./components/NavigationItem/NavigationItem";
-import { UserInfo } from "./components/UserInfo/UserInfo";
+import { menuItems } from "./Navigation.const";
+import { NavigationItem } from "./NavigationItem/NavigationItem";
+import { UserInfo } from "./UserInfo/UserInfo";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 import { Moon, Sun } from "lucide-react";
 

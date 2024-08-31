@@ -6,12 +6,25 @@ import { TableItem } from "./TableItem/TableItem";
 import { useState } from "react";
 import { ExtraButton } from "./ExtraButton/ExtraButton";
 import { DevicesTableProps } from "./DevicesTable.types";
-import { useGetAllDevices } from "./DevicesTable.hooks";
+import {
+  useFilteredData,
+  useGetAllDevices,
+  usePagination,
+} from "./DevicesTable.hooks";
 import { NewDeviceItem } from "./NewDeviceItem/NewDeviceItem";
 
 export const DevicesTable = ({ isDashboardPart }: DevicesTableProps) => {
   const [selectedValue, setSelectedValue] = useState("");
   const { data } = useGetAllDevices();
+
+  const { filteredData, searchbarValue, setSearchbarValue } =
+    useFilteredData(data);
+
+  const { paginationData, handlePaginationChange } = usePagination({
+    data: filteredData,
+    defaultPage: 1,
+    pageSize: 5,
+  });
 
   const handleValueChange = (value: string) => {
     setSelectedValue(value);
@@ -21,7 +34,13 @@ export const DevicesTable = ({ isDashboardPart }: DevicesTableProps) => {
     <CardWithHeader
       title="Devices"
       description="Table of devices"
-      extra={<ExtraButton isDashboardPart={!!isDashboardPart} />}
+      extra={
+        <ExtraButton
+          isDashboardPart={!!isDashboardPart}
+          searchbarValue={searchbarValue}
+          setSearchbarValue={setSearchbarValue}
+        />
+      }
     >
       <Accordion
         collapsible
@@ -34,7 +53,7 @@ export const DevicesTable = ({ isDashboardPart }: DevicesTableProps) => {
           setSelectedValue={setSelectedValue}
           isDashboardPart={!!isDashboardPart}
         />
-        {data?.map(({ id, name, type, deviceId }) => (
+        {paginationData?.data?.map(({ id, name, type, deviceId }) => (
           <AccordionItem key={id} value={id}>
             <TableHeader id={id} name={name} status="online" type={type} />
             <TableItem
@@ -49,7 +68,14 @@ export const DevicesTable = ({ isDashboardPart }: DevicesTableProps) => {
           </AccordionItem>
         ))}
       </Accordion>
-      <Pagination />
+      {!isDashboardPart && (
+        <Pagination
+          className="pt-5"
+          count={paginationData.pagination.count}
+          defaultPage={paginationData.pagination.defaultPage}
+          onPaginationChange={handlePaginationChange}
+        />
+      )}
     </CardWithHeader>
   );
 };
