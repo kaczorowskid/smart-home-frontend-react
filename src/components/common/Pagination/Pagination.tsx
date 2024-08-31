@@ -1,37 +1,32 @@
 import {
   Pagination as ShadcnPagination,
   PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
+  PaginationItem as ShadcnPaginationItem,
 } from "@/components/ui/pagination";
+import { PaginationProps } from "./Pagination.types";
+import { PaginationItem } from "./PaginationItem/PaginationItem";
+import { usePaginationItems } from "./Pagination.hooks";
 
-export const Pagination = () => {
+export const Pagination = ({
+  count,
+  defaultPage,
+  onPaginationChange,
+  ...props
+}: PaginationProps) => {
+  const { items } = usePaginationItems({
+    count,
+    defaultPage,
+    onPaginationChange,
+  });
+
   return (
-    <ShadcnPagination>
+    <ShadcnPagination {...props}>
       <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious href="#" />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">1</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" isActive>
-            2
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">3</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href="#" />
-        </PaginationItem>
+        {items.map((item) => (
+          <ShadcnPaginationItem>
+            <PaginationItem {...item}>{item.page}</PaginationItem>
+          </ShadcnPaginationItem>
+        ))}
       </PaginationContent>
     </ShadcnPagination>
   );

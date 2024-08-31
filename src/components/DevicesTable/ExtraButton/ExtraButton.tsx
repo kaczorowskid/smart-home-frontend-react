@@ -5,7 +5,11 @@ import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 
-export const ExtraButton = ({ isDashboardPart }: ExtraButtonProps) => {
+export const ExtraButton = ({
+  isDashboardPart,
+  searchbarValue,
+  setSearchbarValue,
+}: ExtraButtonProps) => {
   const dashboardPart = (
     <Button asChild variant="outline">
       <Link to={routesPath.app.devices}>Go to Devices</Link>
@@ -18,6 +22,8 @@ export const ExtraButton = ({ isDashboardPart }: ExtraButtonProps) => {
       <Input
         type="search"
         placeholder="Search..."
+        value={searchbarValue}
+        onChange={(value) => setSearchbarValue(value.target.value)}
         className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
       />
     </div>
