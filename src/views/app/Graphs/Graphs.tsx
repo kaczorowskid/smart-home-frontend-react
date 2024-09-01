@@ -1,4 +1,4 @@
-import { DeviceChart } from "@/components/DeviceChart/DeviceChart";
+import { DeviceChart } from "@/components/DeviceChart";
 import { displayedDevicesKeys } from "@/utils/localStorageKeys";
 import { Cloud, Droplet, Thermometer } from "lucide-react";
 

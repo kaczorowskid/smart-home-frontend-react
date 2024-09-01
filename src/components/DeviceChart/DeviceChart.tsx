@@ -11,7 +11,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { CardWithHeader } from "../common/CardWithHeader/CardWithHeader";
+import { CardWithHeader } from "../common/CardWithHeader";
 import { DeviceChartProps } from "./DeviceChart.types";
 import {
   useGetAllThermometers,
@@ -20,7 +20,7 @@ import {
 import { config } from "./DeviceChart.schemas";
 import { useLocalStorageDevice } from "@/hooks/useLocalStorageDevice.hook";
 import { useChangeDisplayedDevice } from "@/hooks/useChangedDisplayedDevice.hook";
-import { Dropdown } from "../common/Dropdown/Dropdown";
+import { Dropdown } from "../common/Dropdown";
 
 export const DeviceChart = ({
   chartType,

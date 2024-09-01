@@ -1,5 +1,5 @@
-import { CardWithHeader } from "@/components/common/CardWithHeader/CardWithHeader";
-import { Dropdown } from "@/components/common/Dropdown/Dropdown";
+import { CardWithHeader } from "@/components/common/CardWithHeader";
+import { Dropdown } from "@/components/common/Dropdown";
 import { Blinds } from "lucide-react";
 import { BlindCardProps } from "./BlindCard.types";
 import { Slider } from "@/components/ui/slider";

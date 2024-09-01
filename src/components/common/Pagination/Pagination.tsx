@@ -4,7 +4,7 @@ import {
   PaginationItem as ShadcnPaginationItem,
 } from "@/components/ui/pagination";
 import { PaginationProps } from "./Pagination.types";
-import { PaginationItem } from "./PaginationItem/PaginationItem";
+import { PaginationItem } from "./PaginationItem";
 import { usePaginationItems } from "./Pagination.hooks";
 
 export const Pagination = ({
