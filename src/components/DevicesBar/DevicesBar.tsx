@@ -1,5 +1,5 @@
 import { displayedDevicesKeys } from "@/utils/localStorageKeys";
-import { DeviceItem } from "./DeviceItem/DeviceItem";
+import { DeviceItem } from "./DeviceItem";
 
 export const DevicesBar = () => (
   <div className="grid grid-cols-4 gap-5">

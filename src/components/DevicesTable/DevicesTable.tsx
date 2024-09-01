@@ -1,17 +1,17 @@
-import { CardWithHeader } from "../common/CardWithHeader/CardWithHeader";
-import { Pagination } from "../common/Pagination/Pagination";
+import { CardWithHeader } from "../common/CardWithHeader";
+import { Pagination } from "../common/Pagination";
 import { Accordion, AccordionItem } from "../ui/accordion";
-import { TableHeader } from "./TableHeader/TableHeader";
-import { TableItem } from "./TableItem/TableItem";
+import { TableHeader } from "./TableHeader";
+import { TableItem } from "./TableItem";
 import { useState } from "react";
-import { ExtraButton } from "./ExtraButton/ExtraButton";
+import { ExtraButton } from "./ExtraButton";
 import { DevicesTableProps } from "./DevicesTable.types";
 import {
   useFilteredData,
   useGetAllDevices,
   usePagination,
 } from "./DevicesTable.hooks";
-import { NewDeviceItem } from "./NewDeviceItem/NewDeviceItem";
+import { NewDeviceItem } from "./NewDeviceItem";
 
 export const DevicesTable = ({ isDashboardPart }: DevicesTableProps) => {
   const [selectedValue, setSelectedValue] = useState("");

@@ -1,6 +1,6 @@
-import { CardWithHeader } from "@/components/common/CardWithHeader/CardWithHeader";
+import { CardWithHeader } from "@/components/common/CardWithHeader";
 import { EmptyDeviceProps } from "./EmptyDevice.types";
-import { Dropdown } from "@/components/common/Dropdown/Dropdown";
+import { Dropdown } from "@/components/common/Dropdown";
 import { Button } from "@/components/ui/button";
 
 export const EmptyDevice = ({ items }: EmptyDeviceProps) => {

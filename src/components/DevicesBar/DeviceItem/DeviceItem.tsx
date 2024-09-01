@@ -1,8 +1,8 @@
 import { useChangeDisplayedDevice } from "@/hooks/useChangedDisplayedDevice.hook";
-import { BlindCard } from "./BlindCard/BlindCard";
+import { BlindCard } from "./BlindCard";
 import { DeviceItemProps } from "./DeviceItem.types";
-import { EmptyDevice } from "./EmptyDevice/EmptyDevice";
-import { ThermometerCard } from "./ThermometerCard/ThermometerCard";
+import { EmptyDevice } from "./EmptyDevice";
+import { ThermometerCard } from "./ThermometerCard";
 import { useLocalStorageDevice } from "@/hooks/useLocalStorageDevice.hook";
 import { useGetAllDevices, useGetDevice } from "./DeviceItem.hooks";
 

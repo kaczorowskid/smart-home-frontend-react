@@ -1,4 +1,4 @@
-import { Icon } from "@/components/common/Icon/Icon";
+import { Icon } from "@/components/common/Icon";
 import { cn } from "@/lib/utils";
 import { NavigationItemProps } from "./NavigationItem.types";
 import { Link, useLocation } from "react-router-dom";

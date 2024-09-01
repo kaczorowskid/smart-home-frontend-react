@@ -6,15 +6,15 @@ import {
   useDeleteDevice,
   useUpdateDevice,
 } from "./TableItem.hooks";
-import { FormField } from "@/components/common/FormField/FormField";
+import { FormField } from "@/components/common/FormField";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/common/Select/Select";
+import { Select } from "@/components/common/Select";
 import { typeItems } from "./TableItem.const";
 import { Form } from "@/components/ui/form";
 import { AccordionContent } from "@/components/ui/accordion";
 import { TableItemProps } from "./TableItem.types";
 import { useEffect, useState } from "react";
-import { ActionButtons } from "./ActionButtons/ActionButtons";
+import { ActionButtons } from "./ActionButtons";
 import { DeviceType } from "@/api/types/common.types";
 
 export const TableItem = ({

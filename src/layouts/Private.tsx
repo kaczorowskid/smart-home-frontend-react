@@ -1,5 +1,5 @@
-import { Navigation } from "@/components/Navigation/Navigation";
-import { ViewBar } from "@/components/ViewBar/ViewBar";
+import { Navigation } from "@/components/Navigation";
+import { ViewBar } from "@/components/ViewBar";
 import { Outlet } from "react-router-dom";
 
 export const PrivateLayout = () => (
