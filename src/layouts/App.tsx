@@ -2,7 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { ViewBar } from "@/components/ViewBar";
 import { Outlet } from "react-router-dom";
 
-export const PrivateLayout = () => (
+export const AppLayout = () => (
   <div>
     <Navigation />
     <div className="w-full pl-[300px] p-5">

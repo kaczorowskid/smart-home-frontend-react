@@ -1,5 +1,9 @@
 export const routesPath = {
   base: "/",
+  auth: {
+    login: "/login",
+    register: "/register",
+  },
   app: {
     dashboard: "/dashboard",
     graphs: "/graphs",

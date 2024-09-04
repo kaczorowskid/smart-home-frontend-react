@@ -29,3 +29,12 @@ export type Blind = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type User = {
+  id: string;
+  name: string;
+  surname: string;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
