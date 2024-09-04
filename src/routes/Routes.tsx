@@ -5,14 +5,17 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { PrivateLayout } from "@/layouts/Private";
-import { Dashboard } from "@/views/app/Dashboard/Dashboard";
+import { AppLayout } from "@/layouts/App";
+import { Dashboard } from "@/views/app/Dashboard";
 import { routesPath } from "./routesPath";
-import { Devices } from "@/views/app/Devices/Devices";
-import { Settings } from "@/views/app/Settings/Settings";
-import { Error } from "@/layouts/Error";
-import { Error404 } from "@/views/error/Error404/Error404";
-import { Graphs } from "@/views/app/Graphs/Graphs";
+import { Devices } from "@/views/app/Devices";
+import { Settings } from "@/views/app/Settings";
+import { ErrorLayout } from "@/layouts/Error";
+import { Error404 } from "@/views/error/Error404";
+import { Graphs } from "@/views/app/Graphs";
+import { AuthLayout } from "@/layouts/Auth";
+import { Login } from "@/views/auth/Login";
+import { Register } from "@/views/auth/Register";
 
 export const Routes = (): JSX.Element => {
   const router = createBrowserRouter(
@@ -22,13 +25,17 @@ export const Routes = (): JSX.Element => {
           path={routesPath.base}
           element={<Navigate to={routesPath.app.dashboard} />}
         />
-        <Route element={<PrivateLayout />}>
+        <Route element={<AuthLayout />}>
+          <Route path={routesPath.auth.login} element={<Login />} />
+          <Route path={routesPath.auth.register} element={<Register />} />
+        </Route>
+        <Route element={<AppLayout />}>
           <Route path={routesPath.app.dashboard} element={<Dashboard />} />
           <Route path={routesPath.app.graphs} element={<Graphs />} />
           <Route path={routesPath.app.devices} element={<Devices />} />
           <Route path={routesPath.app.settings} element={<Settings />} />
         </Route>
-        <Route element={<Error />}>
+        <Route element={<ErrorLayout />}>
           <Route path="*" element={<Error404 />} />
         </Route>
       </Route>
