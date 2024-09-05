@@ -2,6 +2,8 @@ export const apiUrls = {
   auth: {
     login: "/auth/login",
     register: "/auth/register",
+    authorize: "/auth/authorize",
+    logout: "/auth/logout",
   },
   devices: {
     base: "/devices",
