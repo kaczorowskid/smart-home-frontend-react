@@ -12,4 +12,5 @@ const headers = {
 export const axiosInstance = axios.create({
   baseURL: baseUrl,
   headers,
+  withCredentials: true,
 });

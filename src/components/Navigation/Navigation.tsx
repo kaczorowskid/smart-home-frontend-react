@@ -10,7 +10,7 @@ export const Navigation = () => {
 
   return (
     <div className="w-[300px] h-full fixed">
-      <UserInfo firstName="Test" secondName="Account" />
+      <UserInfo />
       <nav className="px-2 text-lg font-medium lg:px-4">
         {menuItems.map(({ title, path, icon }) => (
           <NavigationItem key={title} title={title} icon={icon} path={path} />

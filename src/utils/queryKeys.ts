@@ -3,4 +3,5 @@ export const queryKeys = {
   getAllDevices: "getAllDevices",
   getAllThermometers: "getAllThermometers",
   getDeviceDataForGraph: "getDeviceDataForGraph",
+  authorizeUser: "authorizeUser",
 };

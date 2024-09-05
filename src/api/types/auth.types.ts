@@ -13,3 +13,9 @@ export type LoginUserPayload = {
 };
 
 export type LoginUserResponse = User;
+
+export type AuthorizeUserResponse = User;
+
+export type LogoutUserResponse = {
+  result: boolean;
+};
