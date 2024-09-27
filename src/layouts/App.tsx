@@ -1,6 +1,6 @@
-import { Navigation } from "@/components/Navigation";
-import { PrivateWrapper } from "@/components/PrivateWrapper";
-import { ViewBar } from "@/components/ViewBar";
+import { Navigation } from "@/components/app/Navigation";
+import { PrivateWrapper } from "@/components/app/PrivateWrapper";
+import { ViewBar } from "@/components/app/ViewBar";
 import { Outlet } from "react-router-dom";
 
 export const AppLayout = () => (

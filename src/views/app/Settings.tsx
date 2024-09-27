@@ -1,4 +1,4 @@
-import { LogoutSection } from "@/components/LogoutSection";
+import { LogoutSection } from "@/components/app/LogoutSection";
 
 export const Settings = () => {
   return (

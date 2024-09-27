@@ -1,5 +1,5 @@
 import { routesPath } from "@/routes/routesPath";
-import { IconProps } from "../common/Icon/Icon.types";
+import { IconProps } from "../../common/Icon/Icon.types";
 
 type MenuItem = {
   title: string;
