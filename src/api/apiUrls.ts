@@ -5,6 +5,9 @@ export const apiUrls = {
     authorize: "/auth/authorize",
     logout: "/auth/logout",
   },
+  user: {
+    base: "/user",
+  },
   devices: {
     base: "/devices",
     thermometers: "/devices/thermometers",

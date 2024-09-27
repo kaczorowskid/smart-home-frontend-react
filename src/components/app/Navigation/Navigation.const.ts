@@ -24,6 +24,11 @@ export const menuItems: MenuItem[] = [
     icon: "RadioTower",
   },
   {
+    title: "Users",
+    path: routesPath.app.users,
+    icon: "User",
+  },
+  {
     title: "Settings",
     path: routesPath.app.settings,
     icon: "Settings",
