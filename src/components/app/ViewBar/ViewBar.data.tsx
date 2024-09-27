@@ -4,9 +4,10 @@ import {
   LucideIcon,
   RadioTower,
   Settings,
+  User,
 } from "lucide-react";
 
-export type Views = "dashboard" | "devices" | "graphs" | "settings";
+export type Views = "dashboard" | "devices" | "graphs" | "user" | "settings";
 
 type ViewsData = {
   [key in Views]: {
@@ -27,6 +28,10 @@ export const viewsData: ViewsData = {
   devices: {
     title: "Devices",
     icon: RadioTower,
+  },
+  user: {
+    title: "Users",
+    icon: User,
   },
   settings: {
     title: "Settings",

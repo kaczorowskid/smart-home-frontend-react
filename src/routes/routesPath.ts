@@ -8,6 +8,7 @@ export const routesPath = {
     dashboard: "/dashboard",
     graphs: "/graphs",
     devices: "/devices",
+    users: "/user",
     settings: "/settings",
   },
 };

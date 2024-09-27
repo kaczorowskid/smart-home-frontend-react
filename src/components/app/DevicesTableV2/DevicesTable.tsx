@@ -1,14 +1,12 @@
+import { useFilteredData } from "@/hooks/useFilteredData.hook";
 import { CardWithHeader } from "../../common/CardWithHeader";
 import { Pagination } from "../../common/Pagination";
 import { Table } from "../../common/Table";
-import {
-  useFilteredData,
-  useGetAllDevices,
-  usePagination,
-} from "./DevicesTable.hooks";
+import { useGetAllDevices } from "./DevicesTable.hooks";
 import { columns } from "./DevicesTable.schema";
 import { DevicesTableProps } from "./DevicesTable.types";
 import { ExtraButton } from "./ExtraButton";
+import { usePagination } from "@/hooks/usePagination.hook";
 
 export const DevicesTableV2 = ({ isDashboardPart }: DevicesTableProps) => {
   const { data } = useGetAllDevices();
