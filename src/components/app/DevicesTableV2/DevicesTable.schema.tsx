@@ -2,8 +2,8 @@ import {
   Blinds as BlindsIcon,
   Thermometer as ThermometerIcon,
 } from "lucide-react";
-import { ColumnType } from "../common/Table/Table.types";
-import { Badge } from "../ui/badge";
+import { ColumnType } from "../../common/Table/Table.types";
+import { Badge } from "../../ui/badge";
 import { Blind, Thermometer } from "@/api/types/common.types";
 
 export const columns: ColumnType<Thermometer | Blind>[] = [

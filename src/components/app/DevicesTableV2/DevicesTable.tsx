@@ -1,6 +1,6 @@
-import { CardWithHeader } from "../common/CardWithHeader";
-import { Pagination } from "../common/Pagination";
-import { Table } from "../common/Table";
+import { CardWithHeader } from "../../common/CardWithHeader";
+import { Pagination } from "../../common/Pagination";
+import { Table } from "../../common/Table";
 import {
   useFilteredData,
   useGetAllDevices,

@@ -1,3 +1,3 @@
-import { DevicesTableV2 } from "@/components/DevicesTableV2/DevicesTable";
+import { DevicesTableV2 } from "@/components/app/DevicesTableV2/DevicesTable";
 
 export const Devices = () => <DevicesTableV2 />;

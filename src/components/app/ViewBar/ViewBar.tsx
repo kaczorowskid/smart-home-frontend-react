@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { Card } from "../ui/card";
+import { Card } from "../../ui/card";
 import { Views, viewsData } from "./ViewBar.data";
 
 export const ViewBar = () => {
