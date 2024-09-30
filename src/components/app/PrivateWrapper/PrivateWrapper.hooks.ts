@@ -11,4 +11,5 @@ export const useAuthorizeUser = (): UseQueryResult<
   useQuery({
     queryKey: [queryKeys.authorizeUser],
     queryFn: authorizeUser,
+    retry: false,
   });

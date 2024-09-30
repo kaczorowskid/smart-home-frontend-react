@@ -2,7 +2,7 @@ export const routesPath = {
   base: "/",
   auth: {
     login: "/login",
-    register: "/register",
+    register: "/register/:token",
   },
   app: {
     dashboard: "/dashboard",

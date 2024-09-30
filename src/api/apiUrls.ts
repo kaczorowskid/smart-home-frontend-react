@@ -7,6 +7,8 @@ export const apiUrls = {
   },
   user: {
     base: "/user",
+    getUser: (id: string) => `/user/${id}`,
+    getUserByToken: (token: string) => `/user/token/${token}`,
   },
   devices: {
     base: "/devices",

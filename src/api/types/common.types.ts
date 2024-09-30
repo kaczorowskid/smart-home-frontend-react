@@ -35,6 +35,8 @@ export type User = {
   name: string;
   surname: string;
   email: string;
+  role: "USER" | "ADMIN";
+  isVerified: boolean;
   createdAt: Date;
   updatedAt: Date;
 };

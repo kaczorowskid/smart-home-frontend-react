@@ -6,6 +6,8 @@ export const useUserStore = create<UserStoreProps>((set) => ({
   email: "",
   name: "",
   surname: "",
+  role: "USER",
+  isVerified: false,
   isLoggedIn: false,
   setUser: (userData) => {
     set((state) => ({
