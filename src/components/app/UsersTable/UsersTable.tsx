@@ -4,11 +4,15 @@ import { Table } from "@/components/common/Table";
 import { useFilteredData } from "@/hooks/useFilteredData.hook";
 import { usePagination } from "@/hooks/usePagination.hook";
 import { ExtraButton } from "./ExtraButton";
-import { useGetAllusers } from "./UsersTable.hooks";
+import { useDeleteUser, useGetAllUsers } from "./UsersTable.hooks";
 import { columns } from "./UsersTable.schema";
+import { UsersTableProps } from "./UsersTable.types";
+import { useUserStore } from "@/stores/user";
 
-export const UsersTable = () => {
-  const { data } = useGetAllusers();
+export const UsersTable = ({ setSelectedEmail }: UsersTableProps) => {
+  const { data } = useGetAllUsers();
+  const { role } = useUserStore();
+  const { mutate: deleteUser } = useDeleteUser();
 
   const { filteredData, searchbarValue, setSearchbarValue } =
     useFilteredData(data);
@@ -18,6 +22,10 @@ export const UsersTable = () => {
     defaultPage: 1,
     pageSize: 5,
   });
+
+  const handleDeleteUser = (id: string) => {
+    deleteUser({ id });
+  };
 
   return (
     <CardWithHeader
@@ -30,7 +38,11 @@ export const UsersTable = () => {
         />
       }
     >
-      <Table columns={columns} data={paginationData.data || []} />
+      <Table
+        columns={columns(role, handleDeleteUser)}
+        data={paginationData.data || []}
+        onRowClick={({ email }) => setSelectedEmail(email)}
+      />
       <Pagination
         className="pt-5"
         count={paginationData.pagination.count}

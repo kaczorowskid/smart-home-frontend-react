@@ -11,21 +11,32 @@ import {
   FormSchema,
   formSchema,
 } from "./RegisterForm.schema";
-import { useRegister } from "./RegisterForm.hooks";
+import { useGetUserByToken, useRegisterAndVerify } from "./RegisterForm.hooks";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { routesPath } from "@/routes/routesPath";
+import { Badge } from "@/components/ui/badge";
 
 export const RegisterForm = () => {
+  const { token } = useParams<{ token: string }>();
+
+  const { data } = useGetUserByToken({ token: token || "" });
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    values: defaultValues,
+    values: {
+      ...defaultValues,
+      email: data?.email || "",
+    },
   });
 
-  const { mutate: loginUser, isPending } = useRegister();
+  const { mutate: registerAndVerifyUser, isPending } = useRegisterAndVerify();
 
   const onSubmit = async ({ confirmPassword, ...values }: FormSchema) => {
-    loginUser(values);
+    registerAndVerifyUser({
+      ...values,
+      id: data?.id || "",
+    });
   };
 
   const handleSave = () => {
@@ -54,7 +65,9 @@ export const RegisterForm = () => {
               label="Email"
               control={form.control}
               name={formFields.email}
-              component={(field) => <Input {...field} />}
+              component={(field) => (
+                <Input {...field} value={data?.email} disabled />
+              )}
             />
             <FormField
               label="Password"
@@ -69,6 +82,10 @@ export const RegisterForm = () => {
               component={(field) => <Input {...field} />}
             />
           </Form>
+          <div className="flex justify-between my-5">
+            <span>Role</span>
+            <Badge>{data?.role}</Badge>
+          </div>
           <div className="flex my-5 items-center">
             <Separator className="shrink" />
             <Link className="px-5 text-nowrap" to={routesPath.auth.login}>

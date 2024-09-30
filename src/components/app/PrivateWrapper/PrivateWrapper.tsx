@@ -23,10 +23,12 @@ export const PrivateWrapper = ({ children }: PrivateWrapperProps) => {
         email: data.email,
         name: data.name,
         surname: data.surname,
+        role: data.role,
+        isVerified: data.isVerified,
         isLoggedIn: true,
       });
     }
   }, [data]);
 
-  return data ? <>{children}</> : null;
+  return data ? children : null;
 };

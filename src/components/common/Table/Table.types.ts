@@ -3,18 +3,16 @@ import { ComponentProps, ReactNode } from "react";
 
 export type ColumnType<T> = {
   key: string;
-  title: string;
+  title: ReactNode;
   dataIndex: string;
+  hidden?: boolean;
   render?: (value: any, record: T) => ReactNode;
 };
-
-export type DataType<T> = {
-  onClick?: () => void;
-} & T;
 
 export type RowKey = Record<string, any>;
 
 export type TableProps<T> = {
   columns: ColumnType<T>[];
-  data: DataType<T>[];
+  data: T[];
+  onRowClick?: (record: T) => void;
 } & ComponentProps<typeof Table>;

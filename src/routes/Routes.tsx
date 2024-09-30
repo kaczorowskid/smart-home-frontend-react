@@ -5,9 +5,9 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import { routesPath } from "./routesPath";
 import { AppLayout } from "@/layouts/App";
 import { Dashboard } from "@/views/app/Dashboard";
-import { routesPath } from "./routesPath";
 import { Devices } from "@/views/app/Devices";
 import { Settings } from "@/views/app/Settings";
 import { ErrorLayout } from "@/layouts/Error";

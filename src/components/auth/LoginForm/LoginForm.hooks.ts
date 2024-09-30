@@ -17,13 +17,14 @@ export const useLogin = (): UseMutationResult<
 
   return useMutation({
     mutationFn: loginUser,
-    onSuccess: ({ id, email, name, surname }) => {
-      toast.success("essa");
+    onSuccess: ({ id, email, name, surname, role, isVerified }) => {
       setUser({
         id,
         email,
         name,
         surname,
+        role,
+        isVerified,
         isLoggedIn: true,
       });
       navigate(routesPath.app.dashboard);
