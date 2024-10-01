@@ -2,7 +2,6 @@ import { ColumnType } from "../../common/Table/Table.types";
 import { User } from "@/api/types/common.types";
 import { RoleBadge } from "./RoleBadge";
 import { VerifiedBadge } from "./VerifiedBadge";
-import { AdminOnlyWrapper } from "../AdminOnlyWrapper";
 import { UserRole } from "@/types/common.types";
 import { Trash2 } from "lucide-react";
 import { AlertDialog } from "@/components/common/AlertDialog";
@@ -11,23 +10,21 @@ export const columns = (
   role: UserRole,
   onDelete: (id: string) => void
 ): ColumnType<User>[] => {
-  const isAdmin = role === "ADMIN";
+  const isUser = role === "USER";
 
   return [
     {
       title: "Action",
       dataIndex: "delete",
       key: "delete",
-      hidden: !isAdmin,
+      hidden: isUser,
       render: (_, record) => (
-        <AdminOnlyWrapper>
-          <AlertDialog
-            title="Are you sure?"
-            onOk={() => onDelete(record.id)}
-            description={`Delete user ${record.email}`}
-            trigger={<Trash2 className="cursor-pointer" />}
-          />
-        </AdminOnlyWrapper>
+        <AlertDialog
+          title="Are you sure?"
+          onOk={() => onDelete(record.id)}
+          description={`Delete user ${record.email}`}
+          trigger={<Trash2 className="cursor-pointer" />}
+        />
       ),
     },
     {

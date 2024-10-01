@@ -11,9 +11,9 @@ import {
   formSchema,
   FormSchema,
 } from "./CreateUserByAdminForm.schema";
-import { roleItems } from "./CreateUserByAdminForm.const";
 import { useCreateUserByAdmin } from "./CreateUserByAdminForm.hooks";
 import { Button } from "@/components/common/Button";
+import { roleItems } from "../common/UserForms.consts";
 
 export const CreateUserByAdminForm = ({
   open,
@@ -23,10 +23,12 @@ export const CreateUserByAdminForm = ({
     resolver: zodResolver(formSchema),
   });
 
-  const { mutate: createUserByAdmin, isPending } = useCreateUserByAdmin();
+  const { mutateAsync: createUserByAdmin, isPending } = useCreateUserByAdmin();
 
   const onSubmit = async (values: FormSchema) => {
-    createUserByAdmin(values);
+    await createUserByAdmin(values);
+    form.reset();
+    onClose();
   };
 
   const handleSave = () => {
