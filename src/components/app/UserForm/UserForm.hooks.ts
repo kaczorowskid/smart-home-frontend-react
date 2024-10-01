@@ -1,9 +1,12 @@
 import {
+  createUserByAdmin,
   deleteUser,
   getOneUser,
   updateUser,
 } from "@/api/handlers/user.handlers";
 import {
+  CreateUserByAdminPayload,
+  CreateUserByAdminResponse,
   DeleteUserPayload,
   DeleteUserResponse,
   GetOneUserPayload,
@@ -21,6 +24,24 @@ import {
 } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
+
+export const useCreateUserByAdmin = (): UseMutationResult<
+  CreateUserByAdminResponse,
+  AxiosError,
+  CreateUserByAdminPayload
+> =>
+  useMutation({
+    mutationFn: createUserByAdmin,
+    onSuccess: async () => {
+      toast.success("essa");
+      await queryClient.invalidateQueries({
+        queryKey: [queryKeys.getAllUsers],
+      });
+    },
+    onError: () => {
+      toast.error("no trudno ");
+    },
+  });
 
 export const useUpdateUser = (): UseMutationResult<
   UpdateUserResponse,
@@ -64,4 +85,5 @@ export const useGetOneUser = (
   useQuery({
     queryKey: [queryKeys.getOneUser, payload.email],
     queryFn: () => getOneUser({ email: payload.email }),
+    enabled: !!payload.email,
   });
