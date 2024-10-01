@@ -12,6 +12,8 @@ import {
   GetUserByTokenResponse,
   RegisterAndVerifyUserPayload,
   RegisterAndVerifyUserResponse,
+  UpdateUserPayload,
+  UpdateUserResponse,
 } from "../types/user.types";
 
 const request = new Request();
@@ -21,7 +23,8 @@ export const getAllUsers = async (): Promise<GetAllUsersResponse> =>
 
 export const getOneUser = async (
   payload: GetOneUserPayload
-): Promise<GetOneUserResponse> => request.get(apiUrls.user.getUser(payload.id));
+): Promise<GetOneUserResponse> =>
+  request.get(apiUrls.user.getUser(payload.email));
 
 export const createUserByAdmin = async (
   payload: CreateUserByAdminPayload
@@ -42,3 +45,8 @@ export const deleteUser = async (
   payload: DeleteUserPayload
 ): Promise<DeleteUserResponse> =>
   request.delete(apiUrls.user.getUser(payload.id));
+
+export const updateUser = async (
+  payload: UpdateUserPayload
+): Promise<UpdateUserResponse> =>
+  request.patch(apiUrls.user.getUser(payload.id), payload);

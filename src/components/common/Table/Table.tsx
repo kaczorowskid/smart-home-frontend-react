@@ -29,7 +29,7 @@ export const Table = <T extends RowKey>({
       </TableHeader>
       <TableBody>
         {data.map((record, rowIndex) => (
-          <TableRow key={rowIndex}>
+          <TableRow key={rowIndex} onClick={() => onRowClick?.(record)}>
             {columns
               .filter((col) => !col.hidden)
               .map((col) => (
