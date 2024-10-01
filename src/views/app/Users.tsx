@@ -1,6 +1,5 @@
 import { AdminOnlyWrapper } from "@/components/app/AdminOnlyWrapper";
-import { CreateUserByAdminForm } from "@/components/app/UserForm/CreateUserByAdminForm";
-import { UpdateUserForm } from "@/components/app/UserForm/UpdateUserForm";
+import { UserForm } from "@/components/app/UserForm";
 import { UsersTable } from "@/components/app/UsersTable/UsersTable";
 import { PageWrapper } from "@/components/common/PageWrapper";
 import { Button } from "@/components/ui/button";
@@ -31,11 +30,10 @@ export const Users = () => {
       }
     >
       <UsersTable setSelectedEmail={setSelectedEmail} />
-      <CreateUserByAdminForm open={isOpen} onClose={handleCloseForm} />
       <AdminOnlyWrapper>
-        <UpdateUserForm
+        <UserForm
           selectedEmail={selectedEmail}
-          open={!!selectedEmail}
+          open={isOpen}
           onClose={handleCloseForm}
         />
       </AdminOnlyWrapper>
