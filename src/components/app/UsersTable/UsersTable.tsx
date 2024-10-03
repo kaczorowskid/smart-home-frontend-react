@@ -22,8 +22,8 @@ export const UsersTable = ({ setSelectedEmail }: UsersTableProps) => {
 
   return (
     <CardWithHeader
-      title="Devices"
-      description="Table of devices"
+      title="Users"
+      description="Table of users"
       extra={
         <ExtraButton
           searchbarValue={searchbarValue}

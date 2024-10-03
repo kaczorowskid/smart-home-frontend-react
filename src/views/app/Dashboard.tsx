@@ -1,6 +1,6 @@
 import { DeviceChart } from "@/components/app/DeviceChart";
 import { DevicesBar } from "@/components/app/DevicesBar";
-import { DevicesTableV2 } from "@/components/app/DevicesTableV2/DevicesTable";
+import { DevicesTable } from "@/components/app/DevicesTable/DevicesTable";
 import { PageWrapper } from "@/components/common/PageWrapper";
 import { displayedDevicesKeys } from "@/utils/localStorageKeys";
 import { Droplet, LayoutDashboard, Thermometer } from "lucide-react";
@@ -22,6 +22,6 @@ export const Dashboard = () => (
         icon={Droplet}
       />
     </div>
-    <DevicesTableV2 isDashboardPart />
+    <DevicesTable isDashboardPart />
   </PageWrapper>
 );

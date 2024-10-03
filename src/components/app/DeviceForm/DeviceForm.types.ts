@@ -1,5 +1,5 @@
 import { CommonFormProps } from "@/types/common.types";
 
-export type UserFormProps = {
-  selectedEmail: string;
+export type DeviceFormProps = {
+  selectedId: string;
 } & CommonFormProps;

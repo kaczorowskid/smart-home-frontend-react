@@ -1,7 +1,7 @@
 export const queryKeys = {
-  getDevice: "getDevice",
   getOneUser: "getOneUser",
   getAllUsers: "getAllUsers",
+  getOneDevice: "getOneDevice",
   getAllDevices: "getAllDevices",
   getAllThermometers: "getAllThermometers",
   getDeviceDataForGraph: "getDeviceDataForGraph",
