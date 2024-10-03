@@ -21,6 +21,8 @@ import {
   mapValuesToUpdateForm,
 } from "./UserForm.utils";
 import { roleItems } from "./UserForm.consts";
+import { FormTitle } from "../FormTitle";
+import { User } from "lucide-react";
 
 export const UserForm = ({ selectedEmail, open, onClose }: UserFormProps) => {
   const { data } = useGetOneUser({ email: selectedEmail || "" });
@@ -58,7 +60,6 @@ export const UserForm = ({ selectedEmail, open, onClose }: UserFormProps) => {
     form.handleSubmit(onSubmit)();
   };
 
-  //TODO: Change email to id
   const handleDeleteUser = () => {
     deleteUser({ id: data?.id || "" });
     handleCloseForm();
@@ -66,7 +67,7 @@ export const UserForm = ({ selectedEmail, open, onClose }: UserFormProps) => {
 
   return (
     <Dialog
-      title="User"
+      title={<FormTitle title="User" icon={User} />}
       open={open || !!selectedEmail}
       onOpenChange={(status) => {
         if (!status) {

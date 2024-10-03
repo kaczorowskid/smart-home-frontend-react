@@ -2,7 +2,7 @@ import { Dialog } from "@/components/ui/dialog";
 import { ComponentProps, ReactNode } from "react";
 
 export type DialogProps = {
-  title: string;
+  title: ReactNode;
   trigger?: ReactNode;
   children: ReactNode;
 } & ComponentProps<typeof Dialog>;
