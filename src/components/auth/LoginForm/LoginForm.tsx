@@ -3,26 +3,24 @@ import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import {
-  defaultValues,
-  formFields,
-  formSchema,
-  FormSchema,
-} from "./LoginForm.schema";
+import { formFields, formSchema, FormSchema } from "./LoginForm.schema";
 import { useLogin } from "./LoginForm.hooks";
 import { Button } from "@/components/common/Button";
 import { Card, CardContent } from "@/components/ui/card";
+import { defaultValues } from "./LoginForm.utils";
 
 export const LoginForm = () => {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    values: defaultValues,
+    defaultValues: defaultValues,
   });
 
-  const { mutate: loginUser, isPending } = useLogin();
+  const { mutateAsync: loginUser, isPending } = useLogin();
 
   const onSubmit = async (values: FormSchema) => {
-    loginUser(values);
+    await loginUser(values);
+
+    form.reset(defaultValues);
   };
 
   const handleSave = () => {

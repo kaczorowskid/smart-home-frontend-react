@@ -1,3 +1,4 @@
+import { schema } from "@/schemas/form.schemas";
 import { z } from "zod";
 
 export const formFields = {
@@ -6,13 +7,8 @@ export const formFields = {
 } as const;
 
 export const formSchema = z.object({
-  [formFields.email]: z.string().email(),
-  [formFields.password]: z.string().min(2).max(50),
+  [formFields.email]: schema.email,
+  [formFields.password]: schema.password,
 });
-
-export const defaultValues = {
-  [formFields.email]: "",
-  [formFields.password]: "",
-};
 
 export type FormSchema = z.infer<typeof formSchema>;
