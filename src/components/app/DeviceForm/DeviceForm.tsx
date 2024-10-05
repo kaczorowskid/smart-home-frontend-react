@@ -21,7 +21,7 @@ export const DeviceForm = ({ selectedId, open, onClose }: DeviceFormProps) => {
     setItemType("THERMOMETER");
   };
 
-  const getFormIcon = () => {
+  const getFormTitle = () => {
     switch (data?.type || itemType) {
       case "THERMOMETER":
         return <FormTitle title="Thermometer" icon={Thermometer} />;
@@ -32,7 +32,7 @@ export const DeviceForm = ({ selectedId, open, onClose }: DeviceFormProps) => {
 
   return (
     <Dialog
-      title={getFormIcon()}
+      title={getFormTitle()}
       open={open || !!selectedId}
       onOpenChange={(status) => {
         if (!status) {

@@ -30,11 +30,13 @@ export const Devices = () => {
       }
     >
       <DevicesTable setSelectedId={setSelectedId} />
-      <DeviceForm
-        selectedId={selectedId}
-        open={isOpen}
-        onClose={handleCloseForm}
-      />
+      <AdminOnlyWrapper>
+        <DeviceForm
+          selectedId={selectedId}
+          open={isOpen}
+          onClose={handleCloseForm}
+        />
+      </AdminOnlyWrapper>
     </PageWrapper>
   );
 };

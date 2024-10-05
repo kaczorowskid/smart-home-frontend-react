@@ -5,17 +5,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/common/Button";
 import { Separator } from "@/components/ui/separator";
-import {
-  defaultValues,
-  formFields,
-  FormSchema,
-  formSchema,
-} from "./RegisterForm.schema";
+import { formFields, FormSchema, formSchema } from "./RegisterForm.schema";
 import { useGetUserByToken, useRegisterAndVerify } from "./RegisterForm.hooks";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link, useParams } from "react-router-dom";
 import { routesPath } from "@/routes/routesPath";
 import { Badge } from "@/components/ui/badge";
+import { defaultValues, initialValues } from "./RegisterForm.utils";
 
 export const RegisterForm = () => {
   const { token } = useParams<{ token: string }>();
@@ -24,19 +20,20 @@ export const RegisterForm = () => {
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    values: {
-      ...defaultValues,
-      email: data?.email || "",
-    },
+    defaultValues: defaultValues,
+    values: initialValues(data),
   });
 
-  const { mutate: registerAndVerifyUser, isPending } = useRegisterAndVerify();
+  const { mutateAsync: registerAndVerifyUser, isPending } =
+    useRegisterAndVerify();
 
   const onSubmit = async ({ confirmPassword, ...values }: FormSchema) => {
-    registerAndVerifyUser({
+    await registerAndVerifyUser({
       ...values,
       id: data?.id || "",
     });
+
+    form.reset(defaultValues);
   };
 
   const handleSave = () => {

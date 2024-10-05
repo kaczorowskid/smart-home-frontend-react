@@ -1,3 +1,4 @@
+import { schema } from "@/schemas/form.schemas";
 import { z } from "zod";
 
 export const formFields = {
@@ -7,8 +8,8 @@ export const formFields = {
 } as const;
 
 export const formSchema = z.object({
-  [formFields.name]: z.string().min(2).max(50),
-  [formFields.deviceId]: z.string().min(1).max(50),
+  [formFields.name]: schema.name,
+  [formFields.deviceId]: schema.deviceId,
   [formFields.type]: z.enum(["BLIND"]),
 });
 

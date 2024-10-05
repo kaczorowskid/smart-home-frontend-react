@@ -13,7 +13,6 @@ import {
   useUpdateUser,
 } from "./UserForm.hooks";
 import { formFields, formSchema, FormSchema } from "./UserForm.schema";
-import { ControlButtons } from "./ControlButtons";
 import {
   defaultValues,
   initialValues,
@@ -23,6 +22,7 @@ import {
 import { roleItems } from "./UserForm.consts";
 import { FormTitle } from "../FormTitle";
 import { User } from "lucide-react";
+import { ControlButtons } from "../ControlButtons";
 
 export const UserForm = ({ selectedEmail, open, onClose }: UserFormProps) => {
   const { data } = useGetOneUser({ email: selectedEmail || "" });
@@ -111,7 +111,7 @@ export const UserForm = ({ selectedEmail, open, onClose }: UserFormProps) => {
           component={(field) => <Input {...field} disabled={!!selectedEmail} />}
         />
         <ControlButtons
-          email={data?.email || ""}
+          entity={data?.email || ""}
           isCreate={!selectedEmail}
           onCreate={handleSave}
           onUpdate={handleSave}
