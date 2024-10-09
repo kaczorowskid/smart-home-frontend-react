@@ -39,7 +39,7 @@ export const getUserByToken = async (
 export const registerAndVerifyUser = async (
   payload: RegisterAndVerifyUserPayload
 ): Promise<RegisterAndVerifyUserResponse> =>
-  request.patch(apiUrls.user.getUser(payload.id), payload);
+  request.patch(apiUrls.user.verifyUser(payload.id), payload);
 
 export const deleteUser = async (
   payload: DeleteUserPayload

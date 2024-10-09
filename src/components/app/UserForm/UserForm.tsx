@@ -53,6 +53,7 @@ export const UserForm = ({ selectedEmail, open, onClose }: UserFormProps) => {
     } else {
       await createUserByAdmin(mapValuesToCreateForm(values));
     }
+
     handleCloseForm();
   };
 

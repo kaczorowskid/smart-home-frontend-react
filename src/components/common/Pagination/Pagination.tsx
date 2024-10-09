@@ -22,8 +22,8 @@ export const Pagination = ({
   return (
     <ShadcnPagination {...props}>
       <PaginationContent>
-        {items.map((item) => (
-          <ShadcnPaginationItem>
+        {items.map((item, index) => (
+          <ShadcnPaginationItem key={index}>
             <PaginationItem {...item}>{item.page}</PaginationItem>
           </ShadcnPaginationItem>
         ))}

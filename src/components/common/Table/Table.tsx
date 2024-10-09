@@ -6,11 +6,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { RowKey, TableProps } from "./Table.types";
+import { TableProps } from "./Table.types";
 
-export const Table = <T extends RowKey>({
+export const Table = <T,>({
   columns,
   data,
+  rowKey,
   onRowClick,
   ...props
 }: TableProps<T>) => {
@@ -18,27 +19,22 @@ export const Table = <T extends RowKey>({
     <ShadcnTable {...props}>
       <TableHeader>
         <TableRow>
-          {columns
-            .filter((col) => !col.hidden)
-            .map((col) => (
-              <TableHead className="text-center" key={col.key}>
-                {col.title}
-              </TableHead>
-            ))}
+          {columns.map((col) => (
+            <TableHead className="text-center" key={col.key}>
+              {col.title}
+            </TableHead>
+          ))}
         </TableRow>
       </TableHeader>
       <TableBody>
-        {data.map((record, rowIndex) => (
-          <TableRow key={rowIndex} onClick={() => onRowClick?.(record)}>
-            {columns
-              .filter((col) => !col.hidden)
-              .map((col) => (
-                <TableCell className="text-center" key={col.key}>
-                  {col.render
-                    ? col.render(record[col.dataIndex], record)
-                    : record[col.dataIndex]}
-                </TableCell>
-              ))}
+        {data.map((record) => (
+          <TableRow key={rowKey(record)} onClick={() => onRowClick?.(record)}>
+            {columns.map((col) => (
+              <TableCell className="text-center" key={col.key}>
+                {col.render?.(record[col.dataIndex], record) ||
+                  String(record[col.dataIndex])}
+              </TableCell>
+            ))}
           </TableRow>
         ))}
       </TableBody>
