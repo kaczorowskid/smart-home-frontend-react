@@ -7,8 +7,8 @@ import { User } from "@/api/types/common.types";
 
 export const defaultValues: FormSchema = {
   [formFields.role]: "USER",
-  [formFields.name]: "",
-  [formFields.surname]: "",
+  [formFields.name]: undefined,
+  [formFields.surname]: undefined,
   [formFields.email]: "",
 };
 
@@ -29,10 +29,14 @@ export const initialValues = (
 
 export const mapValuesToCreateForm = (
   values: FormSchema
-): CreateUserByAdminPayload => ({
-  email: values["email"],
-  role: values["role"],
-});
+): CreateUserByAdminPayload => {
+  // console.log({ role: values["role"], email: values["email"] });
+
+  return {
+    email: values["email"],
+    role: values["role"],
+  };
+};
 
 export const mapValuesToUpdateForm = (
   values: FormSchema

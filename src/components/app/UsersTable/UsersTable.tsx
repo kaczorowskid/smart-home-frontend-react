@@ -34,6 +34,7 @@ export const UsersTable = ({ setSelectedEmail }: UsersTableProps) => {
       <Table
         columns={columns}
         data={paginationData.data || []}
+        rowKey={(record) => record.id}
         onRowClick={({ email }) => setSelectedEmail(email)}
       />
       <Pagination

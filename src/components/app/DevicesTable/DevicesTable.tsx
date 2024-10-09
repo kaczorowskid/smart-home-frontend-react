@@ -38,6 +38,7 @@ export const DevicesTable = ({
       <Table
         columns={columns}
         data={paginationData.data || []}
+        rowKey={(record) => record.id}
         onRowClick={({ id }) => setSelectedId?.(id)}
       />
       {!isDashboardPart && (
