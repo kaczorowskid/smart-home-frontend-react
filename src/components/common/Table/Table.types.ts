@@ -5,7 +5,7 @@ export type ColumnType<T> = {
   key: string;
   title: ReactNode;
   dataIndex: keyof T;
-  render?: (value: T[keyof T], record: T) => ReactNode;
+  render?: (value: any, record: T) => ReactNode;
 };
 
 export type TableProps<T> = {

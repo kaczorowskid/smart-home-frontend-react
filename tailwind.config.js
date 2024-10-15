@@ -53,7 +53,9 @@ module.exports = {
         },
         badge: {
           DEFAULT: "hsl(var(--badge-1))",
-          secondary: "hsl(var(--badge-2))"
+          info: "hsl(var(--badge-1))",
+          success: "hsl(var(--badge-2))",
+          destructive: "hsl(var(--badge-3))",
         }
       },
       borderRadius: {
