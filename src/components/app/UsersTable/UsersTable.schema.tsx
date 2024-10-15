@@ -1,7 +1,7 @@
 import { ColumnType } from "../../common/Table/Table.types";
 import { User } from "@/api/types/common.types";
-import { RoleBadge } from "./RoleBadge";
-import { VerifiedBadge } from "./VerifiedBadge";
+import { InfoBadge } from "@/components/common/InfoBadge";
+import { InfoBadgeProps } from "@/components/common/InfoBadge/InfoBadge.types";
 
 export const columns: ColumnType<User>[] = [
   {
@@ -23,13 +23,25 @@ export const columns: ColumnType<User>[] = [
     title: "Role",
     dataIndex: "role",
     key: "role",
-    render: (role) => <RoleBadge role={role} />,
+    render: (role: User["role"]) => {
+      const colorMap: Record<typeof role, InfoBadgeProps["type"]> = {
+        ADMIN: "destructive",
+        USER: "info",
+      };
+
+      return <InfoBadge type={colorMap[role]}>{role}</InfoBadge>;
+    },
   },
   {
     title: "Is verified",
     dataIndex: "isVerified",
     key: "isVerified",
-    render: (isVerified) => <VerifiedBadge isVerified={isVerified} />,
+    render: (isVerified: boolean) => {
+      const isVerifiedText = isVerified ? "Is verified" : "Not verified";
+      const badgeColor = isVerified ? "success" : "destructive";
+
+      return <InfoBadge type={badgeColor}>{isVerifiedText}</InfoBadge>;
+    },
   },
   {
     title: "ID",
