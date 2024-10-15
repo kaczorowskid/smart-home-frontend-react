@@ -3,8 +3,8 @@ import {
   Thermometer as ThermometerIcon,
 } from "lucide-react";
 import { ColumnType } from "../../common/Table/Table.types";
-import { Badge } from "../../ui/badge";
 import { Blind, Thermometer } from "@/api/types/common.types";
+import { InfoBadge } from "@/components/common/InfoBadge";
 
 export const columns: ColumnType<Thermometer | Blind>[] = [
   {
@@ -24,9 +24,9 @@ export const columns: ColumnType<Thermometer | Blind>[] = [
   },
   {
     title: "Status",
-    dataIndex: "status",
+    dataIndex: "status", //TODO: add status type
     key: "status",
-    render: () => <Badge variant="outline">online</Badge>,
+    render: () => <InfoBadge type="success">online</InfoBadge>,
   },
   {
     title: "ID",
