@@ -30,8 +30,6 @@ export const initialValues = (
 export const mapValuesToCreateForm = (
   values: FormSchema
 ): CreateUserByAdminPayload => {
-  // console.log({ role: values["role"], email: values["email"] });
-
   return {
     email: values["email"],
     role: values["role"],

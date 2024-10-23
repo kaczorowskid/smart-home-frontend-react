@@ -14,6 +14,11 @@ export const menuItems: MenuItem[] = [
     icon: "LayoutDashboard",
   },
   {
+    title: "Rooms",
+    path: routesPath.app.rooms,
+    icon: "House",
+  },
+  {
     title: "Graphs",
     path: routesPath.app.graphs,
     icon: "ChartArea",
@@ -27,6 +32,11 @@ export const menuItems: MenuItem[] = [
     title: "Users",
     path: routesPath.app.users,
     icon: "User",
+  },
+  {
+    title: "TempRooms",
+    path: routesPath.app.tempRooms,
+    icon: "House",
   },
   {
     title: "Settings",

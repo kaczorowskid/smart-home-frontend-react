@@ -82,11 +82,7 @@ export const UserForm = ({ selectedEmail, open, onClose }: UserFormProps) => {
           control={form.control}
           name={formFields.role}
           component={({ onChange, ...field }) => (
-            <Select
-              items={roleItems || []}
-              onValueChange={onChange}
-              {...field}
-            />
+            <Select items={roleItems} onValueChange={onChange} {...field} />
           )}
         />
         {!!selectedEmail && (

@@ -40,3 +40,10 @@ export type User = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type Room = {
+  id: string;
+  name: string;
+  thermometers?: Thermometer[];
+  blinds?: Blind[];
+};
