@@ -13,8 +13,13 @@ export const apiUrls = {
   },
   devices: {
     base: "/devices",
+    blinds: "/devices/blinds",
     thermometers: "/devices/thermometers",
     getDevice: (id: string) => `/devices/${id}`,
     getDeviceDataForGraph: (deviceId: string) => `/devices/${deviceId}/data`,
+  },
+  room: {
+    base: "/room",
+    getRoom: (id: string) => `/room/${id}`,
   },
 };

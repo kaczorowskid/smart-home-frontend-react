@@ -17,6 +17,8 @@ import { AuthLayout } from "@/layouts/Auth";
 import { Login } from "@/views/auth/Login";
 import { Register } from "@/views/auth/Register";
 import { Users } from "@/views/app/Users";
+import { Rooms } from "@/views/app/Rooms";
+import { TempRooms } from "@/views/app/TempRooms";
 
 export const Routes = (): JSX.Element => {
   const router = createBrowserRouter(
@@ -32,9 +34,11 @@ export const Routes = (): JSX.Element => {
         </Route>
         <Route element={<AppLayout />}>
           <Route path={routesPath.app.dashboard} element={<Dashboard />} />
+          <Route path={routesPath.app.rooms} element={<Rooms />} />
           <Route path={routesPath.app.graphs} element={<Graphs />} />
           <Route path={routesPath.app.devices} element={<Devices />} />
           <Route path={routesPath.app.users} element={<Users />} />
+          <Route path={routesPath.app.tempRooms} element={<TempRooms />} />
           <Route path={routesPath.app.settings} element={<Settings />} />
         </Route>
         <Route element={<ErrorLayout />}>

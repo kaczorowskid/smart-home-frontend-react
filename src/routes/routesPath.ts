@@ -6,9 +6,11 @@ export const routesPath = {
   },
   app: {
     dashboard: "/dashboard",
+    rooms: "/rooms",
     graphs: "/graphs",
     devices: "/devices",
     users: "/user",
+    tempRooms: "/temp-rooms",
     settings: "/settings",
   },
 };

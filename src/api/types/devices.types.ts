@@ -3,6 +3,7 @@ import { Blind, DeviceType, Thermometer } from "./common.types";
 export type GetAllDevicesResponse = (Thermometer | Blind)[];
 
 export type GetAllThermometersResponse = Thermometer[];
+export type GetAllBlindsResponse = Blind[];
 
 export type GetOneDevicePayload = {
   id: string;

@@ -5,6 +5,7 @@ import {
   CreateDeviceResponse,
   DeleteDevicePayload,
   DeleteDeviceResponse,
+  GetAllBlindsResponse,
   GetAllDevicesResponse,
   GetAllThermometersResponse,
   GetDeviceDataForGraphPayload,
@@ -23,6 +24,9 @@ export const getAllDevices = async (): Promise<GetAllDevicesResponse> =>
 export const getAllThermometers =
   async (): Promise<GetAllThermometersResponse> =>
     request.get(apiUrls.devices.thermometers);
+
+export const getAllBlinds = async (): Promise<GetAllBlindsResponse> =>
+  request.get(apiUrls.devices.blinds);
 
 export const getOneDevice = async (
   payload: GetOneDevicePayload
