@@ -10,12 +10,9 @@ export type GetOneRoomResponse = Room;
 
 export type CreateRoomPayload = {
   name: Room["name"];
-  thermometer?: {
-    connect: { id: Thermometer["id"] }[];
-  };
-  blind?: {
-    connect: { id: Blind["id"] }[];
-  };
+  image: Room["image"];
+  thermometers?: { id: Thermometer["id"] }[];
+  blinds?: { id: Blind["id"] }[];
 };
 
 export type CreateRoomResponse = Room;
