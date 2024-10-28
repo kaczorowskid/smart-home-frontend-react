@@ -17,21 +17,6 @@ export const menuItems: NavigationItemProps["items"][] = [
     path: routesPath.app.graphs,
     icon: "ChartArea",
   },
-  // {
-  //   title: "Devices",
-  //   path: routesPath.app.devices,
-  //   icon: "RadioTower",
-  // },
-  // {
-  //   title: "Users",
-  //   path: routesPath.app.users,
-  //   icon: "User",
-  // },
-  // {
-  //   title: "TempRooms",
-  //   path: routesPath.app.tempRooms,
-  //   icon: "House",
-  // },
   {
     title: "Settings",
     path: routesPath.app.settings,
