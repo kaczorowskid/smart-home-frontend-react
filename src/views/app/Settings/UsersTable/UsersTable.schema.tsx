@@ -1,4 +1,4 @@
-import { ColumnType } from "../../common/Table/Table.types";
+import { ColumnType } from "../../../../components/common/Table/Table.types";
 import { User } from "@/api/types/common.types";
 import { InfoBadge } from "@/components/common/InfoBadge";
 import { InfoBadgeProps } from "@/components/common/InfoBadge/InfoBadge.types";

@@ -1,6 +1,6 @@
 import { AdminOnlyWrapper } from "@/components/app/AdminOnlyWrapper";
-import { UserForm } from "@/components/app/UserForm";
-import { UsersTable } from "@/components/app/UsersTable/UsersTable";
+import { UserForm } from "@/views/app/Settings/UserForm";
+import { UsersTable } from "@/views/app/Settings/UsersTable/UsersTable";
 import { PageWrapper } from "@/components/common/PageWrapper";
 import { Button } from "@/components/ui/button";
 import { User } from "lucide-react";

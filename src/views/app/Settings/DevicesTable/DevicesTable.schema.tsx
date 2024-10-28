@@ -2,7 +2,7 @@ import {
   Blinds as BlindsIcon,
   Thermometer as ThermometerIcon,
 } from "lucide-react";
-import { ColumnType } from "../../common/Table/Table.types";
+import { ColumnType } from "../../../../components/common/Table/Table.types";
 import { Blind, Thermometer } from "@/api/types/common.types";
 import { InfoBadge } from "@/components/common/InfoBadge";
 

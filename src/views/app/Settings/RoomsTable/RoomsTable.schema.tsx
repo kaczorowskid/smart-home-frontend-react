@@ -1,4 +1,4 @@
-import { ColumnType } from "../../common/Table/Table.types";
+import { ColumnType } from "../../../../components/common/Table/Table.types";
 import { Room } from "@/api/types/common.types";
 
 export const columns: ColumnType<Room>[] = [

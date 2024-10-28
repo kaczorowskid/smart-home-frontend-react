@@ -1,6 +1,6 @@
 import { AdminOnlyWrapper } from "@/components/app/AdminOnlyWrapper";
-import { DeviceForm } from "@/components/app/DeviceForm";
-import { DevicesTable } from "@/components/app/DevicesTable/DevicesTable";
+import { DeviceForm } from "@/views/app/Settings/DeviceForm";
+import { DevicesTable } from "@/views/app/Settings/DevicesTable/DevicesTable";
 import { Button } from "@/components/common/Button";
 import { PageWrapper } from "@/components/common/PageWrapper";
 import { RadioTower } from "lucide-react";

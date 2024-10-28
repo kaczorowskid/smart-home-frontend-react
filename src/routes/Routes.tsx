@@ -9,7 +9,7 @@ import { routesPath } from "./routesPath";
 import { AppLayout } from "@/layouts/App";
 import { Dashboard } from "@/views/app/Dashboard";
 import { Devices } from "@/views/app/Devices";
-import { Settings } from "@/views/app/Settings";
+import { Settings } from "@/views/app/Settings/Settings";
 import { ErrorLayout } from "@/layouts/Error";
 import { Error404 } from "@/views/error/Error404";
 import { Graphs } from "@/views/app/Graphs";

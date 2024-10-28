@@ -1,18 +1,15 @@
 import { useFilteredData } from "@/hooks/useFilteredData.hook";
-import { CardWithHeader } from "../../common/CardWithHeader";
-import { Pagination } from "../../common/Pagination";
-import { Table } from "../../common/Table";
-import { useGetAllDevices } from "./DevicesTable.hooks";
-import { columns } from "./DevicesTable.schema";
-import { DevicesTableProps } from "./DevicesTable.types";
+import { CardWithHeader } from "../../../../components/common/CardWithHeader";
+import { Pagination } from "../../../../components/common/Pagination";
+import { Table } from "../../../../components/common/Table";
 import { ExtraButton } from "./ExtraButton";
 import { usePagination } from "@/hooks/usePagination.hook";
+import { RoomsTableProps } from "./RoomsTable.types";
+import { useGetAllRooms } from "./RoomsTable.hooks";
+import { columns } from "./RoomsTable.schema";
 
-export const DevicesTable = ({
-  setSelectedId,
-  isDashboardPart,
-}: DevicesTableProps) => {
-  const { data } = useGetAllDevices();
+export const RoomsTable = ({ setSelectedId }: RoomsTableProps) => {
+  const { data } = useGetAllRooms();
 
   const { filteredData, searchbarValue, setSearchbarValue } =
     useFilteredData(data);
@@ -29,7 +26,6 @@ export const DevicesTable = ({
       description="Table of devices"
       extra={
         <ExtraButton
-          isDashboardPart={!!isDashboardPart}
           searchbarValue={searchbarValue}
           setSearchbarValue={setSearchbarValue}
         />
@@ -41,14 +37,12 @@ export const DevicesTable = ({
         rowKey={(record) => record.id}
         onRowClick={({ id }) => setSelectedId?.(id)}
       />
-      {!isDashboardPart && (
-        <Pagination
-          className="pt-5"
-          count={paginationData.pagination.count}
-          defaultPage={paginationData.pagination.defaultPage}
-          onPaginationChange={handlePaginationChange}
-        />
-      )}
+      <Pagination
+        className="pt-5"
+        count={paginationData.pagination.count}
+        defaultPage={paginationData.pagination.defaultPage}
+        onPaginationChange={handlePaginationChange}
+      />
     </CardWithHeader>
   );
 };

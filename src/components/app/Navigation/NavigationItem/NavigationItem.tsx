@@ -3,9 +3,10 @@ import { cn } from "@/lib/utils";
 import { NavigationItemProps } from "./NavigationItem.types";
 import { Link, useLocation } from "react-router-dom";
 
-export const NavigationItem = ({ title, icon, path }: NavigationItemProps) => {
+export const NavigationItem = ({
+  items: { title, icon, path },
+}: NavigationItemProps) => {
   const { pathname } = useLocation();
-
   const isActive = pathname === path;
 
   return (

@@ -8,23 +8,22 @@ import {
   useDeleteDevice,
   useUpdateDevice,
 } from "../DeviceForm.hooks";
-import { formFields, formSchema, FormSchema } from "./ThermometerForm.schema";
-import { ControlButtons } from "../../ControlButtons";
-import { defaultValues } from "./ThermometerForm.utils";
-import { ThermometerFormProps } from "./ThermometerForm.types";
+import { BlindFormProps } from "./BlindForm.types";
+import { formFields, formSchema, FormSchema } from "./BlindForm.schema";
+import { defaultValues } from "./BlindForm.utils";
+import { ControlButtons } from "../../../../../components/app/ControlButtons";
 
-export const ThermometerForm = ({
+export const BlindForm = ({
   selectedId,
   onClose,
   deviceId,
   name,
-}: ThermometerFormProps) => {
-  const { mutateAsync: createThermometer, isPending: isCreatePending } =
+}: BlindFormProps) => {
+  const { mutateAsync: createBlind, isPending: isCreatePending } =
     useCreateDevice();
-  const { mutateAsync: updateThermometer, isPending: isUpdatePending } =
+  const { mutateAsync: updateBlind, isPending: isUpdatePending } =
     useUpdateDevice();
-  const { mutate: deleteThermometer, isPending: isDeletePending } =
-    useDeleteDevice();
+  const { mutate: deleteBlind, isPending: isDeletePending } = useDeleteDevice();
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -32,7 +31,7 @@ export const ThermometerForm = ({
     values: {
       deviceId: deviceId || "",
       name: name || "",
-      type: "THERMOMETER",
+      type: "BLIND",
     },
   });
 
@@ -43,15 +42,15 @@ export const ThermometerForm = ({
 
   const onSubmit = async (values: FormSchema) => {
     if (!!selectedId) {
-      await updateThermometer({
+      await updateBlind({
         ...values,
         id: selectedId,
-        type: "THERMOMETER",
+        type: "BLIND",
       });
     } else {
-      await createThermometer({
+      await createBlind({
         ...values,
-        type: "THERMOMETER",
+        type: "BLIND",
       });
     }
 
@@ -63,7 +62,7 @@ export const ThermometerForm = ({
   };
 
   const handleDeleteDevice = () => {
-    deleteThermometer({ id: selectedId, type: "THERMOMETER" });
+    deleteBlind({ id: selectedId, type: "BLIND" });
     handleCloseForm();
   };
 
@@ -83,7 +82,7 @@ export const ThermometerForm = ({
       />
 
       <ControlButtons
-        entity="thermometer"
+        entity="blind"
         isCreate={!selectedId}
         onCreate={handleSave}
         onUpdate={handleSave}

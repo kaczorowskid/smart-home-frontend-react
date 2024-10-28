@@ -20,9 +20,9 @@ import {
   mapValuesToUpdateForm,
 } from "./UserForm.utils";
 import { roleItems } from "./UserForm.consts";
-import { FormTitle } from "../FormTitle";
+import { FormTitle } from "../../../../components/app/FormTitle";
 import { User } from "lucide-react";
-import { ControlButtons } from "../ControlButtons";
+import { ControlButtons } from "../../../../components/app/ControlButtons";
 
 export const UserForm = ({ selectedEmail, open, onClose }: UserFormProps) => {
   const { data } = useGetOneUser({ email: selectedEmail || "" });
@@ -35,8 +35,13 @@ export const UserForm = ({ selectedEmail, open, onClose }: UserFormProps) => {
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: defaultValues,
-    values: initialValues(data),
+    values: (() => {
+      if (!data) {
+        return defaultValues;
+      }
+
+      return initialValues(data);
+    })(),
   });
 
   const handleCloseForm = () => {
