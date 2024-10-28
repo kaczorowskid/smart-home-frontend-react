@@ -1,5 +1,3 @@
-export type DeviceType = "THERMOMETER" | "BLIND";
-
 export type ThermometerData = {
   id: string;
   temperature: number;
@@ -44,6 +42,15 @@ export type User = {
 export type Room = {
   id: string;
   name: string;
-  thermometers?: Thermometer[];
-  blinds?: Blind[];
+  image: string;
+  thermometers?: {
+    thermometer: Thermometer;
+    roomId: string;
+    thermometerId: string;
+  }[];
+  blinds?: {
+    blind: Blind;
+    blindId: string;
+    roomId: string;
+  }[];
 };

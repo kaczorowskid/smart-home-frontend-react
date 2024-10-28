@@ -18,10 +18,10 @@ import {
   DeleteRoomPayload,
   DeleteRoomResponse,
   GetOneRoomPayload,
+  GetOneRoomResponse,
   UpdateRoomPayload,
   UpdateRoomResponse,
 } from "@/api/types/room.types";
-import { GetOneUserResponse } from "@/api/types/user.types";
 import { queryClient } from "@/utils/queryClient";
 import { queryKeys } from "@/utils/queryKeys";
 import {
@@ -35,7 +35,7 @@ import { toast } from "sonner";
 
 export const useGetOneRoom = (
   payload: GetOneRoomPayload
-): UseQueryResult<GetOneUserResponse> =>
+): UseQueryResult<GetOneRoomResponse> =>
   useQuery({
     queryKey: [queryKeys.getOneRoom, payload.id],
     queryFn: () => getOneRoom({ id: payload.id }),

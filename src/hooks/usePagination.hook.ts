@@ -10,14 +10,14 @@ type PaginationData<T> = {
 
 type UsePaginationProps<T> = {
   data?: T[];
-  pageSize: number;
-  defaultPage: number;
+  pageSize?: number;
+  defaultPage?: number;
 };
 
 export const usePagination = <T>({
   data,
-  pageSize,
-  defaultPage,
+  pageSize = 10,
+  defaultPage = 1,
 }: UsePaginationProps<T>) => {
   const count = Math.ceil((data || [])?.length / pageSize);
 

@@ -30,6 +30,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { SelectedItems } from "./SelectedItems";
+import { roomsItems } from "./RoomsForm.consts";
+import { Select } from "@/components/common/Select";
 
 export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
   const { data } = useGetOneRoom({ id: selectedId || "" });
@@ -67,10 +69,16 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
       await updateRoom({
         id: data?.id || "",
         name: values["name"],
+        image: values["image"],
+        thermometers: values["thermometer"].map((id) => ({ id })),
+        blinds: values["blind"].map((id) => ({ id })),
       });
     } else {
       await createRoom({
         name: values["name"],
+        image: values["image"],
+        thermometers: values["thermometer"].map((id) => ({ id })),
+        blinds: values["blind"].map((id) => ({ id })),
       });
     }
     handleCloseForm();
@@ -101,6 +109,19 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
           control={form.control}
           name={formFields.name}
           component={(field) => <Input {...field} />}
+        />
+        <FormField
+          label="User role"
+          control={form.control}
+          name={formFields.image}
+          component={({ onChange, value, ...field }) => (
+            <Select
+              items={roomsItems}
+              onValueChange={onChange}
+              value={value as string}
+              {...field}
+            />
+          )}
         />
         {/* probably unnecessary  */}
         <Popover>

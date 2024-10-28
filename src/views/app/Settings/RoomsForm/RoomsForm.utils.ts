@@ -3,6 +3,7 @@ import { Blind, Room, Thermometer } from "@/api/types/common.types";
 
 export const defaultValues: FormSchema = {
   [formFields.name]: "",
+  [formFields.image]: "",
   [formFields.thermometer]: [],
   [formFields.blind]: [],
 };
@@ -16,8 +17,10 @@ export const initialValues = (
 
   return {
     name: data.name,
-    thermometer: [],
-    blind: [],
+    image: data.image,
+    thermometer:
+      data.thermometers?.map(({ thermometerId }) => thermometerId) || [],
+    blind: data.blinds?.map(({ blindId }) => blindId) || [],
   };
 };
 

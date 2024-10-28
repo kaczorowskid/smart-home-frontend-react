@@ -19,8 +19,6 @@ export const DevicesTable = ({
 
   const { paginationData, handlePaginationChange } = usePagination({
     data: filteredData,
-    defaultPage: 1,
-    pageSize: 5,
   });
 
   return (

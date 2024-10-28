@@ -8,7 +8,7 @@ import {
 import { routesPath } from "./routesPath";
 import { AppLayout } from "@/layouts/App";
 import { Dashboard } from "@/views/app/Dashboard";
-import { Settings } from "@/views/app/Settings/Settings";
+import { Settings } from "@/views/app/Settings";
 import { ErrorLayout } from "@/layouts/Error";
 import { Error404 } from "@/views/error/Error404";
 import { Graphs } from "@/views/app/Graphs";
@@ -16,6 +16,7 @@ import { AuthLayout } from "@/layouts/Auth";
 import { Login } from "@/views/auth/Login";
 import { Register } from "@/views/auth/Register";
 import { Rooms } from "@/views/app/Rooms";
+import { RoomDetails } from "@/views/app/RoomDetails";
 
 export const Routes = (): JSX.Element => {
   const router = createBrowserRouter(
@@ -32,6 +33,7 @@ export const Routes = (): JSX.Element => {
         <Route element={<AppLayout />}>
           <Route path={routesPath.app.dashboard} element={<Dashboard />} />
           <Route path={routesPath.app.rooms} element={<Rooms />} />
+          <Route path={routesPath.app.roomsDetails} element={<RoomDetails />} />
           <Route path={routesPath.app.graphs} element={<Graphs />} />
           <Route path={routesPath.app.settings} element={<Settings />} />
         </Route>

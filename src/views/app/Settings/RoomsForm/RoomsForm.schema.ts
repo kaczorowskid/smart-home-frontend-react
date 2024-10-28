@@ -3,12 +3,14 @@ import { z } from "zod";
 
 export const formFields = {
   name: "name",
+  image: "image",
   thermometer: "thermometer",
   blind: "blind",
 } as const;
 
 export const formSchema = z.object({
   [formFields.name]: schema.name,
+  [formFields.image]: z.string(),
   [formFields.thermometer]: z.array(z.string()),
   [formFields.blind]: z.array(z.string()),
 });

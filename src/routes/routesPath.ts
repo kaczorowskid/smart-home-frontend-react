@@ -7,6 +7,7 @@ export const routesPath = {
   app: {
     dashboard: "/dashboard",
     rooms: "/rooms",
+    roomsDetails: "/room/:id",
     graphs: "/graphs",
     settings: "/settings",
   },
