@@ -1,6 +1,6 @@
 import { AdminOnlyWrapper } from "@/components/app/AdminOnlyWrapper";
-import { RoomsForm } from "@/components/app/RoomsForm";
-import { TempRoomsTable } from "@/components/app/TempRoomsTable";
+import { RoomsForm } from "@/views/app/Settings/RoomsForm";
+import { RoomsTable } from "@/views/app/Settings/RoomsTable";
 import { PageWrapper } from "@/components/common/PageWrapper";
 import { Button } from "@/components/ui/button";
 import { House } from "lucide-react";
@@ -29,7 +29,7 @@ export const TempRooms = () => {
         </AdminOnlyWrapper>
       }
     >
-      <TempRoomsTable setSelectedId={setSelectedId} />
+      <RoomsTable setSelectedId={setSelectedId} />
       <AdminOnlyWrapper>
         <RoomsForm
           selectedId={selectedId}

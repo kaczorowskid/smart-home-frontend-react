@@ -12,8 +12,8 @@ export const Navigation = () => {
     <div className="w-[300px] h-full fixed">
       <UserInfo />
       <nav className="px-2 text-lg font-medium lg:px-4">
-        {menuItems.map(({ title, path, icon }) => (
-          <NavigationItem key={title} title={title} icon={icon} path={path} />
+        {menuItems.map((item) => (
+          <NavigationItem items={{ ...item }} />
         ))}
       </nav>
 
@@ -23,10 +23,10 @@ export const Navigation = () => {
         defaultValue={theme}
         onValueChange={setTheme}
       >
-        <ToggleGroupItem value="light">
+        <ToggleGroupItem value="light" disabled={theme === "light"}>
           <Sun />
         </ToggleGroupItem>
-        <ToggleGroupItem value="dark">
+        <ToggleGroupItem value="dark" disabled={theme === "dark"}>
           <Moon />
         </ToggleGroupItem>
       </ToggleGroup>

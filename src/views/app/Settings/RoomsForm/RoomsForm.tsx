@@ -4,9 +4,9 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dialog } from "@/components/common/Dialog";
-import { FormTitle } from "../FormTitle";
+import { FormTitle } from "../../../../components/app/FormTitle";
 import { House } from "lucide-react";
-import { ControlButtons } from "../ControlButtons";
+import { ControlButtons } from "../../../../components/app/ControlButtons";
 import {
   useCreateRoom,
   useDeleteRoom,
@@ -48,8 +48,13 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: defaultValues,
-    values: initialValues(data),
+    values: (() => {
+      if (!data) {
+        return defaultValues;
+      }
+
+      return initialValues(data);
+    })(),
   });
 
   const handleCloseForm = () => {

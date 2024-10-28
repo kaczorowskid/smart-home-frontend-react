@@ -1,13 +1,7 @@
 import { routesPath } from "@/routes/routesPath";
-import { IconProps } from "../../common/Icon/Icon.types";
+import { NavigationItemProps } from "./NavigationItem";
 
-type MenuItem = {
-  title: string;
-  path: string;
-  icon: IconProps["name"];
-};
-
-export const menuItems: MenuItem[] = [
+export const menuItems: NavigationItemProps["items"][] = [
   {
     title: "Dashboard",
     path: routesPath.app.dashboard,
@@ -23,21 +17,21 @@ export const menuItems: MenuItem[] = [
     path: routesPath.app.graphs,
     icon: "ChartArea",
   },
-  {
-    title: "Devices",
-    path: routesPath.app.devices,
-    icon: "RadioTower",
-  },
-  {
-    title: "Users",
-    path: routesPath.app.users,
-    icon: "User",
-  },
-  {
-    title: "TempRooms",
-    path: routesPath.app.tempRooms,
-    icon: "House",
-  },
+  // {
+  //   title: "Devices",
+  //   path: routesPath.app.devices,
+  //   icon: "RadioTower",
+  // },
+  // {
+  //   title: "Users",
+  //   path: routesPath.app.users,
+  //   icon: "User",
+  // },
+  // {
+  //   title: "TempRooms",
+  //   path: routesPath.app.tempRooms,
+  //   icon: "House",
+  // },
   {
     title: "Settings",
     path: routesPath.app.settings,

@@ -1,6 +1,6 @@
 import { DeviceChart } from "@/components/app/DeviceChart";
 import { DevicesBar } from "@/components/app/DevicesBar";
-import { DevicesTable } from "@/components/app/DevicesTable/DevicesTable";
+import { DevicesTable } from "@/views/app/Settings/DevicesTable/DevicesTable";
 import { PageWrapper } from "@/components/common/PageWrapper";
 import { displayedDevicesKeys } from "@/utils/localStorageKeys";
 import { Droplet, LayoutDashboard, Thermometer } from "lucide-react";
