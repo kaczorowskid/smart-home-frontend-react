@@ -3,26 +3,29 @@ import { PageWrapper } from "@/components/common/PageWrapper";
 import { displayedDevicesKeys } from "@/utils/localStorageKeys";
 import { ChartArea, Cloud, Droplet, Thermometer } from "lucide-react";
 
+const { graphsTemperatureChart, graphsHumidityChart, grapshAllCharts } =
+  displayedDevicesKeys;
+
 export const Graphs = () => (
   <PageWrapper title="Graphs" icon={ChartArea}>
     <div className="flex flex-col gap-5">
       <DeviceChart
-        displayedDeviceKeys={displayedDevicesKeys.graphsTemperatureChart}
+        icon={Thermometer}
         chartType="temperature"
         description="Temperature"
-        icon={Thermometer}
+        displayedDeviceKey={graphsTemperatureChart}
       />
       <DeviceChart
-        displayedDeviceKeys={displayedDevicesKeys.graphsHumidityChart}
+        icon={Droplet}
         chartType="humidity"
         description="Humidity"
-        icon={Droplet}
+        displayedDeviceKey={graphsHumidityChart}
       />
       <DeviceChart
-        displayedDeviceKeys={displayedDevicesKeys.grapshAllCharts}
+        icon={Cloud}
         chartType="all"
         description="Temperature & Humidity"
-        icon={Cloud}
+        displayedDeviceKey={grapshAllCharts}
       />
     </div>
   </PageWrapper>

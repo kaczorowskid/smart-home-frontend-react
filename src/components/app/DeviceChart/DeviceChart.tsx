@@ -26,14 +26,14 @@ export const DeviceChart = ({
   chartType,
   description,
   icon,
-  displayedDeviceKeys,
+  displayedDeviceKey,
 }: DeviceChartProps) => {
-  const { deviceId } = useLocalStorageDevice(displayedDeviceKeys);
+  const { deviceId } = useLocalStorageDevice(displayedDeviceKey);
   const { data: allThermometers } = useGetAllThermometers();
   const { data } = useGetDeviceDataForGraph({
     deviceId: deviceId || "",
   });
-  const items = useChangeDisplayedDevice(displayedDeviceKeys, allThermometers);
+  const items = useChangeDisplayedDevice(displayedDeviceKey, allThermometers);
 
   return (
     <CardWithHeader

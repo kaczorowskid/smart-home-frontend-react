@@ -1,25 +1,51 @@
 import { DeviceChart } from "@/components/app/DeviceChart";
-import { DevicesBar } from "@/components/app/DevicesBar";
 import { DevicesTable } from "@/views/app/Settings/DevicesTable/DevicesTable";
 import { PageWrapper } from "@/components/common/PageWrapper";
 import { displayedDevicesKeys } from "@/utils/localStorageKeys";
 import { Droplet, LayoutDashboard, Thermometer } from "lucide-react";
+import { DeviceItem } from "@/components/app/DeviceItem";
+
+const {
+  dashboardTopDeviceLeftCorner,
+  dashboardTopDeviceLeftMiddle,
+  dashboardTopDeviceRightMiddle,
+  dashboardTopDeviceRightCorner,
+  dashboardTemperatureChart,
+  dashboardHumidityChart,
+} = displayedDevicesKeys;
 
 export const Dashboard = () => (
   <PageWrapper title="Dashboard" icon={LayoutDashboard}>
-    <DevicesBar />
+    <div className="grid grid-cols-4 gap-5">
+      <DeviceItem
+        type="LOCAL"
+        displayedDeviceKey={dashboardTopDeviceLeftCorner}
+      />
+      <DeviceItem
+        type="LOCAL"
+        displayedDeviceKey={dashboardTopDeviceLeftMiddle}
+      />
+      <DeviceItem
+        type="LOCAL"
+        displayedDeviceKey={dashboardTopDeviceRightMiddle}
+      />
+      <DeviceItem
+        type="LOCAL"
+        displayedDeviceKey={dashboardTopDeviceRightCorner}
+      />
+    </div>
     <div className="flex justify-between gap-5 py-5">
       <DeviceChart
-        displayedDeviceKeys={displayedDevicesKeys.dashboardTemperatureChart}
+        icon={Thermometer}
         chartType="temperature"
         description="Temperature"
-        icon={Thermometer}
+        displayedDeviceKey={dashboardTemperatureChart}
       />
       <DeviceChart
-        displayedDeviceKeys={displayedDevicesKeys.dashboardHumidityChart}
+        icon={Droplet}
         chartType="humidity"
         description="Humidity"
-        icon={Droplet}
+        displayedDeviceKey={dashboardHumidityChart}
       />
     </div>
     <DevicesTable isDashboardPart />

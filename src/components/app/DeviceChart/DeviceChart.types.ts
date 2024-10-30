@@ -5,5 +5,5 @@ export type DeviceChartProps = {
   chartType: "temperature" | "humidity" | "all";
   description: string;
   icon: LucideIcon;
-  displayedDeviceKeys: DisplayedDevicesKey;
+  displayedDeviceKey: DisplayedDevicesKey;
 };
