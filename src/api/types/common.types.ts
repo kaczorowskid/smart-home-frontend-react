@@ -12,6 +12,7 @@ export type Thermometer = {
   id: string;
   name: string;
   deviceId: string;
+  battery: number;
   type: "THERMOMETER";
   createdAt: Date;
   updatedAt: Date;

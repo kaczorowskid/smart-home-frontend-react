@@ -17,14 +17,18 @@ export const BlindCard = ({ name, blindValue, items }: BlindCardProps) => {
       cardClassName="flex-grow"
       icon={Blinds}
       title={
-        <Dropdown
-          items={items}
-          triggerComponent={
-            <div className="cursor-pointer hover:text-muted-foreground">
-              {name}
-            </div>
-          }
-        />
+        items ? (
+          <Dropdown
+            items={items}
+            triggerComponent={
+              <div className="cursor-pointer hover:text-muted-foreground">
+                {name}
+              </div>
+            }
+          />
+        ) : (
+          <span>{name}</span>
+        )
       }
       hasSmallHeader
     >

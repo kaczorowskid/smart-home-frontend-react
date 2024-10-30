@@ -3,6 +3,6 @@ import { DropdownProps } from "@/components/common/Dropdown/Dropdown.types";
 
 export type BlindCardProps = {
   name: string;
-  items: DropdownProps["items"];
+  items: DropdownProps["items"] | null;
   blindValue: Blind["value"];
 };

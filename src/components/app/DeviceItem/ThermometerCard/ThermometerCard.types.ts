@@ -3,6 +3,6 @@ import { DropdownProps } from "@/components/common/Dropdown/Dropdown.types";
 
 export type ThermometerCardProps = {
   name: string;
-  items: DropdownProps["items"];
+  items: DropdownProps["items"] | null;
   thermometerData?: ThermometerData[];
 };

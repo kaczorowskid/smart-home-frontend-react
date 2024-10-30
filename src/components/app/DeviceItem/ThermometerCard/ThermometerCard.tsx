@@ -13,14 +13,18 @@ export const ThermometerCard = ({
       cardClassName="flex-grow"
       icon={Thermometer}
       title={
-        <Dropdown
-          items={items}
-          triggerComponent={
-            <div className="cursor-pointer hover:text-muted-foreground">
-              {name}
-            </div>
-          }
-        />
+        items ? (
+          <Dropdown
+            items={items}
+            triggerComponent={
+              <div className="cursor-pointer hover:text-muted-foreground">
+                {name}
+              </div>
+            }
+          />
+        ) : (
+          <span>{name}</span>
+        )
       }
       hasSmallHeader
     >
