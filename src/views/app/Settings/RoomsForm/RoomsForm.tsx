@@ -4,9 +4,9 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dialog } from "@/components/common/Dialog";
-import { FormTitle } from "../../../../components/app/FormTitle";
+import { FormTitle } from "@/components/app/FormTitle";
 import { House } from "lucide-react";
-import { ControlButtons } from "../../../../components/app/ControlButtons";
+import { ControlButtons } from "@/components/app/ControlButtons";
 import { UserFormProps } from "./RoomsForm.types";
 import { formFields, formSchema, FormSchema } from "./RoomsForm.schema";
 import {
@@ -125,7 +125,6 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
             />
           )}
         />
-        {/* probably unnecessary  */}
         <Popover>
           <PopoverTrigger className="mt-4" asChild>
             <SelectedItems
@@ -202,7 +201,6 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
             ))}
           </PopoverContent>
         </Popover>
-        {/* probably unnecessary  */}
         <ControlButtons
           entity={data?.name || ""}
           isCreate={!selectedId}

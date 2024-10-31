@@ -7,7 +7,7 @@ import { useState } from "react";
 import { FormProvider } from "./FormProvider";
 import { BlindForm } from "./BlindForm";
 import { Blinds, Thermometer } from "lucide-react";
-import { FormTitle } from "../../../../components/app/FormTitle";
+import { FormTitle } from "@/components/app/FormTitle";
 import { useGetOneDevice } from "@/api/hooks/devices.hooks";
 
 export const DeviceForm = ({ selectedId, open, onClose }: DeviceFormProps) => {

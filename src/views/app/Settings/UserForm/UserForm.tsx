@@ -14,9 +14,9 @@ import {
   mapValuesToUpdateForm,
 } from "./UserForm.utils";
 import { roleItems } from "./UserForm.consts";
-import { FormTitle } from "../../../../components/app/FormTitle";
+import { FormTitle } from "@/components/app/FormTitle";
 import { User } from "lucide-react";
-import { ControlButtons } from "../../../../components/app/ControlButtons";
+import { ControlButtons } from "@/components/app/ControlButtons";
 import {
   useCreateUserByAdmin,
   useDeleteUser,

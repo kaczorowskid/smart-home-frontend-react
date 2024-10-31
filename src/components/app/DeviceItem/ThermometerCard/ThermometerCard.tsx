@@ -32,8 +32,9 @@ export const ThermometerCard = ({
       <div className="text-6xl font-bold mb-5">
         {thermometerData?.[0]?.temperature}
       </div>
-      <p className="text-xs text-muted-foreground">
-        Humidity: {thermometerData?.[0]?.humidity}%
+      <p className="flex text-xs text-muted-foreground justify-between">
+        <span>Humidity: {thermometerData?.[0]?.humidity}%</span>
+        <span>Battery: {thermometerData?.[0]?.battery}% </span>
       </p>
     </CardWithHeader>
   );

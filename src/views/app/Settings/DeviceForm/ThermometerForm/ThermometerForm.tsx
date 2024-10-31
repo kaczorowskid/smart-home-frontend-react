@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formFields, formSchema, FormSchema } from "./ThermometerForm.schema";
-import { ControlButtons } from "../../../../../components/app/ControlButtons";
+import { ControlButtons } from "@/components/app/ControlButtons";
 import { defaultValues } from "./ThermometerForm.utils";
 import { ThermometerFormProps } from "./ThermometerForm.types";
 import {
