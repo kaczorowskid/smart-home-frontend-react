@@ -14,38 +14,44 @@ import {
 import { CardWithHeader } from "../../common/CardWithHeader";
 import { DeviceChartProps } from "./DeviceChart.types";
 import {
-  useGetAllThermometers,
   useGetDeviceDataForGraph,
+  useSelectorDataSource,
 } from "./DeviceChart.hooks";
 import { config } from "./DeviceChart.schemas";
-import { useLocalStorageDevice } from "@/hooks/useLocalStorageDevice.hook";
-import { useChangeDisplayedDevice } from "@/hooks/useChangedDisplayedDevice.hook";
 import { Dropdown } from "../../common/Dropdown";
 
 export const DeviceChart = ({
   chartType,
   description,
   icon,
-  displayedDeviceKey,
+  deviceId,
+  deviceLocalKey,
 }: DeviceChartProps) => {
-  const { deviceId } = useLocalStorageDevice(displayedDeviceKey);
-  const { data: allThermometers } = useGetAllThermometers();
+  const { isLocalKey, id, items } = useSelectorDataSource(
+    deviceId,
+    deviceLocalKey,
+    "THERMOMETER"
+  );
+
   const { data } = useGetDeviceDataForGraph({
-    deviceId: deviceId || "",
+    deviceId: id || "",
   });
-  const items = useChangeDisplayedDevice(displayedDeviceKey, allThermometers);
 
   return (
     <CardWithHeader
       title={
-        <Dropdown
-          items={items}
-          triggerComponent={
-            <div className="cursor-pointer hover:text-muted-foreground">
-              {data?.name || "Click to attach device"}
-            </div>
-          }
-        />
+        isLocalKey ? (
+          <Dropdown
+            items={items}
+            triggerComponent={
+              <div className="cursor-pointer hover:text-muted-foreground">
+                {data?.name || "Click to attach device"}
+              </div>
+            }
+          />
+        ) : (
+          <div>{data?.name || "Click to attach device"}</div>
+        )
       }
       description={description}
       icon={icon}

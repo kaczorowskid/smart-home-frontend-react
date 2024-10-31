@@ -45,21 +45,21 @@ export const Settings = () => {
           <TabsTrigger className="w-full" value="devices">
             Devices
           </TabsTrigger>
-          <TabsTrigger className="w-full" value="users">
-            Users
-          </TabsTrigger>
           <TabsTrigger className="w-full" value="rooms">
             Rooms
+          </TabsTrigger>
+          <TabsTrigger className="w-full" value="users">
+            Users
           </TabsTrigger>
         </TabsList>
         <TabsContent value="devices">
           <DevicesTable setSelectedId={handleSelectedId} />
         </TabsContent>
-        <TabsContent value="users">
-          <UsersTable setSelectedEmail={handleSelectedId} />
-        </TabsContent>
         <TabsContent value="rooms">
           <RoomsTable setSelectedId={handleSelectedId} />
+        </TabsContent>
+        <TabsContent value="users">
+          <UsersTable setSelectedEmail={handleSelectedId} />
         </TabsContent>
       </Tabs>
 
