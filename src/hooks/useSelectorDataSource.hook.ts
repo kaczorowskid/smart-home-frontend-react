@@ -1,7 +1,7 @@
 import { DisplayedDevicesKey } from "@/utils/localStorageKeys";
 import { useChangeDisplayedDevice } from "./useChangedDisplayedDevice.hook";
 import { useLocalStorageDevice } from "./useLocalStorageDevice.hook";
-import { useGetAllDevices } from "@/views/app/Settings/DevicesTable/DevicesTable.hooks";
+import { useGetAllDevices } from "@/api/hooks/devices.hooks";
 
 export const useSelectorDataSource = (
   deviceId: string | undefined,

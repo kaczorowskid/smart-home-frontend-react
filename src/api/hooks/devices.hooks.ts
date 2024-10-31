@@ -1,29 +1,38 @@
 import {
-  createDevice,
-  deleteDevice,
-  getOneDevice,
-  udpateDevice,
-} from "@/api/handlers/devices.handlers";
-import {
-  CreateDevicePayload,
-  CreateDeviceResponse,
-  DeleteDevicePayload,
-  DeleteDeviceResponse,
-  GetOneDevicePayload,
-  GetOneDevicesResponse,
-  UpdateDevicePayload,
-  UpdateDeviceResponse,
-} from "@/api/types/devices.types";
-import { queryClient } from "@/utils/queryClient";
-import { queryKeys } from "@/utils/queryKeys";
-import {
   useMutation,
   UseMutationResult,
   useQuery,
   UseQueryResult,
 } from "@tanstack/react-query";
+import {
+  CreateDevicePayload,
+  CreateDeviceResponse,
+  DeleteDevicePayload,
+  DeleteDeviceResponse,
+  GetAllBlindsResponse,
+  GetAllDevicesResponse,
+  GetAllThermometersResponse,
+  GetDeviceDataForGraphPayload,
+  GetDeviceDataForGraphResponse,
+  GetOneDevicePayload,
+  GetOneDevicesResponse,
+  UpdateDevicePayload,
+  UpdateDeviceResponse,
+} from "../types/devices.types";
+import { queryKeys } from "@/utils/queryKeys";
+import {
+  createDevice,
+  deleteDevice,
+  getAllBlinds,
+  getAllDevices,
+  getAllThermometers,
+  getDeviceDataForGraph,
+  getOneDevice,
+  udpateDevice,
+} from "../handlers/devices.handlers";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
+import { queryClient } from "@/utils/queryClient";
 
 export const useGetOneDevice = (
   payload: GetOneDevicePayload
@@ -32,6 +41,37 @@ export const useGetOneDevice = (
     queryKey: [queryKeys.getOneDevice, payload.id],
     queryFn: () => getOneDevice(payload),
     enabled: !!payload.id,
+  });
+
+export const useGetAllDevices = (
+  enabled: boolean
+): UseQueryResult<GetAllDevicesResponse> =>
+  useQuery({
+    queryKey: [queryKeys.getAllDevices],
+    queryFn: getAllDevices,
+    enabled,
+  });
+
+export const useGetDeviceDataForGraph = (
+  payload: GetDeviceDataForGraphPayload
+): UseQueryResult<GetDeviceDataForGraphResponse> =>
+  useQuery({
+    queryKey: [queryKeys.getDeviceDataForGraph, ...Object.values(payload)],
+    queryFn: () => getDeviceDataForGraph(payload),
+    enabled: !!payload.deviceId,
+  });
+
+export const useGetAllThermometers =
+  (): UseQueryResult<GetAllThermometersResponse> =>
+    useQuery({
+      queryKey: [queryKeys.getAllThermometers],
+      queryFn: getAllThermometers,
+    });
+
+export const useGetAllBlinds = (): UseQueryResult<GetAllBlindsResponse> =>
+  useQuery({
+    queryKey: [queryKeys.getAllBlinds],
+    queryFn: getAllBlinds,
   });
 
 export const useCreateDevice = (): UseMutationResult<

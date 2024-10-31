@@ -4,9 +4,9 @@ import { Table } from "@/components/common/Table";
 import { useFilteredData } from "@/hooks/useFilteredData.hook";
 import { usePagination } from "@/hooks/usePagination.hook";
 import { ExtraButton } from "./ExtraButton";
-import { useGetAllUsers } from "./UsersTable.hooks";
 import { columns } from "./UsersTable.schema";
 import { UsersTableProps } from "./UsersTable.types";
+import { useGetAllUsers } from "@/api/hooks/user.hooks";
 
 export const UsersTable = ({ setSelectedEmail }: UsersTableProps) => {
   const { data } = useGetAllUsers();

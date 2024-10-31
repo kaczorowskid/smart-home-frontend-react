@@ -4,10 +4,10 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { formFields, formSchema, FormSchema } from "./LoginForm.schema";
-import { useLogin } from "./LoginForm.hooks";
 import { Button } from "@/components/common/Button";
 import { Card, CardContent } from "@/components/ui/card";
 import { defaultValues } from "./LoginForm.utils";
+import { useLogin } from "@/api/hooks/auth.hooks";
 
 export const LoginForm = () => {
   const form = useForm<FormSchema>({

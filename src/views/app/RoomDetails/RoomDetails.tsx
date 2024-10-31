@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-import { useGetOneRoom } from "./RoomDetails.hooks";
 import { PageWrapper } from "@/components/common/PageWrapper";
 import { Droplet, House } from "lucide-react";
 import { DeviceChart } from "@/components/app/DeviceChart";
 import { DeviceItem } from "@/components/app/DeviceItem/DeviceItem";
+import { useGetOneRoom } from "@/api/hooks/room.hooks";
 
 export const RoomDetails = () => {
   const { id } = useParams();

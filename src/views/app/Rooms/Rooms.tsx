@@ -1,9 +1,9 @@
 import { Room } from "@/views/app/Rooms/Room";
 import { PageWrapper } from "@/components/common/PageWrapper";
 import { House } from "lucide-react";
-import { useGetAllRooms } from "./Rooms.hooks";
 import { useNavigate } from "react-router-dom";
 import { routesPath } from "@/routes/routesPath";
+import { useGetAllRooms } from "@/api/hooks/room.hooks";
 
 export const Rooms = () => {
   const { data } = useGetAllRooms();
