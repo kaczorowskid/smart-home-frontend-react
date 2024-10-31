@@ -8,14 +8,14 @@ export const menuItems: NavigationItemProps["items"][] = [
     icon: "LayoutDashboard",
   },
   {
-    title: "Rooms",
-    path: routesPath.app.rooms,
-    icon: "House",
-  },
-  {
     title: "Graphs",
     path: routesPath.app.graphs,
     icon: "ChartArea",
+  },
+  {
+    title: "Rooms",
+    path: routesPath.app.rooms,
+    icon: "House",
   },
   {
     title: "Settings",

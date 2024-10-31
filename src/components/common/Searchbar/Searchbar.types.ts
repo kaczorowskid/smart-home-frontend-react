@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
-export type ExtraButtonProps = {
-  isDashboardPart: boolean;
+export type SearchbarProps = {
   searchbarValue: string;
   setSearchbarValue: Dispatch<SetStateAction<string>>;
 };

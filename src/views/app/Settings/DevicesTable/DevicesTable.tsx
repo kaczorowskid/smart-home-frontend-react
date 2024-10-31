@@ -4,9 +4,9 @@ import { Pagination } from "../../../../components/common/Pagination";
 import { Table } from "../../../../components/common/Table";
 import { columns } from "./DevicesTable.schema";
 import { DevicesTableProps } from "./DevicesTable.types";
-import { ExtraButton } from "./ExtraButton";
 import { usePagination } from "@/hooks/usePagination.hook";
 import { useGetAllDevices } from "@/api/hooks/devices.hooks";
+import { Searchbar } from "@/components/common/Searchbar";
 
 export const DevicesTable = ({
   setSelectedId,
@@ -26,11 +26,12 @@ export const DevicesTable = ({
       title="Devices"
       description="Table of devices"
       extra={
-        <ExtraButton
-          isDashboardPart={!!isDashboardPart}
-          searchbarValue={searchbarValue}
-          setSearchbarValue={setSearchbarValue}
-        />
+        isDashboardPart ? null : (
+          <Searchbar
+            searchbarValue={searchbarValue}
+            setSearchbarValue={setSearchbarValue}
+          />
+        )
       }
     >
       <Table

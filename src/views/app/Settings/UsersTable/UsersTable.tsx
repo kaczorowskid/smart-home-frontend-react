@@ -3,10 +3,10 @@ import { Pagination } from "@/components/common/Pagination";
 import { Table } from "@/components/common/Table";
 import { useFilteredData } from "@/hooks/useFilteredData.hook";
 import { usePagination } from "@/hooks/usePagination.hook";
-import { ExtraButton } from "./ExtraButton";
 import { columns } from "./UsersTable.schema";
 import { UsersTableProps } from "./UsersTable.types";
 import { useGetAllUsers } from "@/api/hooks/user.hooks";
+import { Searchbar } from "@/components/common/Searchbar";
 
 export const UsersTable = ({ setSelectedEmail }: UsersTableProps) => {
   const { data } = useGetAllUsers();
@@ -23,7 +23,7 @@ export const UsersTable = ({ setSelectedEmail }: UsersTableProps) => {
       title="Users"
       description="Table of users"
       extra={
-        <ExtraButton
+        <Searchbar
           searchbarValue={searchbarValue}
           setSearchbarValue={setSearchbarValue}
         />

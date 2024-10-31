@@ -3,6 +3,7 @@ import { DropdownProps } from "@/components/common/Dropdown/Dropdown.types";
 
 export type ThermometerCardProps = {
   name: string;
-  items: DropdownProps["items"] | null;
+  isLocalKey: boolean;
+  items: DropdownProps["items"];
   thermometerData?: ThermometerData[];
 };
