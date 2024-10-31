@@ -9,6 +9,6 @@ export const routesPath = {
     graphs: "/graphs",
     rooms: "/rooms",
     roomsDetails: "/room/:id",
-    settings: "/settings",
+    options: "/options",
   },
 };

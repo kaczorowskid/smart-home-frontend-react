@@ -18,8 +18,13 @@ export const menuItems: NavigationItemProps["items"][] = [
     icon: "House",
   },
   {
-    title: "Settings",
-    path: routesPath.app.settings,
-    icon: "Settings",
+    title: "Options",
+    path: routesPath.app.options,
+    icon: "NotebookPen",
   },
+  // {
+  //   title: "Settings",
+  //   path: routesPath.app.settings,
+  //   icon: "Settings",
+  // },
 ];

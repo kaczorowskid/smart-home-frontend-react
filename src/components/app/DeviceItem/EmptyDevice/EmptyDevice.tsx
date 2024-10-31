@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 export const EmptyDevice = ({ items }: EmptyDeviceProps) => {
   return (
     <CardWithHeader
-      cardClassName="flex-grow"
       title="Empty device"
       contentClassName="h-full"
       hasSmallHeader

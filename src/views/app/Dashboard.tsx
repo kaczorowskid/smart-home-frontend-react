@@ -1,4 +1,4 @@
-import { DevicesTable } from "@/views/app/Settings/DevicesTable/DevicesTable";
+import { DevicesTable } from "@/views/app/Options/DevicesTable/DevicesTable";
 import { PageWrapper } from "@/components/common/PageWrapper";
 import { displayedDevicesKeys } from "@/utils/localStorageKeys";
 import { Droplet, LayoutDashboard, Thermometer } from "lucide-react";

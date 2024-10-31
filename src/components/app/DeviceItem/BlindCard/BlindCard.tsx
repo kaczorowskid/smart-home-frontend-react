@@ -19,7 +19,6 @@ export const BlindCard = ({
 
   return (
     <CardWithHeader
-      cardClassName="flex-grow"
       icon={Blinds}
       title={
         isLocalKey ? (

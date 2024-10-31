@@ -3,9 +3,9 @@ import bathroom from "@/assets/images/bathroom.jpg";
 import bedroom from "@/assets/images/bedroom.jpg";
 import kitchen from "@/assets/images/kitchen.jpg";
 import livingRoom from "@/assets/images/living-room.jpg";
-import { RoomsType } from "../../Settings/RoomsForm";
+import { RoomsType } from "../../Options/RoomsForm";
 
-export const imageRoomMapper: Record<RoomsType, string> = {
+export const imageRoomTileMapper: Record<RoomsType, string> = {
   backyard,
   bathroom,
   bedroom,

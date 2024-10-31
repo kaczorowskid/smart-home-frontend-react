@@ -1,33 +1,33 @@
-import { DevicesTable } from "@/views/app/Settings/DevicesTable";
-import { RoomsTable } from "@/views/app/Settings/RoomsTable";
-import { UsersTable } from "@/views/app/Settings/UsersTable/UsersTable";
+import { DevicesTable } from "@/views/app/Options/DevicesTable";
+import { RoomsTable } from "@/views/app/Options/RoomsTable";
+import { UsersTable } from "@/views/app/Options/UsersTable/UsersTable";
 import { PageWrapper } from "@/components/common/PageWrapper";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Settings as SettingsIcon } from "lucide-react";
+import { NotebookPen, Settings as SettingsIcon } from "lucide-react";
 import { useState } from "react";
-import { Views } from "./Settings.types";
 import { FormProvider } from "./FormProvider";
 import { AdminOnlyWrapper } from "@/components/app/AdminOnlyWrapper";
 import { UserForm } from "./UserForm";
 import { RoomsForm } from "./RoomsForm";
 import { DeviceForm } from "./DeviceForm";
 import { Button } from "@/components/ui/button";
-import { useFormSelector } from "./Settings.hooks";
-import { buttonNameMapper } from "./Settings.utils";
+import { useFormSelector } from "./Options.hooks";
+import { OptionsTab } from "./Options.types";
+import { buttonNameMapper } from "./Options.utils";
 
-export const Settings = () => {
-  const [selectedTab, setSelectedTab] = useState<Views>("devices");
+export const Options = () => {
+  const [selectedTab, setSelectedTab] = useState<OptionsTab>("devices");
   const { isOpen, selectedId, handleSelectedId, handleClose, handleOpen } =
     useFormSelector(selectedTab);
 
   const handleSelectTab = (tab: string) => {
-    setSelectedTab(tab as Views);
+    setSelectedTab(tab as OptionsTab);
   };
 
   return (
     <PageWrapper
-      title="Settings"
-      icon={SettingsIcon}
+      title="Options"
+      icon={NotebookPen}
       extra={
         <AdminOnlyWrapper>
           <Button

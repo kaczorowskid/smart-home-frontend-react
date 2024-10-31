@@ -8,7 +8,7 @@ import {
 import { routesPath } from "./routesPath";
 import { AppLayout } from "@/layouts/App";
 import { Dashboard } from "@/views/app/Dashboard";
-import { Settings } from "@/views/app/Settings";
+import { Options } from "@/views/app/Options";
 import { ErrorLayout } from "@/layouts/Error";
 import { Error404 } from "@/views/error/Error404";
 import { Graphs } from "@/views/app/Graphs";
@@ -35,7 +35,7 @@ export const Routes = (): JSX.Element => {
           <Route path={routesPath.app.graphs} element={<Graphs />} />
           <Route path={routesPath.app.rooms} element={<Rooms />} />
           <Route path={routesPath.app.roomsDetails} element={<RoomDetails />} />
-          <Route path={routesPath.app.settings} element={<Settings />} />
+          <Route path={routesPath.app.options} element={<Options />} />
         </Route>
         <Route element={<ErrorLayout />}>
           <Route path="*" element={<Error404 />} />
