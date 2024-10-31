@@ -3,6 +3,7 @@ export type ThermometerData = {
   temperature: number;
   humidity: number;
   date: Date;
+  battery: number;
   createdAt: Date;
   updatedAt: Date;
   deviceId: string;
@@ -12,7 +13,6 @@ export type Thermometer = {
   id: string;
   name: string;
   deviceId: string;
-  battery: number;
   type: "THERMOMETER";
   createdAt: Date;
   updatedAt: Date;

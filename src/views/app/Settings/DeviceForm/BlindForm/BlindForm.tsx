@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { BlindFormProps } from "./BlindForm.types";
 import { formFields, formSchema, FormSchema } from "./BlindForm.schema";
 import { defaultValues } from "./BlindForm.utils";
-import { ControlButtons } from "../../../../../components/app/ControlButtons";
+import { ControlButtons } from "@/components/app/ControlButtons";
 import {
   useCreateDevice,
   useDeleteDevice,
