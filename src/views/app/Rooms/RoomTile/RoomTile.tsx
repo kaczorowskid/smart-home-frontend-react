@@ -1,7 +1,7 @@
-import { RoomProps } from "./Room.types";
-import { imageRoomMapper } from "./Room.utils";
+import { RoomTileProps } from "./RoomTile.types";
+import { imageRoomTileMapper } from "./RoomTile.utils";
 
-export const Room = ({ name, image, onClick }: RoomProps) => {
+export const RoomTile = ({ name, image, onClick }: RoomTileProps) => {
   return (
     <div
       className="h-[300px] relative hover:scale-105 transition-transform cursor-pointer"
@@ -9,7 +9,7 @@ export const Room = ({ name, image, onClick }: RoomProps) => {
     >
       <img
         className="object-cover h-full w-full rounded-xl"
-        src={imageRoomMapper[image]}
+        src={imageRoomTileMapper[image]}
       />
       <div className="absolute top-0 w-full h-full text-4xl">
         <div className="bg-black text-white h-full opacity-30 flex items-end justify-end p-2">

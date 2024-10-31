@@ -1,4 +1,4 @@
-import { Room } from "@/views/app/Rooms/Room";
+import { RoomTile } from "@/views/app/Rooms/RoomTile";
 import { PageWrapper } from "@/components/common/PageWrapper";
 import { House } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,7 @@ export const Rooms = () => {
     <PageWrapper title="Rooms" icon={House}>
       <div className="grid grid-cols-3 gap-10">
         {data?.map(({ id, name, image }) => (
-          <Room
+          <RoomTile
             key={id}
             name={name}
             image={image}

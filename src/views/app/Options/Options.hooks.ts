@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Views } from "./Settings.types";
+import { OptionsTab } from "./Options.types";
 
-type OpenState = Record<Views, boolean>;
-type IdState = Record<Views, string>;
+type OpenState = Record<OptionsTab, boolean>;
+type IdState = Record<OptionsTab, string>;
 
 const isOpenInitalValue: OpenState = {
   devices: false,
@@ -16,7 +16,7 @@ const selectedIdInitialValue: IdState = {
   rooms: "",
 };
 
-export const useFormSelector = (selectedTab: Views) => {
+export const useFormSelector = (selectedTab: OptionsTab) => {
   const [isOpen, setIsOpen] = useState<OpenState>(isOpenInitalValue);
   const [selectedId, setSelectedId] = useState<IdState>(selectedIdInitialValue);
 

@@ -11,7 +11,6 @@ export const ThermometerCard = ({
 }: ThermometerCardProps) => {
   return (
     <CardWithHeader
-      cardClassName="flex-grow"
       icon={Thermometer}
       title={
         isLocalKey ? (
