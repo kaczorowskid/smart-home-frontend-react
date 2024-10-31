@@ -10,7 +10,11 @@ export const DeviceItem = ({
   deviceId,
   deviceLocalKey,
 }: DeviceItemNewProps) => {
-  const { id, items } = useSelectorDataSource(deviceId, deviceLocalKey, "ALL");
+  const { isLocalKey, id, items } = useSelectorDataSource(
+    deviceId,
+    deviceLocalKey,
+    "ALL"
+  );
   const { data } = useGetOneDevice({ id: id || "" });
 
   if (!data?.type) {
@@ -22,13 +26,19 @@ export const DeviceItem = ({
       data={data}
       thermometer={(thermometer) => (
         <ThermometerCard
+          isLocalKey={isLocalKey}
           items={items}
           name={thermometer.name}
           thermometerData={thermometer?.data}
         />
       )}
       blind={(blind) => (
-        <BlindCard items={items} name={blind.name} blindValue={blind.value} />
+        <BlindCard
+          isLocalKey={isLocalKey}
+          items={items}
+          name={blind.name}
+          blindValue={blind.value}
+        />
       )}
     />
   );

@@ -6,9 +6,9 @@ export const routesPath = {
   },
   app: {
     dashboard: "/dashboard",
+    graphs: "/graphs",
     rooms: "/rooms",
     roomsDetails: "/room/:id",
-    graphs: "/graphs",
     settings: "/settings",
   },
 };

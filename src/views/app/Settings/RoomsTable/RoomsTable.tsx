@@ -2,11 +2,11 @@ import { useFilteredData } from "@/hooks/useFilteredData.hook";
 import { CardWithHeader } from "../../../../components/common/CardWithHeader";
 import { Pagination } from "../../../../components/common/Pagination";
 import { Table } from "../../../../components/common/Table";
-import { ExtraButton } from "./ExtraButton";
 import { usePagination } from "@/hooks/usePagination.hook";
 import { RoomsTableProps } from "./RoomsTable.types";
 import { columns } from "./RoomsTable.schema";
 import { useGetAllRooms } from "@/api/hooks/room.hooks";
+import { Searchbar } from "@/components/common/Searchbar";
 
 export const RoomsTable = ({ setSelectedId }: RoomsTableProps) => {
   const { data } = useGetAllRooms();
@@ -23,7 +23,7 @@ export const RoomsTable = ({ setSelectedId }: RoomsTableProps) => {
       title="Devices"
       description="Table of devices"
       extra={
-        <ExtraButton
+        <Searchbar
           searchbarValue={searchbarValue}
           setSearchbarValue={setSearchbarValue}
         />

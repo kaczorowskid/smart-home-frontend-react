@@ -32,9 +32,9 @@ export const Routes = (): JSX.Element => {
         </Route>
         <Route element={<AppLayout />}>
           <Route path={routesPath.app.dashboard} element={<Dashboard />} />
+          <Route path={routesPath.app.graphs} element={<Graphs />} />
           <Route path={routesPath.app.rooms} element={<Rooms />} />
           <Route path={routesPath.app.roomsDetails} element={<RoomDetails />} />
-          <Route path={routesPath.app.graphs} element={<Graphs />} />
           <Route path={routesPath.app.settings} element={<Settings />} />
         </Route>
         <Route element={<ErrorLayout />}>

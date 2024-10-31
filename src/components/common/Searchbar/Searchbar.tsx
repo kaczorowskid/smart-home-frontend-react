@@ -1,11 +1,11 @@
-import { ExtraButtonProps } from "./ExtraButton.types";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import { SearchbarProps } from "./Searchbar.types";
 
-export const ExtraButton = ({
+export const Searchbar = ({
   searchbarValue,
   setSearchbarValue,
-}: ExtraButtonProps) => {
+}: SearchbarProps) => {
   return (
     <div className="relative ml-auto flex-1 md:grow-0">
       <Search className="absolute left-2.5 top-3 h-4 w-4 text-muted-foreground" />

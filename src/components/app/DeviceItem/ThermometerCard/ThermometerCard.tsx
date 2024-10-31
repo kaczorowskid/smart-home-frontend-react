@@ -7,13 +7,14 @@ export const ThermometerCard = ({
   name,
   thermometerData,
   items,
+  isLocalKey,
 }: ThermometerCardProps) => {
   return (
     <CardWithHeader
       cardClassName="flex-grow"
       icon={Thermometer}
       title={
-        items ? (
+        isLocalKey ? (
           <Dropdown
             items={items}
             triggerComponent={
