@@ -13,19 +13,19 @@ export const Graphs = () => (
         icon={Thermometer}
         chartType="temperature"
         description="Temperature"
-        displayedDeviceKey={graphsTemperatureChart}
+        deviceLocalKey={graphsTemperatureChart}
       />
       <DeviceChart
         icon={Droplet}
         chartType="humidity"
         description="Humidity"
-        displayedDeviceKey={graphsHumidityChart}
+        deviceLocalKey={graphsHumidityChart}
       />
       <DeviceChart
         icon={Cloud}
         chartType="all"
         description="Temperature & Humidity"
-        displayedDeviceKey={grapshAllCharts}
+        deviceLocalKey={grapshAllCharts}
       />
     </div>
   </PageWrapper>

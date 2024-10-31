@@ -12,7 +12,7 @@ export const DevicesTable = ({
   setSelectedId,
   isDashboardPart,
 }: DevicesTableProps) => {
-  const { data } = useGetAllDevices();
+  const { data } = useGetAllDevices(true);
 
   const { filteredData, searchbarValue, setSearchbarValue } =
     useFilteredData(data);
