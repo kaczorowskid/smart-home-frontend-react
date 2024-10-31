@@ -5,8 +5,8 @@ import { Table } from "../../../../components/common/Table";
 import { ExtraButton } from "./ExtraButton";
 import { usePagination } from "@/hooks/usePagination.hook";
 import { RoomsTableProps } from "./RoomsTable.types";
-import { useGetAllRooms } from "./RoomsTable.hooks";
 import { columns } from "./RoomsTable.schema";
+import { useGetAllRooms } from "@/api/hooks/room.hooks";
 
 export const RoomsTable = ({ setSelectedId }: RoomsTableProps) => {
   const { data } = useGetAllRooms();

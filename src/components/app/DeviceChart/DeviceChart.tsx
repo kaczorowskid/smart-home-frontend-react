@@ -13,12 +13,10 @@ import {
 } from "@/components/ui/chart";
 import { CardWithHeader } from "../../common/CardWithHeader";
 import { DeviceChartProps } from "./DeviceChart.types";
-import {
-  useGetDeviceDataForGraph,
-  useSelectorDataSource,
-} from "./DeviceChart.hooks";
 import { config } from "./DeviceChart.schemas";
 import { Dropdown } from "../../common/Dropdown";
+import { useSelectorDataSource } from "@/hooks/useSelectorDataSource.hook";
+import { useGetDeviceDataForGraph } from "@/api/hooks/devices.hooks";
 
 export const DeviceChart = ({
   chartType,

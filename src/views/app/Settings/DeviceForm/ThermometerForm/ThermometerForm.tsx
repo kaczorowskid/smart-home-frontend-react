@@ -3,15 +3,15 @@ import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  useCreateDevice,
-  useDeleteDevice,
-  useUpdateDevice,
-} from "../DeviceForm.hooks";
 import { formFields, formSchema, FormSchema } from "./ThermometerForm.schema";
 import { ControlButtons } from "../../../../../components/app/ControlButtons";
 import { defaultValues } from "./ThermometerForm.utils";
 import { ThermometerFormProps } from "./ThermometerForm.types";
+import {
+  useCreateDevice,
+  useDeleteDevice,
+  useUpdateDevice,
+} from "@/api/hooks/devices.hooks";
 
 export const ThermometerForm = ({
   selectedId,

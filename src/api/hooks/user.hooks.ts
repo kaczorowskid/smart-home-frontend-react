@@ -1,29 +1,66 @@
 import {
-  createUserByAdmin,
-  deleteUser,
-  getOneUser,
-  updateUser,
-} from "@/api/handlers/user.handlers";
-import {
-  CreateUserByAdminPayload,
-  CreateUserByAdminResponse,
-  DeleteUserPayload,
-  DeleteUserResponse,
-  GetOneUserPayload,
-  GetOneUserResponse,
-  UpdateUserPayload,
-  UpdateUserResponse,
-} from "@/api/types/user.types";
-import { queryClient } from "@/utils/queryClient";
-import { queryKeys } from "@/utils/queryKeys";
-import {
   useMutation,
   UseMutationResult,
   useQuery,
   UseQueryResult,
 } from "@tanstack/react-query";
+import {
+  CreateUserByAdminPayload,
+  CreateUserByAdminResponse,
+  DeleteUserPayload,
+  DeleteUserResponse,
+  GetAllUsersResponse,
+  GetOneUserPayload,
+  GetOneUserResponse,
+  GetUserByTokenPayload,
+  GetUserByTokenResponse,
+  RegisterAndVerifyUserPayload,
+  RegisterAndVerifyUserResponse,
+  UpdateUserPayload,
+  UpdateUserResponse,
+} from "../types/user.types";
 import { AxiosError } from "axios";
+import {
+  createUserByAdmin,
+  deleteUser,
+  getAllUsers,
+  getOneUser,
+  getUserByToken,
+  registerAndVerifyUser,
+  updateUser,
+} from "../handlers/user.handlers";
 import { toast } from "sonner";
+import { queryClient } from "@/utils/queryClient";
+import { queryKeys } from "@/utils/queryKeys";
+import { useNavigate } from "react-router-dom";
+import { routesPath } from "@/routes/routesPath";
+
+export const useGetUserByToken = (
+  payload: GetUserByTokenPayload
+): UseQueryResult<GetUserByTokenResponse> =>
+  useQuery({
+    queryKey: [queryKeys.getOneUser],
+    queryFn: () => getUserByToken({ token: payload.token }),
+  });
+
+export const useRegisterAndVerify = (): UseMutationResult<
+  RegisterAndVerifyUserResponse,
+  AxiosError,
+  RegisterAndVerifyUserPayload
+> => {
+  const navigate = useNavigate();
+
+  return useMutation({
+    mutationFn: registerAndVerifyUser,
+    onSuccess: () => {
+      toast.success("essa");
+      navigate(routesPath.auth.login);
+    },
+    onError: () => {
+      toast.error("no trudno ");
+    },
+  });
+};
 
 export const useCreateUserByAdmin = (): UseMutationResult<
   CreateUserByAdminResponse,
@@ -86,4 +123,10 @@ export const useGetOneUser = (
     queryKey: [queryKeys.getOneUser, payload.email],
     queryFn: () => getOneUser({ email: payload.email }),
     enabled: !!payload.email,
+  });
+
+export const useGetAllUsers = (): UseQueryResult<GetAllUsersResponse> =>
+  useQuery({
+    queryKey: [queryKeys.getAllUsers],
+    queryFn: getAllUsers,
   });

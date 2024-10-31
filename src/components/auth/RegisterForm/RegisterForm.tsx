@@ -6,12 +6,15 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/common/Button";
 import { Separator } from "@/components/ui/separator";
 import { formFields, FormSchema, formSchema } from "./RegisterForm.schema";
-import { useGetUserByToken, useRegisterAndVerify } from "./RegisterForm.hooks";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link, useParams } from "react-router-dom";
 import { routesPath } from "@/routes/routesPath";
 import { Badge } from "@/components/ui/badge";
 import { defaultValues, initialValues } from "./RegisterForm.utils";
+import {
+  useGetUserByToken,
+  useRegisterAndVerify,
+} from "@/api/hooks/user.hooks";
 
 export const RegisterForm = () => {
   const { token } = useParams<{ token: string }>();

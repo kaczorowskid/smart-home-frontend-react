@@ -3,15 +3,15 @@ import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  useCreateDevice,
-  useDeleteDevice,
-  useUpdateDevice,
-} from "../DeviceForm.hooks";
 import { BlindFormProps } from "./BlindForm.types";
 import { formFields, formSchema, FormSchema } from "./BlindForm.schema";
 import { defaultValues } from "./BlindForm.utils";
 import { ControlButtons } from "../../../../../components/app/ControlButtons";
+import {
+  useCreateDevice,
+  useDeleteDevice,
+  useUpdateDevice,
+} from "@/api/hooks/devices.hooks";
 
 export const BlindForm = ({
   selectedId,

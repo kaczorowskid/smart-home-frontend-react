@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useAuthorizeUser } from "./PrivateWrapper.hooks";
 import { PrivateWrapperProps } from "./PrivateWrapper.types";
 import { useUserStore } from "@/stores/user";
 import { useNavigate } from "react-router-dom";
 import { routesPath } from "@/routes/routesPath";
+import { useAuthorizeUser } from "@/api/hooks/auth.hooks";
 
 export const PrivateWrapper = ({ children }: PrivateWrapperProps) => {
   const { setUser } = useUserStore();

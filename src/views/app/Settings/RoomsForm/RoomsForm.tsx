@@ -7,14 +7,6 @@ import { Dialog } from "@/components/common/Dialog";
 import { FormTitle } from "../../../../components/app/FormTitle";
 import { House } from "lucide-react";
 import { ControlButtons } from "../../../../components/app/ControlButtons";
-import {
-  useCreateRoom,
-  useDeleteRoom,
-  useGetAllBlinds,
-  useGetAllThermometers,
-  useGetOneRoom,
-  useUpdateRoom,
-} from "./RoomsForm.hooks";
 import { UserFormProps } from "./RoomsForm.types";
 import { formFields, formSchema, FormSchema } from "./RoomsForm.schema";
 import {
@@ -32,6 +24,16 @@ import {
 import { SelectedItems } from "./SelectedItems";
 import { roomsItems } from "./RoomsForm.consts";
 import { Select } from "@/components/common/Select";
+import {
+  useCreateRoom,
+  useDeleteRoom,
+  useGetOneRoom,
+  useUpdateRoom,
+} from "@/api/hooks/room.hooks";
+import {
+  useGetAllBlinds,
+  useGetAllThermometers,
+} from "@/api/hooks/devices.hooks";
 
 export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
   const { data } = useGetOneRoom({ id: selectedId || "" });

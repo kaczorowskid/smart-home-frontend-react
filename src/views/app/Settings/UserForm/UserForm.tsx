@@ -6,12 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Select } from "@/components/common/Select";
 import { Dialog } from "@/components/common/Dialog";
 import { UserFormProps } from "./UserForm.types";
-import {
-  useCreateUserByAdmin,
-  useDeleteUser,
-  useGetOneUser,
-  useUpdateUser,
-} from "./UserForm.hooks";
 import { formFields, formSchema, FormSchema } from "./UserForm.schema";
 import {
   defaultValues,
@@ -23,6 +17,12 @@ import { roleItems } from "./UserForm.consts";
 import { FormTitle } from "../../../../components/app/FormTitle";
 import { User } from "lucide-react";
 import { ControlButtons } from "../../../../components/app/ControlButtons";
+import {
+  useCreateUserByAdmin,
+  useDeleteUser,
+  useGetOneUser,
+  useUpdateUser,
+} from "@/api/hooks/user.hooks";
 
 export const UserForm = ({ selectedEmail, open, onClose }: UserFormProps) => {
   const { data } = useGetOneUser({ email: selectedEmail || "" });

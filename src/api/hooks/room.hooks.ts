@@ -1,45 +1,45 @@
 import {
-  getAllBlinds,
-  getAllThermometers,
-} from "@/api/handlers/devices.handlers";
-import {
-  createRoom,
-  deleteRoom,
-  getOneRoom,
-  updateRoom,
-} from "@/api/handlers/room.handlers";
-import {
-  GetAllBlindsResponse,
-  GetAllThermometersResponse,
-} from "@/api/types/devices.types";
-import {
-  CreateRoomPayload,
-  CreateRoomResponse,
-  DeleteRoomPayload,
-  DeleteRoomResponse,
-  GetOneRoomPayload,
-  GetOneRoomResponse,
-  UpdateRoomPayload,
-  UpdateRoomResponse,
-} from "@/api/types/room.types";
-import { queryClient } from "@/utils/queryClient";
-import { queryKeys } from "@/utils/queryKeys";
-import {
   useMutation,
   UseMutationResult,
   useQuery,
   UseQueryResult,
 } from "@tanstack/react-query";
+import {
+  CreateRoomPayload,
+  CreateRoomResponse,
+  DeleteRoomPayload,
+  DeleteRoomResponse,
+  GetAllRoomsResponse,
+  GetOneRoomPayload,
+  GetOneRoomResponse,
+  UpdateRoomPayload,
+  UpdateRoomResponse,
+} from "../types/room.types";
+import { queryKeys } from "@/utils/queryKeys";
+import {
+  createRoom,
+  deleteRoom,
+  getAllRooms,
+  getOneRoom,
+  updateRoom,
+} from "../handlers/room.handlers";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
+import { queryClient } from "@/utils/queryClient";
 
 export const useGetOneRoom = (
   payload: GetOneRoomPayload
 ): UseQueryResult<GetOneRoomResponse> =>
   useQuery({
-    queryKey: [queryKeys.getOneRoom, payload.id],
+    queryKey: [queryKeys.getAllRooms, payload.id],
     queryFn: () => getOneRoom({ id: payload.id }),
     enabled: !!payload.id,
+  });
+
+export const useGetAllRooms = (): UseQueryResult<GetAllRoomsResponse> =>
+  useQuery({
+    queryKey: [queryKeys.getAllRooms],
+    queryFn: getAllRooms,
   });
 
 export const useCreateRoom = (): UseMutationResult<
@@ -94,17 +94,4 @@ export const useDeleteRoom = (): UseMutationResult<
     onError: () => {
       toast.error("error ");
     },
-  });
-
-export const useGetAllThermometers =
-  (): UseQueryResult<GetAllThermometersResponse> =>
-    useQuery({
-      queryKey: [queryKeys.getAllThermometers],
-      queryFn: getAllThermometers,
-    });
-
-export const useGetAllBlinds = (): UseQueryResult<GetAllBlindsResponse> =>
-  useQuery({
-    queryKey: [queryKeys.getAllBlinds],
-    queryFn: getAllBlinds,
   });
