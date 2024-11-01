@@ -17,6 +17,7 @@ import { Login } from "@/views/auth/Login";
 import { Register } from "@/views/auth/Register";
 import { Rooms } from "@/views/app/Rooms";
 import { RoomDetails } from "@/views/app/RoomDetails";
+import { Settings } from "@/views/app/Settings";
 
 export const Routes = (): JSX.Element => {
   const router = createBrowserRouter(
@@ -36,6 +37,7 @@ export const Routes = (): JSX.Element => {
           <Route path={routesPath.app.rooms} element={<Rooms />} />
           <Route path={routesPath.app.roomsDetails} element={<RoomDetails />} />
           <Route path={routesPath.app.options} element={<Options />} />
+          <Route path={routesPath.app.settings} element={<Settings />} />
         </Route>
         <Route element={<ErrorLayout />}>
           <Route path="*" element={<Error404 />} />

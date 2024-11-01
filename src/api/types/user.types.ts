@@ -3,7 +3,7 @@ import { User } from "./common.types";
 export type GetAllUsersResponse = User[];
 
 export type GetOneUserPayload = {
-  email: User["email"];
+  id: User["id"];
 };
 
 export type GetOneUserResponse = User;

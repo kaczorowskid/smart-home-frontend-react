@@ -10,5 +10,6 @@ export const routesPath = {
     rooms: "/rooms",
     roomsDetails: "/room/:id",
     options: "/options",
+    settings: "/settings",
   },
 };

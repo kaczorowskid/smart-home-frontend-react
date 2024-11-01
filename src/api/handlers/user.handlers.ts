@@ -23,8 +23,7 @@ export const getAllUsers = async (): Promise<GetAllUsersResponse> =>
 
 export const getOneUser = async (
   payload: GetOneUserPayload
-): Promise<GetOneUserResponse> =>
-  request.get(apiUrls.user.getUser(payload.email));
+): Promise<GetOneUserResponse> => request.get(apiUrls.user.getUser(payload.id));
 
 export const createUserByAdmin = async (
   payload: CreateUserByAdminPayload
