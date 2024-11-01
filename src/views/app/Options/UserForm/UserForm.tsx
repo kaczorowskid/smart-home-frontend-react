@@ -24,8 +24,8 @@ import {
   useUpdateUser,
 } from "@/api/hooks/user.hooks";
 
-export const UserForm = ({ selectedEmail, open, onClose }: UserFormProps) => {
-  const { data } = useGetOneUser({ email: selectedEmail || "" });
+export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
+  const { data } = useGetOneUser({ id: selectedId || "" });
 
   const { mutateAsync: createUserByAdmin, isPending: isCreatePending } =
     useCreateUserByAdmin();
@@ -50,7 +50,7 @@ export const UserForm = ({ selectedEmail, open, onClose }: UserFormProps) => {
   };
 
   const onSubmit = async (values: FormSchema) => {
-    if (!!selectedEmail) {
+    if (!!selectedId) {
       await updateUser({
         id: data?.id || "",
         ...mapValuesToUpdateForm(values),
@@ -74,7 +74,7 @@ export const UserForm = ({ selectedEmail, open, onClose }: UserFormProps) => {
   return (
     <Dialog
       title={<FormTitle title="User" icon={User} />}
-      open={open || !!selectedEmail}
+      open={open || !!selectedId}
       onOpenChange={(status) => {
         if (!status) {
           handleCloseForm();
@@ -90,7 +90,7 @@ export const UserForm = ({ selectedEmail, open, onClose }: UserFormProps) => {
             <Select items={roleItems} onValueChange={onChange} {...field} />
           )}
         />
-        {!!selectedEmail && (
+        {!!selectedId && (
           <>
             <FormField
               label="Name"
@@ -110,11 +110,11 @@ export const UserForm = ({ selectedEmail, open, onClose }: UserFormProps) => {
           label="Email"
           control={form.control}
           name={formFields.email}
-          component={(field) => <Input {...field} disabled={!!selectedEmail} />}
+          component={(field) => <Input {...field} disabled={!!selectedId} />}
         />
         <ControlButtons
           entity={data?.email || ""}
-          isCreate={!selectedEmail}
+          isCreate={!selectedId}
           onCreate={handleSave}
           onUpdate={handleSave}
           onDelete={handleDeleteUser}

@@ -77,8 +77,7 @@ export const Options = () => {
         usersForm={
           <AdminOnlyWrapper>
             <UserForm
-              //TODO: change email to id
-              selectedEmail={selectedId}
+              selectedId={selectedId}
               open={isOpen}
               onClose={handleClose}
             />
