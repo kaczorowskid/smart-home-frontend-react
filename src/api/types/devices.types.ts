@@ -30,6 +30,8 @@ export type UpdateDeviceResponse = Thermometer | Blind;
 
 export type GetDeviceDataForGraphPayload = {
   deviceId: string;
+  dateFrom: Date | undefined;
+  dateTo: Date | undefined;
 };
 
 export type GetDeviceDataForGraphResponse = {

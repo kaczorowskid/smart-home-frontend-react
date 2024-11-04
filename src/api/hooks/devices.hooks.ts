@@ -56,7 +56,7 @@ export const useGetDeviceDataForGraph = (
   payload: GetDeviceDataForGraphPayload
 ): UseQueryResult<GetDeviceDataForGraphResponse> =>
   useQuery({
-    queryKey: [queryKeys.getDeviceDataForGraph, ...Object.values(payload)],
+    queryKey: [queryKeys.getDeviceDataForGraph, Object.values(payload)],
     queryFn: () => getDeviceDataForGraph(payload),
     enabled: !!payload.deviceId,
   });

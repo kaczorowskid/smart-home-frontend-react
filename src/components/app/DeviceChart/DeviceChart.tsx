@@ -1,7 +1,7 @@
 import {
-  Area,
-  AreaChart,
   CartesianGrid,
+  Line,
+  LineChart,
   ResponsiveContainer,
   XAxis,
   YAxis,
@@ -17,6 +17,11 @@ import { config } from "./DeviceChart.schemas";
 import { Dropdown } from "../../common/Dropdown";
 import { useSelectorDataSource } from "@/hooks/useSelectorDataSource.hook";
 import { useGetDeviceDataForGraph } from "@/api/hooks/devices.hooks";
+import { dateLastDay } from "@/constants/date.consts";
+import { dateFormatter } from "@/utils/date.utils";
+import { endOfDay, startOfDay } from "date-fns";
+
+const { from, to } = dateLastDay;
 
 export const DeviceChart = ({
   chartType,
@@ -24,6 +29,9 @@ export const DeviceChart = ({
   icon,
   deviceId,
   deviceLocalKey,
+  extra,
+  dateFrom,
+  dateTo,
 }: DeviceChartProps) => {
   const { isLocalKey, id, items } = useSelectorDataSource(
     deviceId,
@@ -31,9 +39,16 @@ export const DeviceChart = ({
     "THERMOMETER"
   );
 
-  const { data } = useGetDeviceDataForGraph({
+  const convertedData = {
     deviceId: id || "",
-  });
+    dateFrom: (dateFrom && startOfDay(dateFrom)) || from,
+    dateTo: (dateTo && endOfDay(dateTo)) || to,
+  };
+
+  console.log("data ", { from, to });
+  console.log("convertedData ", convertedData);
+
+  const { data } = useGetDeviceDataForGraph(convertedData);
 
   return (
     <CardWithHeader
@@ -55,44 +70,53 @@ export const DeviceChart = ({
       icon={icon}
       cardClassName="flex-grow"
       contentClassName="h-80"
+      extra={extra}
     >
       <ResponsiveContainer width="100%" height="100%">
         <ChartContainer config={config}>
-          <AreaChart accessibilityLayer data={data?.data}>
+          <LineChart accessibilityLayer data={data?.data}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="date"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
+              interval="preserveStartEnd"
+              minTickGap={50}
               tickFormatter={(value) => value.substring(11, 16)}
             />
-            <YAxis tickLine={false} axisLine={false} tickMargin={8} />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              domain={["dataMin", "dataMax"]}
+            />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent indicator="dot" />}
+              content={
+                <ChartTooltipContent
+                  labelFormatter={dateFormatter.hourAndDate}
+                  indicator="dot"
+                />
+              }
             />
             {(chartType === "temperature" || chartType === "all") && (
-              <Area
+              <Line
                 dataKey="temperature"
                 type="natural"
-                fill="var(--color-temperature)"
-                fillOpacity={0.4}
                 stroke="var(--color-temperature)"
-                stackId="a"
+                dot={false}
               />
             )}
             {(chartType === "humidity" || chartType === "all") && (
-              <Area
+              <Line
                 dataKey="humidity"
                 type="natural"
-                fill="var(--color-humidity)"
-                fillOpacity={0.4}
                 stroke="var(--color-humidity)"
-                stackId="a"
+                dot={false}
               />
             )}
-          </AreaChart>
+          </LineChart>
         </ChartContainer>
       </ResponsiveContainer>
     </CardWithHeader>
