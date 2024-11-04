@@ -31,7 +31,7 @@ export const useGetOneRoom = (
   payload: GetOneRoomPayload
 ): UseQueryResult<GetOneRoomResponse> =>
   useQuery({
-    queryKey: [queryKeys.getAllRooms, payload.id],
+    queryKey: [queryKeys.getAllRooms, Object.values(payload)],
     queryFn: () => getOneRoom({ id: payload.id }),
     enabled: !!payload.id,
   });
