@@ -47,7 +47,8 @@ export const deleteDevice = async (
 ): Promise<DeleteDeviceResponse> =>
   request.delete(apiUrls.devices.getDevice(payload.id), payload);
 
-export const getDeviceDataForGraph = async (
-  payload: GetDeviceDataForGraphPayload
-): Promise<GetDeviceDataForGraphResponse> =>
-  request.get(apiUrls.devices.getDeviceDataForGraph(payload.deviceId));
+export const getDeviceDataForGraph = async ({
+  deviceId,
+  ...payload
+}: GetDeviceDataForGraphPayload): Promise<GetDeviceDataForGraphResponse> =>
+  request.get(apiUrls.devices.getDeviceDataForGraph(deviceId), payload);

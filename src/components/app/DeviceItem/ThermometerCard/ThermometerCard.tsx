@@ -1,7 +1,8 @@
 import { CardWithHeader } from "@/components/common/CardWithHeader";
 import { Dropdown } from "@/components/common/Dropdown";
-import { Thermometer } from "lucide-react";
+import { Loader2, Thermometer } from "lucide-react";
 import { ThermometerCardProps } from "./ThermometerCard.types";
+import { dateFormatter } from "@/utils/date.utils";
 
 export const ThermometerCard = ({
   name,
@@ -28,13 +29,25 @@ export const ThermometerCard = ({
       }
       hasSmallHeader
     >
-      <div className="text-6xl font-bold mb-5">
-        {thermometerData?.[0]?.temperature}
-      </div>
-      <p className="flex text-xs text-muted-foreground justify-between">
-        <span>Humidity: {thermometerData?.[0]?.humidity}%</span>
-        <span>Battery: {thermometerData?.[0]?.battery}% </span>
-      </p>
+      {!thermometerData?.length ? (
+        <div className="flex justify-center items-center">
+          <Loader2 className="h-20 w-20 animate-spin" />
+        </div>
+      ) : (
+        <>
+          <div className="text-6xl font-bold mb-5">
+            {thermometerData?.[0]?.temperature}
+          </div>
+          <p className="flex text-xs text-muted-foreground justify-between">
+            <span>Humidity: {thermometerData?.[0]?.humidity}%</span>
+            <span>
+              Last:{" "}
+              {dateFormatter.onlyHour(thermometerData?.[0]?.date || new Date())}
+            </span>
+            <span>Battery: {thermometerData?.[0]?.battery}% </span>
+          </p>
+        </>
+      )}
     </CardWithHeader>
   );
 };

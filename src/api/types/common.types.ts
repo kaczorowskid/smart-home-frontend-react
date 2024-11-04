@@ -1,3 +1,5 @@
+export type DeviceType = "THERMOMETER" | "BLIND";
+
 export type ThermometerData = {
   id: string;
   temperature: number;

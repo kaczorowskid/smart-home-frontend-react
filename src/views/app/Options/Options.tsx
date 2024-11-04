@@ -3,7 +3,7 @@ import { RoomsTable } from "@/views/app/Options/RoomsTable";
 import { UsersTable } from "@/views/app/Options/UsersTable/UsersTable";
 import { PageWrapper } from "@/components/common/PageWrapper";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { NotebookPen, Settings as SettingsIcon } from "lucide-react";
+import { NotebookPen } from "lucide-react";
 import { useState } from "react";
 import { FormProvider } from "./FormProvider";
 import { AdminOnlyWrapper } from "@/components/app/AdminOnlyWrapper";
