@@ -120,7 +120,7 @@ export const useGetOneUser = (
   payload: GetOneUserPayload
 ): UseQueryResult<GetOneUserResponse> =>
   useQuery({
-    queryKey: [queryKeys.getOneUser, payload.id],
+    queryKey: [queryKeys.getOneUser, Object.values(payload)],
     queryFn: () => getOneUser({ id: payload.id }),
     enabled: !!payload.id,
   });

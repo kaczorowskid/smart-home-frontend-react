@@ -42,14 +42,9 @@ export const useLogin = (): UseMutationResult<
 
   return useMutation({
     mutationFn: loginUser,
-    onSuccess: ({ id, email, name, surname, role, isVerified }) => {
+    onSuccess: (user) => {
       setUser({
-        id,
-        email,
-        name,
-        surname,
-        role,
-        isVerified,
+        ...user,
         isLoggedIn: true,
       });
       navigate(routesPath.app.dashboard);

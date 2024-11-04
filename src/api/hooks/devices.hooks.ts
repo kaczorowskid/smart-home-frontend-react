@@ -38,7 +38,7 @@ export const useGetOneDevice = (
   payload: GetOneDevicePayload
 ): UseQueryResult<GetOneDevicesResponse> =>
   useQuery({
-    queryKey: [queryKeys.getOneDevice, payload.id],
+    queryKey: [queryKeys.getOneDevice, Object.values(payload)],
     queryFn: () => getOneDevice(payload),
     enabled: !!payload.id,
   });
