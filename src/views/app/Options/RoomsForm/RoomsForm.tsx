@@ -97,6 +97,7 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
 
   return (
     <Dialog
+      className="w-[90%] lg:w-full"
       title={<FormTitle title="Rooms" icon={House} />}
       open={open || !!selectedId}
       onOpenChange={(status) => {

@@ -8,4 +8,5 @@ type NavigationItem = {
 
 export type NavigationItemProps = {
   items: NavigationItem;
+  onClick: () => void;
 };

@@ -32,6 +32,7 @@ export const DeviceForm = ({ selectedId, open, onClose }: DeviceFormProps) => {
 
   return (
     <Dialog
+      className="w-[90%] lg:w-full"
       title={getFormTitle()}
       open={open || !!selectedId}
       onOpenChange={(status) => {

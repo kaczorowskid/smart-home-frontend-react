@@ -4,7 +4,7 @@ import { imageRoomTileMapper } from "./RoomTile.utils";
 export const RoomTile = ({ name, image, onClick }: RoomTileProps) => {
   return (
     <div
-      className="h-[300px] relative hover:scale-105 transition-transform cursor-pointer"
+      className="h-[300px] my-5 relative hover:scale-105 transition-transform cursor-pointer lg:m-0"
       onClick={onClick}
     >
       <img
@@ -12,7 +12,7 @@ export const RoomTile = ({ name, image, onClick }: RoomTileProps) => {
         src={imageRoomTileMapper[image]}
       />
       <div className="absolute top-0 w-full h-full text-4xl">
-        <div className="bg-black text-white h-full opacity-30 flex items-end justify-end p-2">
+        <div className="bg-black text-white h-full opacity-30 flex items-end justify-end p-2 rounded-xl">
           {name}
         </div>
       </div>

@@ -39,16 +39,11 @@ export const DeviceChart = ({
     "THERMOMETER"
   );
 
-  const convertedData = {
+  const { data } = useGetDeviceDataForGraph({
     deviceId: id || "",
     dateFrom: (dateFrom && startOfDay(dateFrom)) || from,
     dateTo: (dateTo && endOfDay(dateTo)) || to,
-  };
-
-  console.log("data ", { from, to });
-  console.log("convertedData ", convertedData);
-
-  const { data } = useGetDeviceDataForGraph(convertedData);
+  });
 
   return (
     <CardWithHeader
