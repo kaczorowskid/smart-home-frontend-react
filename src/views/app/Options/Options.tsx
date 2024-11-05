@@ -37,7 +37,7 @@ export const Options = () => {
       }
     >
       <Tabs
-        className="w-full border"
+        className="w-full"
         defaultValue={selectedTab}
         onValueChange={handleSelectTab}
       >

@@ -20,8 +20,8 @@ export const RoomsTable = ({ setSelectedId }: RoomsTableProps) => {
 
   return (
     <CardWithHeader
-      title="Devices"
-      description="Table of devices"
+      title="Rooms"
+      description="Table of rooms"
       extra={
         <Searchbar
           searchbarValue={searchbarValue}

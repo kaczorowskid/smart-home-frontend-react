@@ -7,14 +7,14 @@ export const Searchbar = ({
   setSearchbarValue,
 }: SearchbarProps) => {
   return (
-    <div className="relative ml-auto flex-1 md:grow-0">
+    <div className="relative flex flex-row-reverse ">
       <Search className="absolute left-2.5 top-3 h-4 w-4 text-muted-foreground" />
       <Input
         type="search"
         placeholder="Search..."
         value={searchbarValue}
         onChange={(value) => setSearchbarValue(value.target.value)}
-        className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
+        className="w-[130px] rounded-lg pl-8 md:w-[200px] lg:w-[336px]"
       />
     </div>
   );

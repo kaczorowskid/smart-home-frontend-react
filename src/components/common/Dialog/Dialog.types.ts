@@ -5,4 +5,5 @@ export type DialogProps = {
   title: ReactNode;
   trigger?: ReactNode;
   children: ReactNode;
+  className?: React.HTMLAttributes<HTMLDivElement>["className"];
 } & ComponentProps<typeof Dialog>;

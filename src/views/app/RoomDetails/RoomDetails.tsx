@@ -9,12 +9,17 @@ import { useState } from "react";
 import { DateRange } from "react-day-picker";
 import { ChartType } from "@/types/common.types";
 import { dateLastDay } from "@/constants/date.consts";
+import { dateFormatter } from "@/utils/date.utils";
+import { chartTypeMapper } from "./RoomDetails.utils";
+
+const { onlyDate } = dateFormatter;
 
 export const RoomDetails = () => {
   const { id } = useParams();
   const { data } = useGetOneRoom({ id: id || "" });
   const [date, setDate] = useState<DateRange | undefined>(dateLastDay);
   const [chartType, setChartType] = useState<ChartType>("temperature");
+  const formattedDateRange = `${onlyDate(date?.from)} - ${onlyDate(date?.to)}`;
 
   const allDevices = [
     ...(data?.thermometers?.map(({ thermometerId }) => (
@@ -27,15 +32,17 @@ export const RoomDetails = () => {
 
   return (
     <PageWrapper title={`Room details - ${data?.name}`} icon={House}>
-      <div className="grid grid-cols-4 gap-5 mb-5">{allDevices}</div>
+      <div className="gap-5 flex flex-col lg:grid lg:grid-cols-4">
+        {allDevices}
+      </div>
       {data?.thermometers?.map(({ thermometerId }) => (
-        <div className="mb-5">
+        <div className="pt-5">
           <DeviceChart
             dateTo={date?.to}
             dateFrom={date?.from}
             icon={Droplet}
             chartType={chartType}
-            description="Humidity"
+            description={`${chartTypeMapper[chartType]} - ${formattedDateRange}`}
             deviceId={thermometerId}
             extra={
               <DateSelector

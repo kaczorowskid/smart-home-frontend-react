@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 export const AppLayout = () => (
   <PrivateWrapper>
     <Navigation />
-    <div className="w-full pl-[300px] p-5">
+    <div className="w-full p-5 lg:pl-[300px]">
       <Outlet />
     </div>
   </PrivateWrapper>

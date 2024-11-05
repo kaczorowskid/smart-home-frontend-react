@@ -1,35 +1,46 @@
-import { useTheme } from "@/contexts/ThemeContext/ThemeContext.hooks";
 import { menuItems } from "./Navigation.const";
 import { NavigationItem } from "./NavigationItem";
 import { UserInfo } from "./UserInfo";
-import { ToggleGroup, ToggleGroupItem } from "../../ui/toggle-group";
-import { Moon, Sun } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 export const Navigation = () => {
-  const { theme, setTheme } = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpenMenu = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseMenu = () => {
+    setIsOpen(false);
+  };
 
   return (
-    <div className="w-[300px] h-full fixed">
-      <UserInfo />
-      <nav className="px-2 text-lg font-medium lg:px-4">
+    <div
+      className={cn(
+        "bg-background z-10 w-full lg:mt-5 lg:fixed lg:w-[300px] lg:h-full",
+        isOpen ? "h-full fixed" : "h-[100px] block"
+      )}
+    >
+      <div className="w-full flex items-center justify-between py-5 px-5">
+        <UserInfo />
+        {isOpen ? (
+          <X className="block lg:hidden" onClick={handleCloseMenu} />
+        ) : (
+          <Menu className="block lg:hidden" onClick={handleOpenMenu} />
+        )}
+      </div>
+      <nav
+        className={cn(
+          "px-2 text-lg font-medium lg:px-4 lg:block",
+          isOpen ? "block" : "hidden"
+        )}
+      >
         {menuItems.map((item) => (
-          <NavigationItem items={{ ...item }} />
+          <NavigationItem items={{ ...item }} onClick={handleCloseMenu} />
         ))}
       </nav>
-
-      <ToggleGroup
-        className="absolute right-1/2 translate-x-1/2 bottom-5"
-        type="single"
-        defaultValue={theme}
-        onValueChange={setTheme}
-      >
-        <ToggleGroupItem value="light" disabled={theme === "light"}>
-          <Sun />
-        </ToggleGroupItem>
-        <ToggleGroupItem value="dark" disabled={theme === "dark"}>
-          <Moon />
-        </ToggleGroupItem>
-      </ToggleGroup>
     </div>
   );
 };

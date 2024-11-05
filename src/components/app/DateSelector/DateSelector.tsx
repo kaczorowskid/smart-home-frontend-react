@@ -9,8 +9,10 @@ import {
 } from "@/components/ui/popover";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ChartType } from "@/types/common.types";
+import { cn } from "@/lib/utils";
 
 export const DateSelector = ({
+  disabledTypeChange,
   chartType,
   setChartType,
   date,
@@ -23,11 +25,18 @@ export const DateSelector = ({
   };
 
   return (
-    <div className="flex items-center gap-14">
+    <div className="flex items-center gap-5">
       <RangePicker date={date} setDate={setDate} />
       <Popover>
-        <PopoverTrigger>
-          <Icon className="cursor-pointer text-muted-foreground hover:text-primary" />
+        <PopoverTrigger disabled={disabledTypeChange}>
+          <Icon
+            className={cn(
+              "cursor-pointer text-muted-foreground",
+              disabledTypeChange
+                ? "cursor-default"
+                : "cursor-pointer hover:text-primary"
+            )}
+          />
         </PopoverTrigger>
         <PopoverContent className="w-full">
           <ToggleGroup

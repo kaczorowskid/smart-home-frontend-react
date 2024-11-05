@@ -15,7 +15,7 @@ export const Rooms = () => {
 
   return (
     <PageWrapper title="Rooms" icon={House}>
-      <div className="grid grid-cols-3 gap-10">
+      <div className="flex flex-col lg:grid lg:grid-cols-3 lg:gap-10">
         {data?.map(({ id, name, image }) => (
           <RoomTile
             key={id}
