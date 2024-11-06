@@ -31,7 +31,7 @@ export const FormField = <T extends FieldValues>({
             </>
           ) : (
             <>
-              <FormLabel>{label}</FormLabel>
+              <FormLabel className="block text-start pt-2">{label}</FormLabel>
               <FormControl>{component(field)}</FormControl>
             </>
           )}

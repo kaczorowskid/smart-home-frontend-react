@@ -1,4 +1,4 @@
-import { formFields, FormSchema } from "./LoginForm.schema";
+import { formFields, FormSchema } from "./Login.schema";
 
 export const defaultValues: FormSchema = {
   [formFields.email]: "",

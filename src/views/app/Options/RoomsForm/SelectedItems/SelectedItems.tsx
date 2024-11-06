@@ -10,7 +10,7 @@ export const SelectedItems = forwardRef<
 
   return (
     <>
-      <span className="font-medium">{label}</span>
+      <span className="font-medium block text-start pt-2">{label}</span>
       <div
         ref={ref}
         {...props}

@@ -5,18 +5,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/common/Button";
 import { Separator } from "@/components/ui/separator";
-import { formFields, FormSchema, formSchema } from "./RegisterForm.schema";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link, useParams } from "react-router-dom";
 import { routesPath } from "@/routes/routesPath";
 import { Badge } from "@/components/ui/badge";
-import { defaultValues, initialValues } from "./RegisterForm.utils";
 import {
   useGetUserByToken,
   useRegisterAndVerify,
 } from "@/api/hooks/user.hooks";
+import { formFields, formSchema, FormSchema } from "./Register.schema";
+import { defaultValues, initialValues } from "./Register.utils";
 
-export const RegisterForm = () => {
+export const Register = () => {
   const { token } = useParams<{ token: string }>();
 
   const { data } = useGetUserByToken({ token: token || "" });
@@ -47,7 +47,7 @@ export const RegisterForm = () => {
     <div className="flex flex-col items-center">
       <h1 className="text-4xl font-semibold tracking-tight my-5">Register</h1>
       <Card>
-        <CardContent className="w-[500px] p-10">
+        <CardContent className="w-[90vw] p-10 lg:w-[500px]">
           <Form {...form}>
             <FormField
               label="Name"

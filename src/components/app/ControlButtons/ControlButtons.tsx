@@ -14,14 +14,14 @@ export const ControlButtons = ({
 }: ControlButtonsProps) => {
   const createButtons = (
     <Button className="mt-5" onClick={onCreate} isLoading={isCreatePending}>
-      {`Create ${entity}`}
+      Create
     </Button>
   );
 
   const updateButtons = (
     <>
       <Button onClick={onUpdate} isLoading={isUpdatePending}>
-        {`Update ${entity}`}
+        Update
       </Button>
       <AlertDialog
         title="Are you sure?"
@@ -29,7 +29,7 @@ export const ControlButtons = ({
         description={`Delete ${entity}`}
         trigger={
           <Button variant="destructive" isLoading={isDeletePending}>
-            {`Delete ${entity}`}
+            Delete
           </Button>
         }
       />

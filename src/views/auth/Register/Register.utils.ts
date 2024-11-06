@@ -1,5 +1,5 @@
 import { User } from "@/api/types/common.types";
-import { formFields, FormSchema } from "./RegisterForm.schema";
+import { formFields, FormSchema } from "./Register.schema";
 
 export const defaultValues: FormSchema = {
   [formFields.name]: "",

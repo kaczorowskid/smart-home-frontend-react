@@ -3,13 +3,13 @@ import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { formFields, formSchema, FormSchema } from "./LoginForm.schema";
 import { Button } from "@/components/common/Button";
 import { Card, CardContent } from "@/components/ui/card";
-import { defaultValues } from "./LoginForm.utils";
 import { useLogin } from "@/api/hooks/auth.hooks";
+import { formFields, formSchema, FormSchema } from "./Login.schema";
+import { defaultValues } from "./Login.utils";
 
-export const LoginForm = () => {
+export const Login = () => {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues,
@@ -31,7 +31,7 @@ export const LoginForm = () => {
     <div className="flex flex-col items-center">
       <h1 className="text-4xl font-semibold tracking-tight my-5">Login</h1>
       <Card>
-        <CardContent className="w-[500px] p-10">
+        <CardContent className="w-[90vw] p-10 lg:w-[500px]">
           <Form {...form}>
             <FormField
               label="Email"
