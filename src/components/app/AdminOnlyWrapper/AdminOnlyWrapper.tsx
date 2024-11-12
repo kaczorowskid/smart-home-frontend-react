@@ -6,5 +6,5 @@ export const AdminOnlyWrapper = ({ children }: AdminOnlyWrapperProps) => {
 
   const isAdmin = role === "ADMIN";
 
-  return isAdmin ? children : null;
+  return isAdmin ? <>{children}</> : null;
 };
