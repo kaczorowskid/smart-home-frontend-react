@@ -2,16 +2,11 @@ import { User } from "./common.types";
 
 export type GetAllUsersResponse = User[];
 
-export type GetOneUserPayload = {
-  id: User["id"];
-};
+export type GetOneUserPayload = Pick<User, "id">;
 
 export type GetOneUserResponse = User;
 
-export type CreateUserByAdminPayload = {
-  email: User["email"];
-  role: User["role"];
-};
+export type CreateUserByAdminPayload = Pick<User, "email" | "role">;
 
 export type CreateUserByAdminResponse = User;
 
@@ -21,26 +16,19 @@ export type GetUserByTokenPayload = {
 
 export type GetUserByTokenResponse = User;
 
-export type RegisterAndVerifyUserPayload = {
-  id: User["id"];
-  name: User["name"];
-  surname: User["surname"];
+export type RegisterAndVerifyUserPayload = Pick<
+  User,
+  "id" | "name" | "surname"
+> & {
   password: string;
 };
 
 export type RegisterAndVerifyUserResponse = User;
 
-export type DeleteUserPayload = {
-  id: User["id"];
-};
+export type DeleteUserPayload = Pick<User, "id">;
 
 export type DeleteUserResponse = User;
 
-export type UpdateUserPayload = {
-  id: User["id"];
-  name: User["name"];
-  surname: User["surname"];
-  role: User["role"];
-};
+export type UpdateUserPayload = Pick<User, "id" | "name" | "surname" | "role">;
 
 export type UpdateUserResponse = User;

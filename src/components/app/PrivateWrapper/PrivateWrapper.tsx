@@ -19,12 +19,7 @@ export const PrivateWrapper = ({ children }: PrivateWrapperProps) => {
   useEffect(() => {
     if (data) {
       setUser({
-        id: data.id,
-        email: data.email,
-        name: data.name,
-        surname: data.surname,
-        role: data.role,
-        isVerified: data.isVerified,
+        ...data,
         isLoggedIn: true,
       });
     }

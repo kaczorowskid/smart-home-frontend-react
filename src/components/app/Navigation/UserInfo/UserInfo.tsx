@@ -24,7 +24,7 @@ export const UserInfo = () => {
           <Avatar className="bg-primary flex justify-center items-center h-[60px] w-[60px]">
             <User className="stroke-secondary h-[40px] w-[40px]" />
           </Avatar>
-          <div className="px-5">
+          <div className="flex flex-col items-start px-5">
             <div className="text-primary font-medium">
               {name} {surname}
             </div>

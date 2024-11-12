@@ -1,5 +1,7 @@
+import { RoomType } from "@/types/common.types";
 import { ColumnType } from "../../../../components/common/Table/Table.types";
 import { Room } from "@/api/types/common.types";
+import { Badge } from "@/components/ui/badge";
 
 export const columns: ColumnType<Room>[] = [
   {
@@ -11,6 +13,12 @@ export const columns: ColumnType<Room>[] = [
     title: "Name",
     dataIndex: "name",
     key: "name",
+  },
+  {
+    title: "Room Type",
+    dataIndex: "roomType",
+    key: "roomType",
+    render: (roomType: RoomType) => <Badge variant="outline">{roomType}</Badge>,
   },
   {
     title: "Thermometer",

@@ -7,4 +7,11 @@ export const schema = {
   password: z.string().min(3).max(50),
   deviceTypes: z.enum(["THERMOMETER", "BLIND"]),
   userRoles: z.enum(["USER", "ADMIN"]),
+  roomType: z.enum([
+    "BACKYARD",
+    "BATHROOM",
+    "BEDROOM",
+    "KITCHEN",
+    "LIVINGROOM",
+  ]),
 };

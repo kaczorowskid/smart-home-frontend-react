@@ -2,29 +2,21 @@ import { Blind, Room, Thermometer } from "./common.types";
 
 export type GetAllRoomsResponse = Room[];
 
-export type GetOneRoomPayload = {
-  id: Room["id"];
-};
+export type GetOneRoomPayload = Pick<Room, "id">;
 
 export type GetOneRoomResponse = Room;
 
-export type CreateRoomPayload = {
-  name: Room["name"];
-  image: Room["image"];
+export type CreateRoomPayload = Pick<Room, "name" | "roomType"> & {
   thermometers?: { id: Thermometer["id"] }[];
   blinds?: { id: Blind["id"] }[];
 };
 
 export type CreateRoomResponse = Room;
 
-export type UpdateRoomPayload = {
-  id: Room["id"];
-} & Partial<CreateRoomPayload>;
+export type UpdateRoomPayload = Pick<Room, "id"> & Partial<CreateRoomPayload>;
 
 export type UpdateRoomResponse = Room;
 
-export type DeleteRoomPayload = {
-  id: Room["id"];
-};
+export type DeleteRoomPayload = Pick<Room, "id">;
 
 export type DeleteRoomResponse = Room;

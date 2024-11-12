@@ -5,7 +5,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BlindFormProps } from "./BlindForm.types";
 import { formFields, formSchema, FormSchema } from "./BlindForm.schema";
-import { defaultValues } from "./BlindForm.utils";
+import {
+  defaultValues,
+  mapValuesToCreateForm,
+  mapValuesToUpdateForm,
+} from "./BlindForm.utils";
 import { ControlButtons } from "@/components/app/ControlButtons";
 import {
   useCreateDevice,
@@ -42,16 +46,9 @@ export const BlindForm = ({
 
   const onSubmit = async (values: FormSchema) => {
     if (!!selectedId) {
-      await updateBlind({
-        ...values,
-        id: selectedId,
-        type: "BLIND",
-      });
+      await updateBlind(mapValuesToUpdateForm(values, selectedId));
     } else {
-      await createBlind({
-        ...values,
-        type: "BLIND",
-      });
+      await createBlind(mapValuesToCreateForm(values));
     }
 
     handleCloseForm();

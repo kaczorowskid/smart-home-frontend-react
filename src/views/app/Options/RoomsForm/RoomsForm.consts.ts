@@ -3,22 +3,22 @@ import { SelectProps } from "@/components/common/Select/Select.types";
 export const roomsItems: SelectProps["items"] = [
   {
     name: "Backyard",
-    value: "backyard",
+    value: "BACKYARD",
   },
   {
     name: "Bathroom",
-    value: "bathroom",
+    value: "BATHROOM",
   },
   {
     name: "Bedroom",
-    value: "bedroom",
+    value: "BEDROOM",
   },
   {
     name: "Kitchen",
-    value: "kitchen",
+    value: "KITCHEN",
   },
   {
     name: "Living Room",
-    value: "livingRoom",
+    value: "LIVINGROOM",
   },
 ];

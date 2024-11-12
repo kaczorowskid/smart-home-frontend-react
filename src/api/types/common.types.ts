@@ -1,4 +1,11 @@
 export type DeviceType = "THERMOMETER" | "BLIND";
+export type RoomType =
+  | "BACKYARD"
+  | "BATHROOM"
+  | "BEDROOM"
+  | "KITCHEN"
+  | "LIVINGROOM";
+export type DeviceStatus = "online" | "offline";
 
 export type ThermometerData = {
   id: string;
@@ -16,6 +23,7 @@ export type Thermometer = {
   name: string;
   deviceId: string;
   type: "THERMOMETER";
+  // status: DeviceStatus;
   createdAt: Date;
   updatedAt: Date;
   data?: ThermometerData[];
@@ -27,9 +35,12 @@ export type Blind = {
   value: number;
   deviceId: string;
   type: "BLIND";
+  // status: DeviceStatus;
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type CommonDevice = Thermometer | Blind;
 
 export type User = {
   id: string;
@@ -45,7 +56,7 @@ export type User = {
 export type Room = {
   id: string;
   name: string;
-  image: string;
+  roomType: RoomType;
   thermometers?: {
     thermometer: Thermometer;
     roomId: string;
