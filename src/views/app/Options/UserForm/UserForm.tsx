@@ -51,10 +51,7 @@ export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
 
   const onSubmit = async (values: FormSchema) => {
     if (!!selectedId) {
-      await updateUser({
-        id: data?.id || "",
-        ...mapValuesToUpdateForm(values),
-      });
+      await updateUser(mapValuesToUpdateForm(values, data?.id));
     } else {
       await createUserByAdmin(mapValuesToCreateForm(values));
     }

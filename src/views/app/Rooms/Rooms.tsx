@@ -16,11 +16,11 @@ export const Rooms = () => {
   return (
     <PageWrapper title="Rooms" icon={House}>
       <div className="flex flex-col lg:grid lg:grid-cols-3 lg:gap-10">
-        {data?.map(({ id, name, image }) => (
+        {data?.map(({ id, name, roomType }) => (
           <RoomTile
             key={id}
             name={name}
-            image={image}
+            roomType={roomType}
             onClick={() => handleNavigate(id)}
           />
         ))}

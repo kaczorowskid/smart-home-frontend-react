@@ -1,3 +1,7 @@
+import {
+  CreateDevicePayload,
+  UpdateDevicePayload,
+} from "@/api/types/devices.types";
 import { formFields, FormSchema } from "./BlindForm.schema";
 
 export const defaultValues: FormSchema = {
@@ -5,3 +9,19 @@ export const defaultValues: FormSchema = {
   [formFields.deviceId]: "",
   [formFields.type]: "BLIND",
 };
+
+export const mapValuesToCreateForm = (
+  values: FormSchema
+): CreateDevicePayload => ({
+  ...values,
+  type: "BLIND",
+});
+
+export const mapValuesToUpdateForm = (
+  values: FormSchema,
+  selectedId: string
+): UpdateDevicePayload => ({
+  ...values,
+  id: selectedId,
+  type: "BLIND",
+});

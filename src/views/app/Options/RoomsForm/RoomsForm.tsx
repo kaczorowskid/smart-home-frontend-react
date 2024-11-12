@@ -14,6 +14,8 @@ import {
   initialValues,
   mapBlindsDataToCheckboxData,
   mapThermometersDataToCheckboxData,
+  mapValuesToCreateForm,
+  mapValuesToUpdateForm,
 } from "./RoomsForm.utils";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -68,20 +70,9 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
 
   const onSubmit = async (values: FormSchema) => {
     if (!!selectedId) {
-      await updateRoom({
-        id: data?.id || "",
-        name: values["name"],
-        image: values["image"],
-        thermometers: values["thermometer"].map((id) => ({ id })),
-        blinds: values["blind"].map((id) => ({ id })),
-      });
+      await updateRoom(mapValuesToUpdateForm(values, data?.id));
     } else {
-      await createRoom({
-        name: values["name"],
-        image: values["image"],
-        thermometers: values["thermometer"].map((id) => ({ id })),
-        blinds: values["blind"].map((id) => ({ id })),
-      });
+      await createRoom(mapValuesToCreateForm(values));
     }
     handleCloseForm();
   };
@@ -116,7 +107,7 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
         <FormField
           label="User role"
           control={form.control}
-          name={formFields.image}
+          name={formFields.roomType}
           component={({ onChange, value, ...field }) => (
             <Select
               items={roomsItems}

@@ -29,16 +29,18 @@ export const initialValues = (
 
 export const mapValuesToCreateForm = (
   values: FormSchema
-): CreateUserByAdminPayload => {
-  return {
-    email: values["email"],
-    role: values["role"],
-  };
-};
+): CreateUserByAdminPayload => ({
+  ...values,
+  email: values["email"],
+  role: values["role"],
+});
 
 export const mapValuesToUpdateForm = (
-  values: FormSchema
-): Omit<UpdateUserPayload, "id"> => ({
+  values: FormSchema,
+  id: string | undefined
+): UpdateUserPayload => ({
+  ...values,
+  id: id || "",
   name: values["name"] || "",
   surname: values["surname"] || "",
   role: values["role"],

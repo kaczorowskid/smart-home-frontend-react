@@ -5,7 +5,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formFields, formSchema, FormSchema } from "./ThermometerForm.schema";
 import { ControlButtons } from "@/components/app/ControlButtons";
-import { defaultValues } from "./ThermometerForm.utils";
+import {
+  defaultValues,
+  mapValuesToCreateForm,
+  mapValuesToUpdateForm,
+} from "./ThermometerForm.utils";
 import { ThermometerFormProps } from "./ThermometerForm.types";
 import {
   useCreateDevice,
@@ -43,16 +47,9 @@ export const ThermometerForm = ({
 
   const onSubmit = async (values: FormSchema) => {
     if (!!selectedId) {
-      await updateThermometer({
-        ...values,
-        id: selectedId,
-        type: "THERMOMETER",
-      });
+      await updateThermometer(mapValuesToUpdateForm(values, selectedId));
     } else {
-      await createThermometer({
-        ...values,
-        type: "THERMOMETER",
-      });
+      await createThermometer(mapValuesToCreateForm(values));
     }
 
     handleCloseForm();
