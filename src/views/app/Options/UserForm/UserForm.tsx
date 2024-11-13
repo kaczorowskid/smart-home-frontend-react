@@ -31,7 +31,8 @@ export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
     useCreateUserByAdmin();
   const { mutateAsync: updateUser, isPending: isUpdatePending } =
     useUpdateUser();
-  const { mutate: deleteUser, isPending: isDeletePending } = useDeleteUser();
+  const { mutateAsync: deleteUser, isPending: isDeletePending } =
+    useDeleteUser();
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -63,8 +64,8 @@ export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
     form.handleSubmit(onSubmit)();
   };
 
-  const handleDeleteUser = () => {
-    deleteUser({ id: data?.id || "" });
+  const handleDeleteUser = async () => {
+    await deleteUser({ id: data?.id || "" });
     handleCloseForm();
   };
 

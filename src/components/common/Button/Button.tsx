@@ -4,7 +4,12 @@ import { ButtonProps } from "./Button.types";
 
 export const Button = ({ isLoading, children, ...props }: ButtonProps) => (
   <ShadcnButton disabled={isLoading} {...props}>
-    {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+    {isLoading && (
+      <Loader2
+        data-testid="loading-spinner"
+        className="mr-2 h-4 w-4 animate-spin"
+      />
+    )}
     {children}
   </ShadcnButton>
 );

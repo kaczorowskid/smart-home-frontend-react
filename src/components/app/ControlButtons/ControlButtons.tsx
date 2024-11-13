@@ -27,11 +27,8 @@ export const ControlButtons = ({
         title="Are you sure?"
         onOk={onDelete}
         description={`Delete ${entity}`}
-        trigger={
-          <Button variant="destructive" isLoading={isDeletePending}>
-            Delete
-          </Button>
-        }
+        isLoading={isDeletePending}
+        trigger={<Button variant="destructive">Delete</Button>}
       />
     </>
   );

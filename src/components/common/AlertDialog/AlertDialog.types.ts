@@ -6,4 +6,5 @@ export type AlertDialogProps = {
   description: string;
   onOk: () => void;
   trigger?: ReactNode;
+  isLoading?: boolean;
 } & ComponentProps<typeof AlertDialog>;
