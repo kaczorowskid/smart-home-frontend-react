@@ -27,7 +27,8 @@ export const BlindForm = ({
     useCreateDevice();
   const { mutateAsync: updateBlind, isPending: isUpdatePending } =
     useUpdateDevice();
-  const { mutate: deleteBlind, isPending: isDeletePending } = useDeleteDevice();
+  const { mutateAsync: deleteBlind, isPending: isDeletePending } =
+    useDeleteDevice();
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -58,8 +59,8 @@ export const BlindForm = ({
     form.handleSubmit(onSubmit)();
   };
 
-  const handleDeleteDevice = () => {
-    deleteBlind({ id: selectedId, type: "BLIND" });
+  const handleDeleteDevice = async () => {
+    await deleteBlind({ id: selectedId, type: "BLIND" });
     handleCloseForm();
   };
 
@@ -79,7 +80,7 @@ export const BlindForm = ({
       />
 
       <ControlButtons
-        entity="blind"
+        entity={name || ""}
         isCreate={!selectedId}
         onCreate={handleSave}
         onUpdate={handleSave}

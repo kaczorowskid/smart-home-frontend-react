@@ -27,7 +27,7 @@ export const ThermometerForm = ({
     useCreateDevice();
   const { mutateAsync: updateThermometer, isPending: isUpdatePending } =
     useUpdateDevice();
-  const { mutate: deleteThermometer, isPending: isDeletePending } =
+  const { mutateAsync: deleteThermometer, isPending: isDeletePending } =
     useDeleteDevice();
 
   const form = useForm<FormSchema>({
@@ -59,8 +59,8 @@ export const ThermometerForm = ({
     form.handleSubmit(onSubmit)();
   };
 
-  const handleDeleteDevice = () => {
-    deleteThermometer({ id: selectedId, type: "THERMOMETER" });
+  const handleDeleteDevice = async () => {
+    await deleteThermometer({ id: selectedId, type: "THERMOMETER" });
     handleCloseForm();
   };
 
@@ -80,7 +80,7 @@ export const ThermometerForm = ({
       />
 
       <ControlButtons
-        entity="thermometer"
+        entity={name || ""}
         isCreate={!selectedId}
         onCreate={handleSave}
         onUpdate={handleSave}

@@ -1,5 +1,4 @@
 import {
-  AlertDialogAction,
   AlertDialog as ShadcnAlertDialog,
   AlertDialogCancel,
   AlertDialogContent,
@@ -10,16 +9,18 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { AlertDialogProps } from "./AlertDialog.types";
+import { Button } from "../Button";
 
 export const AlertDialog = ({
   title,
   description,
   onOk,
   trigger,
+  isLoading,
   ...props
 }: AlertDialogProps) => (
   <ShadcnAlertDialog {...props}>
-    <AlertDialogTrigger>{trigger}</AlertDialogTrigger>
+    <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
     <AlertDialogContent>
       <AlertDialogHeader>
         <AlertDialogTitle>{title}</AlertDialogTitle>
@@ -27,7 +28,9 @@ export const AlertDialog = ({
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction onClick={onOk}>Ok</AlertDialogAction>
+        <Button isLoading={isLoading} onClick={onOk}>
+          Ok
+        </Button>
       </AlertDialogFooter>
     </AlertDialogContent>
   </ShadcnAlertDialog>

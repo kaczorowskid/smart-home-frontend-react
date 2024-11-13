@@ -50,7 +50,8 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
     useCreateRoom();
   const { mutateAsync: updateRoom, isPending: isUpdatePending } =
     useUpdateRoom();
-  const { mutate: deleteRoom, isPending: isDeletePending } = useDeleteRoom();
+  const { mutateAsync: deleteRoom, isPending: isDeletePending } =
+    useDeleteRoom();
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -81,8 +82,8 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
     form.handleSubmit(onSubmit)();
   };
 
-  const handleDeleteRoom = () => {
-    deleteRoom({ id: data?.id || "" });
+  const handleDeleteRoom = async () => {
+    await deleteRoom({ id: data?.id || "" });
     handleCloseForm();
   };
 
