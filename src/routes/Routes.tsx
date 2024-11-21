@@ -18,11 +18,13 @@ import { Register } from "@/views/auth/Register";
 import { Rooms } from "@/views/app/Rooms";
 import { RoomDetails } from "@/views/app/RoomDetails";
 import { Settings } from "@/views/app/Settings";
+import { Start } from "@/views/start/Start";
 
 export const Routes = (): JSX.Element => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
+        <Route path="/start" element={<Start />} />
         <Route
           path={routesPath.base}
           element={<Navigate to={routesPath.app.dashboard} />}
