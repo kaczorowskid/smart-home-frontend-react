@@ -60,12 +60,10 @@ export const useLogoutUser = (): UseMutationResult<
   AxiosError,
   void
 > => {
-  const navigate = useNavigate();
-
   return useMutation({
     mutationFn: logoutUser,
     onSuccess: () => {
-      navigate(routesPath.auth.login);
+      window.location.replace(routesPath.base);
     },
     onError: () => {
       toast.error("logout error");
