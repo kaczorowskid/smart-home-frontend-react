@@ -19,27 +19,118 @@ import { Rooms } from "@/views/app/Rooms";
 import { RoomDetails } from "@/views/app/RoomDetails";
 import { Settings } from "@/views/app/Settings";
 import { Start } from "@/views/start/Start";
+import { PrivateRoute } from "@/components/common/PrivateRoute";
+import { RootLayout } from "@/layouts/Root";
 
 export const Routes = (): JSX.Element => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
         <Route path="/start" element={<Start />} />
-        <Route
-          path={routesPath.base}
-          element={<Navigate to={routesPath.app.dashboard} />}
-        />
-        <Route element={<AuthLayout />}>
-          <Route path={routesPath.auth.login} element={<Login />} />
-          <Route path={routesPath.auth.register} element={<Register />} />
-        </Route>
-        <Route element={<AppLayout />}>
-          <Route path={routesPath.app.dashboard} element={<Dashboard />} />
-          <Route path={routesPath.app.graphs} element={<Graphs />} />
-          <Route path={routesPath.app.rooms} element={<Rooms />} />
-          <Route path={routesPath.app.roomsDetails} element={<RoomDetails />} />
-          <Route path={routesPath.app.options} element={<Options />} />
-          <Route path={routesPath.app.settings} element={<Settings />} />
+        <Route element={<RootLayout />}>
+          <Route
+            path={routesPath.base}
+            element={
+              <PrivateRoute
+                isUserLoggedInElement={
+                  <Navigate to={routesPath.app.dashboard} />
+                }
+                isUserNotLoggedInElement={<Start />}
+              />
+            }
+          />
+          <Route element={<AuthLayout />}>
+            <Route
+              path={routesPath.auth.login}
+              element={
+                <PrivateRoute
+                  isUserLoggedInElement={
+                    <Navigate to={routesPath.app.dashboard} />
+                  }
+                  isUserNotLoggedInElement={<Login />}
+                />
+              }
+            />
+            <Route
+              path={routesPath.auth.register}
+              element={
+                <PrivateRoute
+                  isUserLoggedInElement={
+                    <Navigate to={routesPath.app.dashboard} />
+                  }
+                  isUserNotLoggedInElement={<Register />}
+                />
+              }
+            />
+          </Route>
+          <Route element={<AppLayout />}>
+            <Route
+              path={routesPath.app.dashboard}
+              element={
+                <PrivateRoute
+                  isUserLoggedInElement={<Dashboard />}
+                  isUserNotLoggedInElement={
+                    <Navigate to={routesPath.auth.login} />
+                  }
+                />
+              }
+            />
+            <Route
+              path={routesPath.app.graphs}
+              element={
+                <PrivateRoute
+                  isUserLoggedInElement={<Graphs />}
+                  isUserNotLoggedInElement={
+                    <Navigate to={routesPath.auth.login} />
+                  }
+                />
+              }
+            />
+            <Route
+              path={routesPath.app.rooms}
+              element={
+                <PrivateRoute
+                  isUserLoggedInElement={<Rooms />}
+                  isUserNotLoggedInElement={
+                    <Navigate to={routesPath.auth.login} />
+                  }
+                />
+              }
+            />
+            <Route
+              path={routesPath.app.roomsDetails}
+              element={
+                <PrivateRoute
+                  isUserLoggedInElement={<RoomDetails />}
+                  isUserNotLoggedInElement={
+                    <Navigate to={routesPath.auth.login} />
+                  }
+                />
+              }
+            />
+            <Route
+              path={routesPath.app.options}
+              element={
+                <PrivateRoute
+                  isUserLoggedInElement={<Options />}
+                  isUserNotLoggedInElement={
+                    <Navigate to={routesPath.auth.login} />
+                  }
+                />
+              }
+            />
+            <Route
+              path={routesPath.app.settings}
+              element={
+                <PrivateRoute
+                  isUserLoggedInElement={<Settings />}
+                  isUserNotLoggedInElement={
+                    <Navigate to={routesPath.auth.login} />
+                  }
+                />
+              }
+            />
+          </Route>
         </Route>
         <Route element={<ErrorLayout />}>
           <Route path="*" element={<Error404 />} />
