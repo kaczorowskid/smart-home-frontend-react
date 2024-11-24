@@ -1,6 +1,7 @@
 import { Globe, Smartphone, Zap } from "lucide-react";
+import { Feature } from "./Adventage.types";
 
-export const features = [
+export const features: Feature[] = [
   {
     icon: Globe,
     description:
