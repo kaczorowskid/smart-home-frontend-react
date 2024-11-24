@@ -11,12 +11,12 @@ export const Hero = () => {
   };
 
   return (
-    <section className="bg-[#3a387f] text-white h-screen flex items-center justify-between">
-      <div className="max-w-[900px] px-24 ">
-        <h1 className=" mt-10 text-6xl font-bold text-center">
+    <section className="flex flex-col items-center justify-between p-5 lg:flex-row lg:h-screen lg:p-0">
+      <div className="flex-1 flex flex-col justify-center lg:px-24">
+        <h1 className="text-4xl font-bold text-center lg:text-left lg:text-6xl">
           Transform Your Living Space with Smart-Home Technology.
         </h1>
-        <p className="mt-10 text-2xl text-center">
+        <p className="mt-10 text-lg text-center lg:text-left lg:leading-relaxed">
           Discover the future of home automation with our smart-home
           application. Effortlessly control your blinds, monitor temperature and
           humidity, and centralize all your home’s essential functions in one
@@ -26,14 +26,18 @@ export const Hero = () => {
           and experience the convenience of a truly connected lifestyle!
         </p>
         <Button
-          className="mt-10 w-full bg-white text-black"
+          className="mt-10 w-full bg-white text-black lg:w-auto"
           onClick={handleGoToAuth}
         >
           Get Started
         </Button>
       </div>
-      <div className="h-[80%]">
-        <img className="rounded-l-3xl h-full" src={AppBlackLeft} />
+      <div className="flex-1 flex items-center justify-center h-full mt-10 lg:mt-0">
+        <img
+          className="max-h-full max-w-full object-contain rounded-3xl lg:rounded-l-3xl lg:rounded-r-none"
+          src={AppBlackLeft}
+          alt="Smart-Home App"
+        />
       </div>
     </section>
   );

@@ -56,6 +56,12 @@ module.exports = {
           info: "hsl(var(--badge-1))",
           success: "hsl(var(--badge-2))",
           destructive: "hsl(var(--badge-3))",
+        },
+        custom: {
+          minsk: 'var(--minsk)',
+          cannonPink: 'var(--cannon-pink)',
+          cranberry: 'var(--cranberry)',
+          salmon: 'var(--salmon)'
         }
       },
       borderRadius: {
