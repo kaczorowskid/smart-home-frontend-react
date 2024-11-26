@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/contexts/ThemeContext/ThemeContext.provider";
+import { ThemeProvider } from "@/contexts/Theme/Theme.provider";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { act, render } from "@testing-library/react";
 import type { RenderResult } from "@testing-library/react";

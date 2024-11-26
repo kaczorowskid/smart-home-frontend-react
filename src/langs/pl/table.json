@@ -1,0 +1,14 @@
+{
+  "table.id": "ID",
+  "table.type": "Typ",
+  "table.name": "Nazwa",
+  "table.device-id": "ID urządzenia",
+  "table.room-type": "Typ pokoju",
+  "table.thermometer": "Termometr",
+  "table.blind": "Roleta",
+  "table.user-name": "Imie",
+  "table.user-surname": "Nazwisko",
+  "table.email": "Email",
+  "table.role": "Rola",
+  "table.verify": "Weryfikacja"
+}

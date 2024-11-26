@@ -23,8 +23,10 @@ import {
   useGetOneUser,
   useUpdateUser,
 } from "@/api/hooks/user.hooks";
+import { useIntl } from "react-intl";
 
 export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
+  const { formatMessage } = useIntl();
   const { data } = useGetOneUser({ id: selectedId || "" });
 
   const { mutateAsync: createUserByAdmin, isPending: isCreatePending } =
@@ -72,7 +74,9 @@ export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
   return (
     <Dialog
       className="w-[90%] lg:w-full"
-      title={<FormTitle title="User" icon={User} />}
+      title={
+        <FormTitle title={formatMessage({ id: "view.user" })} icon={User} />
+      }
       open={open || !!selectedId}
       onOpenChange={(status) => {
         if (!status) {
@@ -82,23 +86,27 @@ export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
     >
       <Form {...form}>
         <FormField
-          label="User role"
+          label={formatMessage({ id: "formField.user-role" })}
           control={form.control}
           name={formFields.role}
           component={({ onChange, ...field }) => (
-            <Select items={roleItems} onValueChange={onChange} {...field} />
+            <Select
+              items={roleItems(formatMessage)}
+              onValueChange={onChange}
+              {...field}
+            />
           )}
         />
         {!!selectedId && (
           <>
             <FormField
-              label="Name"
+              label={formatMessage({ id: "formField.user-name" })}
               control={form.control}
               name={formFields.name}
               component={(field) => <Input {...field} />}
             />
             <FormField
-              label="Surname"
+              label={formatMessage({ id: "formField.user-surname" })}
               control={form.control}
               name={formFields.surname}
               component={(field) => <Input {...field} />}
@@ -106,7 +114,7 @@ export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
           </>
         )}
         <FormField
-          label="Email"
+          label={formatMessage({ id: "formField.email" })}
           control={form.control}
           name={formFields.email}
           component={(field) => <Input {...field} disabled={!!selectedId} />}

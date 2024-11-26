@@ -1,0 +1,23 @@
+{
+  "view.dashboard": "Dashboard",
+  "view.graphs": "Graphs",
+  "view.rooms": "Rooms",
+  "view.options": "Options",
+  "view.settings": "Settings",
+  "view.devices": "Devices",
+  "view.room-details": "Room details",
+  "view.blind": "Blind",
+  "view.user": "User",
+  "view.users": "Users",
+  "view.users-description": "Table of users",
+  "view.temperature": "Temperature",
+  "view.humidity": "Humidity",
+  "view.temphum": "Temperature & Humidity",
+  "view.thermometer": "Thermometer",
+  "view.devices-description": "Table of devices",
+  "view.thermometers-no-selected": "Choose thermometers",
+  "view.blinds-no-selected": "Choose blinds",
+  "view.rooms-description": "Table of rooms",
+  "view.change-theme": "Change theme",
+  "view.change-language": "Change language"
+}

@@ -1,17 +1,19 @@
 import { useFilteredData } from "@/hooks/useFilteredData.hook";
-import { CardWithHeader } from "../../../../components/common/CardWithHeader";
-import { Pagination } from "../../../../components/common/Pagination";
-import { Table } from "../../../../components/common/Table";
+import { CardWithHeader } from "@/components/common/CardWithHeader";
+import { Pagination } from "@/components/common/Pagination";
+import { Table } from "@/components/common/Table";
 import { columns } from "./DevicesTable.schema";
 import { DevicesTableProps } from "./DevicesTable.types";
 import { usePagination } from "@/hooks/usePagination.hook";
 import { useGetAllDevices } from "@/api/hooks/devices.hooks";
 import { Searchbar } from "@/components/common/Searchbar";
+import { useIntl } from "react-intl";
 
 export const DevicesTable = ({
   setSelectedId,
   isDashboardPart,
 }: DevicesTableProps) => {
+  const { formatMessage } = useIntl();
   const { data } = useGetAllDevices(true);
 
   const { filteredData, searchbarValue, setSearchbarValue } =
@@ -23,8 +25,8 @@ export const DevicesTable = ({
 
   return (
     <CardWithHeader
-      title="Devices"
-      description="Table of devices"
+      title={formatMessage({ id: "view.devices" })}
+      description={formatMessage({ id: "view.devices-description" })}
       extra={
         isDashboardPart ? null : (
           <Searchbar

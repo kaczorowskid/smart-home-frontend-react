@@ -1,0 +1,14 @@
+{
+  "table.id": "ID",
+  "table.type": "Type",
+  "table.name": "Name",
+  "table.device-id": "Device ID",
+  "table.room-type": "Room Type",
+  "table.thermometer": "Thermometer",
+  "table.blind": "Blind",
+  "table.user-name": "Name",
+  "table.user-surname": "Surname",
+  "table.email": "Email",
+  "table.role": "Role",
+  "table.verify": "Verify"
+}

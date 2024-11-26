@@ -1,24 +1,27 @@
 import { SelectProps } from "@/components/common/Select/Select.types";
+import { IntlShape } from "react-intl";
 
-export const roomsItems: SelectProps["items"] = [
+export const roomsItems = (
+  formatMessage: IntlShape["formatMessage"]
+): SelectProps["items"] => [
   {
-    name: "Backyard",
+    name: formatMessage({ id: "option.backyard" }),
     value: "BACKYARD",
   },
   {
-    name: "Bathroom",
+    name: formatMessage({ id: "option.bathroom" }),
     value: "BATHROOM",
   },
   {
-    name: "Bedroom",
+    name: formatMessage({ id: "option.bedroom" }),
     value: "BEDROOM",
   },
   {
-    name: "Kitchen",
+    name: formatMessage({ id: "option.kitchen" }),
     value: "KITCHEN",
   },
   {
-    name: "Living Room",
+    name: formatMessage({ id: "option.living-room" }),
     value: "LIVINGROOM",
   },
 ];

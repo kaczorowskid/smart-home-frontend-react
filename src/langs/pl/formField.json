@@ -1,0 +1,10 @@
+{
+  "formField.name": "Nazwa",
+  "formField.user-name": "Imie",
+  "formField.user-surname": "Nazwisko",
+  "formField.email": "Email",
+  "formField.device-id": "ID urządzenia",
+  "formField.user-role": "Rola użytkownika",
+  "formField.thermometers": "Termometry",
+  "formField.blinds": "Rolety"
+}

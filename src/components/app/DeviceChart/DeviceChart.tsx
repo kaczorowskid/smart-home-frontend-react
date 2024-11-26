@@ -20,6 +20,7 @@ import { useGetDeviceDataForGraph } from "@/api/hooks/devices.hooks";
 import { dateLastDay } from "@/constants/date.consts";
 import { dateFormatter } from "@/utils/date.utils";
 import { endOfDay, startOfDay } from "date-fns";
+import { useIntl } from "react-intl";
 
 const { from, to } = dateLastDay;
 
@@ -39,6 +40,8 @@ export const DeviceChart = ({
     "THERMOMETER"
   );
 
+  const intl = useIntl();
+
   const { data } = useGetDeviceDataForGraph({
     deviceId: id || "",
     dateFrom: (dateFrom && startOfDay(dateFrom)) || from,
@@ -53,17 +56,23 @@ export const DeviceChart = ({
             items={items}
             triggerComponent={
               <div className="cursor-pointer hover:text-muted-foreground">
-                {data?.name || "Click to attach device"}
+                {data?.name ||
+                  intl.formatMessage({
+                    id: "component.click-to-attach-device",
+                  })}
               </div>
             }
           />
         ) : (
-          <div>{data?.name || "Click to attach device"}</div>
+          <div>
+            {data?.name ||
+              intl.formatMessage({ id: "component.click-to-attach-device" })}
+          </div>
         )
       }
       description={description}
       icon={icon}
-      cardClassName="flex-grow"
+      cardClassName="flex-1"
       contentClassName="h-80"
       extra={extra}
     >

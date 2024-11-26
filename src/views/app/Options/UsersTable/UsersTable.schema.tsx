@@ -1,50 +1,43 @@
 import { ColumnType } from "../../../../components/common/Table/Table.types";
 import { User } from "@/api/types/common.types";
-import { InfoBadge } from "@/components/common/InfoBadge";
-import { InfoBadgeProps } from "@/components/common/InfoBadge/InfoBadge.types";
+import { FormattedMessage } from "react-intl";
+import { userRoleMapper, userVerifyMapper } from "./UsersTable.utils";
+import { Badge } from "@/components/ui/badge";
 
 export const columns: ColumnType<User>[] = [
   {
-    title: "Name",
+    title: <FormattedMessage id="table.user-name" />,
     dataIndex: "name",
     key: "name",
   },
   {
-    title: "Surname",
+    title: <FormattedMessage id="table.user-surname" />,
     dataIndex: "surname",
     key: "surname",
   },
   {
-    title: "Email",
+    title: <FormattedMessage id="table.email" />,
     key: "email",
     dataIndex: "email",
   },
   {
-    title: "Role",
+    title: <FormattedMessage id="table.role" />,
     dataIndex: "role",
     key: "role",
-    render: (role: User["role"]) => {
-      const colorMap: Record<typeof role, InfoBadgeProps["type"]> = {
-        ADMIN: "destructive",
-        USER: "info",
-      };
-
-      return <InfoBadge type={colorMap[role]}>{role}</InfoBadge>;
-    },
+    render: (role: User["role"]) => (
+      <Badge variant="outline">{userRoleMapper[role]}</Badge>
+    ),
   },
   {
-    title: "Is verified",
+    title: <FormattedMessage id="table.verify" />,
     dataIndex: "isVerified",
     key: "isVerified",
-    render: (isVerified: boolean) => {
-      const isVerifiedText = isVerified ? "Is verified" : "Not verified";
-      const badgeColor = isVerified ? "success" : "destructive";
-
-      return <InfoBadge type={badgeColor}>{isVerifiedText}</InfoBadge>;
-    },
+    render: (isVerified: boolean) => (
+      <Badge variant="outline">{userVerifyMapper(isVerified)}</Badge>
+    ),
   },
   {
-    title: "ID",
+    title: <FormattedMessage id="table.id" />,
     dataIndex: "id",
     key: "id",
   },

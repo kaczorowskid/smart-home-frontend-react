@@ -14,8 +14,10 @@ import { Button } from "@/components/ui/button";
 import { useFormSelector } from "./Options.hooks";
 import { OptionsTab } from "./Options.types";
 import { buttonNameMapper } from "./Options.utils";
+import { FormattedMessage, useIntl } from "react-intl";
 
 export const Options = () => {
+  const { formatMessage } = useIntl();
   const [selectedTab, setSelectedTab] = useState<OptionsTab>("devices");
   const { isOpen, selectedId, handleSelectedId, handleClose, handleOpen } =
     useFormSelector(selectedTab);
@@ -26,7 +28,7 @@ export const Options = () => {
 
   return (
     <PageWrapper
-      title="Options"
+      title={formatMessage({ id: "view.options" })}
       icon={NotebookPen}
       extra={
         <AdminOnlyWrapper>
@@ -43,13 +45,13 @@ export const Options = () => {
       >
         <TabsList className="w-full">
           <TabsTrigger className="w-full" value="devices">
-            Devices
+            <FormattedMessage id="view.devices" />
           </TabsTrigger>
           <TabsTrigger className="w-full" value="rooms">
-            Rooms
+            <FormattedMessage id="view.rooms" />
           </TabsTrigger>
           <TabsTrigger className="w-full" value="users">
-            Users
+            <FormattedMessage id="view.users" />
           </TabsTrigger>
         </TabsList>
         <TabsContent value="devices">

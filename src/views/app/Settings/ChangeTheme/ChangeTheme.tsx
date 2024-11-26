@@ -1,15 +1,18 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { useTheme } from "@/contexts/ThemeContext/ThemeContext.hooks";
+import { useTheme } from "@/contexts/Theme/Theme.hooks";
 import { Moon, Sun } from "lucide-react";
+import { FormattedMessage } from "react-intl";
 
-export const ChangeThemeSection = () => {
+export const ChangeTheme = () => {
   const { theme, setTheme } = useTheme();
 
   return (
     <Card className="w-full mb-5">
       <CardContent className="flex min-h-32 items-center justify-between p-5">
-        <span className="text-2xl">Change theme</span>
+        <span className="text-2xl">
+          <FormattedMessage id="view.change-theme" />
+        </span>
         <ToggleGroup
           type="single"
           defaultValue={theme}

@@ -36,8 +36,10 @@ import {
   useGetAllBlinds,
   useGetAllThermometers,
 } from "@/api/hooks/devices.hooks";
+import { useIntl } from "react-intl";
 
 export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
+  const { formatMessage } = useIntl();
   const { data } = useGetOneRoom({ id: selectedId || "" });
   const { data: allThermometersData } = useGetAllThermometers();
   const { data: allBlindsData } = useGetAllBlinds();
@@ -90,7 +92,9 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
   return (
     <Dialog
       className="w-[90%] lg:w-full"
-      title={<FormTitle title="Rooms" icon={House} />}
+      title={
+        <FormTitle title={formatMessage({ id: "view.rooms" })} icon={House} />
+      }
       open={open || !!selectedId}
       onOpenChange={(status) => {
         if (!status) {
@@ -100,18 +104,18 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
     >
       <Form {...form}>
         <FormField
-          label="Name"
+          label={formatMessage({ id: "formField.name" })}
           control={form.control}
           name={formFields.name}
           component={(field) => <Input {...field} />}
         />
         <FormField
-          label="User role"
+          label={formatMessage({ id: "formField.user-role" })}
           control={form.control}
           name={formFields.roomType}
           component={({ onChange, value, ...field }) => (
             <Select
-              items={roomsItems}
+              items={roomsItems(formatMessage)}
               onValueChange={onChange}
               value={value as string}
               {...field}
@@ -121,8 +125,10 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
         <Popover>
           <PopoverTrigger className="mt-4" asChild>
             <SelectedItems
-              label="Thermometers"
-              noSelectedItemsText="Choose thermometers"
+              label={formatMessage({ id: "formField.thermometers" })}
+              noSelectedItemsText={formatMessage({
+                id: "view.thermometers-no-selected",
+              })}
               items={thermometersCheckboxData}
               selectedIds={form.watch()["thermometer"]}
             />
@@ -159,8 +165,10 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
         <Popover>
           <PopoverTrigger className="mt-4" asChild>
             <SelectedItems
-              label="Blinds"
-              noSelectedItemsText="Choose blinds"
+              label={formatMessage({ id: "formField.blinds" })}
+              noSelectedItemsText={formatMessage({
+                id: "view.blinds-no-selected",
+              })}
               items={blindsCheckboxData}
               selectedIds={form.watch()["blind"]}
             />
