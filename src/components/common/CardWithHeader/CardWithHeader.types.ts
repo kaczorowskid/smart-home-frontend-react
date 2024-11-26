@@ -5,7 +5,7 @@ export type CardWithHeaderProps = {
   cardClassName?: string;
   contentClassName?: string;
   title: ReactNode;
-  description?: string;
+  description?: ReactNode;
   hasSmallHeader?: boolean;
   extra?: ReactNode;
   icon?: LucideIcon;

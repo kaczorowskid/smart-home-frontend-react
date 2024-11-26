@@ -99,7 +99,7 @@ export const DeviceChart = ({
               cursor={false}
               content={
                 <ChartTooltipContent
-                  labelFormatter={dateFormatter.hourAndDate}
+                  labelFormatter={(label) => dateFormatter.hourAndDate(label)}
                   indicator="dot"
                 />
               }
