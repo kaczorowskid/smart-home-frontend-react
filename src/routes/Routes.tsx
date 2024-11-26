@@ -26,7 +26,6 @@ export const Routes = (): JSX.Element => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path="/start" element={<Start />} />
         <Route element={<RootLayout />}>
           <Route
             path={routesPath.base}

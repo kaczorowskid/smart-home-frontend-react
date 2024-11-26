@@ -1,0 +1,15 @@
+{
+  "option.thermometer": "Thermometer",
+  "option.blind": "Blind",
+  "option.backyard": "Backyard",
+  "option.bathroom": "Bathroom",
+  "option.bedroom": "Bedroom",
+  "option.kitchen": "Kitchen",
+  "option.living-room": "Living Room",
+  "option.admin": "Admin",
+  "option.user": "User",
+  "option.verified": "Verified",
+  "option.not-verified": "Not verified",
+  "option.en": "Engilsh",
+  "option.pl": "Polish"
+}

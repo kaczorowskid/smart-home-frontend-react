@@ -4,13 +4,11 @@ import {
 } from "lucide-react";
 import { ColumnType } from "../../../../components/common/Table/Table.types";
 import { Blind, Thermometer } from "@/api/types/common.types";
-// import { InfoBadge } from "@/components/common/InfoBadge";
-// import { InfoBadgeProps } from "@/components/common/InfoBadge/InfoBadge.types";
-// import { DeviceStatus } from "@/types/common.types";
+import { FormattedMessage } from "react-intl";
 
 export const columns: ColumnType<Thermometer | Blind>[] = [
   {
-    title: "Type",
+    title: <FormattedMessage id="table.type" />,
     dataIndex: "type",
     key: "type",
     render: (type: string) => {
@@ -20,30 +18,17 @@ export const columns: ColumnType<Thermometer | Blind>[] = [
     },
   },
   {
-    title: "Name",
+    title: <FormattedMessage id="table.name" />,
     dataIndex: "name",
     key: "name",
   },
-  // {
-  //   title: "Status",
-  //   dataIndex: "status", //TODO: add status type
-  //   key: "status",
-  //   render: (value: DeviceStatus) => {
-  //     const badgeTypeMapper: Record<DeviceStatus, InfoBadgeProps["type"]> = {
-  //       offline: "destructive",
-  //       online: "success",
-  //     };
-
-  //     return <InfoBadge type={badgeTypeMapper["online"]}>online</InfoBadge>;
-  //   },
-  // },
   {
-    title: "ID",
+    title: <FormattedMessage id="table.id" />,
     key: "id",
     dataIndex: "id",
   },
   {
-    title: "Device ID",
+    title: <FormattedMessage id="table.device-id" />,
     key: "deviceId",
     dataIndex: "deviceId",
   },

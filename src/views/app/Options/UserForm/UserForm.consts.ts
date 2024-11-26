@@ -1,12 +1,15 @@
 import { SelectProps } from "@/components/common/Select/Select.types";
+import { IntlShape } from "react-intl";
 
-export const roleItems: SelectProps["items"] = [
+export const roleItems = (
+  formatMessage: IntlShape["formatMessage"]
+): SelectProps["items"] => [
   {
-    name: "User",
+    name: formatMessage({ id: "option.user" }),
     value: "USER",
   },
   {
-    name: "Admin",
+    name: formatMessage({ id: "option.admin" }),
     value: "ADMIN",
   },
 ];

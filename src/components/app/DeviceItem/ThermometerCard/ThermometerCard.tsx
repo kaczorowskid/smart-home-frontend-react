@@ -3,6 +3,7 @@ import { Dropdown } from "@/components/common/Dropdown";
 import { Loader2, Thermometer } from "lucide-react";
 import { ThermometerCardProps } from "./ThermometerCard.types";
 import { dateFormatter } from "@/utils/date.utils";
+import { FormattedMessage } from "react-intl";
 
 export const ThermometerCard = ({
   name,
@@ -39,12 +40,18 @@ export const ThermometerCard = ({
             {thermometerData?.[0]?.temperature}
           </div>
           <p className="flex text-xs text-muted-foreground justify-between">
-            <span>Humidity: {thermometerData?.[0]?.humidity}%</span>
             <span>
-              Last:{" "}
+              <FormattedMessage id="component.humidity" />
+              {thermometerData?.[0]?.humidity}%
+            </span>
+            <span>
+              <FormattedMessage id="component.last" />
               {dateFormatter.onlyHour(thermometerData?.[0]?.date || new Date())}
             </span>
-            <span>Battery: {thermometerData?.[0]?.battery}% </span>
+            <span>
+              <FormattedMessage id="component.battery" />
+              {thermometerData?.[0]?.battery}%
+            </span>
           </p>
         </>
       )}

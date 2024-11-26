@@ -16,6 +16,7 @@ import {
   useDeleteDevice,
   useUpdateDevice,
 } from "@/api/hooks/devices.hooks";
+import { useIntl } from "react-intl";
 
 export const ThermometerForm = ({
   selectedId,
@@ -23,6 +24,8 @@ export const ThermometerForm = ({
   deviceId,
   name,
 }: ThermometerFormProps) => {
+  const { formatMessage } = useIntl();
+
   const { mutateAsync: createThermometer, isPending: isCreatePending } =
     useCreateDevice();
   const { mutateAsync: updateThermometer, isPending: isUpdatePending } =
@@ -67,13 +70,13 @@ export const ThermometerForm = ({
   return (
     <Form {...form}>
       <FormField
-        label="Name"
+        label={formatMessage({ id: "formField.name" })}
         control={form.control}
         name={formFields.name}
         component={(field) => <Input {...field} />}
       />
       <FormField
-        label="Device ID"
+        label={formatMessage({ id: "formField.device-id" })}
         control={form.control}
         name={formFields.deviceId}
         component={(field) => <Input {...field} />}

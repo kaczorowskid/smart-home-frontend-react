@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { ThemeOption, ThemeProviderProps } from "./ThemeContext.types";
-import { ThemeContext } from "./ThemeContext";
+import { ThemeOption, ThemeProviderProps } from "./Theme.types";
+import { ThemeContext } from "./Theme.context";
 import { themeKeys } from "@/utils/localStorageKeys";
 
 export const ThemeProvider = ({

@@ -1,0 +1,23 @@
+{
+  "view.dashboard": "Pulpit",
+  "view.graphs": "Wykresy",
+  "view.rooms": "Pokoje",
+  "view.options": "Opcje",
+  "view.settings": "Ustawienia",
+  "view.devices": "Urządzenia",
+  "view.room-details": "Szczegóły pokoju",
+  "view.blind": "Roleta",
+  "view.user": "Użytkownik",
+  "view.users": "Użytkownicy",
+  "view.users-description": "Tabela użytkowników",
+  "view.temperature": "Temperatura",
+  "view.humidity": "Wilgotność",
+  "view.temphum": "Temperatura i wilgotność",
+  "view.thermometer": "Termometr",
+  "view.devices-description": "Tabela urządzeń",
+  "view.thermometers-no-selected": "Wybierz termometry",
+  "view.blinds-no-selected": "Wybierz rolety",
+  "view.rooms-description": "Tabela pokoi",
+  "view.change-theme": "Zmiana motywu",
+  "view.change-language": "Zmiana języka"
+}

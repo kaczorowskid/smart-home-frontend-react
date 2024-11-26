@@ -16,6 +16,7 @@ import {
   useDeleteDevice,
   useUpdateDevice,
 } from "@/api/hooks/devices.hooks";
+import { useIntl } from "react-intl";
 
 export const BlindForm = ({
   selectedId,
@@ -23,6 +24,8 @@ export const BlindForm = ({
   deviceId,
   name,
 }: BlindFormProps) => {
+  const { formatMessage } = useIntl();
+
   const { mutateAsync: createBlind, isPending: isCreatePending } =
     useCreateDevice();
   const { mutateAsync: updateBlind, isPending: isUpdatePending } =
@@ -67,13 +70,13 @@ export const BlindForm = ({
   return (
     <Form {...form}>
       <FormField
-        label="Name"
+        label={formatMessage({ id: "formField.name" })}
         control={form.control}
         name={formFields.name}
         component={(field) => <Input {...field} />}
       />
       <FormField
-        label="Device ID"
+        label={formatMessage({ id: "formField.device-id" })}
         control={form.control}
         name={formFields.deviceId}
         component={(field) => <Input {...field} />}

@@ -1,7 +1,7 @@
 import { Dialog } from "@/components/common/Dialog";
 import { Select } from "@/components/common/Select";
 import { ThermometerForm } from "./ThermometerForm";
-import { itemsType, ItemValue } from "./DeviceForm.consts";
+import { itemsType } from "./DeviceForm.consts";
 import { DeviceFormProps } from "./DeviceForm.types";
 import { useState } from "react";
 import { FormProvider } from "./FormProvider";
@@ -9,10 +9,14 @@ import { BlindForm } from "./BlindForm";
 import { Blinds, Thermometer } from "lucide-react";
 import { FormTitle } from "@/components/app/FormTitle";
 import { useGetOneDevice } from "@/api/hooks/devices.hooks";
+import { useIntl } from "react-intl";
+import { DeviceType } from "@/types/common.types";
 
 export const DeviceForm = ({ selectedId, open, onClose }: DeviceFormProps) => {
+  const { formatMessage } = useIntl();
+
   const { data } = useGetOneDevice({ id: selectedId });
-  const [itemType, setItemType] = useState<ItemValue | undefined>(
+  const [itemType, setItemType] = useState<DeviceType | undefined>(
     "THERMOMETER"
   );
 
@@ -24,9 +28,19 @@ export const DeviceForm = ({ selectedId, open, onClose }: DeviceFormProps) => {
   const getFormTitle = () => {
     switch (data?.type || itemType) {
       case "THERMOMETER":
-        return <FormTitle title="Thermometer" icon={Thermometer} />;
+        return (
+          <FormTitle
+            title={formatMessage({ id: "view.thermometer" })}
+            icon={Thermometer}
+          />
+        );
       case "BLIND":
-        return <FormTitle title="Blind" icon={Blinds} />;
+        return (
+          <FormTitle
+            title={formatMessage({ id: "view.blind" })}
+            icon={Blinds}
+          />
+        );
     }
   };
 
@@ -44,9 +58,9 @@ export const DeviceForm = ({ selectedId, open, onClose }: DeviceFormProps) => {
       {!selectedId && (
         <div className="my-5">
           <Select
-            items={itemsType}
+            items={itemsType(formatMessage)}
             value={itemType}
-            onValueChange={(value: ItemValue) => setItemType(value)}
+            onValueChange={(value: DeviceType) => setItemType(value)}
           />
         </div>
       )}

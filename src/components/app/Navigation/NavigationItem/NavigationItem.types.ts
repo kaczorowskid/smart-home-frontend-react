@@ -1,7 +1,8 @@
 import { IconProps } from "@/components/common/Icon/Icon.types";
+import { ReactNode } from "react";
 
 type NavigationItem = {
-  title: string;
+  title: ReactNode;
   icon: IconProps["name"];
   path: string;
 };

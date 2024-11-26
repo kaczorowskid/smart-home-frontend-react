@@ -7,8 +7,10 @@ import { RoomsTableProps } from "./RoomsTable.types";
 import { columns } from "./RoomsTable.schema";
 import { useGetAllRooms } from "@/api/hooks/room.hooks";
 import { Searchbar } from "@/components/common/Searchbar";
+import { useIntl } from "react-intl";
 
 export const RoomsTable = ({ setSelectedId }: RoomsTableProps) => {
+  const { formatMessage } = useIntl();
   const { data } = useGetAllRooms();
 
   const { filteredData, searchbarValue, setSearchbarValue } =
@@ -20,8 +22,8 @@ export const RoomsTable = ({ setSelectedId }: RoomsTableProps) => {
 
   return (
     <CardWithHeader
-      title="Rooms"
-      description="Table of rooms"
+      title={formatMessage({ id: "view.rooms" })}
+      description={formatMessage({ id: "view.rooms-description" })}
       extra={
         <Searchbar
           searchbarValue={searchbarValue}

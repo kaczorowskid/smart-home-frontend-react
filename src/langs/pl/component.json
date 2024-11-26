@@ -1,0 +1,12 @@
+{
+  "component.create": "Stwórz",
+  "component.update": "Zaktualizuj",
+  "component.delete": "Usuń",
+  "component.are-you-sure": "Czy jesteś pewien?",
+  "component.empty-device": "Puste urządzenie",
+  "component.click-to-attach-device": "Kliknij aby dołączyć urządzenie",
+  "component.humidity": "Wilgotność: ",
+  "component.last": "Ostatni: ",
+  "component.battery": "Bateria: ",
+  "component.search-placeholder": "Wyszukaj..."
+}

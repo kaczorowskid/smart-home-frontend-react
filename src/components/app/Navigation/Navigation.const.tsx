@@ -1,29 +1,30 @@
 import { routesPath } from "@/routes/routesPath";
 import { NavigationItemProps } from "./NavigationItem";
+import { FormattedMessage } from "react-intl";
 
 export const menuItems: NavigationItemProps["items"][] = [
   {
-    title: "Dashboard",
+    title: <FormattedMessage id="menu.dashboard" />,
     path: routesPath.app.dashboard,
     icon: "LayoutDashboard",
   },
   {
-    title: "Graphs",
+    title: <FormattedMessage id="menu.graphs" />,
     path: routesPath.app.graphs,
     icon: "ChartArea",
   },
   {
-    title: "Rooms",
+    title: <FormattedMessage id="menu.rooms" />,
     path: routesPath.app.rooms,
     icon: "House",
   },
   {
-    title: "Options",
+    title: <FormattedMessage id="menu.options" />,
     path: routesPath.app.options,
     icon: "NotebookPen",
   },
   {
-    title: "Settings",
+    title: <FormattedMessage id="menu.settings" />,
     path: routesPath.app.settings,
     icon: "Settings",
   },
