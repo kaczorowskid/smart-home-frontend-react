@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 
 export type DeviceChartProps = {
   chartType: ChartType;
-  description: string;
+  description: ReactNode;
   icon: LucideIcon;
   dateFrom: Date | undefined;
   dateTo: Date | undefined;

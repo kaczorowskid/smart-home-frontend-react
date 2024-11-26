@@ -1,7 +1,7 @@
-import { endOfDay, startOfDay, subDays } from "date-fns";
+import { endOfDay, startOfDay } from "date-fns";
 import { DateRange } from "react-day-picker";
 
 export const dateLastDay: DateRange = {
-  from: startOfDay(subDays(new Date(), 1)),
+  from: startOfDay(new Date()),
   to: endOfDay(new Date()),
 };
