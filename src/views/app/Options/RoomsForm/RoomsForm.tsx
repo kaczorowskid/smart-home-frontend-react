@@ -115,7 +115,7 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
           name={formFields.roomType}
           component={({ onChange, value, ...field }) => (
             <Select
-              items={roomsItems(formatMessage)}
+              items={roomsItems}
               onValueChange={onChange}
               value={value as string}
               {...field}

@@ -15,8 +15,10 @@ import {
 } from "@/api/hooks/user.hooks";
 import { formFields, formSchema, FormSchema } from "./Register.schema";
 import { defaultValues, initialValues } from "./Register.utils";
+import { FormattedMessage, useIntl } from "react-intl";
 
 export const Register = () => {
+  const { formatMessage } = useIntl();
   const { token } = useParams<{ token: string }>();
 
   const { data } = useGetUserByToken({ token: token || "" });
@@ -45,24 +47,26 @@ export const Register = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-4xl font-semibold tracking-tight my-5">Register</h1>
+      <h1 className="text-4xl font-semibold tracking-tight my-5">
+        <FormattedMessage id="view.register" />
+      </h1>
       <Card>
         <CardContent className="w-[90vw] p-10 lg:w-[500px]">
           <Form {...form}>
             <FormField
-              label="Name"
+              label={formatMessage({ id: "formField.user-name" })}
               control={form.control}
               name={formFields.name}
               component={(field) => <Input {...field} />}
             />
             <FormField
-              label="Surname"
+              label={formatMessage({ id: "formField.user-surname" })}
               control={form.control}
               name={formFields.surname}
               component={(field) => <Input {...field} />}
             />
             <FormField
-              label="Email"
+              label={formatMessage({ id: "formField.email" })}
               control={form.control}
               name={formFields.email}
               component={(field) => (
@@ -70,26 +74,28 @@ export const Register = () => {
               )}
             />
             <FormField
-              label="Password"
+              label={formatMessage({ id: "formField.password" })}
               control={form.control}
               name={formFields.password}
               component={(field) => <Input {...field} />}
             />
             <FormField
-              label="Confirm password"
+              label={formatMessage({ id: "formField.confirm-password" })}
               control={form.control}
               name={formFields.confirmPassword}
               component={(field) => <Input {...field} />}
             />
           </Form>
           <div className="flex justify-between my-5">
-            <span>Role</span>
+            <span>
+              <FormattedMessage id="view.role" />
+            </span>
             <Badge>{data?.role}</Badge>
           </div>
           <div className="flex my-5 items-center">
             <Separator className="shrink" />
             <Link className="px-5 text-nowrap" to={routesPath.auth.login}>
-              Back to login
+              <FormattedMessage id="view.back-to-login" />
             </Link>
             <Separator className="shrink" />
           </div>
@@ -99,7 +105,7 @@ export const Register = () => {
             onClick={handleSave}
             isLoading={isPending}
           >
-            Register
+            <FormattedMessage id="view.register" />
           </Button>
         </CardContent>
       </Card>

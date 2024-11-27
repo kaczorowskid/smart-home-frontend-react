@@ -58,7 +58,7 @@ export const DeviceForm = ({ selectedId, open, onClose }: DeviceFormProps) => {
       {!selectedId && (
         <div className="my-5">
           <Select
-            items={itemsType(formatMessage)}
+            items={itemsType}
             value={itemType}
             onValueChange={(value: DeviceType) => setItemType(value)}
           />

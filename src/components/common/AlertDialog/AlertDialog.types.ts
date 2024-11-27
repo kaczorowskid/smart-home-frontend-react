@@ -2,8 +2,8 @@ import { AlertDialog } from "@/components/ui/alert-dialog";
 import { ComponentProps, ReactNode } from "react";
 
 export type AlertDialogProps = {
-  title: string;
-  description: string;
+  title: ReactNode;
+  description: ReactNode;
   onOk: () => void;
   trigger?: ReactNode;
   isLoading?: boolean;

@@ -11,12 +11,11 @@ import { ChartType } from "@/types/common.types";
 import { dateLastDay } from "@/constants/date.consts";
 import { dateFormatter } from "@/utils/date.utils";
 import { chartTypeMapper } from "./RoomDetails.utils";
-import { useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 
 const { onlyDate } = dateFormatter;
 
 export const RoomDetails = () => {
-  const { formatMessage } = useIntl();
   const { id } = useParams();
   const { data } = useGetOneRoom({ id: id || "" });
   const [date, setDate] = useState<DateRange | undefined>(dateLastDay);
@@ -34,7 +33,12 @@ export const RoomDetails = () => {
 
   return (
     <PageWrapper
-      title={`${formatMessage({ id: "view.room-details" })} - ${data?.name}`}
+      title={
+        <FormattedMessage
+          id="view.room-details"
+          values={{ room: data?.name }}
+        />
+      }
       icon={House}
     >
       <div className="gap-5 flex flex-col lg:grid lg:grid-cols-4">

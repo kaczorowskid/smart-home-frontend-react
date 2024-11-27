@@ -8,8 +8,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useLogin } from "@/api/hooks/auth.hooks";
 import { formFields, formSchema, FormSchema } from "./Login.schema";
 import { defaultValues } from "./Login.utils";
+import { FormattedMessage, useIntl } from "react-intl";
 
 export const Login = () => {
+  const { formatMessage } = useIntl();
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues,
@@ -29,18 +31,20 @@ export const Login = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-4xl font-semibold tracking-tight my-5">Login</h1>
+      <h1 className="text-4xl font-semibold tracking-tight my-5">
+        <FormattedMessage id="view.login" />
+      </h1>
       <Card>
         <CardContent className="w-[90vw] p-10 lg:w-[500px]">
           <Form {...form}>
             <FormField
-              label="Email"
+              label={formatMessage({ id: "formField.email" })}
               control={form.control}
               name={formFields.email}
               component={(field) => <Input {...field} />}
             />
             <FormField
-              label="Password"
+              label={formatMessage({ id: "formField.password" })}
               control={form.control}
               name={formFields.password}
               component={(field) => <Input {...field} />}
@@ -51,7 +55,7 @@ export const Login = () => {
             onClick={handleSave}
             isLoading={isPending}
           >
-            Login
+            <FormattedMessage id="view.login" />
           </Button>
         </CardContent>
       </Card>

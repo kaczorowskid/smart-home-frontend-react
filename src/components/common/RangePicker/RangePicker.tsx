@@ -27,12 +27,12 @@ export const RangePicker = ({ date, setDate }: RangePickerProps) => {
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
           <Calendar
-            initialFocus
+            autoFocus
+            required
             mode="range"
             defaultMonth={date?.from}
             selected={date}
             onSelect={setDate}
-            numberOfMonths={2}
           />
         </PopoverContent>
       </Popover>
