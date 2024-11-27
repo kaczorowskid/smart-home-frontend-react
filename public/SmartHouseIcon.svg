@@ -1,0 +1,13 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+	<title>SmartHouseIcon</title>
+	<defs>
+		<image  width="32" height="32" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAAAXNSR0IB2cksfwAAAANQTFRFOjh/WaONygAAAA9JREFUeJxjZAACxsFLAAAK8AAhCVrP+AAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+		.s0 { fill: #d6577c } 
+		.s1 { fill: #ff8268 } 
+	</style>
+	<use id="Background" href="#img1" x="0" y="0"/>
+	<path id="H" class="s0" aria-label="H"  d="m31.1 8.9v17.1h-4v-7.1h-6.1v7.1h-4.1v-17.1h4.1v6.8h6.1v-6.8z"/>
+	<path id="S" class="s1" aria-label="S"  d="m10.7 21.5q0-0.9-0.6-1.4-0.7-0.5-2.3-1.1-1.6-0.5-2.6-1-3.3-1.7-3.3-4.5 0-1.4 0.8-2.5 0.8-1.1 2.4-1.7 1.5-0.6 3.3-0.6 1.9 0 3.3 0.7 1.5 0.6 2.3 1.8 0.8 1.2 0.8 2.8h-4.1q0-1-0.6-1.6-0.7-0.6-1.7-0.6-1.1 0-1.8 0.5-0.6 0.5-0.6 1.2 0 0.7 0.7 1.2 0.7 0.6 2.5 1.1 1.7 0.6 2.9 1.2 2.7 1.6 2.7 4.4 0 2.3-1.7 3.6-1.7 1.2-4.6 1.2-2.1 0-3.8-0.7-1.6-0.8-2.5-2-0.8-1.3-0.8-3h4.1q0 1.3 0.7 2 0.7 0.6 2.3 0.6 1 0 1.6-0.4 0.6-0.4 0.6-1.2z"/>
+</svg>
