@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
-import { Views } from "../Settings.types";
+import { OptionsTab } from "../Options.types";
 
 export type FormProviderProps = {
-  selectedTab: Views;
+  selectedTab: OptionsTab;
   devicesForm: ReactNode;
   usersForm: ReactNode;
   roomsForm: ReactNode;
