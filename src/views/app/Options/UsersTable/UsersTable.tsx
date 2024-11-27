@@ -7,10 +7,9 @@ import { columns } from "./UsersTable.schema";
 import { UsersTableProps } from "./UsersTable.types";
 import { useGetAllUsers } from "@/api/hooks/user.hooks";
 import { Searchbar } from "@/components/common/Searchbar";
-import { useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 
 export const UsersTable = ({ setSelectedEmail }: UsersTableProps) => {
-  const { formatMessage } = useIntl();
   const { data } = useGetAllUsers();
 
   const { filteredData, searchbarValue, setSearchbarValue } =
@@ -22,8 +21,8 @@ export const UsersTable = ({ setSelectedEmail }: UsersTableProps) => {
 
   return (
     <CardWithHeader
-      title={formatMessage({ id: "view.users" })}
-      description={formatMessage({ id: "view.users-description" })}
+      title={<FormattedMessage id="view.users" />}
+      description={<FormattedMessage id="view.users-description" />}
       extra={
         <Searchbar
           searchbarValue={searchbarValue}

@@ -7,13 +7,12 @@ import { DevicesTableProps } from "./DevicesTable.types";
 import { usePagination } from "@/hooks/usePagination.hook";
 import { useGetAllDevices } from "@/api/hooks/devices.hooks";
 import { Searchbar } from "@/components/common/Searchbar";
-import { useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 
 export const DevicesTable = ({
   setSelectedId,
   isDashboardPart,
 }: DevicesTableProps) => {
-  const { formatMessage } = useIntl();
   const { data } = useGetAllDevices(true);
 
   const { filteredData, searchbarValue, setSearchbarValue } =
@@ -25,8 +24,8 @@ export const DevicesTable = ({
 
   return (
     <CardWithHeader
-      title={formatMessage({ id: "view.devices" })}
-      description={formatMessage({ id: "view.devices-description" })}
+      title={<FormattedMessage id="view.devices" />}
+      description={<FormattedMessage id="view.devices-description" />}
       extra={
         isDashboardPart ? null : (
           <Searchbar

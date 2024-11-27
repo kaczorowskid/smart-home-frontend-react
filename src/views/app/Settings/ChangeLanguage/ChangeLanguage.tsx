@@ -2,11 +2,10 @@ import { Select } from "@/components/common/Select";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLocalization } from "@/contexts/Localization/Localization.hooks";
 import { Locale } from "@/contexts/Localization/Localization.types";
-import { FormattedMessage, useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import { languageItems } from "./ChangeLanguage.consts";
 
 export const ChangeLanguage = () => {
-  const { formatMessage } = useIntl();
   const { locale, setUserLocale } = useLocalization();
 
   return (
@@ -19,7 +18,7 @@ export const ChangeLanguage = () => {
           <Select
             value={locale}
             onValueChange={(val: Locale) => setUserLocale(val)}
-            items={languageItems(formatMessage)}
+            items={languageItems}
           />
         </div>
       </CardContent>

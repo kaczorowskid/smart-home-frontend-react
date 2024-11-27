@@ -1,7 +1,7 @@
 {
   "component.create": "Create",
   "component.update": "Update",
-  "component.delete": "Delete",
+  "component.delete": "Delete {entity}",
   "component.are-you-sure": "Are you sure?",
   "component.empty-device": "Empty device",
   "component.click-to-attach-device": "Click to attach device",

@@ -1,8 +1,8 @@
 import { Select } from "@/components/ui/select";
-import { ComponentProps } from "react";
+import { ComponentProps, ReactNode } from "react";
 
 type Item = {
-  name: string;
+  name: ReactNode;
   value: string;
 };
 

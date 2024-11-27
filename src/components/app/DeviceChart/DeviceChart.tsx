@@ -23,6 +23,7 @@ import { endOfDay, startOfDay } from "date-fns";
 import { useIntl } from "react-intl";
 
 const { from, to } = dateLastDay;
+const { hourAndDate, onlyHour } = dateFormatter;
 
 export const DeviceChart = ({
   chartType,
@@ -40,7 +41,7 @@ export const DeviceChart = ({
     "THERMOMETER"
   );
 
-  const intl = useIntl();
+  const { formatMessage } = useIntl();
 
   const { data } = useGetDeviceDataForGraph({
     deviceId: id || "",
@@ -57,7 +58,7 @@ export const DeviceChart = ({
             triggerComponent={
               <div className="cursor-pointer hover:text-muted-foreground">
                 {data?.name ||
-                  intl.formatMessage({
+                  formatMessage({
                     id: "component.click-to-attach-device",
                   })}
               </div>
@@ -66,7 +67,7 @@ export const DeviceChart = ({
         ) : (
           <div>
             {data?.name ||
-              intl.formatMessage({ id: "component.click-to-attach-device" })}
+              formatMessage({ id: "component.click-to-attach-device" })}
           </div>
         )
       }
@@ -87,7 +88,7 @@ export const DeviceChart = ({
               tickMargin={8}
               interval="preserveStartEnd"
               minTickGap={50}
-              tickFormatter={(value) => value.substring(11, 16)}
+              tickFormatter={(value) => onlyHour(value) || ""}
             />
             <YAxis
               tickLine={false}
@@ -99,7 +100,7 @@ export const DeviceChart = ({
               cursor={false}
               content={
                 <ChartTooltipContent
-                  labelFormatter={(label) => dateFormatter.hourAndDate(label)}
+                  labelFormatter={(label) => hourAndDate(label)}
                   indicator="dot"
                 />
               }

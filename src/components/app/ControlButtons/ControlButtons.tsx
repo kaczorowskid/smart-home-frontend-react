@@ -1,7 +1,7 @@
 import { AlertDialog } from "@/components/common/AlertDialog";
 import { Button } from "@/components/common/Button";
 import { ControlButtonsProps } from "./ControlButtons.types";
-import { FormattedMessage, useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 
 export const ControlButtons = ({
   entity,
@@ -13,8 +13,6 @@ export const ControlButtons = ({
   onUpdate,
   onDelete,
 }: ControlButtonsProps) => {
-  const intl = useIntl();
-
   const createButtons = (
     <Button className="mt-5" onClick={onCreate} isLoading={isCreatePending}>
       <FormattedMessage id="component.create" />
@@ -27,11 +25,11 @@ export const ControlButtons = ({
         <FormattedMessage id="component.update" />
       </Button>
       <AlertDialog
-        title={intl.formatMessage({ id: "component.are-you-sure" })}
+        title={<FormattedMessage id="component.are-you-sure" />}
         onOk={onDelete}
-        description={`${intl.formatMessage({
-          id: "component.delete",
-        })} ${entity}`}
+        description={
+          <FormattedMessage id="component.delete" values={{ entity }} />
+        }
         isLoading={isDeletePending}
         trigger={
           <Button variant="destructive">

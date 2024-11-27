@@ -3,6 +3,8 @@
   "formField.user-name": "Name",
   "formField.user-surname": "Surname",
   "formField.email": "Email",
+  "formField.password": "Password",
+  "formField.confirm-password": "Confirm password",
   "formField.device-id": "Device ID",
   "formField.user-role": "User role",
   "formField.thermometers": "Thermometers",
