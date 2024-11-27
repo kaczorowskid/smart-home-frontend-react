@@ -26,6 +26,11 @@ import {
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 import { queryClient } from "@/utils/queryClient";
+import { FormattedMessage } from "react-intl";
+import {
+  ErrorNotification,
+  SuccessNotification,
+} from "@/components/common/Notification";
 
 export const useGetOneRoom = (
   payload: GetOneRoomPayload
@@ -49,14 +54,29 @@ export const useCreateRoom = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: createRoom,
-    onSuccess: async () => {
-      toast.success("essa");
+    onSuccess: async ({ name }) => {
+      toast.success(
+        <FormattedMessage
+          id="success.add"
+          values={{
+            success: () => <SuccessNotification>{name}</SuccessNotification>,
+          }}
+        />
+      );
+
       await queryClient.invalidateQueries({
         queryKey: [queryKeys.getAllRooms],
       });
     },
-    onError: () => {
-      toast.error("no trudno ");
+    onError: ({ message }) => {
+      toast.error(
+        <FormattedMessage
+          id="error.add"
+          values={{
+            error: () => <ErrorNotification>{message}</ErrorNotification>,
+          }}
+        />
+      );
     },
   });
 
@@ -67,14 +87,29 @@ export const useUpdateRoom = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: updateRoom,
-    onSuccess: async () => {
-      toast.success("essa");
+    onSuccess: async ({ name }) => {
+      toast.success(
+        <FormattedMessage
+          id="success.update"
+          values={{
+            success: () => <SuccessNotification>{name}</SuccessNotification>,
+          }}
+        />
+      );
+
       await queryClient.invalidateQueries({
         queryKey: [queryKeys.getAllRooms],
       });
     },
-    onError: () => {
-      toast.error("no trudno ");
+    onError: ({ message }) => {
+      toast.error(
+        <FormattedMessage
+          id="error.update"
+          values={{
+            error: () => <ErrorNotification>{message}</ErrorNotification>,
+          }}
+        />
+      );
     },
   });
 
@@ -85,13 +120,28 @@ export const useDeleteRoom = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: deleteRoom,
-    onSuccess: async () => {
-      toast.success("room has been deleted");
+    onSuccess: async ({ name }) => {
+      toast.success(
+        <FormattedMessage
+          id="success.add"
+          values={{
+            success: () => <SuccessNotification>{name}</SuccessNotification>,
+          }}
+        />
+      );
+
       await queryClient.invalidateQueries({
         queryKey: [queryKeys.getAllRooms],
       });
     },
-    onError: () => {
-      toast.error("error ");
+    onError: ({ message }) => {
+      toast.error(
+        <FormattedMessage
+          id="error.delete"
+          values={{
+            error: () => <ErrorNotification>{message}</ErrorNotification>,
+          }}
+        />
+      );
     },
   });

@@ -21,6 +21,8 @@ import { routesPath } from "@/routes/routesPath";
 import { toast } from "sonner";
 import { queryKeys } from "@/utils/queryKeys";
 import { useUserStore } from "@/stores/user";
+import { FormattedMessage } from "react-intl";
+import { ErrorNotification } from "@/components/common/Notification";
 
 export const useAuthorizeUser = (): UseQueryResult<
   AuthorizeUserResponse,
@@ -49,8 +51,15 @@ export const useLogin = (): UseMutationResult<
       });
       navigate(routesPath.app.dashboard);
     },
-    onError: () => {
-      toast.error("no trudno ");
+    onError: ({ message }) => {
+      toast.error(
+        <FormattedMessage
+          id="error.login"
+          values={{
+            error: () => <ErrorNotification>{message}</ErrorNotification>,
+          }}
+        />
+      );
     },
   });
 };
@@ -65,8 +74,15 @@ export const useLogoutUser = (): UseMutationResult<
     onSuccess: () => {
       window.location.replace(routesPath.base);
     },
-    onError: () => {
-      toast.error("logout error");
+    onError: ({ message }) => {
+      toast.error(
+        <FormattedMessage
+          id="error.register"
+          values={{
+            error: () => <ErrorNotification>{message}</ErrorNotification>,
+          }}
+        />
+      );
     },
   });
 };
