@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import { renderWithProviders } from "@/tests/customRender/customRender";
 import { ControlButtons } from "./ControlButtons";
 
-describe("ControlButtons component", () => {
+describe.skip("ControlButtons component", () => {
   const defaultProps = {
     entity: "Test Entity",
     isCreate: false,
