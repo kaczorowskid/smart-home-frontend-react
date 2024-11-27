@@ -33,7 +33,7 @@ export const ControlButtons = ({
         isLoading={isDeletePending}
         trigger={
           <Button variant="destructive">
-            <FormattedMessage id="component.delete" />
+            <FormattedMessage id="component.delete" values={{ entity }} />
           </Button>
         }
       />

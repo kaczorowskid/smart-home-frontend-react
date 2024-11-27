@@ -1,0 +1,12 @@
+{
+  "success.add": "Dodano pomyślnie <success></success>",
+  "success.update": "Zaktualiozwano pomyślnie <success></success>",
+  "success.delete": "Usunięto pomyślnie <success></success>",
+  "succes.verify": "Użytkownik <success></success> został zweryfikowany",
+  "error.add": "Błąd podczas dodawania <error></error>",
+  "error.update": "Błąd podczas aktualizowania <error></error>",
+  "error.delete": "Błąd podczas usuwania <error></error>",
+  "error.verify": "Błąd podczas weryfikowania <error></error>",
+  "error.login": "Błąd podczas logowania <error></error>",
+  "error.register": "Błąd podczas rejestrowania <error></error>"
+}

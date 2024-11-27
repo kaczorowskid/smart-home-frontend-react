@@ -1,0 +1,12 @@
+{
+  "success.add": "<success></success> added successfullfy",
+  "success.update": "<success></success> updated successfullfy",
+  "success.delete": "<success></success> deleted successfullfy",
+  "succes.verify": "User <success></success> has been verified",
+  "error.add": "Error when adding <error></error>",
+  "error.update": "Error when updating <error></error>",
+  "error.delete": "Error when deleting <error></error>",
+  "error.verify": "Error when verifying <error></error>",
+  "error.login": "Error when logging <error></error>",
+  "error.register": "Error when registering <error></error>"
+}
