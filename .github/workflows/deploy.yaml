@@ -47,4 +47,4 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/smart-house-frontend:latest
             docker stop smart-house-frontend || true
             docker rm smart-house-frontend || true
-            docker run -d --name smart-house-frontend -p 31679:80 ${{ secrets.DOCKER_USERNAME }}/smart-house-frontend:latest
+            docker run -d --name smart-house-frontend -p 8080:80 ${{ secrets.DOCKER_USERNAME }}/smart-house-frontend:latest
