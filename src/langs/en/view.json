@@ -26,5 +26,9 @@
   "view.back-to-login": "Back to login",
   "view.login": "Login",
   "view.register": "Register",
-  "view.role": "Role"
+  "view.role": "Role",
+  "view.upper-case": "At least one capital letter",
+  "view.lower-case": "At least one lowercase letter",
+  "view.special-character": "At least one special character",
+  "view.number": "At least one number"
 }

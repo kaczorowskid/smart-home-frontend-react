@@ -26,5 +26,9 @@
   "view.back-to-login": "Powrót do logowania",
   "view.login": "Logowanie",
   "view.register": "Rejestracja",
-  "view.role": "Rola"
+  "view.role": "Rola",
+  "view.upper-case": "Przynajmniej jedna duża litera",
+  "view.lower-case": "Przynajmniej jedna mała litera",
+  "view.special-character": "Przynajmniej jeden znak specjalny",
+  "view.number": "Przynajmniej jedna liczba"
 }

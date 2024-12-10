@@ -16,6 +16,7 @@ import {
 import { formFields, formSchema, FormSchema } from "./Register.schema";
 import { defaultValues, initialValues } from "./Register.utils";
 import { FormattedMessage, useIntl } from "react-intl";
+import { PasswordChecker } from "./PasswordChecker";
 
 export const Register = () => {
   const { formatMessage } = useIntl();
@@ -28,6 +29,8 @@ export const Register = () => {
     defaultValues: defaultValues,
     values: initialValues(data),
   });
+
+  const currentPassword = form.watch(formFields.password);
 
   const { mutateAsync: registerAndVerifyUser, isPending } =
     useRegisterAndVerify();
@@ -79,6 +82,9 @@ export const Register = () => {
               name={formFields.password}
               component={(field) => <Input {...field} />}
             />
+            {!!currentPassword && (
+              <PasswordChecker password={currentPassword} />
+            )}
             <FormField
               label={formatMessage({ id: "formField.confirm-password" })}
               control={form.control}
