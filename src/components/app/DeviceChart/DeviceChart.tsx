@@ -91,6 +91,7 @@ export const DeviceChart = ({
               tickFormatter={(value) => onlyHour(value) || ""}
             />
             <YAxis
+              width={30}
               tickLine={false}
               axisLine={false}
               tickMargin={8}
