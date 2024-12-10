@@ -47,7 +47,7 @@ export const Login = () => {
               label={formatMessage({ id: "formField.password" })}
               control={form.control}
               name={formFields.password}
-              component={(field) => <Input {...field} />}
+              component={(field) => <Input type="password" {...field} />}
             />
           </Form>
           <Button

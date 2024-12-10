@@ -80,7 +80,7 @@ export const Register = () => {
               label={formatMessage({ id: "formField.password" })}
               control={form.control}
               name={formFields.password}
-              component={(field) => <Input {...field} />}
+              component={(field) => <Input type="password" {...field} />}
             />
             {!!currentPassword && (
               <PasswordChecker password={currentPassword} />
@@ -89,7 +89,7 @@ export const Register = () => {
               label={formatMessage({ id: "formField.confirm-password" })}
               control={form.control}
               name={formFields.confirmPassword}
-              component={(field) => <Input {...field} />}
+              component={(field) => <Input type="password" {...field} />}
             />
           </Form>
           <div className="flex justify-between my-5">
