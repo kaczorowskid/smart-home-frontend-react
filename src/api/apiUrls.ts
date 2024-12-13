@@ -3,6 +3,7 @@ export const apiUrls = {
     login: "/auth/login",
     register: "/auth/register",
     authorize: "/auth/authorize",
+    refresh: "/auth/refresh",
     logout: "/auth/logout",
   },
   user: {
