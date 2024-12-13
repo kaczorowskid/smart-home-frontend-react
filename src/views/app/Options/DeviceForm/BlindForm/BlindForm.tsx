@@ -49,7 +49,7 @@ export const BlindForm = ({
   };
 
   const onSubmit = async (values: FormSchema) => {
-    if (!!selectedId) {
+    if (selectedId) {
       await updateBlind(mapValuesToUpdateForm(values, selectedId));
     } else {
       await createBlind(mapValuesToCreateForm(values));
@@ -67,6 +67,7 @@ export const BlindForm = ({
     handleCloseForm();
   };
 
+  // PLACEHOLDER VIEW
   return (
     <Form {...form}>
       <FormField

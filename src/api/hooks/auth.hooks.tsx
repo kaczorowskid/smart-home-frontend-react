@@ -23,6 +23,8 @@ import { queryKeys } from "@/utils/queryKeys";
 import { useUserStore } from "@/stores/user";
 import { FormattedMessage } from "react-intl";
 import { ErrorNotification } from "@/components/common/Notification";
+import { CustomAxiosError } from "@/types/common.types";
+import { apiErrorMapper } from "@/utils/errorMapper";
 
 export const useAuthorizeUser = (): UseQueryResult<
   AuthorizeUserResponse,
@@ -51,12 +53,14 @@ export const useLogin = (): UseMutationResult<
       });
       navigate(routesPath.app.dashboard);
     },
-    onError: ({ message }) => {
+    onError: (error: CustomAxiosError) => {
       toast.error(
         <FormattedMessage
           id="error.login"
           values={{
-            error: () => <ErrorNotification>{message}</ErrorNotification>,
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
           }}
         />
       );
@@ -74,12 +78,14 @@ export const useLogoutUser = (): UseMutationResult<
     onSuccess: () => {
       window.location.replace(routesPath.base);
     },
-    onError: ({ message }) => {
+    onError: (error: CustomAxiosError) => {
       toast.error(
         <FormattedMessage
           id="error.register"
           values={{
-            error: () => <ErrorNotification>{message}</ErrorNotification>,
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
           }}
         />
       );
