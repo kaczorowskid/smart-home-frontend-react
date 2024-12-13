@@ -16,6 +16,8 @@ export type LoginUserResponse = User;
 
 export type AuthorizeUserResponse = User;
 
+export type RefreshUserAccessTokenResponse = User;
+
 export type LogoutUserResponse = {
   result: boolean;
 };

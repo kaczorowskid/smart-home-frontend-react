@@ -5,6 +5,7 @@ import {
   LoginUserPayload,
   LoginUserResponse,
   LogoutUserResponse,
+  RefreshUserAccessTokenResponse,
 } from "../types/auth.types";
 
 const request = new Request();
@@ -19,6 +20,10 @@ export const loginUser = async (
 
 export const authorizeUser = async (): Promise<AuthorizeUserResponse> =>
   request.get(apiUrls.auth.authorize);
+
+export const refreshUserAccessToken =
+  async (): Promise<RefreshUserAccessTokenResponse> =>
+    request.get(apiUrls.auth.refresh);
 
 export const logoutUser = async (): Promise<LogoutUserResponse> =>
   request.get(apiUrls.auth.logout);
