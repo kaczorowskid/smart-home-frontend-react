@@ -39,6 +39,8 @@ import {
   ErrorNotification,
   SuccessNotification,
 } from "@/components/common/Notification";
+import { CustomAxiosError } from "@/types/common.types";
+import { apiErrorMapper } from "@/utils/errorMapper";
 
 export const useGetUserByToken = (
   payload: GetUserByTokenPayload
@@ -83,12 +85,14 @@ export const useRegisterAndVerify = (): UseMutationResult<
       );
       navigate(routesPath.auth.login);
     },
-    onError: ({ message }) => {
+    onError: (error: CustomAxiosError) => {
       toast.error(
         <FormattedMessage
           id="error.verify"
           values={{
-            error: () => <ErrorNotification>{message}</ErrorNotification>,
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
           }}
         />
       );
@@ -117,12 +121,14 @@ export const useCreateUserByAdmin = (): UseMutationResult<
         queryKey: [queryKeys.getAllUsers],
       });
     },
-    onError: ({ message }) => {
+    onError: (error: CustomAxiosError) => {
       toast.error(
         <FormattedMessage
           id="error.add"
           values={{
-            error: () => <ErrorNotification>{message}</ErrorNotification>,
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
           }}
         />
       );
@@ -150,12 +156,14 @@ export const useUpdateUser = (): UseMutationResult<
         queryKey: [queryKeys.getAllUsers],
       });
     },
-    onError: ({ message }) => {
+    onError: (error: CustomAxiosError) => {
       toast.error(
         <FormattedMessage
           id="error.add"
           values={{
-            error: () => <ErrorNotification>{message}</ErrorNotification>,
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
           }}
         />
       );
@@ -183,12 +191,14 @@ export const useDeleteUser = (): UseMutationResult<
         queryKey: [queryKeys.getAllUsers],
       });
     },
-    onError: ({ message }) => {
+    onError: (error: CustomAxiosError) => {
       toast.error(
         <FormattedMessage
           id="error.add"
           values={{
-            error: () => <ErrorNotification>{message}</ErrorNotification>,
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
           }}
         />
       );

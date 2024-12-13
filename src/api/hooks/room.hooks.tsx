@@ -31,6 +31,8 @@ import {
   ErrorNotification,
   SuccessNotification,
 } from "@/components/common/Notification";
+import { CustomAxiosError } from "@/types/common.types";
+import { apiErrorMapper } from "@/utils/errorMapper";
 
 export const useGetOneRoom = (
   payload: GetOneRoomPayload
@@ -68,12 +70,14 @@ export const useCreateRoom = (): UseMutationResult<
         queryKey: [queryKeys.getAllRooms],
       });
     },
-    onError: ({ message }) => {
+    onError: (error: CustomAxiosError) => {
       toast.error(
         <FormattedMessage
           id="error.add"
           values={{
-            error: () => <ErrorNotification>{message}</ErrorNotification>,
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
           }}
         />
       );
@@ -101,12 +105,14 @@ export const useUpdateRoom = (): UseMutationResult<
         queryKey: [queryKeys.getAllRooms],
       });
     },
-    onError: ({ message }) => {
+    onError: (error: CustomAxiosError) => {
       toast.error(
         <FormattedMessage
           id="error.update"
           values={{
-            error: () => <ErrorNotification>{message}</ErrorNotification>,
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
           }}
         />
       );
@@ -134,12 +140,14 @@ export const useDeleteRoom = (): UseMutationResult<
         queryKey: [queryKeys.getAllRooms],
       });
     },
-    onError: ({ message }) => {
+    onError: (error: CustomAxiosError) => {
       toast.error(
         <FormattedMessage
           id="error.delete"
           values={{
-            error: () => <ErrorNotification>{message}</ErrorNotification>,
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
           }}
         />
       );

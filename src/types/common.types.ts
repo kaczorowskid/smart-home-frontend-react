@@ -4,6 +4,7 @@ import {
   RoomType as RoomTypeFromApi,
   User,
 } from "@/api/types/common.types";
+import { AxiosError } from "axios";
 
 export type UserRole = User["role"];
 
@@ -19,3 +20,10 @@ export type CommonFormProps = {
   open: boolean;
   onClose: () => void;
 };
+
+export type CustomAxiosError = AxiosError<{
+  message: string;
+  statusCode: number;
+  prismCode: string;
+  timestamp: Date;
+}>;

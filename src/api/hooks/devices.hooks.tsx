@@ -38,6 +38,8 @@ import {
   ErrorNotification,
   SuccessNotification,
 } from "@/components/common/Notification";
+import { CustomAxiosError } from "@/types/common.types";
+import { apiErrorMapper } from "@/utils/errorMapper";
 
 export const useGetOneDevice = (
   payload: GetOneDevicePayload
@@ -100,12 +102,14 @@ export const useCreateDevice = (): UseMutationResult<
         queryKey: [queryKeys.getAllDevices],
       });
     },
-    onError: ({ message }) => {
+    onError: (error: CustomAxiosError) => {
       toast.error(
         <FormattedMessage
           id="error.add"
           values={{
-            error: () => <ErrorNotification>{message}</ErrorNotification>,
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
           }}
         />
       );
@@ -133,12 +137,14 @@ export const useUpdateDevice = (): UseMutationResult<
         queryKey: [queryKeys.getAllDevices],
       });
     },
-    onError: ({ message }) => {
+    onError: (error: CustomAxiosError) => {
       toast.error(
         <FormattedMessage
           id="error.update"
           values={{
-            error: () => <ErrorNotification>{message}</ErrorNotification>,
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
           }}
         />
       );
@@ -166,12 +172,14 @@ export const useDeleteDevice = (): UseMutationResult<
         queryKey: [queryKeys.getAllDevices],
       });
     },
-    onError: ({ message }) => {
+    onError: (error: CustomAxiosError) => {
       toast.error(
         <FormattedMessage
           id="error.delete"
           values={{
-            error: () => <ErrorNotification>{message}</ErrorNotification>,
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
           }}
         />
       );
