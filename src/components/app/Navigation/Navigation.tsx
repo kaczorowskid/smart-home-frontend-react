@@ -4,6 +4,8 @@ import { UserInfo } from "./UserInfo";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
+import { Logout } from "./Logout";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,11 +21,11 @@ export const Navigation = () => {
   return (
     <div
       className={cn(
-        "bg-background z-10 w-full lg:mt-5 lg:fixed lg:w-[300px] lg:h-full",
+        "px-4 bg-background z-10 w-full lg:mt-5 lg:fixed lg:w-[300px] lg:h-full",
         isOpen ? "h-full fixed" : "h-[100px] block"
       )}
     >
-      <div className="w-full flex items-center justify-between py-5 px-5">
+      <div className="w-full flex items-center justify-between py-5">
         <UserInfo />
         {isOpen ? (
           <X className="block lg:hidden" onClick={handleCloseMenu} />
@@ -33,13 +35,15 @@ export const Navigation = () => {
       </div>
       <nav
         className={cn(
-          "px-2 text-lg font-medium lg:px-4 lg:block",
+          "text-lg font-medium  lg:block",
           isOpen ? "block" : "hidden"
         )}
       >
         {menuItems.map((item) => (
           <NavigationItem items={{ ...item }} onClick={handleCloseMenu} />
         ))}
+        <Separator />
+        <Logout />
       </nav>
     </div>
   );

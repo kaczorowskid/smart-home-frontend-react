@@ -8,5 +8,7 @@
   "component.humidity": "Wilgotność: ",
   "component.last": "Ostatni: ",
   "component.battery": "Bateria: ",
-  "component.search-placeholder": "Wyszukaj..."
+  "component.search-placeholder": "Wyszukaj...",
+  "component.logout": "Wyloguj",
+  "component.do-you-want-to-log-out": "Czy chcesz się wylogować?"
 }
