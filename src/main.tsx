@@ -6,6 +6,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./utils/queryClient.ts";
 import { ThemeProvider } from "./contexts/Theme/Theme.provider.tsx";
 import { LocalizationProvider } from "./contexts/Localization/Localization.provider.tsx";
+import { ErrorBoundaryProvider } from "./views/error/ErrorBoundaryProvider/ErrorBoundaryProvider.tsx";
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
@@ -13,7 +14,9 @@ createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <LocalizationProvider>
-          <Routes />
+          <ErrorBoundaryProvider>
+            <Routes />
+          </ErrorBoundaryProvider>
           <Toaster position="bottom-right" />
         </LocalizationProvider>
       </ThemeProvider>
