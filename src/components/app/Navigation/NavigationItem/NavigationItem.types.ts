@@ -1,9 +1,9 @@
-import { IconProps } from "@/components/common/Icon/Icon.types";
+import { LucideIcon } from "lucide-react";
 import { ReactNode } from "react";
 
 type NavigationItem = {
   title: ReactNode;
-  icon: IconProps["name"];
+  icon: LucideIcon;
   path: string;
 };
 

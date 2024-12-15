@@ -1,10 +1,9 @@
-import { Icon } from "@/components/common/Icon";
 import { cn } from "@/lib/utils";
 import { NavigationItemProps } from "./NavigationItem.types";
 import { Link, useLocation } from "react-router-dom";
 
 export const NavigationItem = ({
-  items: { title, icon, path },
+  items: { title, icon: Icon, path },
   onClick,
 }: NavigationItemProps) => {
   const { pathname } = useLocation();
@@ -19,7 +18,7 @@ export const NavigationItem = ({
       )}
       onClick={onClick}
     >
-      <Icon name={icon} />
+      <Icon />
       {title}
     </Link>
   );
