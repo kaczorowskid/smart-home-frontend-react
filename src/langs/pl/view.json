@@ -30,5 +30,8 @@
   "view.upper-case": "Przynajmniej jedna duża litera",
   "view.lower-case": "Przynajmniej jedna mała litera",
   "view.special-character": "Przynajmniej jeden znak specjalny",
-  "view.number": "Przynajmniej jedna liczba"
+  "view.number": "Przynajmniej jedna liczba",
+  "view.something-went-wrong": "Coś poszło nie tak",
+  "view.try-again": "Spróbuj ponownie",
+  "view.go-to-dashboard": "Przejdź do pulpitu"
 }

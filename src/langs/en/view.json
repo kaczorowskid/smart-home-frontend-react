@@ -30,5 +30,8 @@
   "view.upper-case": "At least one capital letter",
   "view.lower-case": "At least one lowercase letter",
   "view.special-character": "At least one special character",
-  "view.number": "At least one number"
+  "view.number": "At least one number",
+  "view.something-went-wrong": "Something went wrong",
+  "view.try-again": "Try again",
+  "view.go-to-dashboard": "Go to dashboard"
 }
