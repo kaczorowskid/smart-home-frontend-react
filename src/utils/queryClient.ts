@@ -1,8 +1,3 @@
-import { QueryCache, QueryClient } from "@tanstack/react-query";
-import { handleApiError } from "./handleApiError";
+import { QueryClient } from "@tanstack/react-query";
 
-export const queryClient = new QueryClient({
-  queryCache: new QueryCache({
-    onError: handleApiError,
-  }),
-});
+export const queryClient = new QueryClient();
