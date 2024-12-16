@@ -5,7 +5,7 @@ import { points } from "./Description.consts";
 export const Description = () => {
   return (
     <section className="flex flex-col items-center justify-between p-5 lg:flex-row lg:min-h-screen lg:p-0">
-      <div className="flex-1 flex flex-col justify-center lg:px-14">
+      <div className="flex-1 flex flex-col justify-center lg:px-24">
         <h1 className="text-4xl font-bold text-center lg:text-left lg:text-6xl">
           Control Your Home Effortlessly. Live Smart.
         </h1>
