@@ -44,13 +44,25 @@ export const DateSelector = ({
             defaultValue={chartType}
             onValueChange={handleSetChartType}
           >
-            <ToggleGroupItem value="temperature" aria-label="Thermometer">
+            <ToggleGroupItem
+              value="temperature"
+              disabled={chartType === "temperature"}
+              aria-label="Thermometer"
+            >
               <Thermometer className="h-4 w-4" />
             </ToggleGroupItem>
-            <ToggleGroupItem value="humidity" aria-label="Droplet">
+            <ToggleGroupItem
+              value="humidity"
+              disabled={chartType === "humidity"}
+              aria-label="Droplet"
+            >
               <Droplet className="h-4 w-4" />
             </ToggleGroupItem>
-            <ToggleGroupItem value="all" aria-label="Cloud">
+            <ToggleGroupItem
+              value="all"
+              disabled={chartType === "all"}
+              aria-label="Cloud"
+            >
               <Cloud className="h-4 w-4" />
             </ToggleGroupItem>
           </ToggleGroup>
