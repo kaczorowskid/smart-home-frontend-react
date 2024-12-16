@@ -14,7 +14,10 @@ export const Adventage = () => (
         Here’s what makes our app stand out:
       </p>
       {features.map(({ icon: Icon, description }) => (
-        <p className="mt-10 text-lg flex items-center gap-5 lg:text-xl">
+        <p
+          key={description}
+          className="mt-10 text-lg flex items-center gap-5 lg:text-xl"
+        >
           <Icon className="text-custom-salmon min-w-[40px] min-h-[40px]" />
           <span>{description}</span>
         </p>
