@@ -1,28 +1,10 @@
-import { useEffect } from "react";
-import { useUserStore } from "@/stores/user";
-import { useAuthorizeUser } from "@/api/hooks/auth.hooks";
 import { RootWrapperProps } from "./RootWrapper.types";
 import { Loader2 } from "lucide-react";
+import { useCheckUserAuth, useRefreshAccessToken } from "./RootWrapper.hooks";
 
 export const RootWrapper = ({ children }: RootWrapperProps) => {
-  const { data, error, isLoading } = useAuthorizeUser();
-  const { setUser } = useUserStore();
-  const { getInitialState } = useUserStore;
-
-  useEffect(() => {
-    if (error) {
-      setUser(getInitialState());
-    }
-  }, [error]);
-
-  useEffect(() => {
-    if (data) {
-      setUser({
-        ...data,
-        isLoggedIn: true,
-      });
-    }
-  }, [data]);
+  const { isLoading } = useCheckUserAuth();
+  useRefreshAccessToken();
 
   if (isLoading) {
     return (
