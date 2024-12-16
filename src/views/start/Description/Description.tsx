@@ -17,7 +17,12 @@ export const Description = () => {
           fingertips.
         </p>
         {points.map(({ index, title, description }) => (
-          <Point index={index} title={title} desription={description} />
+          <Point
+            key={index}
+            index={index}
+            title={title}
+            desription={description}
+          />
         ))}
       </div>
       <div className="h-screen mt-10 lg:mt-0">

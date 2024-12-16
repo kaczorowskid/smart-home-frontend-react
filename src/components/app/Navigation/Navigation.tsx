@@ -40,7 +40,11 @@ export const Navigation = () => {
         )}
       >
         {menuItems.map((item) => (
-          <NavigationItem items={{ ...item }} onClick={handleCloseMenu} />
+          <NavigationItem
+            key={item.path}
+            items={{ ...item }}
+            onClick={handleCloseMenu}
+          />
         ))}
         <Separator />
         <Logout />
