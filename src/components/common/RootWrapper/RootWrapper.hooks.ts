@@ -1,7 +1,6 @@
 import { refreshUserAccessToken } from "@/api/handlers/auth.handlers";
 import { useAuthorizeUser } from "@/api/hooks/auth.hooks";
 import { axiosInstance } from "@/lib/axios";
-import { routesPath } from "@/routes/routesPath";
 import { useUserStore } from "@/stores/user";
 import { useEffect, useLayoutEffect } from "react";
 
@@ -31,22 +30,21 @@ export const useCheckUserAuth = () => {
 };
 
 export const useRefreshAccessToken = () => {
-  const appPaths = Object.values(routesPath.app);
+  let retry = false;
 
   useLayoutEffect(() => {
     const refreshInterceptor = axiosInstance.interceptors.response.use(
       (response) => response,
       async (error) => {
-        const orginalRequest = error.config;
+        const originalRequest = error.config;
 
-        if (
-          error.response.status === 401 &&
-          appPaths.some((path) => window.location.pathname.includes(path))
-        ) {
+        if (error.response.status === 401 && !retry) {
+          retry = true;
+
           try {
             await refreshUserAccessToken();
 
-            return axiosInstance(orginalRequest);
+            return axiosInstance(originalRequest);
           } catch (err) {
             console.log("err ", err);
           }
