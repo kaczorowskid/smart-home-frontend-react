@@ -1,10 +1,12 @@
 export type DeviceType = "THERMOMETER" | "BLIND";
+
 export type RoomType =
   | "BACKYARD"
   | "BATHROOM"
   | "BEDROOM"
   | "KITCHEN"
   | "LIVINGROOM";
+
 export type DeviceStatus = "online" | "offline";
 
 export type ThermometerData = {
@@ -47,7 +49,8 @@ export type User = {
   name: string;
   surname: string;
   email: string;
-  role: "USER" | "ADMIN";
+  role: Role;
+  roleId: string;
   isVerified: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -66,5 +69,17 @@ export type Room = {
     blind: Blind;
     blindId: string;
     roomId: string;
+  }[];
+};
+
+export type Permission = string;
+
+export type Role = {
+  id: string;
+  name: string;
+  permissions: {
+    id?: string;
+    roleId?: string;
+    permission: Permission;
   }[];
 };

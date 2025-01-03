@@ -23,7 +23,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { SelectedItems } from "./SelectedItems";
+import { SelectedItems } from "@/components/app/SelectedItems";
 import { roomsItems } from "./RoomsForm.consts";
 import { Select } from "@/components/common/Select";
 import {
@@ -72,7 +72,7 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
   };
 
   const onSubmit = async (values: FormSchema) => {
-    if (!!selectedId) {
+    if (selectedId) {
       await updateRoom(mapValuesToUpdateForm(values, data?.id));
     } else {
       await createRoom(mapValuesToCreateForm(values));

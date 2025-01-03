@@ -6,7 +6,7 @@ export const SelectedItems = forwardRef<
   HTMLDivElement,
   SelectedItemsProps & React.HTMLProps<HTMLDivElement>
 >(({ label, noSelectedItemsText, items, selectedIds, ...props }, ref) => {
-  const itemsToRender = items?.filter((item) => selectedIds.includes(item.id));
+  const itemsToRender = items?.filter((item) => selectedIds?.includes(item.id));
 
   return (
     <>
@@ -20,7 +20,9 @@ export const SelectedItems = forwardRef<
           <span className="ml-2">{noSelectedItemsText}</span>
         ) : (
           itemsToRender?.map((item) => (
-            <Badge className="mx-1 my-1">{item.label}</Badge>
+            <Badge key={item.id} className="mx-1 my-1">
+              {item.label}
+            </Badge>
           ))
         )}
       </div>

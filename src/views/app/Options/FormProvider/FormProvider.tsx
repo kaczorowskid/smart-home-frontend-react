@@ -5,6 +5,7 @@ export const FormProvider = ({
   devicesForm,
   usersForm,
   roomsForm,
+  rolesForm,
 }: FormProviderProps) => {
   switch (selectedTab) {
     case "devices":
@@ -13,5 +14,7 @@ export const FormProvider = ({
       return usersForm;
     case "rooms":
       return roomsForm;
+    case "roles":
+      return rolesForm;
   }
 };

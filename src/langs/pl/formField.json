@@ -8,5 +8,6 @@
   "formField.device-id": "ID urządzenia",
   "formField.user-role": "Rola użytkownika",
   "formField.thermometers": "Termometry",
-  "formField.blinds": "Rolety"
+  "formField.blinds": "Rolety",
+  "formField.permissions": "Uprawnienia"
 }

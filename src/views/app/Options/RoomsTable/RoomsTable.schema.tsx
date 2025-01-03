@@ -1,5 +1,5 @@
 import { RoomType } from "@/types/common.types";
-import { ColumnType } from "../../../../components/common/Table/Table.types";
+import { ColumnType } from "@/components/common/Table/Table.types";
 import { Room } from "@/api/types/common.types";
 import { Badge } from "@/components/ui/badge";
 import { FormattedMessage } from "react-intl";

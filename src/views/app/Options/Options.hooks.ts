@@ -8,12 +8,14 @@ const isOpenInitalValue: OpenState = {
   devices: false,
   users: false,
   rooms: false,
+  roles: false,
 };
 
 const selectedIdInitialValue: IdState = {
   devices: "",
   users: "",
   rooms: "",
+  roles: "",
 };
 
 export const useFormSelector = (selectedTab: OptionsTab) => {

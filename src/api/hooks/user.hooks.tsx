@@ -159,7 +159,7 @@ export const useUpdateUser = (): UseMutationResult<
     onError: (error: CustomAxiosError) => {
       toast.error(
         <FormattedMessage
-          id="error.add"
+          id="error.update"
           values={{
             error: () => (
               <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
@@ -180,7 +180,7 @@ export const useDeleteUser = (): UseMutationResult<
     onSuccess: async ({ name }) => {
       toast.success(
         <FormattedMessage
-          id="success.add"
+          id="success.delete"
           values={{
             success: () => <SuccessNotification>{name}</SuccessNotification>,
           }}
@@ -194,7 +194,7 @@ export const useDeleteUser = (): UseMutationResult<
     onError: (error: CustomAxiosError) => {
       toast.error(
         <FormattedMessage
-          id="error.add"
+          id="error.delete"
           values={{
             error: () => (
               <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>

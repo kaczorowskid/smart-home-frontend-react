@@ -5,6 +5,8 @@ export type ColumnType<T> = {
   key: string;
   title: ReactNode;
   dataIndex: keyof T;
+  width?: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   render?: (value: any, record: T) => ReactNode;
 };
 

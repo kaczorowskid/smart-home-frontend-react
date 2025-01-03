@@ -1,12 +1,11 @@
 import { DevicesTable } from "@/views/app/Options/DevicesTable";
 import { RoomsTable } from "@/views/app/Options/RoomsTable";
-import { UsersTable } from "@/views/app/Options/UsersTable/UsersTable";
+import { UsersTable } from "@/views/app/Options/UsersTable";
 import { PageWrapper } from "@/components/common/PageWrapper";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { NotebookPen } from "lucide-react";
 import { useState } from "react";
 import { FormProvider } from "./FormProvider";
-import { AdminOnlyWrapper } from "@/components/app/AdminOnlyWrapper";
 import { UserForm } from "./UserForm";
 import { RoomsForm } from "./RoomsForm";
 import { DeviceForm } from "./DeviceForm";
@@ -15,6 +14,8 @@ import { useFormSelector } from "./Options.hooks";
 import { OptionsTab } from "./Options.types";
 import { buttonNameMapper } from "./Options.utils";
 import { FormattedMessage } from "react-intl";
+import { RolesTable } from "./RolesTable";
+import { RolesForm } from "./RolesForm/RolesForm";
 
 export const Options = () => {
   const [selectedTab, setSelectedTab] = useState<OptionsTab>("devices");
@@ -30,9 +31,7 @@ export const Options = () => {
       title={<FormattedMessage id="view.options" />}
       icon={NotebookPen}
       extra={
-        <AdminOnlyWrapper>
-          <Button onClick={handleOpen}>{buttonNameMapper[selectedTab]}</Button>
-        </AdminOnlyWrapper>
+        <Button onClick={handleOpen}>{buttonNameMapper[selectedTab]}</Button>
       }
     >
       <Tabs
@@ -50,6 +49,9 @@ export const Options = () => {
           <TabsTrigger className="w-full" value="users">
             <FormattedMessage id="view.users" />
           </TabsTrigger>
+          <TabsTrigger className="w-full" value="roles">
+            <FormattedMessage id="view.roles" />
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="devices">
           <DevicesTable setSelectedId={handleSelectedId} />
@@ -58,38 +60,42 @@ export const Options = () => {
           <RoomsTable setSelectedId={handleSelectedId} />
         </TabsContent>
         <TabsContent value="users">
-          <UsersTable setSelectedEmail={handleSelectedId} />
+          <UsersTable setSelectedId={handleSelectedId} />
+        </TabsContent>
+        <TabsContent value="roles">
+          <RolesTable setSelectedId={handleSelectedId} />
         </TabsContent>
       </Tabs>
 
       <FormProvider
         selectedTab={selectedTab}
         devicesForm={
-          <AdminOnlyWrapper>
-            <DeviceForm
-              selectedId={selectedId}
-              open={isOpen}
-              onClose={handleClose}
-            />
-          </AdminOnlyWrapper>
+          <DeviceForm
+            selectedId={selectedId}
+            open={isOpen}
+            onClose={handleClose}
+          />
         }
         usersForm={
-          <AdminOnlyWrapper>
-            <UserForm
-              selectedId={selectedId}
-              open={isOpen}
-              onClose={handleClose}
-            />
-          </AdminOnlyWrapper>
+          <UserForm
+            selectedId={selectedId}
+            open={isOpen}
+            onClose={handleClose}
+          />
         }
         roomsForm={
-          <AdminOnlyWrapper>
-            <RoomsForm
-              selectedId={selectedId}
-              open={isOpen}
-              onClose={handleClose}
-            />
-          </AdminOnlyWrapper>
+          <RoomsForm
+            selectedId={selectedId}
+            open={isOpen}
+            onClose={handleClose}
+          />
+        }
+        rolesForm={
+          <RolesForm
+            selectedId={selectedId}
+            open={isOpen}
+            onClose={handleClose}
+          />
         }
       />
     </PageWrapper>

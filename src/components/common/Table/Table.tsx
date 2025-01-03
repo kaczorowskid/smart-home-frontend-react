@@ -31,7 +31,11 @@ export const Table = <T,>({
           {data.map((record) => (
             <TableRow key={rowKey(record)} onClick={() => onRowClick?.(record)}>
               {columns.map((col) => (
-                <TableCell className="text-center" key={col.key}>
+                <TableCell
+                  width={col.width}
+                  className="text-center"
+                  key={col.key}
+                >
                   {col.render?.(record[col.dataIndex], record) ||
                     String(record[col.dataIndex])}
                 </TableCell>

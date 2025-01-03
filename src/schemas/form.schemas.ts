@@ -6,7 +6,7 @@ export const schema = {
   email: z.string().email(),
   password: z.string().min(3).max(50),
   deviceTypes: z.enum(["THERMOMETER", "BLIND"]),
-  userRoles: z.enum(["USER", "ADMIN"]),
+  roleId: z.string().uuid(),
   roomType: z.enum([
     "BACKYARD",
     "BATHROOM",
@@ -14,4 +14,5 @@ export const schema = {
     "KITCHEN",
     "LIVINGROOM",
   ]),
+  permissions: z.array(z.string()),
 };

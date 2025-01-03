@@ -6,7 +6,7 @@ export type GetOneUserPayload = Pick<User, "id">;
 
 export type GetOneUserResponse = User;
 
-export type CreateUserByAdminPayload = Pick<User, "email" | "role">;
+export type CreateUserByAdminPayload = Pick<User, "email" | "roleId">;
 
 export type CreateUserByAdminResponse = User;
 
@@ -29,6 +29,9 @@ export type DeleteUserPayload = Pick<User, "id">;
 
 export type DeleteUserResponse = User;
 
-export type UpdateUserPayload = Pick<User, "id" | "name" | "surname" | "role">;
+export type UpdateUserPayload = Pick<
+  User,
+  "id" | "name" | "surname" | "roleId"
+>;
 
 export type UpdateUserResponse = User;
