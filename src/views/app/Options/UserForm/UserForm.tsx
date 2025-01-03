@@ -10,10 +10,10 @@ import { formFields, formSchema, FormSchema } from "./UserForm.schema";
 import {
   defaultValues,
   initialValues,
+  mapRolesForSelect,
   mapValuesToCreateForm,
   mapValuesToUpdateForm,
 } from "./UserForm.utils";
-import { roleItems } from "./UserForm.consts";
 import { FormTitle } from "@/components/app/FormTitle";
 import { User } from "lucide-react";
 import { ControlButtons } from "@/components/app/ControlButtons";
@@ -24,10 +24,12 @@ import {
   useUpdateUser,
 } from "@/api/hooks/user.hooks";
 import { useIntl } from "react-intl";
+import { useGetAllRoles } from "@/api/hooks/role.hooks";
 
 export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
   const { formatMessage } = useIntl();
   const { data } = useGetOneUser({ id: selectedId || "" });
+  const { data: allRoles } = useGetAllRoles();
 
   const { mutateAsync: createUserByAdmin, isPending: isCreatePending } =
     useCreateUserByAdmin();
@@ -53,7 +55,7 @@ export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
   };
 
   const onSubmit = async (values: FormSchema) => {
-    if (!!selectedId) {
+    if (selectedId) {
       await updateUser(mapValuesToUpdateForm(values, data?.id));
     } else {
       await createUserByAdmin(mapValuesToCreateForm(values));
@@ -88,9 +90,13 @@ export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
         <FormField
           label={formatMessage({ id: "formField.user-role" })}
           control={form.control}
-          name={formFields.role}
+          name={formFields.roleId}
           component={({ onChange, ...field }) => (
-            <Select items={roleItems} onValueChange={onChange} {...field} />
+            <Select
+              items={mapRolesForSelect(allRoles) || []}
+              onValueChange={onChange}
+              {...field}
+            />
           )}
         />
         {!!selectedId && (

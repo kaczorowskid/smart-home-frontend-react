@@ -1,7 +1,7 @@
-import { ColumnType } from "../../../../components/common/Table/Table.types";
+import { ColumnType } from "@/components/common/Table/Table.types";
 import { User } from "@/api/types/common.types";
 import { FormattedMessage } from "react-intl";
-import { userRoleMapper, userVerifyMapper } from "./UsersTable.utils";
+import { userVerifyMapper } from "./UsersTable.utils";
 import { Badge } from "@/components/ui/badge";
 
 export const columns: ColumnType<User>[] = [
@@ -25,14 +25,14 @@ export const columns: ColumnType<User>[] = [
     dataIndex: "role",
     key: "role",
     render: (role: User["role"]) => (
-      <Badge variant="outline">{userRoleMapper[role]}</Badge>
+      <Badge variant="outline">{role.name}</Badge>
     ),
   },
   {
     title: <FormattedMessage id="table.verify" />,
     dataIndex: "isVerified",
     key: "isVerified",
-    render: (isVerified: boolean) => (
+    render: (isVerified: User["isVerified"]) => (
       <Badge variant="outline">{userVerifyMapper(isVerified)}</Badge>
     ),
   },

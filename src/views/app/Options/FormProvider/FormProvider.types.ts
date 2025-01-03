@@ -6,4 +6,5 @@ export type FormProviderProps = {
   devicesForm: ReactNode;
   usersForm: ReactNode;
   roomsForm: ReactNode;
+  rolesForm: ReactNode;
 };

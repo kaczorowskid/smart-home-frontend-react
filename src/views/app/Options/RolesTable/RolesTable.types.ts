@@ -1,3 +1,3 @@
-export type UsersTableProps = {
+export type RolesTableProps = {
   setSelectedId: (id: string) => void;
 };

@@ -10,5 +10,6 @@
   "table.user-surname": "Nazwisko",
   "table.email": "Email",
   "table.role": "Rola",
-  "table.verify": "Weryfikacja"
+  "table.verify": "Weryfikacja",
+  "table.permissions": "Uprawnienia"
 }

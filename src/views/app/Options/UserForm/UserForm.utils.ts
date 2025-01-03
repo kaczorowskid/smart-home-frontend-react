@@ -3,10 +3,10 @@ import {
   UpdateUserPayload,
 } from "@/api/types/user.types";
 import { formFields, FormSchema } from "./UserForm.schema";
-import { User } from "@/api/types/common.types";
+import { Role, User } from "@/api/types/common.types";
 
 export const defaultValues: FormSchema = {
-  [formFields.role]: "USER",
+  [formFields.roleId]: "",
   [formFields.name]: undefined,
   [formFields.surname]: undefined,
   [formFields.email]: "",
@@ -22,7 +22,7 @@ export const initialValues = (
   return {
     name: data.name,
     surname: data.surname,
-    role: data.role,
+    roleId: data.roleId,
     email: data.email,
   };
 };
@@ -32,7 +32,7 @@ export const mapValuesToCreateForm = (
 ): CreateUserByAdminPayload => ({
   ...values,
   email: values["email"],
-  role: values["role"],
+  roleId: values["roleId"],
 });
 
 export const mapValuesToUpdateForm = (
@@ -43,5 +43,12 @@ export const mapValuesToUpdateForm = (
   id: id || "",
   name: values["name"] || "",
   surname: values["surname"] || "",
-  role: values["role"],
+  roleId: values["roleId"],
 });
+
+export const mapRolesForSelect = (role: Role[] | undefined) => {
+  return role?.map(({ id, name }) => ({
+    name,
+    value: id,
+  }));
+};

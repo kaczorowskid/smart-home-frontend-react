@@ -23,4 +23,9 @@ export const apiUrls = {
     base: "/room",
     getRoom: (id: string) => `/room/${id}`,
   },
+  role: {
+    base: "/role",
+    getRole: (id: string) => `/role/${id}`,
+    permissions: "/role/permission",
+  },
 };

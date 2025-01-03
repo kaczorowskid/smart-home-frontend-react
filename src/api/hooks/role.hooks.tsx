@@ -5,57 +5,66 @@ import {
   UseQueryResult,
 } from "@tanstack/react-query";
 import {
-  CreateRoomPayload,
-  CreateRoomResponse,
-  DeleteRoomPayload,
-  DeleteRoomResponse,
-  GetAllRoomsResponse,
-  GetOneRoomPayload,
-  GetOneRoomResponse,
-  UpdateRoomPayload,
-  UpdateRoomResponse,
-} from "../types/room.types";
+  CreateRolePayload,
+  CreateRoleResponse,
+  DeleteRolePayload,
+  DeleteRoleResponse,
+  GetAllPermissionsResponse,
+  GetAllRolesResponse,
+  GetOneRolePayload,
+  GetOneRoleResponse,
+  UpdateRolePayload,
+  UpdateRoleResponse,
+} from "../types/role.types";
 import { queryKeys } from "@/utils/queryKeys";
 import {
-  createRoom,
-  deleteRoom,
-  getAllRooms,
-  getOneRoom,
-  updateRoom,
-} from "../handlers/room.handlers";
+  createRole,
+  deleteRole,
+  getAllPermissions,
+  getAllRoles,
+  getOneRole,
+  updateRole,
+} from "../handlers/role.handlers";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
-import { queryClient } from "@/utils/queryClient";
 import { FormattedMessage } from "react-intl";
 import {
   ErrorNotification,
   SuccessNotification,
 } from "@/components/common/Notification";
+import { queryClient } from "@/utils/queryClient";
 import { CustomAxiosError } from "@/types/common.types";
 import { apiErrorMapper } from "@/utils/errorMapper";
 
-export const useGetOneRoom = (
-  payload: GetOneRoomPayload
-): UseQueryResult<GetOneRoomResponse> =>
+export const useGetAllRoles = (): UseQueryResult<GetAllRolesResponse> =>
   useQuery({
-    queryKey: [queryKeys.getAllRooms, Object.values(payload)],
-    queryFn: () => getOneRoom({ id: payload.id }),
+    queryKey: [queryKeys.getAllRoles],
+    queryFn: getAllRoles,
+  });
+
+export const useGetAllPermissions =
+  (): UseQueryResult<GetAllPermissionsResponse> =>
+    useQuery({
+      queryKey: [queryKeys.getAllPermissions],
+      queryFn: getAllPermissions,
+    });
+
+export const useGetOneRole = (
+  payload: GetOneRolePayload
+): UseQueryResult<GetOneRoleResponse> =>
+  useQuery({
+    queryKey: [queryKeys.getOneRole],
+    queryFn: () => getOneRole({ id: payload.id }),
     enabled: !!payload.id,
   });
 
-export const useGetAllRooms = (): UseQueryResult<GetAllRoomsResponse> =>
-  useQuery({
-    queryKey: [queryKeys.getAllRooms],
-    queryFn: getAllRooms,
-  });
-
-export const useCreateRoom = (): UseMutationResult<
-  CreateRoomResponse,
+export const useCreateRole = (): UseMutationResult<
+  CreateRoleResponse,
   AxiosError,
-  CreateRoomPayload
+  CreateRolePayload
 > =>
   useMutation({
-    mutationFn: createRoom,
+    mutationFn: createRole,
     onSuccess: async ({ name }) => {
       toast.success(
         <FormattedMessage
@@ -67,7 +76,7 @@ export const useCreateRoom = (): UseMutationResult<
       );
 
       await queryClient.invalidateQueries({
-        queryKey: [queryKeys.getAllRooms],
+        queryKey: [queryKeys.getAllRoles],
       });
     },
     onError: (error: CustomAxiosError) => {
@@ -84,13 +93,13 @@ export const useCreateRoom = (): UseMutationResult<
     },
   });
 
-export const useUpdateRoom = (): UseMutationResult<
-  UpdateRoomResponse,
+export const useUpdateRole = (): UseMutationResult<
+  UpdateRoleResponse,
   AxiosError,
-  UpdateRoomPayload
+  UpdateRolePayload
 > =>
   useMutation({
-    mutationFn: updateRoom,
+    mutationFn: updateRole,
     onSuccess: async ({ name }) => {
       toast.success(
         <FormattedMessage
@@ -102,7 +111,7 @@ export const useUpdateRoom = (): UseMutationResult<
       );
 
       await queryClient.invalidateQueries({
-        queryKey: [queryKeys.getAllRooms],
+        queryKey: [queryKeys.getAllRoles],
       });
     },
     onError: (error: CustomAxiosError) => {
@@ -119,13 +128,13 @@ export const useUpdateRoom = (): UseMutationResult<
     },
   });
 
-export const useDeleteRoom = (): UseMutationResult<
-  DeleteRoomResponse,
+export const useDeleteRole = (): UseMutationResult<
+  DeleteRoleResponse,
   AxiosError,
-  DeleteRoomPayload
+  DeleteRolePayload
 > =>
   useMutation({
-    mutationFn: deleteRoom,
+    mutationFn: deleteRole,
     onSuccess: async ({ name }) => {
       toast.success(
         <FormattedMessage
@@ -137,7 +146,7 @@ export const useDeleteRoom = (): UseMutationResult<
       );
 
       await queryClient.invalidateQueries({
-        queryKey: [queryKeys.getAllRooms],
+        queryKey: [queryKeys.getAllRoles],
       });
     },
     onError: (error: CustomAxiosError) => {
