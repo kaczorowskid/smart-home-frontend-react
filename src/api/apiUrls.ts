@@ -17,7 +17,7 @@ export const apiUrls = {
     blinds: "/devices/blinds",
     thermometers: "/devices/thermometers",
     getDevice: (id: string) => `/devices/${id}`,
-    getDeviceDataForGraph: (deviceId: string) => `/devices/${deviceId}/data`,
+    getDeviceDataForGraph: (deviceId: string) => `/devices/data/${deviceId}`,
   },
   room: {
     base: "/room",

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import { Logout } from "./Logout";
+import { PermissionsWrapper } from "../PermissionsWrapper";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,11 +41,9 @@ export const Navigation = () => {
         )}
       >
         {menuItems.map((item) => (
-          <NavigationItem
-            key={item.path}
-            items={{ ...item }}
-            onClick={handleCloseMenu}
-          />
+          <PermissionsWrapper key={item.path} permissions={item.permissions}>
+            <NavigationItem items={{ ...item }} onClick={handleCloseMenu} />
+          </PermissionsWrapper>
         ))}
         <Separator />
         <Logout />

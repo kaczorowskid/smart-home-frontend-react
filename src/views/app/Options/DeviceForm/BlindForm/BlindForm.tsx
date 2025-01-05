@@ -17,6 +17,8 @@ import {
   useUpdateDevice,
 } from "@/api/hooks/devices.hooks";
 import { useIntl } from "react-intl";
+import { usePermissions } from "@/hooks/usePermissions.hook";
+import { permissionsList } from "@/api/types/common.types";
 
 export const BlindForm = ({
   selectedId,
@@ -32,6 +34,19 @@ export const BlindForm = ({
     useUpdateDevice();
   const { mutateAsync: deleteBlind, isPending: isDeletePending } =
     useDeleteDevice();
+
+  const hasCreateDevicePermission = usePermissions([
+    permissionsList.IS_ADMIN,
+    permissionsList.OPTIONS_ADD_DEVICE,
+  ]);
+  const hasUpdateDevicePermission = usePermissions([
+    permissionsList.IS_ADMIN,
+    permissionsList.OPTIONS_UPDATE_DEVICE,
+  ]);
+  const hasDeleteDevicePermission = usePermissions([
+    permissionsList.IS_ADMIN,
+    permissionsList.OPTIONS_DELETE_DEVICE,
+  ]);
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -92,6 +107,9 @@ export const BlindForm = ({
         isCreatePending={isCreatePending}
         isUpdatePending={isUpdatePending}
         isDeletePending={isDeletePending}
+        isCreateDisabled={!hasCreateDevicePermission}
+        isUpdateDisabled={!hasUpdateDevicePermission}
+        isDeleteDisabled={!hasDeleteDevicePermission}
       />
     </Form>
   );
