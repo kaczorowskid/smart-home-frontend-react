@@ -25,6 +25,8 @@ import {
 } from "@/api/hooks/user.hooks";
 import { useIntl } from "react-intl";
 import { useGetAllRoles } from "@/api/hooks/role.hooks";
+import { usePermissions } from "@/hooks/usePermissions.hook";
+import { permissionsList } from "@/api/types/common.types";
 
 export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
   const { formatMessage } = useIntl();
@@ -37,6 +39,20 @@ export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
     useUpdateUser();
   const { mutateAsync: deleteUser, isPending: isDeletePending } =
     useDeleteUser();
+
+  const hasCreateUserPermission = usePermissions([
+    permissionsList.IS_ADMIN,
+    permissionsList.OPTIONS_ADD_USER,
+  ]);
+  const hasUpdateUserPermission = usePermissions([
+    permissionsList.IS_ADMIN,
+    permissionsList.OPTIONS_UPDATE_USER,
+  ]);
+  const hasDeleteUserPermission = usePermissions([
+    permissionsList.IS_ADMIN,
+    permissionsList.OPTIONS_DELETE_USER,
+  ]);
+  const canChangeRole = usePermissions([permissionsList.IS_ADMIN]);
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -93,6 +109,7 @@ export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
           name={formFields.roleId}
           component={({ onChange, ...field }) => (
             <Select
+              disabled={!canChangeRole}
               items={mapRolesForSelect(allRoles) || []}
               onValueChange={onChange}
               {...field}
@@ -130,6 +147,9 @@ export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
           isCreatePending={isCreatePending}
           isUpdatePending={isUpdatePending}
           isDeletePending={isDeletePending}
+          isCreateDisabled={!hasCreateUserPermission}
+          isUpdateDisabled={!hasUpdateUserPermission}
+          isDeleteDisabled={!hasDeleteUserPermission}
         />
       </Form>
     </Dialog>

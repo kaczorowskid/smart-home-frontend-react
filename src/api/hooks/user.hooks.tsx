@@ -107,12 +107,12 @@ export const useCreateUserByAdmin = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: createUserByAdmin,
-    onSuccess: async ({ name }) => {
+    onSuccess: async ({ email }) => {
       toast.success(
         <FormattedMessage
           id="success.add"
           values={{
-            success: () => <SuccessNotification>{name}</SuccessNotification>,
+            success: () => <SuccessNotification>{email}</SuccessNotification>,
           }}
         />
       );

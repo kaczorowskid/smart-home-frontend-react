@@ -2,11 +2,8 @@ import {
   DeviceType as DeviceTypeFromApi,
   DeviceStatus as DeviceStatusFromApi,
   RoomType as RoomTypeFromApi,
-  User,
 } from "@/api/types/common.types";
 import { AxiosError } from "axios";
-
-export type UserRole = User["role"];
 
 export type DeviceType = DeviceTypeFromApi;
 

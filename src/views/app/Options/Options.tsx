@@ -15,7 +15,9 @@ import { OptionsTab } from "./Options.types";
 import { buttonNameMapper } from "./Options.utils";
 import { FormattedMessage } from "react-intl";
 import { RolesTable } from "./RolesTable";
-import { RolesForm } from "./RolesForm/RolesForm";
+import { RolesForm } from "./RolesForm";
+import { permissionsList } from "@/api/types/common.types";
+import { PermissionsWrapper } from "@/components/app/PermissionsWrapper";
 
 export const Options = () => {
   const [selectedTab, setSelectedTab] = useState<OptionsTab>("devices");
@@ -40,18 +42,46 @@ export const Options = () => {
         onValueChange={handleSelectTab}
       >
         <TabsList className="w-full">
-          <TabsTrigger className="w-full" value="devices">
-            <FormattedMessage id="view.devices" />
-          </TabsTrigger>
-          <TabsTrigger className="w-full" value="rooms">
-            <FormattedMessage id="view.rooms" />
-          </TabsTrigger>
-          <TabsTrigger className="w-full" value="users">
-            <FormattedMessage id="view.users" />
-          </TabsTrigger>
-          <TabsTrigger className="w-full" value="roles">
-            <FormattedMessage id="view.roles" />
-          </TabsTrigger>
+          <PermissionsWrapper
+            permissions={[
+              permissionsList.IS_ADMIN,
+              permissionsList.OPTIONS_VIEW_DEVICES,
+            ]}
+          >
+            <TabsTrigger className="w-full" value="devices">
+              <FormattedMessage id="view.devices" />
+            </TabsTrigger>
+          </PermissionsWrapper>
+          <PermissionsWrapper
+            permissions={[
+              permissionsList.IS_ADMIN,
+              permissionsList.OPTIONS_VIEW_ROOMS,
+            ]}
+          >
+            <TabsTrigger className="w-full" value="rooms">
+              <FormattedMessage id="view.rooms" />
+            </TabsTrigger>
+          </PermissionsWrapper>
+          <PermissionsWrapper
+            permissions={[
+              permissionsList.IS_ADMIN,
+              permissionsList.OPTIONS_VIEW_USERS,
+            ]}
+          >
+            <TabsTrigger className="w-full" value="users">
+              <FormattedMessage id="view.users" />
+            </TabsTrigger>
+          </PermissionsWrapper>
+          <PermissionsWrapper
+            permissions={[
+              permissionsList.IS_ADMIN,
+              permissionsList.OPTIONS_VIEW_ROLES,
+            ]}
+          >
+            <TabsTrigger className="w-full" value="roles">
+              <FormattedMessage id="view.roles" />
+            </TabsTrigger>
+          </PermissionsWrapper>
         </TabsList>
         <TabsContent value="devices">
           <DevicesTable setSelectedId={handleSelectedId} />

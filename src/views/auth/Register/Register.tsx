@@ -96,7 +96,7 @@ export const Register = () => {
             <span>
               <FormattedMessage id="view.role" />
             </span>
-            <Badge>{data?.role}</Badge>
+            <Badge>{data?.role.name}</Badge>
           </div>
           <div className="flex my-5 items-center">
             <Separator className="shrink" />

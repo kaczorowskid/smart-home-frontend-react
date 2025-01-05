@@ -31,6 +31,9 @@ import {
 } from "@/components/ui/popover";
 import { SelectedItems } from "@/components/app/SelectedItems";
 import { Checkbox } from "@/components/ui/checkbox";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { usePermissions } from "@/hooks/usePermissions.hook";
+import { permissionsList } from "@/api/types/common.types";
 
 export const RolesForm = ({ selectedId, open, onClose }: RolesFormProps) => {
   const { formatMessage } = useIntl();
@@ -46,6 +49,19 @@ export const RolesForm = ({ selectedId, open, onClose }: RolesFormProps) => {
     useUpdateRole();
   const { mutateAsync: deleteRole, isPending: isDeletePending } =
     useDeleteRole();
+
+  const hasCreateRolePermission = usePermissions([
+    permissionsList.IS_ADMIN,
+    permissionsList.OPTIONS_ADD_ROLE,
+  ]);
+  const hasUpdateRolePermission = usePermissions([
+    permissionsList.IS_ADMIN,
+    permissionsList.OPTIONS_UPDATE_ROLE,
+  ]);
+  const hasDeleteRolePermission = usePermissions([
+    permissionsList.IS_ADMIN,
+    permissionsList.OPTIONS_DELETE_ROLE,
+  ]);
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -114,32 +130,34 @@ export const RolesForm = ({ selectedId, open, onClose }: RolesFormProps) => {
             />
           </PopoverTrigger>
           <PopoverContent>
-            {permissionsCheckboxData?.map((permission) => (
-              <FormField
-                reverseLabel
-                label={permission.label}
-                key={permission.id}
-                formItemKey={permission.id}
-                control={form.control}
-                name={formFields.permissions}
-                component={({ value, onChange, ...field }) => (
-                  <Checkbox
-                    className="mr-4"
-                    checked={value?.includes(permission.id)}
-                    onCheckedChange={(checked) => {
-                      return checked
-                        ? onChange([...value, permission.id])
-                        : onChange(
-                            (value as string[]).filter(
-                              (value) => value !== permission.id
-                            )
-                          );
-                    }}
-                    {...field}
-                  />
-                )}
-              />
-            ))}
+            <ScrollArea className="h-[200px]">
+              {permissionsCheckboxData?.map((permission) => (
+                <FormField
+                  reverseLabel
+                  label={permission.label}
+                  key={permission.id}
+                  formItemKey={permission.id}
+                  control={form.control}
+                  name={formFields.permissions}
+                  component={({ value, onChange, ...field }) => (
+                    <Checkbox
+                      className="mr-4"
+                      checked={value?.includes(permission.id)}
+                      onCheckedChange={(checked) => {
+                        return checked
+                          ? onChange([...value, permission.id])
+                          : onChange(
+                              (value as string[]).filter(
+                                (value) => value !== permission.id
+                              )
+                            );
+                      }}
+                      {...field}
+                    />
+                  )}
+                />
+              ))}
+            </ScrollArea>
           </PopoverContent>
         </Popover>
         <ControlButtons
@@ -151,6 +169,9 @@ export const RolesForm = ({ selectedId, open, onClose }: RolesFormProps) => {
           isCreatePending={isCreatePending}
           isUpdatePending={isUpdatePending}
           isDeletePending={isDeletePending}
+          isCreateDisabled={!hasCreateRolePermission}
+          isUpdateDisabled={!hasUpdateRolePermission}
+          isDeleteDisabled={!hasDeleteRolePermission}
         />
       </Form>
     </Dialog>

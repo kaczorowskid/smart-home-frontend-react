@@ -37,6 +37,8 @@ import {
   useGetAllThermometers,
 } from "@/api/hooks/devices.hooks";
 import { useIntl } from "react-intl";
+import { usePermissions } from "@/hooks/usePermissions.hook";
+import { permissionsList } from "@/api/types/common.types";
 
 export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
   const { formatMessage } = useIntl();
@@ -54,6 +56,19 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
     useUpdateRoom();
   const { mutateAsync: deleteRoom, isPending: isDeletePending } =
     useDeleteRoom();
+
+  const hasCreateRoomPermission = usePermissions([
+    permissionsList.IS_ADMIN,
+    permissionsList.OPTIONS_ADD_ROOM,
+  ]);
+  const hasUpdateRoomPermission = usePermissions([
+    permissionsList.IS_ADMIN,
+    permissionsList.OPTIONS_UPDATE_ROOM,
+  ]);
+  const hasDeleteRoomPermission = usePermissions([
+    permissionsList.IS_ADMIN,
+    permissionsList.OPTIONS_DELETE_ROOM,
+  ]);
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -211,6 +226,9 @@ export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
           isCreatePending={isCreatePending}
           isUpdatePending={isUpdatePending}
           isDeletePending={isDeletePending}
+          isCreateDisabled={!hasCreateRoomPermission}
+          isUpdateDisabled={!hasUpdateRoomPermission}
+          isDeleteDisabled={!hasDeleteRoomPermission}
         />
       </Form>
     </Dialog>

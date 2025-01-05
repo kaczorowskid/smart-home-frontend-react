@@ -7,4 +7,7 @@ export type ControlButtonsProps = {
   isCreatePending: boolean;
   isUpdatePending: boolean;
   isDeletePending: boolean;
+  isCreateDisabled: boolean;
+  isUpdateDisabled: boolean;
+  isDeleteDisabled: boolean;
 };

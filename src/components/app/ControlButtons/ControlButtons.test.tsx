@@ -14,6 +14,9 @@ describe.skip("ControlButtons component", () => {
     isCreatePending: false,
     isUpdatePending: false,
     isDeletePending: false,
+    isCreateDisabled: false,
+    isUpdateDisabled: false,
+    isDeleteDisabled: false,
   };
 
   it("renders 'Create' button when isCreate is true", () => {

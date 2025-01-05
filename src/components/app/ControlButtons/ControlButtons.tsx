@@ -9,19 +9,30 @@ export const ControlButtons = ({
   isCreatePending,
   isUpdatePending,
   isDeletePending,
+  isCreateDisabled,
+  isUpdateDisabled,
+  isDeleteDisabled,
   onCreate,
   onUpdate,
   onDelete,
 }: ControlButtonsProps) => {
   const createButtons = (
-    <Button className="mt-5" onClick={onCreate} isLoading={isCreatePending}>
+    <Button
+      onClick={onCreate}
+      isLoading={isCreatePending}
+      disabled={isCreateDisabled}
+    >
       <FormattedMessage id="component.create" />
     </Button>
   );
 
   const updateButtons = (
     <>
-      <Button onClick={onUpdate} isLoading={isUpdatePending}>
+      <Button
+        onClick={onUpdate}
+        isLoading={isUpdatePending}
+        disabled={isUpdateDisabled}
+      >
         <FormattedMessage id="component.update" />
       </Button>
       <AlertDialog
@@ -32,7 +43,7 @@ export const ControlButtons = ({
         }
         isLoading={isDeletePending}
         trigger={
-          <Button variant="destructive">
+          <Button variant="destructive" disabled={isDeleteDisabled}>
             <FormattedMessage id="component.delete" values={{ entity }} />
           </Button>
         }
