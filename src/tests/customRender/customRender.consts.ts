@@ -8,7 +8,17 @@ export const defaultStore: UserStore = {
   email: "test@test.com",
   name: "Test",
   surname: "User",
-  role: "ADMIN",
+  role: {
+    id: "07237298-d4a3-48ff-81d0-089ef54a1831",
+    name: "ADMIN",
+    permissions: [
+      {
+        id: "17237298-d4a3-48ff-81d0-089ef54a1831",
+        roleId: "07237298-d4a3-48ff-81d0-089ef54a1831",
+        permission: "IS_ADMIN",
+      },
+    ],
+  },
   isVerified: true,
   isLoggedIn: true,
 };

@@ -6,7 +6,11 @@ export const useUserStore = create<UserStoreProps>((set) => ({
   email: "",
   name: "",
   surname: "",
-  role: "USER",
+  role: {
+    id: "",
+    name: "",
+    permissions: [],
+  },
   isVerified: false,
   isLoggedIn: false,
   setUser: (userData) => {
