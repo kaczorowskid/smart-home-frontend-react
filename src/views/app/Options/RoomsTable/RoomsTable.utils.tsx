@@ -1,4 +1,4 @@
-import { RoomType } from "@/types/common.types";
+import { RoomType } from "@/api/types/common.types";
 import { FormattedMessage } from "react-intl";
 
 export const roomTypeMapper: Record<RoomType, JSX.Element> = {

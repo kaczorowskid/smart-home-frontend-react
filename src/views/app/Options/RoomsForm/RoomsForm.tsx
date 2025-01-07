@@ -7,7 +7,6 @@ import { Dialog } from "@/components/common/Dialog";
 import { FormTitle } from "@/components/app/FormTitle";
 import { House } from "lucide-react";
 import { ControlButtons } from "@/components/app/ControlButtons";
-import { UserFormProps } from "./RoomsForm.types";
 import { formFields, formSchema, FormSchema } from "./RoomsForm.schema";
 import {
   defaultValues,
@@ -39,8 +38,9 @@ import {
 import { useIntl } from "react-intl";
 import { usePermissions } from "@/hooks/usePermissions.hook";
 import { permissionsList } from "@/api/types/common.types";
+import { CommonFormProps } from "@/types/common.types";
 
-export const RoomsForm = ({ selectedId, open, onClose }: UserFormProps) => {
+export const RoomsForm = ({ selectedId, open, onClose }: CommonFormProps) => {
   const { formatMessage } = useIntl();
   const { data } = useGetOneRoom({ id: selectedId || "" });
   const { data: allThermometersData } = useGetAllThermometers();

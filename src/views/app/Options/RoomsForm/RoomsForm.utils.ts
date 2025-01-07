@@ -26,10 +26,10 @@ export const initialValues = (
 };
 
 export const mapThermometersDataToCheckboxData = (
-  thermometer?: Thermometer[]
+  thermometer: Thermometer[] | undefined
 ) => thermometer?.map(({ id, name }) => ({ id, label: name }));
 
-export const mapBlindsDataToCheckboxData = (blind?: Blind[]) =>
+export const mapBlindsDataToCheckboxData = (blind: Blind[] | undefined) =>
   blind?.map(({ id, name }) => ({ id, label: name }));
 
 export const mapValuesToCreateForm = (

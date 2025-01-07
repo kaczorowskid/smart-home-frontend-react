@@ -1,4 +1,11 @@
+import {
+  Blind,
+  CommonDevice,
+  DeviceType,
+  Thermometer,
+} from "@/api/types/common.types";
 import { FormProviderProps } from "./FormProvider.types";
+import { ReactNode } from "react";
 
 export const FormProvider = ({
   data,
@@ -6,21 +13,21 @@ export const FormProvider = ({
   thermometerForm,
   blindForm,
 }: FormProviderProps) => {
-  const getCreateForm = () => {
-    if (selectedType === "THERMOMETER") {
-      return thermometerForm(undefined);
-    } else if (selectedType === "BLIND") {
-      return blindForm(undefined);
-    }
+  const getForm = (
+    selectedType: DeviceType,
+    data: CommonDevice | undefined
+  ) => {
+    const formMapper: Record<DeviceType, ReactNode> = {
+      BLIND: blindForm(data as Blind | undefined),
+      THERMOMETER: thermometerForm(data as Thermometer | undefined),
+    };
+
+    return formMapper[selectedType];
   };
 
-  const getUpdateForm = () => {
-    if (data?.type === "THERMOMETER") {
-      return thermometerForm(data);
-    } else if (data?.type === "BLIND") {
-      return blindForm(data);
-    }
-  };
+  const getCreateForm = () => getForm(selectedType, undefined);
 
-  return !!data ? getUpdateForm() : getCreateForm();
+  const getUpdateForm = () => getForm(selectedType, data);
+
+  return data ? getUpdateForm() : getCreateForm();
 };

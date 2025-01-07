@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Select } from "@/components/common/Select";
 import { Dialog } from "@/components/common/Dialog";
-import { UserFormProps } from "./UserForm.types";
 import { formFields, formSchema, FormSchema } from "./UserForm.schema";
 import {
   defaultValues,
@@ -27,8 +26,9 @@ import { useIntl } from "react-intl";
 import { useGetAllRoles } from "@/api/hooks/role.hooks";
 import { usePermissions } from "@/hooks/usePermissions.hook";
 import { permissionsList } from "@/api/types/common.types";
+import { CommonFormProps } from "@/types/common.types";
 
-export const UserForm = ({ selectedId, open, onClose }: UserFormProps) => {
+export const UserForm = ({ selectedId, open, onClose }: CommonFormProps) => {
   const { formatMessage } = useIntl();
   const { data } = useGetOneUser({ id: selectedId || "" });
   const { data: allRoles } = useGetAllRoles();
