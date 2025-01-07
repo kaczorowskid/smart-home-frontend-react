@@ -8,7 +8,6 @@ import { FormTitle } from "@/components/app/FormTitle";
 import { User } from "lucide-react";
 import { ControlButtons } from "@/components/app/ControlButtons";
 import { useIntl } from "react-intl";
-import { RolesFormProps } from "./RolesForm.types";
 import { formFields, formSchema, FormSchema } from "./RolesForm.schema";
 import {
   defaultValues,
@@ -34,8 +33,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { usePermissions } from "@/hooks/usePermissions.hook";
 import { permissionsList } from "@/api/types/common.types";
+import { CommonFormProps } from "@/types/common.types";
 
-export const RolesForm = ({ selectedId, open, onClose }: RolesFormProps) => {
+export const RolesForm = ({ selectedId, open, onClose }: CommonFormProps) => {
   const { formatMessage } = useIntl();
   const { data } = useGetOneRole({ id: selectedId || "" });
   const { data: allPermissionsData } = useGetAllPermissions();

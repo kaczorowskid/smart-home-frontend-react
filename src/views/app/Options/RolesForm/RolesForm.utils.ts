@@ -20,8 +20,9 @@ export const initialValues = (
   };
 };
 
-export const mapPermissionsDataToCheckboxData = (permission?: Permission[]) =>
-  permission?.map((item) => ({ id: item, label: item }));
+export const mapPermissionsDataToCheckboxData = (
+  permission: Permission[] | undefined
+) => permission?.map((item) => ({ id: item, label: item }));
 
 export const mapValuesToCreateForm = (
   values: FormSchema

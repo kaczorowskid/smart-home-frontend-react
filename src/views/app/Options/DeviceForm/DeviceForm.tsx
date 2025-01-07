@@ -2,52 +2,27 @@ import { Dialog } from "@/components/common/Dialog";
 import { Select } from "@/components/common/Select";
 import { ThermometerForm } from "./ThermometerForm";
 import { itemsType } from "./DeviceForm.consts";
-import { DeviceFormProps } from "./DeviceForm.types";
 import { useState } from "react";
 import { FormProvider } from "./FormProvider";
 import { BlindForm } from "./BlindForm";
-import { Blinds, Thermometer } from "lucide-react";
-import { FormTitle } from "@/components/app/FormTitle";
 import { useGetOneDevice } from "@/api/hooks/devices.hooks";
-import { useIntl } from "react-intl";
-import { DeviceType } from "@/types/common.types";
+import { CommonFormProps } from "@/types/common.types";
+import { formTitleMapper } from "./DeviceForm.utils";
+import { DeviceType } from "@/api/types/common.types";
 
-export const DeviceForm = ({ selectedId, open, onClose }: DeviceFormProps) => {
-  const { formatMessage } = useIntl();
-
+export const DeviceForm = ({ selectedId, open, onClose }: CommonFormProps) => {
   const { data } = useGetOneDevice({ id: selectedId });
-  const [itemType, setItemType] = useState<DeviceType | undefined>(
-    "THERMOMETER"
-  );
+  const [itemType, setItemType] = useState<DeviceType>("THERMOMETER");
 
   const handleClose = () => {
     onClose();
     setItemType("THERMOMETER");
   };
 
-  const getFormTitle = () => {
-    switch (data?.type || itemType) {
-      case "THERMOMETER":
-        return (
-          <FormTitle
-            title={formatMessage({ id: "view.thermometer" })}
-            icon={Thermometer}
-          />
-        );
-      case "BLIND":
-        return (
-          <FormTitle
-            title={formatMessage({ id: "view.blind" })}
-            icon={Blinds}
-          />
-        );
-    }
-  };
-
   return (
     <Dialog
       className="w-[90%] lg:w-full"
-      title={getFormTitle()}
+      title={formTitleMapper[data?.type || itemType]}
       open={open || !!selectedId}
       onOpenChange={(status) => {
         if (!status) {
