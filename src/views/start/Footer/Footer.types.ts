@@ -1,7 +1,7 @@
-import { LucideIcon } from "lucide-react";
+import { type LucideIcon } from "lucide-react";
 
 export type Icon = {
-  icon: LucideIcon;
   action: string;
+  icon: LucideIcon;
   color: React.HTMLAttributes<HTMLDivElement>["className"];
 };

@@ -1,52 +1,52 @@
-import {
-  useMutation,
-  UseMutationResult,
-  useQuery,
-  UseQueryResult,
-} from "@tanstack/react-query";
-import {
-  CreateRoomPayload,
-  CreateRoomResponse,
-  DeleteRoomPayload,
-  DeleteRoomResponse,
-  GetAllRoomsResponse,
-  GetOneRoomPayload,
-  GetOneRoomResponse,
-  UpdateRoomPayload,
-  UpdateRoomResponse,
-} from "../types/room.types";
-import { queryKeys } from "@/utils/queryKeys";
-import {
-  createRoom,
-  deleteRoom,
-  getAllRooms,
-  getOneRoom,
-  updateRoom,
-} from "../handlers/room.handlers";
-import { AxiosError } from "axios";
 import { toast } from "sonner";
-import { queryClient } from "@/utils/queryClient";
+import { type AxiosError } from "axios";
+import { queryKeys } from "@/utils/queryKeys";
 import { FormattedMessage } from "react-intl";
+import { queryClient } from "@/utils/queryClient";
+import { apiErrorMapper } from "@/utils/errorMapper";
+import { type CustomAxiosError } from "@/types/common.types";
 import {
   ErrorNotification,
   SuccessNotification,
 } from "@/components/common/Notification";
-import { CustomAxiosError } from "@/types/common.types";
-import { apiErrorMapper } from "@/utils/errorMapper";
+import {
+  useQuery,
+  useMutation,
+  type UseQueryResult,
+  type UseMutationResult,
+} from "@tanstack/react-query";
+import {
+  createRoom,
+  deleteRoom,
+  getOneRoom,
+  updateRoom,
+  getAllRooms,
+} from "../handlers/room.handlers";
+import {
+  type CreateRoomPayload,
+  type DeleteRoomPayload,
+  type GetOneRoomPayload,
+  type UpdateRoomPayload,
+  type CreateRoomResponse,
+  type DeleteRoomResponse,
+  type GetOneRoomResponse,
+  type UpdateRoomResponse,
+  type GetAllRoomsResponse,
+} from "../types/room.types";
 
 export const useGetOneRoom = (
   payload: GetOneRoomPayload
 ): UseQueryResult<GetOneRoomResponse> =>
   useQuery({
-    queryKey: [queryKeys.getAllRooms, Object.values(payload)],
-    queryFn: () => getOneRoom({ id: payload.id }),
     enabled: !!payload.id,
+    queryFn: () => getOneRoom({ id: payload.id }),
+    queryKey: [queryKeys.getAllRooms, Object.values(payload)],
   });
 
 export const useGetAllRooms = (): UseQueryResult<GetAllRoomsResponse> =>
   useQuery({
-    queryKey: [queryKeys.getAllRooms],
     queryFn: getAllRooms,
+    queryKey: [queryKeys.getAllRooms],
   });
 
 export const useCreateRoom = (): UseMutationResult<
@@ -56,6 +56,18 @@ export const useCreateRoom = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: createRoom,
+    onError: (error: CustomAxiosError) => {
+      toast.error(
+        <FormattedMessage
+          id="error.add"
+          values={{
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
+          }}
+        />
+      );
+    },
     onSuccess: async ({ name }) => {
       toast.success(
         <FormattedMessage
@@ -70,18 +82,6 @@ export const useCreateRoom = (): UseMutationResult<
         queryKey: [queryKeys.getAllRooms],
       });
     },
-    onError: (error: CustomAxiosError) => {
-      toast.error(
-        <FormattedMessage
-          id="error.add"
-          values={{
-            error: () => (
-              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
-            ),
-          }}
-        />
-      );
-    },
   });
 
 export const useUpdateRoom = (): UseMutationResult<
@@ -91,6 +91,18 @@ export const useUpdateRoom = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: updateRoom,
+    onError: (error: CustomAxiosError) => {
+      toast.error(
+        <FormattedMessage
+          id="error.update"
+          values={{
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
+          }}
+        />
+      );
+    },
     onSuccess: async ({ name }) => {
       toast.success(
         <FormattedMessage
@@ -105,18 +117,6 @@ export const useUpdateRoom = (): UseMutationResult<
         queryKey: [queryKeys.getAllRooms],
       });
     },
-    onError: (error: CustomAxiosError) => {
-      toast.error(
-        <FormattedMessage
-          id="error.update"
-          values={{
-            error: () => (
-              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
-            ),
-          }}
-        />
-      );
-    },
   });
 
 export const useDeleteRoom = (): UseMutationResult<
@@ -126,6 +126,18 @@ export const useDeleteRoom = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: deleteRoom,
+    onError: (error: CustomAxiosError) => {
+      toast.error(
+        <FormattedMessage
+          id="error.delete"
+          values={{
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
+          }}
+        />
+      );
+    },
     onSuccess: async ({ name }) => {
       toast.success(
         <FormattedMessage
@@ -139,17 +151,5 @@ export const useDeleteRoom = (): UseMutationResult<
       await queryClient.invalidateQueries({
         queryKey: [queryKeys.getAllRooms],
       });
-    },
-    onError: (error: CustomAxiosError) => {
-      toast.error(
-        <FormattedMessage
-          id="error.delete"
-          values={{
-            error: () => (
-              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
-            ),
-          }}
-        />
-      );
     },
   });

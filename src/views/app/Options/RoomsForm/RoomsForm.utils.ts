@@ -1,17 +1,24 @@
-import { CreateRoomPayload, UpdateRoomPayload } from "@/api/types/room.types";
-import { formFields, FormSchema } from "./RoomsForm.schema";
-import { Blind, Room, Thermometer } from "@/api/types/common.types";
+import {
+  type Room,
+  type Blind,
+  type Thermometer,
+} from "@/api/types/common.types";
+import {
+  type CreateRoomPayload,
+  type UpdateRoomPayload,
+} from "@/api/types/room.types";
+import { formFields, type FormSchema } from "./RoomsForm.schema";
 
 export const defaultValues: FormSchema = {
   [formFields.name]: "",
-  [formFields.roomType]: "BACKYARD",
-  [formFields.thermometer]: [],
   [formFields.blind]: [],
+  [formFields.thermometer]: [],
+  [formFields.roomType]: "BACKYARD",
 };
 
 export const initialValues = (
   data: Room | undefined
-): FormSchema | undefined => {
+): undefined | FormSchema => {
   if (!data) {
     return;
   }
@@ -19,14 +26,14 @@ export const initialValues = (
   return {
     name: data.name,
     roomType: data.roomType,
+    blind: data.blinds?.map(({ blindId }) => blindId) || [],
     thermometer:
       data.thermometers?.map(({ thermometerId }) => thermometerId) || [],
-    blind: data.blinds?.map(({ blindId }) => blindId) || [],
   };
 };
 
 export const mapThermometersDataToCheckboxData = (
-  thermometer: Thermometer[] | undefined
+  thermometer: undefined | Thermometer[]
 ) => thermometer?.map(({ id, name }) => ({ id, label: name }));
 
 export const mapBlindsDataToCheckboxData = (blind: Blind[] | undefined) =>
@@ -37,8 +44,8 @@ export const mapValuesToCreateForm = (
 ): CreateRoomPayload => ({
   name: values["name"],
   roomType: values["roomType"],
-  thermometers: values["thermometer"].map((id) => ({ id })),
   blinds: values["blind"].map((id) => ({ id })),
+  thermometers: values["thermometer"].map((id) => ({ id })),
 });
 
 export const mapValuesToUpdateForm = (
@@ -48,6 +55,6 @@ export const mapValuesToUpdateForm = (
   id: id || "",
   name: values["name"],
   roomType: values["roomType"],
-  thermometers: values["thermometer"].map((id) => ({ id })),
   blinds: values["blind"].map((id) => ({ id })),
+  thermometers: values["thermometer"].map((id) => ({ id })),
 });

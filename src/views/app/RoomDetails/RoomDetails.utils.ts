@@ -1,7 +1,7 @@
-import { ChartType } from "@/types/common.types";
+import { type ChartType } from "@/types/common.types";
 
 export const chartTypeMapper: Record<ChartType, string> = {
-  all: "Temperature & Humidity",
   humidity: "Humidity",
   temperature: "Temperature",
+  all: "Temperature & Humidity",
 };

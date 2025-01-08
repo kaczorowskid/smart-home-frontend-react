@@ -1,13 +1,13 @@
-import { Select } from "@/components/ui/select";
-import { ComponentProps, ReactNode } from "react";
+import { type Select } from "@/components/ui/select";
+import { type ReactNode, type ComponentProps } from "react";
 
-type Item = {
-  name: ReactNode;
-  value: string;
-};
-
-export type SelectProps = {
+export type SelectProps = ComponentProps<typeof Select> & {
+  items: Item[];
   label?: string;
   placeholder?: string;
-  items: Item[];
-} & ComponentProps<typeof Select>;
+};
+
+type Item = {
+  value: string;
+  name: ReactNode;
+};

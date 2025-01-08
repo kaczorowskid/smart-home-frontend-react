@@ -1,4 +1,4 @@
-import { Locale } from "./Localization.types";
+import { type Locale } from "./Localization.types";
 
 export const getLocale = () => {
   switch (navigator.language) {

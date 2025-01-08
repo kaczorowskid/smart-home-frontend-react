@@ -1,16 +1,16 @@
-import { AxiosError } from "axios";
+import { type AxiosError } from "axios";
 
-export type ChartType = "all" | "temperature" | "humidity";
+export type ChartType = "all" | "humidity" | "temperature";
 
 export type CommonFormProps = {
-  selectedId: string;
   open: boolean;
+  selectedId: string;
   onClose: () => void;
 };
 
 export type CustomAxiosError = AxiosError<{
   message: string;
-  statusCode: number;
-  prismCode: string;
   timestamp: Date;
+  prismCode: string;
+  statusCode: number;
 }>;

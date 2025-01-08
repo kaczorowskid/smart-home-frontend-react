@@ -1,21 +1,21 @@
 import { useState } from "react";
-import { OptionsTab } from "./Options.types";
+import { type OptionsTab } from "./Options.types";
 
-type OpenState = Record<OptionsTab, boolean>;
 type IdState = Record<OptionsTab, string>;
+type OpenState = Record<OptionsTab, boolean>;
 
 const isOpenInitalValue: OpenState = {
-  devices: false,
   users: false,
   rooms: false,
   roles: false,
+  devices: false,
 };
 
 const selectedIdInitialValue: IdState = {
-  devices: "",
   users: "",
   rooms: "",
   roles: "",
+  devices: "",
 };
 
 export const useFormSelector = (selectedTab: OptionsTab) => {
@@ -42,10 +42,10 @@ export const useFormSelector = (selectedTab: OptionsTab) => {
   };
 
   return {
-    isOpen: isOpen[selectedTab],
-    selectedId: selectedId[selectedTab],
-    handleSelectedId,
     handleOpen,
     handleClose,
+    handleSelectedId,
+    isOpen: isOpen[selectedTab],
+    selectedId: selectedId[selectedTab],
   };
 };

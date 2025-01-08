@@ -1,6 +1,6 @@
-import { Tooltip } from "@/components/ui/tooltip";
-import { ComponentProps, ReactNode } from "react";
+import { type Tooltip } from "@/components/ui/tooltip";
+import { type ReactNode, type ComponentProps } from "react";
 
-export type TooltipProps = {
+export type TooltipProps = ComponentProps<typeof Tooltip> & {
   triggerComponent?: ReactNode;
-} & ComponentProps<typeof Tooltip>;
+};

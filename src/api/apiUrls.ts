@@ -1,10 +1,19 @@
 export const apiUrls = {
+  room: {
+    base: "/room",
+    getRoom: (id: string) => `/room/${id}`,
+  },
+  role: {
+    base: "/role",
+    permissions: "/role/permission",
+    getRole: (id: string) => `/role/${id}`,
+  },
   auth: {
     login: "/auth/login",
+    logout: "/auth/logout",
+    refresh: "/auth/refresh",
     register: "/auth/register",
     authorize: "/auth/authorize",
-    refresh: "/auth/refresh",
-    logout: "/auth/logout",
   },
   user: {
     base: "/user",
@@ -18,14 +27,5 @@ export const apiUrls = {
     thermometers: "/devices/thermometers",
     getDevice: (id: string) => `/devices/${id}`,
     getDeviceDataForGraph: (deviceId: string) => `/devices/data/${deviceId}`,
-  },
-  room: {
-    base: "/room",
-    getRoom: (id: string) => `/room/${id}`,
-  },
-  role: {
-    base: "/role",
-    getRole: (id: string) => `/role/${id}`,
-    permissions: "/role/permission",
   },
 };

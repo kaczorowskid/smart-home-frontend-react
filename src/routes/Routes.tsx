@@ -1,26 +1,26 @@
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Navigate,
-  Route,
-  RouterProvider,
-} from "react-router-dom";
-import { routesPath } from "./routesPath";
 import { AppLayout } from "@/layouts/App";
-import { Dashboard } from "@/views/app/Dashboard";
-import { Options } from "@/views/app/Options";
-import { ErrorLayout } from "@/layouts/Error";
-import { Error404 } from "@/views/error/Error404";
+import { Rooms } from "@/views/app/Rooms";
+import { Login } from "@/views/auth/Login";
 import { Graphs } from "@/views/app/Graphs";
 import { AuthLayout } from "@/layouts/Auth";
-import { Login } from "@/views/auth/Login";
-import { Register } from "@/views/auth/Register";
-import { Rooms } from "@/views/app/Rooms";
-import { RoomDetails } from "@/views/app/RoomDetails";
-import { Settings } from "@/views/app/Settings";
 import { Start } from "@/views/start/Start";
-import { PrivateRoute } from "@/components/common/PrivateRoute";
 import { RootLayout } from "@/layouts/Root";
+import { Options } from "@/views/app/Options";
+import { ErrorLayout } from "@/layouts/Error";
+import { Settings } from "@/views/app/Settings";
+import { Register } from "@/views/auth/Register";
+import { Dashboard } from "@/views/app/Dashboard";
+import { Error404 } from "@/views/error/Error404";
+import { RoomDetails } from "@/views/app/RoomDetails";
+import { PrivateRoute } from "@/components/common/PrivateRoute";
+import {
+  Route,
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
+import { routesPath } from "./routesPath";
 
 export const Routes = (): JSX.Element => {
   const router = createBrowserRouter(
@@ -31,10 +31,10 @@ export const Routes = (): JSX.Element => {
             path={routesPath.base}
             element={
               <PrivateRoute
+                isUserNotLoggedInElement={<Start />}
                 isUserLoggedInElement={
                   <Navigate to={routesPath.app.dashboard} />
                 }
-                isUserNotLoggedInElement={<Start />}
               />
             }
           />
@@ -43,10 +43,10 @@ export const Routes = (): JSX.Element => {
               path={routesPath.auth.login}
               element={
                 <PrivateRoute
+                  isUserNotLoggedInElement={<Login />}
                   isUserLoggedInElement={
                     <Navigate to={routesPath.app.dashboard} />
                   }
-                  isUserNotLoggedInElement={<Login />}
                 />
               }
             />
@@ -54,10 +54,10 @@ export const Routes = (): JSX.Element => {
               path={routesPath.auth.register}
               element={
                 <PrivateRoute
+                  isUserNotLoggedInElement={<Register />}
                   isUserLoggedInElement={
                     <Navigate to={routesPath.app.dashboard} />
                   }
-                  isUserNotLoggedInElement={<Register />}
                 />
               }
             />

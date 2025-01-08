@@ -1,22 +1,22 @@
-import { FormField } from "@/components/common/FormField";
+import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/common/Button";
-import { Separator } from "@/components/ui/separator";
-import { Card, CardContent } from "@/components/ui/card";
-import { Link, useParams } from "react-router-dom";
-import { routesPath } from "@/routes/routesPath";
 import { Badge } from "@/components/ui/badge";
+import { routesPath } from "@/routes/routesPath";
+import { Link, useParams } from "react-router-dom";
+import { Button } from "@/components/common/Button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Separator } from "@/components/ui/separator";
+import { useIntl, FormattedMessage } from "react-intl";
+import { Card, CardContent } from "@/components/ui/card";
+import { FormField } from "@/components/common/FormField";
 import {
   useGetUserByToken,
   useRegisterAndVerify,
 } from "@/api/hooks/user.hooks";
-import { formFields, formSchema, FormSchema } from "./Register.schema";
-import { defaultValues, initialValues } from "./Register.utils";
-import { FormattedMessage, useIntl } from "react-intl";
 import { PasswordChecker } from "./PasswordChecker";
+import { defaultValues, initialValues } from "./Register.utils";
+import { formFields, formSchema, type FormSchema } from "./Register.schema";
 
 export const Register = () => {
   const { formatMessage } = useIntl();
@@ -25,16 +25,17 @@ export const Register = () => {
   const { data } = useGetUserByToken({ token: token || "" });
 
   const form = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
-    defaultValues: defaultValues,
     values: initialValues(data),
+    defaultValues: defaultValues,
+    resolver: zodResolver(formSchema),
   });
 
   const currentPassword = form.watch(formFields.password);
 
-  const { mutateAsync: registerAndVerifyUser, isPending } =
+  const { isPending, mutateAsync: registerAndVerifyUser } =
     useRegisterAndVerify();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async ({ confirmPassword, ...values }: FormSchema) => {
     await registerAndVerifyUser({
       ...values,
@@ -57,38 +58,38 @@ export const Register = () => {
         <CardContent className="w-[90vw] p-10 lg:w-[500px]">
           <Form {...form}>
             <FormField
-              label={formatMessage({ id: "formField.user-name" })}
               control={form.control}
               name={formFields.name}
               component={(field) => <Input {...field} />}
+              label={formatMessage({ id: "formField.user-name" })}
             />
             <FormField
-              label={formatMessage({ id: "formField.user-surname" })}
               control={form.control}
               name={formFields.surname}
               component={(field) => <Input {...field} />}
+              label={formatMessage({ id: "formField.user-surname" })}
             />
             <FormField
-              label={formatMessage({ id: "formField.email" })}
               control={form.control}
               name={formFields.email}
+              label={formatMessage({ id: "formField.email" })}
               component={(field) => (
-                <Input {...field} value={data?.email} disabled />
+                <Input {...field} disabled value={data?.email} />
               )}
             />
             <FormField
-              label={formatMessage({ id: "formField.password" })}
               control={form.control}
               name={formFields.password}
+              label={formatMessage({ id: "formField.password" })}
               component={(field) => <Input type="password" {...field} />}
             />
             {!!currentPassword && (
               <PasswordChecker password={currentPassword} />
             )}
             <FormField
-              label={formatMessage({ id: "formField.confirm-password" })}
               control={form.control}
               name={formFields.confirmPassword}
+              label={formatMessage({ id: "formField.confirm-password" })}
               component={(field) => <Input type="password" {...field} />}
             />
           </Form>
@@ -100,7 +101,7 @@ export const Register = () => {
           </div>
           <div className="flex my-5 items-center">
             <Separator className="shrink" />
-            <Link className="px-5 text-nowrap" to={routesPath.auth.login}>
+            <Link to={routesPath.auth.login} className="px-5 text-nowrap">
               <FormattedMessage id="view.back-to-login" />
             </Link>
             <Separator className="shrink" />

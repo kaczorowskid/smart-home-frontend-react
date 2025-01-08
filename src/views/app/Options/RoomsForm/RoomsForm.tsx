@@ -1,46 +1,46 @@
-import { FormField } from "@/components/common/FormField";
+import { House } from "lucide-react";
+import { useIntl } from "react-intl";
+import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Dialog } from "@/components/common/Dialog";
-import { FormTitle } from "@/components/app/FormTitle";
-import { House } from "lucide-react";
-import { ControlButtons } from "@/components/app/ControlButtons";
-import { formFields, formSchema, FormSchema } from "./RoomsForm.schema";
-import {
-  defaultValues,
-  initialValues,
-  mapBlindsDataToCheckboxData,
-  mapThermometersDataToCheckboxData,
-  mapValuesToCreateForm,
-  mapValuesToUpdateForm,
-} from "./RoomsForm.utils";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Select } from "@/components/common/Select";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormTitle } from "@/components/app/FormTitle";
+import { FormField } from "@/components/common/FormField";
+import { permissionsList } from "@/api/types/common.types";
+import { type CommonFormProps } from "@/types/common.types";
+import { usePermissions } from "@/hooks/usePermissions.hook";
+import { SelectedItems } from "@/components/app/SelectedItems";
+import { ControlButtons } from "@/components/app/ControlButtons";
+import {
+  useGetAllBlinds,
+  useGetAllThermometers,
+} from "@/api/hooks/devices.hooks";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { SelectedItems } from "@/components/app/SelectedItems";
-import { roomsItems } from "./RoomsForm.consts";
-import { Select } from "@/components/common/Select";
 import {
   useCreateRoom,
   useDeleteRoom,
   useGetOneRoom,
   useUpdateRoom,
 } from "@/api/hooks/room.hooks";
+import { roomsItems } from "./RoomsForm.consts";
+import { formFields, formSchema, type FormSchema } from "./RoomsForm.schema";
 import {
-  useGetAllBlinds,
-  useGetAllThermometers,
-} from "@/api/hooks/devices.hooks";
-import { useIntl } from "react-intl";
-import { usePermissions } from "@/hooks/usePermissions.hook";
-import { permissionsList } from "@/api/types/common.types";
-import { CommonFormProps } from "@/types/common.types";
+  defaultValues,
+  initialValues,
+  mapValuesToCreateForm,
+  mapValuesToUpdateForm,
+  mapBlindsDataToCheckboxData,
+  mapThermometersDataToCheckboxData,
+} from "./RoomsForm.utils";
 
-export const RoomsForm = ({ selectedId, open, onClose }: CommonFormProps) => {
+export const RoomsForm = ({ open, onClose, selectedId }: CommonFormProps) => {
   const { formatMessage } = useIntl();
   const { data } = useGetOneRoom({ id: selectedId || "" });
   const { data: allThermometersData } = useGetAllThermometers();
@@ -106,11 +106,11 @@ export const RoomsForm = ({ selectedId, open, onClose }: CommonFormProps) => {
 
   return (
     <Dialog
+      open={open || !!selectedId}
       className="w-[90%] lg:w-full"
       title={
-        <FormTitle title={formatMessage({ id: "view.rooms" })} icon={House} />
+        <FormTitle icon={House} title={formatMessage({ id: "view.rooms" })} />
       }
-      open={open || !!selectedId}
       onOpenChange={(status) => {
         if (!status) {
           handleCloseForm();
@@ -119,43 +119,43 @@ export const RoomsForm = ({ selectedId, open, onClose }: CommonFormProps) => {
     >
       <Form {...form}>
         <FormField
-          label={formatMessage({ id: "formField.name" })}
           control={form.control}
           name={formFields.name}
           component={(field) => <Input {...field} />}
+          label={formatMessage({ id: "formField.name" })}
         />
         <FormField
-          label={formatMessage({ id: "formField.user-role" })}
           control={form.control}
           name={formFields.roomType}
-          component={({ onChange, value, ...field }) => (
+          label={formatMessage({ id: "formField.user-role" })}
+          component={({ value, onChange, ...field }) => (
             <Select
               items={roomsItems}
-              onValueChange={onChange}
               value={value as string}
+              onValueChange={onChange}
               {...field}
             />
           )}
         />
         <Popover>
-          <PopoverTrigger className="mt-4" asChild>
+          <PopoverTrigger asChild className="mt-4">
             <SelectedItems
+              items={thermometersCheckboxData}
+              selectedIds={form.watch()["thermometer"]}
               label={formatMessage({ id: "formField.thermometers" })}
               noSelectedItemsText={formatMessage({
                 id: "view.thermometers-no-selected",
               })}
-              items={thermometersCheckboxData}
-              selectedIds={form.watch()["thermometer"]}
             />
           </PopoverTrigger>
           <PopoverContent>
             {thermometersCheckboxData?.map((thermometer) => (
               <FormField
                 reverseLabel
-                label={thermometer.label}
                 key={thermometer.id}
-                formItemKey={thermometer.id}
                 control={form.control}
+                label={thermometer.label}
+                formItemKey={thermometer.id}
                 name={formFields.thermometer}
                 component={({ value, onChange, ...field }) => (
                   <Checkbox
@@ -178,22 +178,22 @@ export const RoomsForm = ({ selectedId, open, onClose }: CommonFormProps) => {
           </PopoverContent>
         </Popover>
         <Popover>
-          <PopoverTrigger className="mt-4" asChild>
+          <PopoverTrigger asChild className="mt-4">
             <SelectedItems
+              items={blindsCheckboxData}
+              selectedIds={form.watch()["blind"]}
               label={formatMessage({ id: "formField.blinds" })}
               noSelectedItemsText={formatMessage({
                 id: "view.blinds-no-selected",
               })}
-              items={blindsCheckboxData}
-              selectedIds={form.watch()["blind"]}
             />
           </PopoverTrigger>
           <PopoverContent>
             {blindsCheckboxData?.map((blind) => (
               <FormField
                 reverseLabel
-                label={blind.label}
                 key={blind.id}
+                label={blind.label}
                 formItemKey={blind.id}
                 control={form.control}
                 name={formFields.blind}
@@ -218,10 +218,10 @@ export const RoomsForm = ({ selectedId, open, onClose }: CommonFormProps) => {
           </PopoverContent>
         </Popover>
         <ControlButtons
-          entity={data?.name || ""}
-          isCreate={!selectedId}
           onCreate={handleSave}
           onUpdate={handleSave}
+          isCreate={!selectedId}
+          entity={data?.name || ""}
           onDelete={handleDeleteRoom}
           isCreatePending={isCreatePending}
           isUpdatePending={isUpdatePending}

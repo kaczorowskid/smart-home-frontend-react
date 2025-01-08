@@ -5,11 +5,11 @@ export const routesPath = {
     register: "/register/:token",
   },
   app: {
-    dashboard: "/dashboard",
-    graphs: "/graphs",
     rooms: "/rooms",
-    roomsDetails: "/room/:id",
+    graphs: "/graphs",
     options: "/options",
     settings: "/settings",
+    dashboard: "/dashboard",
+    roomsDetails: "/room/:id",
   },
 };

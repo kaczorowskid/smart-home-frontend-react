@@ -1,15 +1,15 @@
 import { apiUrls } from "../apiUrls";
 import { Request } from "../Request";
 import {
-  CreateRoomPayload,
-  CreateRoomResponse,
-  DeleteRoomPayload,
-  DeleteRoomResponse,
-  GetAllRoomsResponse,
-  GetOneRoomPayload,
-  GetOneRoomResponse,
-  UpdateRoomPayload,
-  UpdateRoomResponse,
+  type CreateRoomPayload,
+  type DeleteRoomPayload,
+  type GetOneRoomPayload,
+  type UpdateRoomPayload,
+  type CreateRoomResponse,
+  type DeleteRoomResponse,
+  type GetOneRoomResponse,
+  type UpdateRoomResponse,
+  type GetAllRoomsResponse,
 } from "../types/room.types";
 
 const request = new Request();

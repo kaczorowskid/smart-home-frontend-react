@@ -25,9 +25,9 @@ export const Adventage = () => (
     </div>
     <div className="flex-1 flex items-center justify-center h-full mt-10 lg:mt-0">
       <img
-        className="max-h-full max-w-full object-contain rounded-3xl lg:rounded-r-3xl lg:rounded-l-none"
         src={AppWhiteRight}
         alt="Smart-Home App"
+        className="max-h-full max-w-full object-contain rounded-3xl lg:rounded-r-3xl lg:rounded-l-none"
       />
     </div>
   </section>

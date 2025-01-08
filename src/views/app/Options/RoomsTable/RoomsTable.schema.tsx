@@ -1,38 +1,38 @@
-import { ColumnType } from "@/components/common/Table/Table.types";
-import { Room, RoomType } from "@/api/types/common.types";
 import { Badge } from "@/components/ui/badge";
 import { FormattedMessage } from "react-intl";
+import { type Room, type RoomType } from "@/api/types/common.types";
+import { type ColumnType } from "@/components/common/Table/Table.types";
 import { roomTypeMapper } from "./RoomsTable.utils";
 
 export const columns: ColumnType<Room>[] = [
   {
-    title: <FormattedMessage id="table.id" />,
-    dataIndex: "id",
     key: "id",
+    dataIndex: "id",
+    title: <FormattedMessage id="table.id" />,
   },
   {
-    title: <FormattedMessage id="table.name" />,
-    dataIndex: "name",
     key: "name",
+    dataIndex: "name",
+    title: <FormattedMessage id="table.name" />,
   },
   {
-    title: <FormattedMessage id="table.room-type" />,
-    dataIndex: "roomType",
     key: "roomType",
+    dataIndex: "roomType",
+    title: <FormattedMessage id="table.room-type" />,
     render: (roomType: RoomType) => (
       <Badge variant="outline">{roomTypeMapper[roomType]}</Badge>
     ),
   },
   {
-    title: <FormattedMessage id="table.thermometer" />,
-    dataIndex: "thermometers",
     key: "thermometers",
+    dataIndex: "thermometers",
     render: (val) => val?.length || "-",
+    title: <FormattedMessage id="table.thermometer" />,
   },
   {
-    title: <FormattedMessage id="table.blind" />,
-    dataIndex: "blinds",
     key: "blinds",
+    dataIndex: "blinds",
     render: (val) => val?.length || "-",
+    title: <FormattedMessage id="table.blind" />,
   },
 ];

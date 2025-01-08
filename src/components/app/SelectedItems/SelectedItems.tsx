@@ -1,11 +1,11 @@
-import { Badge } from "@/components/ui/badge";
-import { SelectedItemsProps } from "./SelectedItems.types";
 import { forwardRef } from "react";
+import { Badge } from "@/components/ui/badge";
+import { type SelectedItemsProps } from "./SelectedItems.types";
 
 export const SelectedItems = forwardRef<
   HTMLDivElement,
   SelectedItemsProps & React.HTMLProps<HTMLDivElement>
->(({ label, noSelectedItemsText, items, selectedIds, ...props }, ref) => {
+>(({ label, items, selectedIds, noSelectedItemsText, ...props }, ref) => {
   const itemsToRender = items?.filter((item) => selectedIds?.includes(item.id));
 
   return (

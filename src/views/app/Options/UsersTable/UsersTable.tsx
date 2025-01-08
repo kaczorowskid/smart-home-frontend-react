@@ -1,13 +1,13 @@
-import { CardWithHeader } from "@/components/common/CardWithHeader";
-import { Pagination } from "@/components/common/Pagination";
+import { FormattedMessage } from "react-intl";
 import { Table } from "@/components/common/Table";
-import { useFilteredData } from "@/hooks/useFilteredData.hook";
-import { usePagination } from "@/hooks/usePagination.hook";
-import { columns } from "./UsersTable.schema";
-import { UsersTableProps } from "./UsersTable.types";
 import { useGetAllUsers } from "@/api/hooks/user.hooks";
 import { Searchbar } from "@/components/common/Searchbar";
-import { FormattedMessage } from "react-intl";
+import { usePagination } from "@/hooks/usePagination.hook";
+import { Pagination } from "@/components/common/Pagination";
+import { useFilteredData } from "@/hooks/useFilteredData.hook";
+import { CardWithHeader } from "@/components/common/CardWithHeader";
+import { columns } from "./UsersTable.schema";
+import { type UsersTableProps } from "./UsersTable.types";
 
 export const UsersTable = ({ setSelectedId }: UsersTableProps) => {
   const { data } = useGetAllUsers();
@@ -32,15 +32,15 @@ export const UsersTable = ({ setSelectedId }: UsersTableProps) => {
     >
       <Table
         columns={columns}
-        data={paginationData.data || []}
         rowKey={(record) => record.id}
+        data={paginationData.data || []}
         onRowClick={({ id }) => setSelectedId(id)}
       />
       <Pagination
         className="pt-5"
         count={paginationData.pagination.count}
-        defaultPage={paginationData.pagination.defaultPage}
         onPaginationChange={handlePaginationChange}
+        defaultPage={paginationData.pagination.defaultPage}
       />
     </CardWithHeader>
   );

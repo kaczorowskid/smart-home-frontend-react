@@ -1,16 +1,16 @@
-import { screen, fireEvent, within } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { it, vi, expect, describe } from "vitest";
+import { screen, within, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { renderWithProviders } from "@/tests/customRender/customRender";
 import { ControlButtons } from "./ControlButtons";
 
 describe.skip("ControlButtons component", () => {
   const defaultProps = {
-    entity: "Test Entity",
     isCreate: false,
     onCreate: vi.fn(),
     onUpdate: vi.fn(),
     onDelete: vi.fn(),
+    entity: "Test Entity",
     isCreatePending: false,
     isUpdatePending: false,
     isDeletePending: false,

@@ -1,8 +1,8 @@
-import { Adventage } from "./Adventage";
-import { Description } from "./Description";
+import { Hero } from "./Hero";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
-import { Hero } from "./Hero";
+import { Adventage } from "./Adventage";
+import { Description } from "./Description";
 
 export const Start = () => (
   <main className="bg-custom-minsk text-white">

@@ -1,13 +1,13 @@
-import {
-  Dialog as ShadcnDialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { DialogProps } from "./Dialog.types";
 import { cn } from "@/lib/utils";
+import {
+  DialogTitle,
+  DialogHeader,
+  DialogContent,
+  DialogTrigger,
+  DialogDescription,
+  Dialog as ShadcnDialog,
+} from "@/components/ui/dialog";
+import { type DialogProps } from "./Dialog.types";
 
 export const Dialog = ({
   title,

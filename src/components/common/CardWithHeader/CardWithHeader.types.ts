@@ -1,13 +1,13 @@
-import { LucideIcon } from "lucide-react";
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
+import { type LucideIcon } from "lucide-react";
 
 export type CardWithHeaderProps = {
-  cardClassName?: string;
-  contentClassName?: string;
   title: ReactNode;
-  description?: ReactNode;
-  hasSmallHeader?: boolean;
   extra?: ReactNode;
   icon?: LucideIcon;
   children: ReactNode;
+  cardClassName?: string;
+  description?: ReactNode;
+  hasSmallHeader?: boolean;
+  contentClassName?: string;
 };

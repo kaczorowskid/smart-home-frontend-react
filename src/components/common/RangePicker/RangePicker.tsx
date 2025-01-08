@@ -1,13 +1,13 @@
-import { Calendar as CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import { Calendar as CalendarIcon } from "lucide-react";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { RangePickerProps } from "./RangePicker.types";
+import { type RangePickerProps } from "./RangePicker.types";
 
 export const RangePicker = ({ date, setDate }: RangePickerProps) => {
   return (
@@ -25,14 +25,14 @@ export const RangePicker = ({ date, setDate }: RangePickerProps) => {
             <CalendarIcon />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="start">
+        <PopoverContent align="start" className="w-auto p-0">
           <Calendar
-            autoFocus
             required
+            autoFocus
             mode="range"
-            defaultMonth={date?.from}
             selected={date}
             onSelect={setDate}
+            defaultMonth={date?.from}
           />
         </PopoverContent>
       </Popover>

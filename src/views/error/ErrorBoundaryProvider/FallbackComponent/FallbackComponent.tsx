@@ -1,9 +1,9 @@
+import { FormattedMessage } from "react-intl";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { routesPath } from "@/routes/routesPath";
 import { useQueryClient } from "@tanstack/react-query";
-import { FallbackProps } from "react-error-boundary";
-import { FormattedMessage } from "react-intl";
-import { useNavigate } from "react-router-dom";
+import { type FallbackProps } from "react-error-boundary";
 
 export const FallbackComponent = ({
   error,

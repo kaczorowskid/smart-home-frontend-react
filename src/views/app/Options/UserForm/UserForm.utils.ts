@@ -1,29 +1,29 @@
+import { type Role, type User } from "@/api/types/common.types";
 import {
-  CreateUserByAdminPayload,
-  UpdateUserPayload,
+  type UpdateUserPayload,
+  type CreateUserByAdminPayload,
 } from "@/api/types/user.types";
-import { formFields, FormSchema } from "./UserForm.schema";
-import { Role, User } from "@/api/types/common.types";
+import { formFields, type FormSchema } from "./UserForm.schema";
 
 export const defaultValues: FormSchema = {
+  [formFields.email]: "",
   [formFields.roleId]: "",
   [formFields.name]: undefined,
   [formFields.surname]: undefined,
-  [formFields.email]: "",
 };
 
 export const initialValues = (
   data: User | undefined
-): FormSchema | undefined => {
+): undefined | FormSchema => {
   if (!data) {
     return;
   }
 
   return {
     name: data.name,
-    surname: data.surname,
-    roleId: data.roleId,
     email: data.email,
+    roleId: data.roleId,
+    surname: data.surname,
   };
 };
 
@@ -41,9 +41,9 @@ export const mapValuesToUpdateForm = (
 ): UpdateUserPayload => ({
   ...values,
   id: id || "",
+  roleId: values["roleId"],
   name: values["name"] || "",
   surname: values["surname"] || "",
-  roleId: values["roleId"],
 });
 
 export const mapRolesForSelect = (role: Role[] | undefined) => {

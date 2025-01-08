@@ -1,21 +1,21 @@
 import {
   Card,
+  CardTitle,
+  CardHeader,
   CardContent,
   CardDescription,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
-import { CardWithHeaderProps } from "./CardWithHeader.types";
+import { type CardWithHeaderProps } from "./CardWithHeader.types";
 
 export const CardWithHeader = ({
-  cardClassName,
-  contentClassName,
   title,
-  description,
-  hasSmallHeader,
-  icon: Icon,
   extra,
   children,
+  icon: Icon,
+  description,
+  cardClassName,
+  hasSmallHeader,
+  contentClassName,
 }: CardWithHeaderProps) => {
   const cardTitleClassName = hasSmallHeader ? "text-sm" : "text-2xl";
 

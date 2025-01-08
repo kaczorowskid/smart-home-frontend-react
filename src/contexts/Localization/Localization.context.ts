@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { LocalizationContextType } from "./Localization.types";
+import { type LocalizationContextType } from "./Localization.types";
 
 export const LocalizationContext = createContext<LocalizationContextType>({
   locale: "en",

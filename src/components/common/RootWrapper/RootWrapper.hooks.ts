@@ -1,8 +1,8 @@
-import { refreshUserAccessToken } from "@/api/handlers/auth.handlers";
-import { useAuthorizeUser } from "@/api/hooks/auth.hooks";
 import { axiosInstance } from "@/lib/axios";
 import { useUserStore } from "@/stores/user";
 import { useEffect, useLayoutEffect } from "react";
+import { useAuthorizeUser } from "@/api/hooks/auth.hooks";
+import { refreshUserAccessToken } from "@/api/handlers/auth.handlers";
 
 export const useCheckUserAuth = () => {
   const { data, error, isLoading } = useAuthorizeUser();

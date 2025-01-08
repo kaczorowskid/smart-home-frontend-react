@@ -1,5 +1,5 @@
+import { type DisplayedDevicesKey } from "@/utils/localStorageKeys";
 import { useLocalStorageDevice } from "./useLocalStorageDevice.hook";
-import { DisplayedDevicesKey } from "@/utils/localStorageKeys";
 
 type DataType = {
   id: string;

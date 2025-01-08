@@ -1,22 +1,22 @@
-import { DateSelectorProps } from "./DateSelector.types";
-import { RangePicker } from "@/components/common/RangePicker";
-import { chartTypeIconMapper } from "./DateSelector.utils";
+import { cn } from "@/lib/utils";
+import { type ChartType } from "@/types/common.types";
 import { Cloud, Droplet, Thermometer } from "lucide-react";
+import { RangePicker } from "@/components/common/RangePicker";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { ChartType } from "@/types/common.types";
-import { cn } from "@/lib/utils";
+import { chartTypeIconMapper } from "./DateSelector.utils";
+import { type DateSelectorProps } from "./DateSelector.types";
 
 export const DateSelector = ({
-  disabledTypeChange,
-  chartType,
-  setChartType,
   date,
   setDate,
+  chartType,
+  setChartType,
+  disabledTypeChange,
 }: DateSelectorProps) => {
   const Icon = chartTypeIconMapper[chartType];
 
@@ -46,22 +46,22 @@ export const DateSelector = ({
           >
             <ToggleGroupItem
               value="temperature"
-              disabled={chartType === "temperature"}
               aria-label="Thermometer"
+              disabled={chartType === "temperature"}
             >
               <Thermometer className="h-4 w-4" />
             </ToggleGroupItem>
             <ToggleGroupItem
               value="humidity"
-              disabled={chartType === "humidity"}
               aria-label="Droplet"
+              disabled={chartType === "humidity"}
             >
               <Droplet className="h-4 w-4" />
             </ToggleGroupItem>
             <ToggleGroupItem
               value="all"
-              disabled={chartType === "all"}
               aria-label="Cloud"
+              disabled={chartType === "all"}
             >
               <Cloud className="h-4 w-4" />
             </ToggleGroupItem>

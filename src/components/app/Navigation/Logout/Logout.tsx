@@ -1,11 +1,11 @@
 import { LogOut } from "lucide-react";
+import { FormattedMessage } from "react-intl";
 import { Button } from "@/components/ui/button";
 import { useLogoutUser } from "@/api/hooks/auth.hooks";
 import { AlertDialog } from "@/components/common/AlertDialog";
-import { FormattedMessage } from "react-intl";
 
 export const Logout = () => {
-  const { mutate: logout, isPending } = useLogoutUser();
+  const { isPending, mutate: logout } = useLogoutUser();
 
   const handleLogout = () => {
     logout();
@@ -13,10 +13,10 @@ export const Logout = () => {
 
   return (
     <AlertDialog
-      title={<FormattedMessage id="component.are-you-sure" />}
       onOk={handleLogout}
-      description={<FormattedMessage id="component.do-you-want-to-log-out" />}
       isLoading={isPending}
+      title={<FormattedMessage id="component.are-you-sure" />}
+      description={<FormattedMessage id="component.do-you-want-to-log-out" />}
       trigger={
         <Button
           className={

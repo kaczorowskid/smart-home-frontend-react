@@ -1,23 +1,23 @@
-import { FormField } from "@/components/common/FormField";
+import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/common/Button";
-import { Card, CardContent } from "@/components/ui/card";
 import { useLogin } from "@/api/hooks/auth.hooks";
-import { formFields, formSchema, FormSchema } from "./Login.schema";
+import { Button } from "@/components/common/Button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useIntl, FormattedMessage } from "react-intl";
+import { Card, CardContent } from "@/components/ui/card";
+import { FormField } from "@/components/common/FormField";
 import { defaultValues } from "./Login.utils";
-import { FormattedMessage, useIntl } from "react-intl";
+import { formFields, formSchema, type FormSchema } from "./Login.schema";
 
 export const Login = () => {
   const { formatMessage } = useIntl();
   const form = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
     defaultValues: defaultValues,
+    resolver: zodResolver(formSchema),
   });
 
-  const { mutateAsync: loginUser, isPending } = useLogin();
+  const { isPending, mutateAsync: loginUser } = useLogin();
 
   const onSubmit = async (values: FormSchema) => {
     await loginUser(values);
@@ -38,22 +38,22 @@ export const Login = () => {
         <CardContent className="w-[90vw] p-10 lg:w-[500px]">
           <Form {...form}>
             <FormField
-              label={formatMessage({ id: "formField.email" })}
               control={form.control}
               name={formFields.email}
               component={(field) => <Input {...field} />}
+              label={formatMessage({ id: "formField.email" })}
             />
             <FormField
-              label={formatMessage({ id: "formField.password" })}
               control={form.control}
               name={formFields.password}
+              label={formatMessage({ id: "formField.password" })}
               component={(field) => <Input type="password" {...field} />}
             />
           </Form>
           <Button
-            className="my-5 w-full"
             onClick={handleSave}
             isLoading={isPending}
+            className="my-5 w-full"
           >
             <FormattedMessage id="view.login" />
           </Button>

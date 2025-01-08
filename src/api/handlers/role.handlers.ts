@@ -1,16 +1,16 @@
 import { apiUrls } from "../apiUrls";
 import { Request } from "../Request";
 import {
-  CreateRolePayload,
-  CreateRoleResponse,
-  DeleteRolePayload,
-  DeleteRoleResponse,
-  GetAllPermissionsResponse,
-  GetAllRolesResponse,
-  GetOneRolePayload,
-  GetOneRoleResponse,
-  UpdateRolePayload,
-  UpdateRoleResponse,
+  type CreateRolePayload,
+  type DeleteRolePayload,
+  type GetOneRolePayload,
+  type UpdateRolePayload,
+  type CreateRoleResponse,
+  type DeleteRoleResponse,
+  type GetOneRoleResponse,
+  type UpdateRoleResponse,
+  type GetAllRolesResponse,
+  type GetAllPermissionsResponse,
 } from "../types/role.types";
 
 const request = new Request();

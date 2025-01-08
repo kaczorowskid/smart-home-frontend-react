@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 export const useFilteredData = <T extends Record<string, unknown>>(
   data?: T[]

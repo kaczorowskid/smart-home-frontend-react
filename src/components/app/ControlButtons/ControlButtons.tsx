@@ -1,20 +1,20 @@
-import { AlertDialog } from "@/components/common/AlertDialog";
-import { Button } from "@/components/common/Button";
-import { ControlButtonsProps } from "./ControlButtons.types";
 import { FormattedMessage } from "react-intl";
+import { Button } from "@/components/common/Button";
+import { AlertDialog } from "@/components/common/AlertDialog";
+import { type ControlButtonsProps } from "./ControlButtons.types";
 
 export const ControlButtons = ({
   entity,
   isCreate,
+  onCreate,
+  onUpdate,
+  onDelete,
   isCreatePending,
   isUpdatePending,
   isDeletePending,
   isCreateDisabled,
   isUpdateDisabled,
   isDeleteDisabled,
-  onCreate,
-  onUpdate,
-  onDelete,
 }: ControlButtonsProps) => {
   const createButtons = (
     <Button
@@ -36,15 +36,15 @@ export const ControlButtons = ({
         <FormattedMessage id="component.update" />
       </Button>
       <AlertDialog
-        title={<FormattedMessage id="component.are-you-sure" />}
         onOk={onDelete}
-        description={
-          <FormattedMessage id="component.delete" values={{ entity }} />
-        }
         isLoading={isDeletePending}
+        title={<FormattedMessage id="component.are-you-sure" />}
+        description={
+          <FormattedMessage values={{ entity }} id="component.delete" />
+        }
         trigger={
           <Button variant="destructive" disabled={isDeleteDisabled}>
-            <FormattedMessage id="component.delete" values={{ entity }} />
+            <FormattedMessage values={{ entity }} id="component.delete" />
           </Button>
         }
       />

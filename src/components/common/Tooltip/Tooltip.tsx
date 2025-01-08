@@ -1,15 +1,15 @@
-import {
-  Tooltip as ShadcnTooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { TooltipProps } from "./Tooltip.types";
 import { Info } from "lucide-react";
+import {
+  TooltipContent,
+  TooltipTrigger,
+  TooltipProvider,
+  Tooltip as ShadcnTooltip,
+} from "@/components/ui/tooltip";
+import { type TooltipProps } from "./Tooltip.types";
 
 export function Tooltip({
-  triggerComponent,
   children,
+  triggerComponent,
   ...props
 }: TooltipProps) {
   return (

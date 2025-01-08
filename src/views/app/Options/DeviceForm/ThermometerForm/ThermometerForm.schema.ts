@@ -1,10 +1,10 @@
-import { schema } from "@/schemas/form.schemas";
 import { z } from "zod";
+import { schema } from "@/schemas/form.schemas";
 
 export const formFields = {
   name: "name",
-  deviceId: "deviceId",
   type: "type",
+  deviceId: "deviceId",
 } as const;
 
 export const formSchema = z.object({

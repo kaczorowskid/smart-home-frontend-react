@@ -1,19 +1,19 @@
 import { Request } from "../Request";
 import { apiUrls } from "../apiUrls";
 import {
-  CreateDevicePayload,
-  CreateDeviceResponse,
-  DeleteDevicePayload,
-  DeleteDeviceResponse,
-  GetAllBlindsResponse,
-  GetAllDevicesResponse,
-  GetAllThermometersResponse,
-  GetDeviceDataForGraphPayload,
-  GetDeviceDataForGraphResponse,
-  GetOneDevicePayload,
-  GetOneDevicesResponse,
-  UpdateDevicePayload,
-  UpdateDeviceResponse,
+  type CreateDevicePayload,
+  type DeleteDevicePayload,
+  type GetOneDevicePayload,
+  type UpdateDevicePayload,
+  type CreateDeviceResponse,
+  type DeleteDeviceResponse,
+  type GetAllBlindsResponse,
+  type UpdateDeviceResponse,
+  type GetAllDevicesResponse,
+  type GetOneDevicesResponse,
+  type GetAllThermometersResponse,
+  type GetDeviceDataForGraphPayload,
+  type GetDeviceDataForGraphResponse,
 } from "../types/devices.types";
 
 const request = new Request();

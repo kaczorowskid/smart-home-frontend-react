@@ -1,19 +1,19 @@
 import { apiUrls } from "../apiUrls";
 import { Request } from "../Request";
 import {
-  CreateUserByAdminPayload,
-  CreateUserByAdminResponse,
-  DeleteUserPayload,
-  DeleteUserResponse,
-  GetAllUsersResponse,
-  GetOneUserPayload,
-  GetOneUserResponse,
-  GetUserByTokenPayload,
-  GetUserByTokenResponse,
-  RegisterAndVerifyUserPayload,
-  RegisterAndVerifyUserResponse,
-  UpdateUserPayload,
-  UpdateUserResponse,
+  type DeleteUserPayload,
+  type GetOneUserPayload,
+  type UpdateUserPayload,
+  type DeleteUserResponse,
+  type GetOneUserResponse,
+  type UpdateUserResponse,
+  type GetAllUsersResponse,
+  type GetUserByTokenPayload,
+  type GetUserByTokenResponse,
+  type CreateUserByAdminPayload,
+  type CreateUserByAdminResponse,
+  type RegisterAndVerifyUserPayload,
+  type RegisterAndVerifyUserResponse,
 } from "../types/user.types";
 
 const request = new Request();

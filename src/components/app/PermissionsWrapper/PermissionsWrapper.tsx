@@ -1,9 +1,9 @@
 import { usePermissions } from "@/hooks/usePermissions.hook";
-import { PermissionsWrapperProps } from "./PermissionsWrapper.types";
+import { type PermissionsWrapperProps } from "./PermissionsWrapper.types";
 
 export const PermissionsWrapper = ({
-  permissions,
   children,
+  permissions,
 }: PermissionsWrapperProps) => {
   const canSeeSection = usePermissions(permissions);
 

@@ -93,7 +93,7 @@ export default tseslint.config({
       {
         type: 'line-length',
         order: 'asc',
-        newlinesBetween: 'never',
+        newlinesBetween: 'ignore',
         groups: [
           'declare-enum',
           'export-enum',

@@ -1,13 +1,13 @@
-import { PageWrapper } from "@/components/common/PageWrapper";
+import { FormattedMessage } from "react-intl";
 import { Settings as SettingsIcon } from "lucide-react";
+import { PageWrapper } from "@/components/common/PageWrapper";
 import { ChangeTheme } from "./ChangeTheme";
 import { ChangeLanguage } from "./ChangeLanguage";
-import { FormattedMessage } from "react-intl";
 
 export const Settings = () => (
   <PageWrapper
-    title={<FormattedMessage id="view.settings" />}
     icon={SettingsIcon}
+    title={<FormattedMessage id="view.settings" />}
   >
     <ChangeTheme />
     <ChangeLanguage />

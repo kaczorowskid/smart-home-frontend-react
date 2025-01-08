@@ -1,7 +1,7 @@
-import AppBlackLeft from "@/assets/images/app-black-left.png";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { routesPath } from "@/routes/routesPath";
-import { useNavigate } from "react-router-dom";
+import AppBlackLeft from "@/assets/images/app-black-left.png";
 
 export const Hero = () => {
   const navigate = useNavigate();
@@ -26,17 +26,17 @@ export const Hero = () => {
           and experience the convenience of a truly connected lifestyle!
         </p>
         <Button
-          className="mt-10 w-full bg-white text-black lg:w-auto"
           onClick={handleGoToAuth}
+          className="mt-10 w-full bg-white text-black lg:w-auto"
         >
           Get Started
         </Button>
       </div>
       <div className="flex-1 flex items-center justify-center h-full mt-10 lg:mt-0">
         <img
-          className="max-h-full max-w-full object-contain rounded-3xl lg:rounded-l-3xl lg:rounded-r-none"
           src={AppBlackLeft}
           alt="Smart-Home App"
+          className="max-h-full max-w-full object-contain rounded-3xl lg:rounded-l-3xl lg:rounded-r-none"
         />
       </div>
     </section>

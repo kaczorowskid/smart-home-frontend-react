@@ -1,8 +1,8 @@
 import {
-  CreateDevicePayload,
-  UpdateDevicePayload,
+  type CreateDevicePayload,
+  type UpdateDevicePayload,
 } from "@/api/types/devices.types";
-import { formFields, FormSchema } from "./ThermometerForm.schema";
+import { formFields, type FormSchema } from "./ThermometerForm.schema";
 
 export const defaultValues: FormSchema = {
   [formFields.name]: "",

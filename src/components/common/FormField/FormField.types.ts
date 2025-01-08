@@ -1,17 +1,17 @@
-import { Key, ReactNode } from "react";
+import { type Key, type ReactNode } from "react";
 import {
-  Control,
-  ControllerRenderProps,
-  FieldPath,
-  FieldValues,
+  type Control,
+  type FieldPath,
+  type FieldValues,
+  type ControllerRenderProps,
 } from "react-hook-form";
 
 export type FormFieldProps<T extends FieldValues> = {
-  formItemKey?: Key;
-  control: Control<T> | undefined;
-  name: FieldPath<T>;
   label: string;
+  formItemKey?: Key;
+  name: FieldPath<T>;
   description?: string;
   reverseLabel?: boolean;
+  control: undefined | Control<T>;
   component: (field: ControllerRenderProps<T>) => ReactNode;
 };

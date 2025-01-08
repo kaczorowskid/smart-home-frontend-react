@@ -1,30 +1,30 @@
-import { FormField } from "@/components/common/FormField";
+import { useIntl } from "react-intl";
+import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { BlindFormProps } from "./BlindForm.types";
-import { formFields, formSchema, FormSchema } from "./BlindForm.schema";
-import {
-  defaultValues,
-  mapValuesToCreateForm,
-  mapValuesToUpdateForm,
-} from "./BlindForm.utils";
+import { FormField } from "@/components/common/FormField";
+import { permissionsList } from "@/api/types/common.types";
+import { usePermissions } from "@/hooks/usePermissions.hook";
 import { ControlButtons } from "@/components/app/ControlButtons";
 import {
   useCreateDevice,
   useDeleteDevice,
   useUpdateDevice,
 } from "@/api/hooks/devices.hooks";
-import { useIntl } from "react-intl";
-import { usePermissions } from "@/hooks/usePermissions.hook";
-import { permissionsList } from "@/api/types/common.types";
+import { type BlindFormProps } from "./BlindForm.types";
+import { formFields, formSchema, type FormSchema } from "./BlindForm.schema";
+import {
+  defaultValues,
+  mapValuesToCreateForm,
+  mapValuesToUpdateForm,
+} from "./BlindForm.utils";
 
 export const BlindForm = ({
-  selectedId,
+  name,
   onClose,
   deviceId,
-  name,
+  selectedId,
 }: BlindFormProps) => {
   const { formatMessage } = useIntl();
 
@@ -49,12 +49,12 @@ export const BlindForm = ({
   ]);
 
   const form = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
     defaultValues: defaultValues,
+    resolver: zodResolver(formSchema),
     values: {
-      deviceId: deviceId || "",
-      name: name || "",
       type: "BLIND",
+      name: name || "",
+      deviceId: deviceId || "",
     },
   });
 
@@ -78,7 +78,7 @@ export const BlindForm = ({
   };
 
   const handleDeleteDevice = async () => {
-    await deleteBlind({ id: selectedId, type: "BLIND" });
+    await deleteBlind({ type: "BLIND", id: selectedId });
     handleCloseForm();
   };
 
@@ -86,23 +86,23 @@ export const BlindForm = ({
   return (
     <Form {...form}>
       <FormField
-        label={formatMessage({ id: "formField.name" })}
         control={form.control}
         name={formFields.name}
         component={(field) => <Input {...field} />}
+        label={formatMessage({ id: "formField.name" })}
       />
       <FormField
-        label={formatMessage({ id: "formField.device-id" })}
         control={form.control}
         name={formFields.deviceId}
         component={(field) => <Input {...field} />}
+        label={formatMessage({ id: "formField.device-id" })}
       />
 
       <ControlButtons
         entity={name || ""}
-        isCreate={!selectedId}
         onCreate={handleSave}
         onUpdate={handleSave}
+        isCreate={!selectedId}
         onDelete={handleDeleteDevice}
         isCreatePending={isCreatePending}
         isUpdatePending={isUpdatePending}

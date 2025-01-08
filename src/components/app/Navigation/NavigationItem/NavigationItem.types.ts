@@ -1,15 +1,15 @@
-import { Permission } from "@/api/types/common.types";
-import { LucideIcon } from "lucide-react";
-import { ReactNode } from "react";
-
-type NavigationItem = {
-  permissions: Permission[];
-  title: ReactNode;
-  icon: LucideIcon;
-  path: string;
-};
+import { type ReactNode } from "react";
+import { type LucideIcon } from "lucide-react";
+import { type Permission } from "@/api/types/common.types";
 
 export type NavigationItemProps = {
-  items: NavigationItem;
   onClick: () => void;
+  items: NavigationItem;
+};
+
+type NavigationItem = {
+  path: string;
+  title: ReactNode;
+  icon: LucideIcon;
+  permissions: Permission[];
 };

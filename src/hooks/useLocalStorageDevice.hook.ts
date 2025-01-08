@@ -1,5 +1,5 @@
-import { DisplayedDevicesKey } from "@/utils/localStorageKeys";
 import { useState } from "react";
+import { type DisplayedDevicesKey } from "@/utils/localStorageKeys";
 
 export const useLocalStorageDevice = (
   displayedDevicesKeys: DisplayedDevicesKey

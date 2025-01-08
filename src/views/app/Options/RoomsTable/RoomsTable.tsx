@@ -1,13 +1,13 @@
-import { useFilteredData } from "@/hooks/useFilteredData.hook";
-import { CardWithHeader } from "@/components/common/CardWithHeader";
-import { Pagination } from "@/components/common/Pagination";
+import { FormattedMessage } from "react-intl";
 import { Table } from "@/components/common/Table";
-import { usePagination } from "@/hooks/usePagination.hook";
-import { RoomsTableProps } from "./RoomsTable.types";
-import { columns } from "./RoomsTable.schema";
 import { useGetAllRooms } from "@/api/hooks/room.hooks";
 import { Searchbar } from "@/components/common/Searchbar";
-import { FormattedMessage } from "react-intl";
+import { usePagination } from "@/hooks/usePagination.hook";
+import { Pagination } from "@/components/common/Pagination";
+import { useFilteredData } from "@/hooks/useFilteredData.hook";
+import { CardWithHeader } from "@/components/common/CardWithHeader";
+import { columns } from "./RoomsTable.schema";
+import { type RoomsTableProps } from "./RoomsTable.types";
 
 export const RoomsTable = ({ setSelectedId }: RoomsTableProps) => {
   const { data } = useGetAllRooms();
@@ -32,15 +32,15 @@ export const RoomsTable = ({ setSelectedId }: RoomsTableProps) => {
     >
       <Table
         columns={columns}
-        data={paginationData.data || []}
         rowKey={(record) => record.id}
+        data={paginationData.data || []}
         onRowClick={({ id }) => setSelectedId?.(id)}
       />
       <Pagination
         className="pt-5"
         count={paginationData.pagination.count}
-        defaultPage={paginationData.pagination.defaultPage}
         onPaginationChange={handlePaginationChange}
+        defaultPage={paginationData.pagination.defaultPage}
       />
     </CardWithHeader>
   );

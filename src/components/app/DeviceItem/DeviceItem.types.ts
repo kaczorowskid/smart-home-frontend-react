@@ -1,4 +1,4 @@
-import { DisplayedDevicesKey } from "@/utils/localStorageKeys";
+import { type DisplayedDevicesKey } from "@/utils/localStorageKeys";
 
 export type DeviceItemNewProps = {
   deviceId?: string;
