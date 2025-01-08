@@ -1,13 +1,13 @@
+import { FormattedMessage } from "react-intl";
+import { Table } from "@/components/common/Table";
+import { Searchbar } from "@/components/common/Searchbar";
+import { usePagination } from "@/hooks/usePagination.hook";
+import { Pagination } from "@/components/common/Pagination";
+import { useGetAllDevices } from "@/api/hooks/devices.hooks";
 import { useFilteredData } from "@/hooks/useFilteredData.hook";
 import { CardWithHeader } from "@/components/common/CardWithHeader";
-import { Pagination } from "@/components/common/Pagination";
-import { Table } from "@/components/common/Table";
 import { columns } from "./DevicesTable.schema";
-import { DevicesTableProps } from "./DevicesTable.types";
-import { usePagination } from "@/hooks/usePagination.hook";
-import { useGetAllDevices } from "@/api/hooks/devices.hooks";
-import { Searchbar } from "@/components/common/Searchbar";
-import { FormattedMessage } from "react-intl";
+import { type DevicesTableProps } from "./DevicesTable.types";
 
 export const DevicesTable = ({
   setSelectedId,
@@ -37,16 +37,16 @@ export const DevicesTable = ({
     >
       <Table
         columns={columns}
-        data={paginationData.data || []}
         rowKey={(record) => record.id}
+        data={paginationData.data || []}
         onRowClick={({ id }) => setSelectedId?.(id)}
       />
       {!isDashboardPart && (
         <Pagination
           className="pt-5"
           count={paginationData.pagination.count}
-          defaultPage={paginationData.pagination.defaultPage}
           onPaginationChange={handlePaginationChange}
+          defaultPage={paginationData.pagination.defaultPage}
         />
       )}
     </CardWithHeader>

@@ -1,14 +1,14 @@
-import { CardWithHeader } from "@/components/common/CardWithHeader";
-import { Dropdown } from "@/components/common/Dropdown";
-import { Blinds } from "lucide-react";
-import { BlindCardProps } from "./BlindCard.types";
-import { Slider } from "@/components/ui/slider";
 import { useState } from "react";
+import { Blinds } from "lucide-react";
+import { Slider } from "@/components/ui/slider";
+import { Dropdown } from "@/components/common/Dropdown";
+import { CardWithHeader } from "@/components/common/CardWithHeader";
+import { type BlindCardProps } from "./BlindCard.types";
 
 export const BlindCard = ({
   name,
-  blindValue,
   items,
+  blindValue,
   isLocalKey,
 }: BlindCardProps) => {
   const [value, setValue] = useState(blindValue);
@@ -20,6 +20,7 @@ export const BlindCard = ({
   return (
     <CardWithHeader
       icon={Blinds}
+      hasSmallHeader
       title={
         isLocalKey ? (
           <Dropdown
@@ -34,14 +35,13 @@ export const BlindCard = ({
           <span>{name}</span>
         )
       }
-      hasSmallHeader
     >
       <div className="text-6xl font-bold mb-5">{value}%</div>
       <Slider
-        onValueChange={handleChangeBlind}
-        defaultValue={[value]}
         max={100}
         step={25}
+        defaultValue={[value]}
+        onValueChange={handleChangeBlind}
       />
     </CardWithHeader>
   );

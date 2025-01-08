@@ -1,14 +1,14 @@
-import { CardWithHeader } from "@/components/common/CardWithHeader";
-import { EmptyDeviceProps } from "./EmptyDevice.types";
-import { Dropdown } from "@/components/common/Dropdown";
-import { Button } from "@/components/ui/button";
 import { FormattedMessage } from "react-intl";
+import { Button } from "@/components/ui/button";
+import { Dropdown } from "@/components/common/Dropdown";
+import { CardWithHeader } from "@/components/common/CardWithHeader";
+import { type EmptyDeviceProps } from "./EmptyDevice.types";
 
 export const EmptyDevice = ({ items }: EmptyDeviceProps) => (
   <CardWithHeader
-    title={<FormattedMessage id="component.empty-device" />}
-    contentClassName="h-full"
     hasSmallHeader
+    contentClassName="h-full"
+    title={<FormattedMessage id="component.empty-device" />}
   >
     <div className="w-full h-[70%] flex justify-center items-center">
       <Dropdown

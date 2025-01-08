@@ -1,1 +1,1 @@
-export type OptionsTab = "devices" | "users" | "rooms" | "roles";
+export type OptionsTab = "users" | "rooms" | "roles" | "devices";

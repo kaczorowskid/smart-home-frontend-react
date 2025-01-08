@@ -1,5 +1,5 @@
-import { Navigation } from "@/components/app/Navigation";
 import { Outlet } from "react-router-dom";
+import { Navigation } from "@/components/app/Navigation";
 
 export const AppLayout = () => (
   <>

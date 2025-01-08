@@ -1,11 +1,11 @@
 import { Card } from "@/components/ui/card";
-import { PageWrapperProps } from "./PageWrapper.types";
+import { type PageWrapperProps } from "./PageWrapper.types";
 
 export const PageWrapper = ({
   title,
-  icon: Icon,
   extra,
   children,
+  icon: Icon,
 }: PageWrapperProps) => {
   return (
     <>

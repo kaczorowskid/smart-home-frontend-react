@@ -1,11 +1,25 @@
-import { FormField } from "@/components/common/FormField";
+import { User } from "lucide-react";
+import { useIntl } from "react-intl";
+import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Select } from "@/components/common/Select";
 import { Dialog } from "@/components/common/Dialog";
-import { formFields, formSchema, FormSchema } from "./UserForm.schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormTitle } from "@/components/app/FormTitle";
+import { useGetAllRoles } from "@/api/hooks/role.hooks";
+import { FormField } from "@/components/common/FormField";
+import { permissionsList } from "@/api/types/common.types";
+import { type CommonFormProps } from "@/types/common.types";
+import { usePermissions } from "@/hooks/usePermissions.hook";
+import { ControlButtons } from "@/components/app/ControlButtons";
+import {
+  useDeleteUser,
+  useGetOneUser,
+  useUpdateUser,
+  useCreateUserByAdmin,
+} from "@/api/hooks/user.hooks";
+import { formFields, formSchema, type FormSchema } from "./UserForm.schema";
 import {
   defaultValues,
   initialValues,
@@ -13,27 +27,13 @@ import {
   mapValuesToCreateForm,
   mapValuesToUpdateForm,
 } from "./UserForm.utils";
-import { FormTitle } from "@/components/app/FormTitle";
-import { User } from "lucide-react";
-import { ControlButtons } from "@/components/app/ControlButtons";
-import {
-  useCreateUserByAdmin,
-  useDeleteUser,
-  useGetOneUser,
-  useUpdateUser,
-} from "@/api/hooks/user.hooks";
-import { useIntl } from "react-intl";
-import { useGetAllRoles } from "@/api/hooks/role.hooks";
-import { usePermissions } from "@/hooks/usePermissions.hook";
-import { permissionsList } from "@/api/types/common.types";
-import { CommonFormProps } from "@/types/common.types";
 
-export const UserForm = ({ selectedId, open, onClose }: CommonFormProps) => {
+export const UserForm = ({ open, onClose, selectedId }: CommonFormProps) => {
   const { formatMessage } = useIntl();
   const { data } = useGetOneUser({ id: selectedId || "" });
   const { data: allRoles } = useGetAllRoles();
 
-  const { mutateAsync: createUserByAdmin, isPending: isCreatePending } =
+  const { isPending: isCreatePending, mutateAsync: createUserByAdmin } =
     useCreateUserByAdmin();
   const { mutateAsync: updateUser, isPending: isUpdatePending } =
     useUpdateUser();
@@ -91,11 +91,11 @@ export const UserForm = ({ selectedId, open, onClose }: CommonFormProps) => {
 
   return (
     <Dialog
+      open={open || !!selectedId}
       className="w-[90%] lg:w-full"
       title={
-        <FormTitle title={formatMessage({ id: "view.user" })} icon={User} />
+        <FormTitle icon={User} title={formatMessage({ id: "view.user" })} />
       }
-      open={open || !!selectedId}
       onOpenChange={(status) => {
         if (!status) {
           handleCloseForm();
@@ -104,14 +104,14 @@ export const UserForm = ({ selectedId, open, onClose }: CommonFormProps) => {
     >
       <Form {...form}>
         <FormField
-          label={formatMessage({ id: "formField.user-role" })}
           control={form.control}
           name={formFields.roleId}
+          label={formatMessage({ id: "formField.user-role" })}
           component={({ onChange, ...field }) => (
             <Select
+              onValueChange={onChange}
               disabled={!canChangeRole}
               items={mapRolesForSelect(allRoles) || []}
-              onValueChange={onChange}
               {...field}
             />
           )}
@@ -119,30 +119,30 @@ export const UserForm = ({ selectedId, open, onClose }: CommonFormProps) => {
         {!!selectedId && (
           <>
             <FormField
-              label={formatMessage({ id: "formField.user-name" })}
               control={form.control}
               name={formFields.name}
               component={(field) => <Input {...field} />}
+              label={formatMessage({ id: "formField.user-name" })}
             />
             <FormField
-              label={formatMessage({ id: "formField.user-surname" })}
               control={form.control}
               name={formFields.surname}
               component={(field) => <Input {...field} />}
+              label={formatMessage({ id: "formField.user-surname" })}
             />
           </>
         )}
         <FormField
-          label={formatMessage({ id: "formField.email" })}
           control={form.control}
           name={formFields.email}
+          label={formatMessage({ id: "formField.email" })}
           component={(field) => <Input {...field} disabled={!!selectedId} />}
         />
         <ControlButtons
-          entity={data?.email || ""}
-          isCreate={!selectedId}
           onCreate={handleSave}
           onUpdate={handleSave}
+          isCreate={!selectedId}
+          entity={data?.email || ""}
           onDelete={handleDeleteUser}
           isCreatePending={isCreatePending}
           isUpdatePending={isUpdatePending}

@@ -1,5 +1,5 @@
-import { Permission } from "@/api/types/common.types";
 import { useUserStore } from "@/stores/user";
+import { type Permission } from "@/api/types/common.types";
 
 export const usePermissions = (requiredPermissions: Permission[]) => {
   const {

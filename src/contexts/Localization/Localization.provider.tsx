@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
 import { IntlProvider } from "react-intl";
-import { Locale, LocalizationProviderProps } from "./Localization.types";
-import { getLocale, getMessages } from "./Localization.utils";
-import { LocalizationContext } from "./Localization.context";
+import { useState, useEffect } from "react";
 import { LOCALE_STORAGE_KEY } from "./Localization.consts";
+import { LocalizationContext } from "./Localization.context";
+import { getLocale, getMessages } from "./Localization.utils";
+import {
+  type Locale,
+  type LocalizationProviderProps,
+} from "./Localization.types";
 
 export const LocalizationProvider = ({
   children,
@@ -11,7 +14,7 @@ export const LocalizationProvider = ({
   const [locale, setLocale] = useState<Locale>(
     (localStorage.getItem(LOCALE_STORAGE_KEY) as Locale) || getLocale()
   );
-  const [messages, setMessages] = useState<Record<string, any>>({});
+  const [messages, setMessages] = useState<Record<string, string>>({});
 
   useEffect(() => {
     getMessages(locale).then((data) => setMessages(data.default));

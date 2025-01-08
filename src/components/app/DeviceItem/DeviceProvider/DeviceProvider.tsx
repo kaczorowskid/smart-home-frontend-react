@@ -1,14 +1,14 @@
-import { DeviceProviderProps } from "./DeviceProvider.types";
+import { type DeviceProviderProps } from "./DeviceProvider.types";
 
 export const DeviceProvider = ({
   data,
-  thermometer,
   blind,
+  thermometer,
 }: DeviceProviderProps) => {
   switch (data?.type) {
-    case "THERMOMETER":
-      return thermometer(data);
     case "BLIND":
       return blind(data);
+    case "THERMOMETER":
+      return thermometer(data);
   }
 };

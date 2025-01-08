@@ -1,44 +1,44 @@
-import { routesPath } from "@/routes/routesPath";
-import { NavigationItemProps } from "./NavigationItem";
 import { FormattedMessage } from "react-intl";
-import {
-  ChartArea,
-  House,
-  LayoutDashboard,
-  NotebookPen,
-  Settings,
-} from "lucide-react";
+import { routesPath } from "@/routes/routesPath";
 import { permissionsList } from "@/api/types/common.types";
+import {
+  House,
+  Settings,
+  ChartArea,
+  NotebookPen,
+  LayoutDashboard,
+} from "lucide-react";
+import { type NavigationItemProps } from "./NavigationItem";
 
 export const menuItems: NavigationItemProps["items"][] = [
   {
-    permissions: [permissionsList.IS_ADMIN, permissionsList.DASHBOARD_VIEW],
-    title: <FormattedMessage id="menu.dashboard" />,
-    path: routesPath.app.dashboard,
     icon: LayoutDashboard,
+    path: routesPath.app.dashboard,
+    title: <FormattedMessage id="menu.dashboard" />,
+    permissions: [permissionsList.IS_ADMIN, permissionsList.DASHBOARD_VIEW],
   },
   {
-    permissions: [permissionsList.IS_ADMIN, permissionsList.GRAPHS_VIEW],
-    title: <FormattedMessage id="menu.graphs" />,
-    path: routesPath.app.graphs,
     icon: ChartArea,
+    path: routesPath.app.graphs,
+    title: <FormattedMessage id="menu.graphs" />,
+    permissions: [permissionsList.IS_ADMIN, permissionsList.GRAPHS_VIEW],
   },
   {
-    permissions: [permissionsList.IS_ADMIN, permissionsList.ROOMS_VIEW],
-    title: <FormattedMessage id="menu.rooms" />,
-    path: routesPath.app.rooms,
     icon: House,
+    path: routesPath.app.rooms,
+    title: <FormattedMessage id="menu.rooms" />,
+    permissions: [permissionsList.IS_ADMIN, permissionsList.ROOMS_VIEW],
   },
   {
-    permissions: [permissionsList.IS_ADMIN, permissionsList.OPTIONS_VIEW],
-    title: <FormattedMessage id="menu.options" />,
-    path: routesPath.app.options,
     icon: NotebookPen,
+    path: routesPath.app.options,
+    title: <FormattedMessage id="menu.options" />,
+    permissions: [permissionsList.IS_ADMIN, permissionsList.OPTIONS_VIEW],
   },
   {
-    permissions: [permissionsList.IS_ADMIN, permissionsList.SETTINGS_VIEW],
-    title: <FormattedMessage id="menu.settings" />,
-    path: routesPath.app.settings,
     icon: Settings,
+    path: routesPath.app.settings,
+    title: <FormattedMessage id="menu.settings" />,
+    permissions: [permissionsList.IS_ADMIN, permissionsList.SETTINGS_VIEW],
   },
 ];

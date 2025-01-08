@@ -1,9 +1,9 @@
-import { Avatar } from "@/components/ui/avatar";
-import { useUserStore } from "@/stores/user";
 import { User } from "lucide-react";
+import { useUserStore } from "@/stores/user";
+import { Avatar } from "@/components/ui/avatar";
 
 export const UserInfo = () => {
-  const { name, surname, email } = useUserStore();
+  const { name, email, surname } = useUserStore();
 
   return (
     <div className="flex items-center">

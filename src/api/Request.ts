@@ -7,9 +7,9 @@ export class Request {
     params?: RequestParams
   ): Promise<ResponseData> => {
     const requestConfig: AxiosRequestConfig = {
-      method: "GET",
       url,
       params,
+      method: "GET",
     };
 
     const response = await axiosInstance(requestConfig);
@@ -21,9 +21,9 @@ export class Request {
     data: RequestData
   ): Promise<ResponseData> => {
     const requestConfig: AxiosRequestConfig = {
-      method: "POST",
       url,
       data,
+      method: "POST",
     };
 
     const response = await axiosInstance(requestConfig);
@@ -35,9 +35,9 @@ export class Request {
     data: RequestData
   ): Promise<ResponseData> => {
     const requestConfig: AxiosRequestConfig = {
-      method: "PATCH",
       url,
       data,
+      method: "PATCH",
     };
 
     const response = await axiosInstance(requestConfig);
@@ -49,9 +49,9 @@ export class Request {
     data?: RequestData
   ): Promise<ResponseData> => {
     const requestConfig: AxiosRequestConfig = {
-      method: "DELETE",
       url,
       data,
+      method: "DELETE",
     };
 
     const response = await axiosInstance(requestConfig);
@@ -63,9 +63,9 @@ export class Request {
     data?: RequestData
   ): Promise<ResponseData> => {
     const requestConfig: AxiosRequestConfig = {
-      method: "PUT",
       url,
       data,
+      method: "PUT",
     };
 
     const response = await axiosInstance(requestConfig);

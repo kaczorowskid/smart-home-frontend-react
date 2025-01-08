@@ -1,8 +1,7 @@
 import * as React from "react";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
-
 import { cn } from "@/lib/utils";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 
 const Dialog = DialogPrimitive.Root;
 
@@ -30,7 +29,7 @@ DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(({ className, children, ...props }, ref) => (
+>(({ children, className, ...props }, ref) => (
   <DialogPortal>
     <DialogOverlay />
     <DialogPrimitive.Content
@@ -120,6 +119,8 @@ function useDialog() {
   }
 
   return {
+    trigger,
+    dismiss,
     triggerProps: {
       ref: triggerRef,
       onClick: trigger,
@@ -131,21 +132,19 @@ function useDialog() {
         else dismiss();
       },
     },
-    trigger,
-    dismiss,
   };
 }
 
 export {
   Dialog,
-  DialogPortal,
-  DialogOverlay,
+  useDialog,
   DialogClose,
-  DialogTrigger,
-  DialogContent,
+  DialogTitle,
+  DialogPortal,
   DialogHeader,
   DialogFooter,
-  DialogTitle,
+  DialogOverlay,
+  DialogTrigger,
+  DialogContent,
   DialogDescription,
-  useDialog,
 };

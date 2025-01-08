@@ -27,9 +27,9 @@ export const Description = () => {
       </div>
       <div className="h-screen mt-10 lg:mt-0">
         <img
-          className="h-full w-full object-cover rounded-3xl lg:rounded-l-3xl lg:rounded-r-none"
           src={AppBlackPhone}
           alt="Smart-Home App"
+          className="h-full w-full object-cover rounded-3xl lg:rounded-l-3xl lg:rounded-r-none"
         />
       </div>
     </section>

@@ -1,41 +1,41 @@
+import { useIntl } from "react-intl";
+import { endOfDay, startOfDay } from "date-fns";
+import { dateFormatter } from "@/utils/date.utils";
+import { dateLastDay } from "@/constants/date.consts";
+import { useGetDeviceDataForGraph } from "@/api/hooks/devices.hooks";
+import { useSelectorDataSource } from "@/hooks/useSelectorDataSource.hook";
 import {
-  CartesianGrid,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  XAxis,
-  YAxis,
-} from "recharts";
-import {
-  ChartContainer,
   ChartTooltip,
+  ChartContainer,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { CardWithHeader } from "../../common/CardWithHeader";
-import { DeviceChartProps } from "./DeviceChart.types";
+import {
+  Line,
+  XAxis,
+  YAxis,
+  LineChart,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
 import { config } from "./DeviceChart.schemas";
 import { Dropdown } from "../../common/Dropdown";
-import { useSelectorDataSource } from "@/hooks/useSelectorDataSource.hook";
-import { useGetDeviceDataForGraph } from "@/api/hooks/devices.hooks";
-import { dateLastDay } from "@/constants/date.consts";
-import { dateFormatter } from "@/utils/date.utils";
-import { endOfDay, startOfDay } from "date-fns";
-import { useIntl } from "react-intl";
+import { type DeviceChartProps } from "./DeviceChart.types";
+import { CardWithHeader } from "../../common/CardWithHeader";
 
-const { from, to } = dateLastDay;
-const { hourAndDate, onlyHour } = dateFormatter;
+const { to, from } = dateLastDay;
+const { onlyHour, hourAndDate } = dateFormatter;
 
 export const DeviceChart = ({
+  icon,
+  extra,
+  dateTo,
+  deviceId,
+  dateFrom,
   chartType,
   description,
-  icon,
-  deviceId,
   deviceLocalKey,
-  extra,
-  dateFrom,
-  dateTo,
 }: DeviceChartProps) => {
-  const { isLocalKey, id, items } = useSelectorDataSource(
+  const { id, items, isLocalKey } = useSelectorDataSource(
     deviceId,
     deviceLocalKey,
     "THERMOMETER"
@@ -45,12 +45,17 @@ export const DeviceChart = ({
 
   const { data } = useGetDeviceDataForGraph({
     deviceId: id || "",
-    dateFrom: (dateFrom && startOfDay(dateFrom)) || from,
     dateTo: (dateTo && endOfDay(dateTo)) || to,
+    dateFrom: (dateFrom && startOfDay(dateFrom)) || from,
   });
 
   return (
     <CardWithHeader
+      icon={icon}
+      extra={extra}
+      cardClassName="flex-1"
+      contentClassName="h-80"
+      description={description}
       title={
         isLocalKey ? (
           <Dropdown
@@ -71,55 +76,50 @@ export const DeviceChart = ({
           </div>
         )
       }
-      description={description}
-      icon={icon}
-      cardClassName="flex-1"
-      contentClassName="h-80"
-      extra={extra}
     >
       <ResponsiveContainer width="100%" height="100%">
         <ChartContainer config={config}>
-          <LineChart accessibilityLayer data={data?.data}>
+          <LineChart data={data?.data} accessibilityLayer>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="date"
+              tickMargin={8}
+              minTickGap={50}
               tickLine={false}
               axisLine={false}
-              tickMargin={8}
               interval="preserveStartEnd"
-              minTickGap={50}
               tickFormatter={(value) => onlyHour(value) || ""}
             />
             <YAxis
               width={30}
+              tickMargin={8}
               tickLine={false}
               axisLine={false}
-              tickMargin={8}
               domain={["dataMin", "dataMax"]}
             />
             <ChartTooltip
               cursor={false}
               content={
                 <ChartTooltipContent
-                  labelFormatter={(label) => hourAndDate(label)}
                   indicator="dot"
+                  labelFormatter={(label) => hourAndDate(label)}
                 />
               }
             />
             {(chartType === "temperature" || chartType === "all") && (
               <Line
-                dataKey="temperature"
-                type="natural"
-                stroke="var(--color-temperature)"
                 dot={false}
+                type="natural"
+                dataKey="temperature"
+                stroke="var(--color-temperature)"
               />
             )}
             {(chartType === "humidity" || chartType === "all") && (
               <Line
-                dataKey="humidity"
-                type="natural"
-                stroke="var(--color-humidity)"
                 dot={false}
+                type="natural"
+                dataKey="humidity"
+                stroke="var(--color-humidity)"
               />
             )}
           </LineChart>

@@ -1,12 +1,12 @@
-import { DropdownMenu } from "@/components/ui/dropdown-menu";
-import { ComponentProps, ReactNode } from "react";
+import { type ReactNode, type ComponentProps } from "react";
+import { type DropdownMenu } from "@/components/ui/dropdown-menu";
+
+export type DropdownProps = ComponentProps<typeof DropdownMenu> & {
+  items: DropdownItem[];
+  triggerComponent: ReactNode;
+};
 
 type DropdownItem = {
   label: string;
   onClick: () => void;
 };
-
-export type DropdownProps = {
-  items: DropdownItem[];
-  triggerComponent: ReactNode;
-} & ComponentProps<typeof DropdownMenu>;

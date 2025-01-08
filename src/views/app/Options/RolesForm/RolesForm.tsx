@@ -1,41 +1,41 @@
-import { FormField } from "@/components/common/FormField";
+import { User } from "lucide-react";
+import { useIntl } from "react-intl";
+import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Dialog } from "@/components/common/Dialog";
+import { Checkbox } from "@/components/ui/checkbox";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FormTitle } from "@/components/app/FormTitle";
-import { User } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { FormField } from "@/components/common/FormField";
+import { permissionsList } from "@/api/types/common.types";
+import { type CommonFormProps } from "@/types/common.types";
+import { usePermissions } from "@/hooks/usePermissions.hook";
+import { SelectedItems } from "@/components/app/SelectedItems";
 import { ControlButtons } from "@/components/app/ControlButtons";
-import { useIntl } from "react-intl";
-import { formFields, formSchema, FormSchema } from "./RolesForm.schema";
-import {
-  defaultValues,
-  initialValues,
-  mapPermissionsDataToCheckboxData,
-  mapValuesToCreateForm,
-  mapValuesToUpdateForm,
-} from "./RolesForm.utils";
-import {
-  useCreateRole,
-  useDeleteRole,
-  useGetAllPermissions,
-  useGetOneRole,
-  useUpdateRole,
-} from "@/api/hooks/role.hooks";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { SelectedItems } from "@/components/app/SelectedItems";
-import { Checkbox } from "@/components/ui/checkbox";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { usePermissions } from "@/hooks/usePermissions.hook";
-import { permissionsList } from "@/api/types/common.types";
-import { CommonFormProps } from "@/types/common.types";
+import {
+  useCreateRole,
+  useDeleteRole,
+  useGetOneRole,
+  useUpdateRole,
+  useGetAllPermissions,
+} from "@/api/hooks/role.hooks";
+import { formFields, formSchema, type FormSchema } from "./RolesForm.schema";
+import {
+  defaultValues,
+  initialValues,
+  mapValuesToCreateForm,
+  mapValuesToUpdateForm,
+  mapPermissionsDataToCheckboxData,
+} from "./RolesForm.utils";
 
-export const RolesForm = ({ selectedId, open, onClose }: CommonFormProps) => {
+export const RolesForm = ({ open, onClose, selectedId }: CommonFormProps) => {
   const { formatMessage } = useIntl();
   const { data } = useGetOneRole({ id: selectedId || "" });
   const { data: allPermissionsData } = useGetAllPermissions();
@@ -100,11 +100,11 @@ export const RolesForm = ({ selectedId, open, onClose }: CommonFormProps) => {
 
   return (
     <Dialog
+      open={open || !!selectedId}
       className="w-[90%] lg:w-full"
       title={
-        <FormTitle title={formatMessage({ id: "view.roles" })} icon={User} />
+        <FormTitle icon={User} title={formatMessage({ id: "view.roles" })} />
       }
-      open={open || !!selectedId}
       onOpenChange={(status) => {
         if (!status) {
           handleCloseForm();
@@ -113,20 +113,20 @@ export const RolesForm = ({ selectedId, open, onClose }: CommonFormProps) => {
     >
       <Form {...form}>
         <FormField
-          label={formatMessage({ id: "formField.name" })}
           control={form.control}
           name={formFields.name}
           component={(field) => <Input {...field} />}
+          label={formatMessage({ id: "formField.name" })}
         />
         <Popover>
-          <PopoverTrigger className="mt-4" asChild>
+          <PopoverTrigger asChild className="mt-4">
             <SelectedItems
+              items={permissionsCheckboxData}
+              selectedIds={form.watch()["permissions"]}
               label={formatMessage({ id: "formField.permissions" })}
               noSelectedItemsText={formatMessage({
                 id: "view.permissions-no-selected",
               })}
-              items={permissionsCheckboxData}
-              selectedIds={form.watch()["permissions"]}
             />
           </PopoverTrigger>
           <PopoverContent>
@@ -134,10 +134,10 @@ export const RolesForm = ({ selectedId, open, onClose }: CommonFormProps) => {
               {permissionsCheckboxData?.map((permission) => (
                 <FormField
                   reverseLabel
-                  label={permission.label}
                   key={permission.id}
-                  formItemKey={permission.id}
                   control={form.control}
+                  label={permission.label}
+                  formItemKey={permission.id}
                   name={formFields.permissions}
                   component={({ value, onChange, ...field }) => (
                     <Checkbox
@@ -161,10 +161,10 @@ export const RolesForm = ({ selectedId, open, onClose }: CommonFormProps) => {
           </PopoverContent>
         </Popover>
         <ControlButtons
-          entity={data?.name || ""}
-          isCreate={!selectedId}
           onCreate={handleSave}
           onUpdate={handleSave}
+          isCreate={!selectedId}
+          entity={data?.name || ""}
           onDelete={handleDeleteUser}
           isCreatePending={isCreatePending}
           isUpdatePending={isUpdatePending}

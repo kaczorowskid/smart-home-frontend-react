@@ -1,13 +1,13 @@
-import { SelectProps } from "@/components/common/Select/Select.types";
 import { FormattedMessage } from "react-intl";
+import { type SelectProps } from "@/components/common/Select/Select.types";
 
 export const itemsType: SelectProps["items"] = [
   {
-    name: <FormattedMessage id="option.thermometer" />,
     value: "THERMOMETER",
+    name: <FormattedMessage id="option.thermometer" />,
   },
   {
-    name: <FormattedMessage id="option.blind" />,
     value: "BLIND",
+    name: <FormattedMessage id="option.blind" />,
   },
 ];

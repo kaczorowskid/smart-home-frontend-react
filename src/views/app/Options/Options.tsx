@@ -1,27 +1,27 @@
-import { DevicesTable } from "@/views/app/Options/DevicesTable";
+import { useState } from "react";
+import { NotebookPen } from "lucide-react";
+import { FormattedMessage } from "react-intl";
+import { Button } from "@/components/ui/button";
+import { permissionsList } from "@/api/types/common.types";
 import { RoomsTable } from "@/views/app/Options/RoomsTable";
 import { UsersTable } from "@/views/app/Options/UsersTable";
 import { PageWrapper } from "@/components/common/PageWrapper";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { NotebookPen } from "lucide-react";
-import { useState } from "react";
-import { FormProvider } from "./FormProvider";
+import { DevicesTable } from "@/views/app/Options/DevicesTable";
+import { PermissionsWrapper } from "@/components/app/PermissionsWrapper";
+import { Tabs, TabsList, TabsContent, TabsTrigger } from "@/components/ui/tabs";
 import { UserForm } from "./UserForm";
 import { RoomsForm } from "./RoomsForm";
-import { DeviceForm } from "./DeviceForm";
-import { Button } from "@/components/ui/button";
-import { useFormSelector } from "./Options.hooks";
-import { OptionsTab } from "./Options.types";
-import { buttonNameMapper } from "./Options.utils";
-import { FormattedMessage } from "react-intl";
-import { RolesTable } from "./RolesTable";
 import { RolesForm } from "./RolesForm";
-import { permissionsList } from "@/api/types/common.types";
-import { PermissionsWrapper } from "@/components/app/PermissionsWrapper";
+import { DeviceForm } from "./DeviceForm";
+import { RolesTable } from "./RolesTable";
+import { FormProvider } from "./FormProvider";
+import { type OptionsTab } from "./Options.types";
+import { useFormSelector } from "./Options.hooks";
+import { buttonNameMapper } from "./Options.utils";
 
 export const Options = () => {
   const [selectedTab, setSelectedTab] = useState<OptionsTab>("devices");
-  const { isOpen, selectedId, handleSelectedId, handleClose, handleOpen } =
+  const { isOpen, selectedId, handleOpen, handleClose, handleSelectedId } =
     useFormSelector(selectedTab);
 
   const handleSelectTab = (tab: string) => {
@@ -30,8 +30,8 @@ export const Options = () => {
 
   return (
     <PageWrapper
-      title={<FormattedMessage id="view.options" />}
       icon={NotebookPen}
+      title={<FormattedMessage id="view.options" />}
       extra={
         <Button onClick={handleOpen}>{buttonNameMapper[selectedTab]}</Button>
       }
@@ -48,7 +48,7 @@ export const Options = () => {
               permissionsList.OPTIONS_VIEW_DEVICES,
             ]}
           >
-            <TabsTrigger className="w-full" value="devices">
+            <TabsTrigger value="devices" className="w-full">
               <FormattedMessage id="view.devices" />
             </TabsTrigger>
           </PermissionsWrapper>
@@ -58,7 +58,7 @@ export const Options = () => {
               permissionsList.OPTIONS_VIEW_ROOMS,
             ]}
           >
-            <TabsTrigger className="w-full" value="rooms">
+            <TabsTrigger value="rooms" className="w-full">
               <FormattedMessage id="view.rooms" />
             </TabsTrigger>
           </PermissionsWrapper>
@@ -68,7 +68,7 @@ export const Options = () => {
               permissionsList.OPTIONS_VIEW_USERS,
             ]}
           >
-            <TabsTrigger className="w-full" value="users">
+            <TabsTrigger value="users" className="w-full">
               <FormattedMessage id="view.users" />
             </TabsTrigger>
           </PermissionsWrapper>
@@ -78,7 +78,7 @@ export const Options = () => {
               permissionsList.OPTIONS_VIEW_ROLES,
             ]}
           >
-            <TabsTrigger className="w-full" value="roles">
+            <TabsTrigger value="roles" className="w-full">
               <FormattedMessage id="view.roles" />
             </TabsTrigger>
           </PermissionsWrapper>
@@ -99,32 +99,32 @@ export const Options = () => {
 
       <FormProvider
         selectedTab={selectedTab}
-        devicesForm={
-          <DeviceForm
-            selectedId={selectedId}
-            open={isOpen}
-            onClose={handleClose}
-          />
-        }
         usersForm={
           <UserForm
-            selectedId={selectedId}
             open={isOpen}
             onClose={handleClose}
+            selectedId={selectedId}
           />
         }
         roomsForm={
           <RoomsForm
-            selectedId={selectedId}
             open={isOpen}
             onClose={handleClose}
+            selectedId={selectedId}
           />
         }
         rolesForm={
           <RolesForm
-            selectedId={selectedId}
             open={isOpen}
             onClose={handleClose}
+            selectedId={selectedId}
+          />
+        }
+        devicesForm={
+          <DeviceForm
+            open={isOpen}
+            onClose={handleClose}
+            selectedId={selectedId}
           />
         }
       />

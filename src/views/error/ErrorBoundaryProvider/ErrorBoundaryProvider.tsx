@@ -1,6 +1,6 @@
 import { ErrorBoundary } from "react-error-boundary";
-import { ErrorBoundaryProviderProps } from "./ErrorBoundaryProvider.types";
 import { FallbackComponent } from "./FallbackComponent";
+import { type ErrorBoundaryProviderProps } from "./ErrorBoundaryProvider.types";
 
 export const ErrorBoundaryProvider = ({
   children,

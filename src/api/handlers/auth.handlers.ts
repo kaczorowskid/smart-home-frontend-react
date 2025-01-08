@@ -1,11 +1,11 @@
 import { apiUrls } from "../apiUrls";
 import { Request } from "../Request";
 import {
-  AuthorizeUserResponse,
-  LoginUserPayload,
-  LoginUserResponse,
-  LogoutUserResponse,
-  RefreshUserAccessTokenResponse,
+  type LoginUserPayload,
+  type LoginUserResponse,
+  type LogoutUserResponse,
+  type AuthorizeUserResponse,
+  type RefreshUserAccessTokenResponse,
 } from "../types/auth.types";
 
 const request = new Request();

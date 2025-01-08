@@ -1,5 +1,5 @@
-import { RootWrapperProps } from "./RootWrapper.types";
 import { Loader2 } from "lucide-react";
+import { type RootWrapperProps } from "./RootWrapper.types";
 import { useCheckUserAuth, useRefreshAccessToken } from "./RootWrapper.hooks";
 
 export const RootWrapper = ({ children }: RootWrapperProps) => {

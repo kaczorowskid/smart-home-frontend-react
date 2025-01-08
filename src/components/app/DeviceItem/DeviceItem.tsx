@@ -1,16 +1,16 @@
-import { BlindCard } from "./BlindCard";
-import { DeviceItemNewProps } from "./DeviceItem.types";
-import { EmptyDevice } from "./EmptyDevice";
-import { ThermometerCard } from "./ThermometerCard";
-import { DeviceProvider } from "./DeviceProvider";
-import { useSelectorDataSource } from "@/hooks/useSelectorDataSource.hook";
 import { useGetOneDevice } from "@/api/hooks/devices.hooks";
+import { useSelectorDataSource } from "@/hooks/useSelectorDataSource.hook";
+import { BlindCard } from "./BlindCard";
+import { EmptyDevice } from "./EmptyDevice";
+import { DeviceProvider } from "./DeviceProvider";
+import { ThermometerCard } from "./ThermometerCard";
+import { type DeviceItemNewProps } from "./DeviceItem.types";
 
 export const DeviceItem = ({
   deviceId,
   deviceLocalKey,
 }: DeviceItemNewProps) => {
-  const { isLocalKey, id, items } = useSelectorDataSource(
+  const { id, items, isLocalKey } = useSelectorDataSource(
     deviceId,
     deviceLocalKey,
     "ALL"
@@ -24,20 +24,20 @@ export const DeviceItem = ({
   return (
     <DeviceProvider
       data={data}
-      thermometer={(thermometer) => (
-        <ThermometerCard
-          isLocalKey={isLocalKey}
-          items={items}
-          name={thermometer.name}
-          thermometerData={thermometer?.data}
-        />
-      )}
       blind={(blind) => (
         <BlindCard
-          isLocalKey={isLocalKey}
           items={items}
           name={blind.name}
+          isLocalKey={isLocalKey}
           blindValue={blind.value}
+        />
+      )}
+      thermometer={(thermometer) => (
+        <ThermometerCard
+          items={items}
+          isLocalKey={isLocalKey}
+          name={thermometer.name}
+          thermometerData={thermometer?.data}
         />
       )}
     />

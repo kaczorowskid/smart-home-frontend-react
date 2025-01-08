@@ -1,20 +1,20 @@
-import { Github, Linkedin, Mail } from "lucide-react";
-import { Icon } from "./Footer.types";
+import { Mail, Github, Linkedin } from "lucide-react";
+import { type Icon } from "./Footer.types";
 
 export const icons: Icon[] = [
   {
     icon: Mail,
-    action: "mailto: test@gmail.com",
     color: "text-custom-cannonPink",
+    action: "mailto: kaczorowskid97@gmail.com",
   },
   {
     icon: Github,
-    action: "https://github.com/kaczorowskid",
     color: "text-custom-cranberry",
+    action: "https://github.com/kaczorowskid",
   },
   {
     icon: Linkedin,
-    action: "https://linkedin.com",
     color: "text-custom-salmon",
+    action: "https://www.linkedin.com/in/damiankaczorowski",
   },
 ];

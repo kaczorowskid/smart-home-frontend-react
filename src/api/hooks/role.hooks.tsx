@@ -1,61 +1,61 @@
-import {
-  useMutation,
-  UseMutationResult,
-  useQuery,
-  UseQueryResult,
-} from "@tanstack/react-query";
-import {
-  CreateRolePayload,
-  CreateRoleResponse,
-  DeleteRolePayload,
-  DeleteRoleResponse,
-  GetAllPermissionsResponse,
-  GetAllRolesResponse,
-  GetOneRolePayload,
-  GetOneRoleResponse,
-  UpdateRolePayload,
-  UpdateRoleResponse,
-} from "../types/role.types";
-import { queryKeys } from "@/utils/queryKeys";
-import {
-  createRole,
-  deleteRole,
-  getAllPermissions,
-  getAllRoles,
-  getOneRole,
-  updateRole,
-} from "../handlers/role.handlers";
-import { AxiosError } from "axios";
 import { toast } from "sonner";
+import { type AxiosError } from "axios";
+import { queryKeys } from "@/utils/queryKeys";
 import { FormattedMessage } from "react-intl";
+import { queryClient } from "@/utils/queryClient";
+import { apiErrorMapper } from "@/utils/errorMapper";
+import { type CustomAxiosError } from "@/types/common.types";
 import {
   ErrorNotification,
   SuccessNotification,
 } from "@/components/common/Notification";
-import { queryClient } from "@/utils/queryClient";
-import { CustomAxiosError } from "@/types/common.types";
-import { apiErrorMapper } from "@/utils/errorMapper";
+import {
+  useQuery,
+  useMutation,
+  type UseQueryResult,
+  type UseMutationResult,
+} from "@tanstack/react-query";
+import {
+  createRole,
+  deleteRole,
+  getOneRole,
+  updateRole,
+  getAllRoles,
+  getAllPermissions,
+} from "../handlers/role.handlers";
+import {
+  type CreateRolePayload,
+  type DeleteRolePayload,
+  type GetOneRolePayload,
+  type UpdateRolePayload,
+  type CreateRoleResponse,
+  type DeleteRoleResponse,
+  type GetOneRoleResponse,
+  type UpdateRoleResponse,
+  type GetAllRolesResponse,
+  type GetAllPermissionsResponse,
+} from "../types/role.types";
 
 export const useGetAllRoles = (): UseQueryResult<GetAllRolesResponse> =>
   useQuery({
-    queryKey: [queryKeys.getAllRoles],
     queryFn: getAllRoles,
+    queryKey: [queryKeys.getAllRoles],
   });
 
 export const useGetAllPermissions =
   (): UseQueryResult<GetAllPermissionsResponse> =>
     useQuery({
-      queryKey: [queryKeys.getAllPermissions],
       queryFn: getAllPermissions,
+      queryKey: [queryKeys.getAllPermissions],
     });
 
 export const useGetOneRole = (
   payload: GetOneRolePayload
 ): UseQueryResult<GetOneRoleResponse> =>
   useQuery({
+    enabled: !!payload.id,
     queryKey: [queryKeys.getOneRole],
     queryFn: () => getOneRole({ id: payload.id }),
-    enabled: !!payload.id,
   });
 
 export const useCreateRole = (): UseMutationResult<
@@ -65,6 +65,18 @@ export const useCreateRole = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: createRole,
+    onError: (error: CustomAxiosError) => {
+      toast.error(
+        <FormattedMessage
+          id="error.add"
+          values={{
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
+          }}
+        />
+      );
+    },
     onSuccess: async ({ name }) => {
       toast.success(
         <FormattedMessage
@@ -79,18 +91,6 @@ export const useCreateRole = (): UseMutationResult<
         queryKey: [queryKeys.getAllRoles],
       });
     },
-    onError: (error: CustomAxiosError) => {
-      toast.error(
-        <FormattedMessage
-          id="error.add"
-          values={{
-            error: () => (
-              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
-            ),
-          }}
-        />
-      );
-    },
   });
 
 export const useUpdateRole = (): UseMutationResult<
@@ -100,6 +100,18 @@ export const useUpdateRole = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: updateRole,
+    onError: (error: CustomAxiosError) => {
+      toast.error(
+        <FormattedMessage
+          id="error.update"
+          values={{
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
+          }}
+        />
+      );
+    },
     onSuccess: async ({ name }) => {
       toast.success(
         <FormattedMessage
@@ -114,18 +126,6 @@ export const useUpdateRole = (): UseMutationResult<
         queryKey: [queryKeys.getAllRoles],
       });
     },
-    onError: (error: CustomAxiosError) => {
-      toast.error(
-        <FormattedMessage
-          id="error.update"
-          values={{
-            error: () => (
-              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
-            ),
-          }}
-        />
-      );
-    },
   });
 
 export const useDeleteRole = (): UseMutationResult<
@@ -135,6 +135,18 @@ export const useDeleteRole = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: deleteRole,
+    onError: (error: CustomAxiosError) => {
+      toast.error(
+        <FormattedMessage
+          id="error.delete"
+          values={{
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
+          }}
+        />
+      );
+    },
     onSuccess: async ({ name }) => {
       toast.success(
         <FormattedMessage
@@ -148,17 +160,5 @@ export const useDeleteRole = (): UseMutationResult<
       await queryClient.invalidateQueries({
         queryKey: [queryKeys.getAllRoles],
       });
-    },
-    onError: (error: CustomAxiosError) => {
-      toast.error(
-        <FormattedMessage
-          id="error.delete"
-          values={{
-            error: () => (
-              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
-            ),
-          }}
-        />
-      );
     },
   });

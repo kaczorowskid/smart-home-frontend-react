@@ -1,5 +1,5 @@
-import { LucideIcon } from "lucide-react";
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
+import { type LucideIcon } from "lucide-react";
 
 export type FormTitleProps = {
   title: ReactNode;

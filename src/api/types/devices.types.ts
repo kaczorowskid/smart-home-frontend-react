@@ -1,40 +1,45 @@
-import { Blind, CommonDevice, Thermometer } from "./common.types";
+import {
+  type Blind,
+  type Thermometer,
+  type CommonDevice,
+} from "./common.types";
+
+export type GetAllBlindsResponse = Blind[];
+
+export type CreateDeviceResponse = CommonDevice;
+
+export type UpdateDeviceResponse = CommonDevice;
+
+export type DeleteDeviceResponse = CommonDevice;
+
+export type GetOneDevicesResponse = CommonDevice;
 
 export type GetAllDevicesResponse = CommonDevice[];
 
 export type GetAllThermometersResponse = Thermometer[];
-export type GetAllBlindsResponse = Blind[];
 
 export type GetOneDevicePayload = Pick<CommonDevice, "id">;
 
-export type GetOneDevicesResponse = CommonDevice;
+export type DeleteDevicePayload = Pick<CommonDevice, "id" | "type">;
 
 export type CreateDevicePayload = Pick<
   CommonDevice,
-  "name" | "deviceId" | "type"
+  "name" | "type" | "deviceId"
 >;
-
-export type CreateDeviceResponse = CommonDevice;
 
 export type UpdateDevicePayload = Partial<
-  Pick<CommonDevice, "id" | "name" | "deviceId" | "type">
+  Pick<CommonDevice, "id" | "name" | "type" | "deviceId">
 >;
 
-export type UpdateDeviceResponse = CommonDevice;
-
 export type GetDeviceDataForGraphPayload = Pick<CommonDevice, "deviceId"> & {
-  dateFrom: Date | undefined;
   dateTo: Date | undefined;
+  dateFrom: Date | undefined;
 };
 
 export type GetDeviceDataForGraphResponse = Pick<CommonDevice, "name"> & {
   data: {
-    temperature: number;
-    humidity: number;
     date: string;
+    humidity: number;
+    temperature: number;
   }[];
 };
-
-export type DeleteDevicePayload = Pick<CommonDevice, "id" | "type">;
-
-export type DeleteDeviceResponse = CommonDevice;

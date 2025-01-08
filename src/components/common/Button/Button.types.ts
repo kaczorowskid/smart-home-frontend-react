@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { ComponentProps } from "react";
+import { type ComponentProps } from "react";
+import { type Button } from "@/components/ui/button";
 
 export type ButtonProps = {
   isLoading?: boolean;

@@ -1,4 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+
+type UsePaginationProps<T> = {
+  data?: T[];
+  pageSize?: number;
+  defaultPage?: number;
+};
 
 type PaginationData<T> = {
   data?: T[];
@@ -6,12 +12,6 @@ type PaginationData<T> = {
     count: number;
     defaultPage: number;
   };
-};
-
-type UsePaginationProps<T> = {
-  data?: T[];
-  pageSize?: number;
-  defaultPage?: number;
 };
 
 export const usePagination = <T>({

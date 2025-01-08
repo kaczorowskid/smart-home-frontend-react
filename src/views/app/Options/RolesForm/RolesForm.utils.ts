@@ -1,6 +1,9 @@
-import { Permission, Role } from "@/api/types/common.types";
-import { formFields, FormSchema } from "./RolesForm.schema";
-import { CreateRolePayload, UpdateRolePayload } from "@/api/types/role.types";
+import { type Role, type Permission } from "@/api/types/common.types";
+import {
+  type CreateRolePayload,
+  type UpdateRolePayload,
+} from "@/api/types/role.types";
+import { formFields, type FormSchema } from "./RolesForm.schema";
 
 export const defaultValues: FormSchema = {
   [formFields.name]: "",
@@ -9,7 +12,7 @@ export const defaultValues: FormSchema = {
 
 export const initialValues = (
   data: Role | undefined
-): FormSchema | undefined => {
+): undefined | FormSchema => {
   if (!data) {
     return;
   }
@@ -21,7 +24,7 @@ export const initialValues = (
 };
 
 export const mapPermissionsDataToCheckboxData = (
-  permission: Permission[] | undefined
+  permission: undefined | Permission[]
 ) => permission?.map((item) => ({ id: item, label: item }));
 
 export const mapValuesToCreateForm = (

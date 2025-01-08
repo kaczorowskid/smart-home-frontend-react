@@ -1,18 +1,18 @@
 import {
-  Select as ShadcnSelect,
-  SelectContent,
-  SelectGroup,
   SelectItem,
+  SelectGroup,
   SelectLabel,
-  SelectTrigger,
   SelectValue,
+  SelectContent,
+  SelectTrigger,
+  Select as ShadcnSelect,
 } from "@/components/ui/select";
-import { SelectProps } from "./Select.types";
+import { type SelectProps } from "./Select.types";
 
 export const Select = ({
   label,
-  placeholder,
   items,
+  placeholder,
   ...props
 }: SelectProps) => {
   return (

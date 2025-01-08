@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { ItemType, PaginationProps } from "./Pagination.types";
+import { type ItemType, type PaginationProps } from "./Pagination.types";
 
 const BOUNDARY_COUNT = 1;
 const SIBLING_COUNT = 1;
 
 export const itemType: Record<string, ItemType> = {
-  previous: "previous",
-  startEllipsis: "start-ellipsis",
   page: "page",
-  endEllipsis: "end-ellipsis",
   next: "next",
+  previous: "previous",
+  endEllipsis: "end-ellipsis",
+  startEllipsis: "start-ellipsis",
 };
 
 export type UsePaginationItemsProps = Pick<
@@ -19,11 +19,11 @@ export type UsePaginationItemsProps = Pick<
 
 export type UsePaginationItems = {
   items: {
-    onClick: () => void;
     type: ItemType;
-    page: number | undefined;
     isActive: boolean;
     disabled: boolean;
+    onClick: () => void;
+    page: number | undefined;
   }[];
 };
 
@@ -34,6 +34,7 @@ export const usePaginationItems = ({
 }: UsePaginationItemsProps): UsePaginationItems => {
   const [page, setPageState] = useState(defaultPage);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClick = (value: any) => {
     onPaginationChange(value);
     setPageState(value);
@@ -88,7 +89,7 @@ export const usePaginationItems = ({
     itemType.next,
   ];
 
-  const getButtonType = (item: ItemType | number) => {
+  const getButtonType = (item: number | ItemType) => {
     if (typeof item === "number") {
       return item;
     } else if (item === "previous") {
@@ -98,13 +99,13 @@ export const usePaginationItems = ({
     }
   };
 
-  const getPageType = (item: ItemType | number) =>
+  const getPageType = (item: number | ItemType) =>
     typeof item === "number" ? "page" : item;
 
-  const getActiveButton = (item: ItemType | number) =>
+  const getActiveButton = (item: number | ItemType) =>
     typeof item === "number" ? item === page : false;
 
-  const getDisabledButton = (item: ItemType | number) => {
+  const getDisabledButton = (item: number | ItemType) => {
     const disablePrviousButton = item === "previous" && page <= 1;
     const disableNextButton = item === "next" && page >= count;
 
@@ -116,13 +117,13 @@ export const usePaginationItems = ({
   };
 
   const items = itemList.map((item) => ({
-    onClick: () => {
-      handleClick(getButtonType(item));
-    },
     type: getPageType(item),
     page: getButtonType(item),
     isActive: getActiveButton(item),
     disabled: getDisabledButton(item),
+    onClick: () => {
+      handleClick(getButtonType(item));
+    },
   }));
 
   return {

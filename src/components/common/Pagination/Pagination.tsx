@@ -1,11 +1,11 @@
 import {
-  Pagination as ShadcnPagination,
   PaginationContent,
+  Pagination as ShadcnPagination,
   PaginationItem as ShadcnPaginationItem,
 } from "@/components/ui/pagination";
-import { PaginationProps } from "./Pagination.types";
 import { PaginationItem } from "./PaginationItem";
 import { usePaginationItems } from "./Pagination.hooks";
+import { type PaginationProps } from "./Pagination.types";
 
 export const Pagination = ({
   count,

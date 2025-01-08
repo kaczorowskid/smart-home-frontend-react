@@ -1,5 +1,5 @@
-import { schema } from "@/schemas/form.schemas";
 import { z } from "zod";
+import { schema } from "@/schemas/form.schemas";
 
 export const formFields = {
   name: "name",

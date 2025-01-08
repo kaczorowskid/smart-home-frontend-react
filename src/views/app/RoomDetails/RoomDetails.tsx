@@ -1,17 +1,17 @@
-import { useParams } from "react-router-dom";
-import { PageWrapper } from "@/components/common/PageWrapper";
-import { Droplet, House } from "lucide-react";
-import { DeviceChart } from "@/components/app/DeviceChart";
-import { DeviceItem } from "@/components/app/DeviceItem/DeviceItem";
-import { useGetOneRoom } from "@/api/hooks/room.hooks";
-import { DateSelector } from "@/components/app/DateSelector";
 import { useState } from "react";
-import { DateRange } from "react-day-picker";
-import { ChartType } from "@/types/common.types";
-import { dateLastDay } from "@/constants/date.consts";
-import { dateFormatter } from "@/utils/date.utils";
-import { chartTypeMapper } from "./RoomDetails.utils";
+import { useParams } from "react-router-dom";
+import { House, Droplet } from "lucide-react";
 import { FormattedMessage } from "react-intl";
+import { type DateRange } from "react-day-picker";
+import { dateFormatter } from "@/utils/date.utils";
+import { type ChartType } from "@/types/common.types";
+import { dateLastDay } from "@/constants/date.consts";
+import { useGetOneRoom } from "@/api/hooks/room.hooks";
+import { DeviceChart } from "@/components/app/DeviceChart";
+import { DateSelector } from "@/components/app/DateSelector";
+import { PageWrapper } from "@/components/common/PageWrapper";
+import { DeviceItem } from "@/components/app/DeviceItem/DeviceItem";
+import { chartTypeMapper } from "./RoomDetails.utils";
 
 const { onlyDate } = dateFormatter;
 
@@ -33,13 +33,13 @@ export const RoomDetails = () => {
 
   return (
     <PageWrapper
+      icon={House}
       title={
         <FormattedMessage
           id="view.room-details"
           values={{ room: data?.name }}
         />
       }
-      icon={House}
     >
       <div className="gap-5 flex flex-col lg:grid lg:grid-cols-4">
         {allDevices}
@@ -47,12 +47,12 @@ export const RoomDetails = () => {
       {data?.thermometers?.map(({ thermometerId }) => (
         <div className="pt-5">
           <DeviceChart
+            icon={Droplet}
             dateTo={date?.to}
             dateFrom={date?.from}
-            icon={Droplet}
             chartType={chartType}
-            description={`${chartTypeMapper[chartType]} - ${formattedDateRange}`}
             deviceId={thermometerId}
+            description={`${chartTypeMapper[chartType]} - ${formattedDateRange}`}
             extra={
               <DateSelector
                 date={date}

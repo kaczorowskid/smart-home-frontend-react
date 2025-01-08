@@ -1,8 +1,8 @@
 import { Loader2 } from "lucide-react";
+import { type ButtonProps } from "./Button.types";
 import { Button as ShadcnButton } from "../../ui/button";
-import { ButtonProps } from "./Button.types";
 
-export const Button = ({ isLoading, children, ...props }: ButtonProps) => (
+export const Button = ({ children, isLoading, ...props }: ButtonProps) => (
   <ShadcnButton disabled={isLoading} {...props}>
     {isLoading && (
       <Loader2

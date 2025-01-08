@@ -1,5 +1,5 @@
-import { Globe, Smartphone, Zap } from "lucide-react";
-import { Feature } from "./Adventage.types";
+import { Zap, Globe, Smartphone } from "lucide-react";
+import { type Feature } from "./Adventage.types";
 
 export const features: Feature[] = [
   {

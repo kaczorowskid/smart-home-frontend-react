@@ -1,84 +1,84 @@
-import {
-  useMutation,
-  UseMutationResult,
-  useQuery,
-  UseQueryResult,
-} from "@tanstack/react-query";
-import {
-  CreateDevicePayload,
-  CreateDeviceResponse,
-  DeleteDevicePayload,
-  DeleteDeviceResponse,
-  GetAllBlindsResponse,
-  GetAllDevicesResponse,
-  GetAllThermometersResponse,
-  GetDeviceDataForGraphPayload,
-  GetDeviceDataForGraphResponse,
-  GetOneDevicePayload,
-  GetOneDevicesResponse,
-  UpdateDevicePayload,
-  UpdateDeviceResponse,
-} from "../types/devices.types";
-import { queryKeys } from "@/utils/queryKeys";
-import {
-  createDevice,
-  deleteDevice,
-  getAllBlinds,
-  getAllDevices,
-  getAllThermometers,
-  getDeviceDataForGraph,
-  getOneDevice,
-  udpateDevice,
-} from "../handlers/devices.handlers";
-import { AxiosError } from "axios";
 import { toast } from "sonner";
-import { queryClient } from "@/utils/queryClient";
+import { type AxiosError } from "axios";
+import { queryKeys } from "@/utils/queryKeys";
 import { FormattedMessage } from "react-intl";
+import { queryClient } from "@/utils/queryClient";
+import { apiErrorMapper } from "@/utils/errorMapper";
+import { type CustomAxiosError } from "@/types/common.types";
 import {
   ErrorNotification,
   SuccessNotification,
 } from "@/components/common/Notification";
-import { CustomAxiosError } from "@/types/common.types";
-import { apiErrorMapper } from "@/utils/errorMapper";
+import {
+  useQuery,
+  useMutation,
+  type UseQueryResult,
+  type UseMutationResult,
+} from "@tanstack/react-query";
+import {
+  createDevice,
+  deleteDevice,
+  getAllBlinds,
+  getOneDevice,
+  udpateDevice,
+  getAllDevices,
+  getAllThermometers,
+  getDeviceDataForGraph,
+} from "../handlers/devices.handlers";
+import {
+  type CreateDevicePayload,
+  type DeleteDevicePayload,
+  type GetOneDevicePayload,
+  type UpdateDevicePayload,
+  type CreateDeviceResponse,
+  type DeleteDeviceResponse,
+  type GetAllBlindsResponse,
+  type UpdateDeviceResponse,
+  type GetAllDevicesResponse,
+  type GetOneDevicesResponse,
+  type GetAllThermometersResponse,
+  type GetDeviceDataForGraphPayload,
+  type GetDeviceDataForGraphResponse,
+} from "../types/devices.types";
 
 export const useGetOneDevice = (
   payload: GetOneDevicePayload
 ): UseQueryResult<GetOneDevicesResponse> =>
   useQuery({
-    queryKey: [queryKeys.getOneDevice, Object.values(payload)],
-    queryFn: () => getOneDevice(payload),
     enabled: !!payload.id,
+    queryFn: () => getOneDevice(payload),
+    queryKey: [queryKeys.getOneDevice, Object.values(payload)],
   });
 
 export const useGetAllDevices = (
   enabled: boolean
 ): UseQueryResult<GetAllDevicesResponse> =>
   useQuery({
-    queryKey: [queryKeys.getAllDevices],
-    queryFn: getAllDevices,
     enabled,
+    queryFn: getAllDevices,
+    queryKey: [queryKeys.getAllDevices],
   });
 
 export const useGetDeviceDataForGraph = (
   payload: GetDeviceDataForGraphPayload
 ): UseQueryResult<GetDeviceDataForGraphResponse> =>
   useQuery({
-    queryKey: [queryKeys.getDeviceDataForGraph, Object.values(payload)],
-    queryFn: () => getDeviceDataForGraph(payload),
     enabled: !!payload.deviceId,
+    queryFn: () => getDeviceDataForGraph(payload),
+    queryKey: [queryKeys.getDeviceDataForGraph, Object.values(payload)],
   });
 
 export const useGetAllThermometers =
   (): UseQueryResult<GetAllThermometersResponse> =>
     useQuery({
-      queryKey: [queryKeys.getAllThermometers],
       queryFn: getAllThermometers,
+      queryKey: [queryKeys.getAllThermometers],
     });
 
 export const useGetAllBlinds = (): UseQueryResult<GetAllBlindsResponse> =>
   useQuery({
-    queryKey: [queryKeys.getAllBlinds],
     queryFn: getAllBlinds,
+    queryKey: [queryKeys.getAllBlinds],
   });
 
 export const useCreateDevice = (): UseMutationResult<
@@ -88,6 +88,18 @@ export const useCreateDevice = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: createDevice,
+    onError: (error: CustomAxiosError) => {
+      toast.error(
+        <FormattedMessage
+          id="error.add"
+          values={{
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
+          }}
+        />
+      );
+    },
     onSuccess: async ({ name }) => {
       toast.success(
         <FormattedMessage
@@ -102,18 +114,6 @@ export const useCreateDevice = (): UseMutationResult<
         queryKey: [queryKeys.getAllDevices],
       });
     },
-    onError: (error: CustomAxiosError) => {
-      toast.error(
-        <FormattedMessage
-          id="error.add"
-          values={{
-            error: () => (
-              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
-            ),
-          }}
-        />
-      );
-    },
   });
 
 export const useUpdateDevice = (): UseMutationResult<
@@ -123,6 +123,18 @@ export const useUpdateDevice = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: udpateDevice,
+    onError: (error: CustomAxiosError) => {
+      toast.error(
+        <FormattedMessage
+          id="error.update"
+          values={{
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
+          }}
+        />
+      );
+    },
     onSuccess: async ({ name }) => {
       toast.success(
         <FormattedMessage
@@ -137,18 +149,6 @@ export const useUpdateDevice = (): UseMutationResult<
         queryKey: [queryKeys.getAllDevices],
       });
     },
-    onError: (error: CustomAxiosError) => {
-      toast.error(
-        <FormattedMessage
-          id="error.update"
-          values={{
-            error: () => (
-              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
-            ),
-          }}
-        />
-      );
-    },
   });
 
 export const useDeleteDevice = (): UseMutationResult<
@@ -158,6 +158,18 @@ export const useDeleteDevice = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: deleteDevice,
+    onError: (error: CustomAxiosError) => {
+      toast.error(
+        <FormattedMessage
+          id="error.delete"
+          values={{
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
+          }}
+        />
+      );
+    },
     onSuccess: async ({ name }) => {
       toast.success(
         <FormattedMessage
@@ -171,17 +183,5 @@ export const useDeleteDevice = (): UseMutationResult<
       await queryClient.invalidateQueries({
         queryKey: [queryKeys.getAllDevices],
       });
-    },
-    onError: (error: CustomAxiosError) => {
-      toast.error(
-        <FormattedMessage
-          id="error.delete"
-          values={{
-            error: () => (
-              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
-            ),
-          }}
-        />
-      );
     },
   });

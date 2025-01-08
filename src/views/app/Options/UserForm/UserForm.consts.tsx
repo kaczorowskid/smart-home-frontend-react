@@ -1,13 +1,13 @@
-import { SelectProps } from "@/components/common/Select/Select.types";
 import { FormattedMessage } from "react-intl";
+import { type SelectProps } from "@/components/common/Select/Select.types";
 
 export const roleItems: SelectProps["items"] = [
   {
-    name: <FormattedMessage id="option.user" />,
     value: "USER",
+    name: <FormattedMessage id="option.user" />,
   },
   {
-    name: <FormattedMessage id="option.admin" />,
     value: "ADMIN",
+    name: <FormattedMessage id="option.admin" />,
   },
 ];

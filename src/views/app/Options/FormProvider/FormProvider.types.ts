@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
-import { OptionsTab } from "../Options.types";
+import { type ReactNode } from "react";
+import { type OptionsTab } from "../Options.types";
 
 export type FormProviderProps = {
-  selectedTab: OptionsTab;
-  devicesForm: ReactNode;
   usersForm: ReactNode;
   roomsForm: ReactNode;
   rolesForm: ReactNode;
+  devicesForm: ReactNode;
+  selectedTab: OptionsTab;
 };

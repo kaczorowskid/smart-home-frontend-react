@@ -1,8 +1,8 @@
+import { Sun, Moon } from "lucide-react";
+import { FormattedMessage } from "react-intl";
+import { useTheme } from "@/contexts/Theme/Theme.hooks";
 import { Card, CardContent } from "@/components/ui/card";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { useTheme } from "@/contexts/Theme/Theme.hooks";
-import { Moon, Sun } from "lucide-react";
-import { FormattedMessage } from "react-intl";
 
 export const ChangeTheme = () => {
   const { theme, setTheme } = useTheme();

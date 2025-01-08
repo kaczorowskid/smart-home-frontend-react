@@ -1,17 +1,17 @@
 import {
-  Table as ShadcnTable,
+  TableRow,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
+  Table as ShadcnTable,
 } from "@/components/ui/table";
-import { TableProps } from "./Table.types";
+import { type TableProps } from "./Table.types";
 
 export const Table = <T,>({
-  columns,
   data,
   rowKey,
+  columns,
   onRowClick,
   ...props
 }: TableProps<T>) => {
@@ -21,7 +21,7 @@ export const Table = <T,>({
         <TableHeader>
           <TableRow>
             {columns.map((col) => (
-              <TableHead className="text-center" key={col.key}>
+              <TableHead key={col.key} className="text-center">
                 {col.title}
               </TableHead>
             ))}
@@ -32,9 +32,9 @@ export const Table = <T,>({
             <TableRow key={rowKey(record)} onClick={() => onRowClick?.(record)}>
               {columns.map((col) => (
                 <TableCell
+                  key={col.key}
                   width={col.width}
                   className="text-center"
-                  key={col.key}
                 >
                   {col.render?.(record[col.dataIndex], record) ||
                     String(record[col.dataIndex])}

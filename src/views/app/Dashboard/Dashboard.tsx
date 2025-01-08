@@ -1,30 +1,30 @@
-import { DevicesTable } from "@/views/app/Options/DevicesTable/DevicesTable";
+import { FormattedMessage } from "react-intl";
+import { dateFormatter } from "@/utils/date.utils";
+import { dateLastDay } from "@/constants/date.consts";
+import { DeviceChart } from "@/components/app/DeviceChart";
 import { PageWrapper } from "@/components/common/PageWrapper";
 import { displayedDevicesKeys } from "@/utils/localStorageKeys";
-import { Droplet, LayoutDashboard, Thermometer } from "lucide-react";
-import { DeviceChart } from "@/components/app/DeviceChart";
 import { DeviceItem } from "@/components/app/DeviceItem/DeviceItem";
-import { dateLastDay } from "@/constants/date.consts";
-import { dateFormatter } from "@/utils/date.utils";
-import { FormattedMessage } from "react-intl";
+import { Droplet, Thermometer, LayoutDashboard } from "lucide-react";
+import { DevicesTable } from "@/views/app/Options/DevicesTable/DevicesTable";
 
 const {
+  dashboardHumidityChart,
+  dashboardTemperatureChart,
   dashboardTopDeviceLeftCorner,
   dashboardTopDeviceLeftMiddle,
   dashboardTopDeviceRightMiddle,
   dashboardTopDeviceRightCorner,
-  dashboardTemperatureChart,
-  dashboardHumidityChart,
 } = displayedDevicesKeys;
 
-const { from, to } = dateLastDay;
+const { to, from } = dateLastDay;
 const { dateRange } = dateFormatter;
 const formattedDateRange = dateRange(from, to);
 
 export const Dashboard = () => (
   <PageWrapper
-    title={<FormattedMessage id="view.dashboard" />}
     icon={LayoutDashboard}
+    title={<FormattedMessage id="view.dashboard" />}
   >
     <div className="gap-5 flex flex-col lg:grid lg:grid-cols-4">
       <DeviceItem deviceLocalKey={dashboardTopDeviceLeftCorner} />
@@ -38,26 +38,26 @@ export const Dashboard = () => (
         dateFrom={from}
         icon={Thermometer}
         chartType="temperature"
+        deviceLocalKey={dashboardTemperatureChart}
         description={
           <FormattedMessage
             id="view.temperature"
             values={{ date: formattedDateRange }}
           />
         }
-        deviceLocalKey={dashboardTemperatureChart}
       />
       <DeviceChart
         dateTo={to}
-        dateFrom={from}
         icon={Droplet}
+        dateFrom={from}
         chartType="humidity"
+        deviceLocalKey={dashboardHumidityChart}
         description={
           <FormattedMessage
             id="view.humidity"
             values={{ date: formattedDateRange }}
           />
         }
-        deviceLocalKey={dashboardHumidityChart}
       />
     </div>
     <div className="hidden lg:block">

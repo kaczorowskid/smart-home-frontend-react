@@ -5,7 +5,7 @@ const headers = {
 };
 
 export const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API,
   headers,
   withCredentials: true,
+  baseURL: import.meta.env.VITE_API,
 });

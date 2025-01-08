@@ -1,21 +1,21 @@
 import {
+  PaginationNext,
   PaginationButton,
   PaginationEllipsis,
-  PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { PaginationItemProps } from "./PaginationItem.types";
-import { ItemType } from "../Pagination.types";
+import { type ItemType } from "../Pagination.types";
+import { type PaginationItemProps } from "./PaginationItem.types";
 
 export const PaginationItem = ({ type, ...props }: PaginationItemProps) => {
   const getItem = (type: ItemType) => {
     switch (type) {
-      case "previous":
-        return <PaginationPrevious {...props} />;
       case "next":
         return <PaginationNext {...props} />;
       case "page":
         return <PaginationButton {...props} />;
+      case "previous":
+        return <PaginationPrevious {...props} />;
       case "end-ellipsis":
       case "start-ellipsis":
         return <PaginationEllipsis />;

@@ -1,16 +1,16 @@
+import { useState } from "react";
 import { Dialog } from "@/components/common/Dialog";
 import { Select } from "@/components/common/Select";
-import { ThermometerForm } from "./ThermometerForm";
-import { itemsType } from "./DeviceForm.consts";
-import { useState } from "react";
-import { FormProvider } from "./FormProvider";
-import { BlindForm } from "./BlindForm";
+import { type DeviceType } from "@/api/types/common.types";
+import { type CommonFormProps } from "@/types/common.types";
 import { useGetOneDevice } from "@/api/hooks/devices.hooks";
-import { CommonFormProps } from "@/types/common.types";
+import { BlindForm } from "./BlindForm";
+import { FormProvider } from "./FormProvider";
+import { itemsType } from "./DeviceForm.consts";
+import { ThermometerForm } from "./ThermometerForm";
 import { formTitleMapper } from "./DeviceForm.utils";
-import { DeviceType } from "@/api/types/common.types";
 
-export const DeviceForm = ({ selectedId, open, onClose }: CommonFormProps) => {
+export const DeviceForm = ({ open, onClose, selectedId }: CommonFormProps) => {
   const { data } = useGetOneDevice({ id: selectedId });
   const [itemType, setItemType] = useState<DeviceType>("THERMOMETER");
 
@@ -21,9 +21,9 @@ export const DeviceForm = ({ selectedId, open, onClose }: CommonFormProps) => {
 
   return (
     <Dialog
+      open={open || !!selectedId}
       className="w-[90%] lg:w-full"
       title={formTitleMapper[data?.type || itemType]}
-      open={open || !!selectedId}
       onOpenChange={(status) => {
         if (!status) {
           handleClose();
@@ -33,8 +33,8 @@ export const DeviceForm = ({ selectedId, open, onClose }: CommonFormProps) => {
       {!selectedId && (
         <div className="my-5">
           <Select
-            items={itemsType}
             value={itemType}
+            items={itemsType}
             onValueChange={(value: DeviceType) => setItemType(value)}
           />
         </div>
@@ -43,20 +43,20 @@ export const DeviceForm = ({ selectedId, open, onClose }: CommonFormProps) => {
       <FormProvider
         data={data}
         selectedType={itemType}
-        thermometerForm={(record) => (
-          <ThermometerForm
-            deviceId={record?.deviceId}
-            name={record?.name}
-            selectedId={selectedId}
-            onClose={handleClose}
-          />
-        )}
         blindForm={(record) => (
           <BlindForm
-            deviceId={record?.deviceId}
             name={record?.name}
-            selectedId={selectedId}
             onClose={handleClose}
+            selectedId={selectedId}
+            deviceId={record?.deviceId}
+          />
+        )}
+        thermometerForm={(record) => (
+          <ThermometerForm
+            name={record?.name}
+            onClose={handleClose}
+            selectedId={selectedId}
+            deviceId={record?.deviceId}
           />
         )}
       />

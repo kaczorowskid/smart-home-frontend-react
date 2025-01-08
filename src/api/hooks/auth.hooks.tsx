@@ -1,39 +1,39 @@
+import { toast } from "sonner";
+import { type AxiosError } from "axios";
+import { useUserStore } from "@/stores/user";
+import { queryKeys } from "@/utils/queryKeys";
+import { FormattedMessage } from "react-intl";
+import { useNavigate } from "react-router-dom";
+import { routesPath } from "@/routes/routesPath";
+import { apiErrorMapper } from "@/utils/errorMapper";
+import { type CustomAxiosError } from "@/types/common.types";
+import { ErrorNotification } from "@/components/common/Notification";
 import {
-  useMutation,
-  UseMutationResult,
   useQuery,
-  UseQueryResult,
+  useMutation,
+  type UseQueryResult,
+  type UseMutationResult,
 } from "@tanstack/react-query";
 import {
-  AuthorizeUserResponse,
-  LoginUserPayload,
-  LoginUserResponse,
-  LogoutUserResponse,
-} from "../types/auth.types";
-import { AxiosError } from "axios";
-import { useNavigate } from "react-router-dom";
-import {
-  authorizeUser,
   loginUser,
   logoutUser,
+  authorizeUser,
 } from "../handlers/auth.handlers";
-import { routesPath } from "@/routes/routesPath";
-import { toast } from "sonner";
-import { queryKeys } from "@/utils/queryKeys";
-import { useUserStore } from "@/stores/user";
-import { FormattedMessage } from "react-intl";
-import { ErrorNotification } from "@/components/common/Notification";
-import { CustomAxiosError } from "@/types/common.types";
-import { apiErrorMapper } from "@/utils/errorMapper";
+import {
+  type LoginUserPayload,
+  type LoginUserResponse,
+  type LogoutUserResponse,
+  type AuthorizeUserResponse,
+} from "../types/auth.types";
 
 export const useAuthorizeUser = (): UseQueryResult<
   AuthorizeUserResponse,
   AxiosError
 > =>
   useQuery({
-    queryKey: [queryKeys.authorizeUser],
-    queryFn: authorizeUser,
     retry: false,
+    queryFn: authorizeUser,
+    queryKey: [queryKeys.authorizeUser],
   });
 
 export const useLogin = (): UseMutationResult<

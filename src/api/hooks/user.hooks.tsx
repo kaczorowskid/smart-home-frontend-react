@@ -1,46 +1,46 @@
-import {
-  useMutation,
-  UseMutationResult,
-  useQuery,
-  UseQueryResult,
-} from "@tanstack/react-query";
-import {
-  CreateUserByAdminPayload,
-  CreateUserByAdminResponse,
-  DeleteUserPayload,
-  DeleteUserResponse,
-  GetAllUsersResponse,
-  GetOneUserPayload,
-  GetOneUserResponse,
-  GetUserByTokenPayload,
-  GetUserByTokenResponse,
-  RegisterAndVerifyUserPayload,
-  RegisterAndVerifyUserResponse,
-  UpdateUserPayload,
-  UpdateUserResponse,
-} from "../types/user.types";
-import { AxiosError } from "axios";
-import {
-  createUserByAdmin,
-  deleteUser,
-  getAllUsers,
-  getOneUser,
-  getUserByToken,
-  registerAndVerifyUser,
-  updateUser,
-} from "../handlers/user.handlers";
 import { toast } from "sonner";
-import { queryClient } from "@/utils/queryClient";
+import { type AxiosError } from "axios";
 import { queryKeys } from "@/utils/queryKeys";
+import { FormattedMessage } from "react-intl";
 import { useNavigate } from "react-router-dom";
 import { routesPath } from "@/routes/routesPath";
-import { FormattedMessage } from "react-intl";
+import { queryClient } from "@/utils/queryClient";
+import { apiErrorMapper } from "@/utils/errorMapper";
+import { type CustomAxiosError } from "@/types/common.types";
 import {
   ErrorNotification,
   SuccessNotification,
 } from "@/components/common/Notification";
-import { CustomAxiosError } from "@/types/common.types";
-import { apiErrorMapper } from "@/utils/errorMapper";
+import {
+  useQuery,
+  useMutation,
+  type UseQueryResult,
+  type UseMutationResult,
+} from "@tanstack/react-query";
+import {
+  deleteUser,
+  getOneUser,
+  updateUser,
+  getAllUsers,
+  getUserByToken,
+  createUserByAdmin,
+  registerAndVerifyUser,
+} from "../handlers/user.handlers";
+import {
+  type DeleteUserPayload,
+  type GetOneUserPayload,
+  type UpdateUserPayload,
+  type DeleteUserResponse,
+  type GetOneUserResponse,
+  type UpdateUserResponse,
+  type GetAllUsersResponse,
+  type GetUserByTokenPayload,
+  type GetUserByTokenResponse,
+  type CreateUserByAdminPayload,
+  type CreateUserByAdminResponse,
+  type RegisterAndVerifyUserPayload,
+  type RegisterAndVerifyUserResponse,
+} from "../types/user.types";
 
 export const useGetUserByToken = (
   payload: GetUserByTokenPayload
@@ -54,15 +54,15 @@ export const useGetOneUser = (
   payload: GetOneUserPayload
 ): UseQueryResult<GetOneUserResponse> =>
   useQuery({
-    queryKey: [queryKeys.getOneUser, Object.values(payload)],
-    queryFn: () => getOneUser({ id: payload.id }),
     enabled: !!payload.id,
+    queryFn: () => getOneUser({ id: payload.id }),
+    queryKey: [queryKeys.getOneUser, Object.values(payload)],
   });
 
 export const useGetAllUsers = (): UseQueryResult<GetAllUsersResponse> =>
   useQuery({
-    queryKey: [queryKeys.getAllUsers],
     queryFn: getAllUsers,
+    queryKey: [queryKeys.getAllUsers],
   });
 
 export const useRegisterAndVerify = (): UseMutationResult<
@@ -107,6 +107,18 @@ export const useCreateUserByAdmin = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: createUserByAdmin,
+    onError: (error: CustomAxiosError) => {
+      toast.error(
+        <FormattedMessage
+          id="error.add"
+          values={{
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
+          }}
+        />
+      );
+    },
     onSuccess: async ({ email }) => {
       toast.success(
         <FormattedMessage
@@ -121,18 +133,6 @@ export const useCreateUserByAdmin = (): UseMutationResult<
         queryKey: [queryKeys.getAllUsers],
       });
     },
-    onError: (error: CustomAxiosError) => {
-      toast.error(
-        <FormattedMessage
-          id="error.add"
-          values={{
-            error: () => (
-              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
-            ),
-          }}
-        />
-      );
-    },
   });
 
 export const useUpdateUser = (): UseMutationResult<
@@ -142,6 +142,18 @@ export const useUpdateUser = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: updateUser,
+    onError: (error: CustomAxiosError) => {
+      toast.error(
+        <FormattedMessage
+          id="error.update"
+          values={{
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
+          }}
+        />
+      );
+    },
     onSuccess: async ({ name }) => {
       toast.success(
         <FormattedMessage
@@ -156,18 +168,6 @@ export const useUpdateUser = (): UseMutationResult<
         queryKey: [queryKeys.getAllUsers],
       });
     },
-    onError: (error: CustomAxiosError) => {
-      toast.error(
-        <FormattedMessage
-          id="error.update"
-          values={{
-            error: () => (
-              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
-            ),
-          }}
-        />
-      );
-    },
   });
 
 export const useDeleteUser = (): UseMutationResult<
@@ -177,6 +177,18 @@ export const useDeleteUser = (): UseMutationResult<
 > =>
   useMutation({
     mutationFn: deleteUser,
+    onError: (error: CustomAxiosError) => {
+      toast.error(
+        <FormattedMessage
+          id="error.delete"
+          values={{
+            error: () => (
+              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
+            ),
+          }}
+        />
+      );
+    },
     onSuccess: async ({ name }) => {
       toast.success(
         <FormattedMessage
@@ -190,17 +202,5 @@ export const useDeleteUser = (): UseMutationResult<
       await queryClient.invalidateQueries({
         queryKey: [queryKeys.getAllUsers],
       });
-    },
-    onError: (error: CustomAxiosError) => {
-      toast.error(
-        <FormattedMessage
-          id="error.delete"
-          values={{
-            error: () => (
-              <ErrorNotification>{apiErrorMapper(error)}</ErrorNotification>
-            ),
-          }}
-        />
-      );
     },
   });

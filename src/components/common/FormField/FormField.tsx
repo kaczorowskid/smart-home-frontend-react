@@ -1,27 +1,27 @@
+import { type FieldValues } from "react-hook-form";
 import {
-  FormControl,
-  FormDescription,
   FormItem,
   FormLabel,
+  FormControl,
   FormMessage,
+  FormDescription,
   FormField as ShadcnFormField,
 } from "@/components/ui/form";
-import { FormFieldProps } from "./FormField.types";
-import { FieldValues } from "react-hook-form";
+import { type FormFieldProps } from "./FormField.types";
 
 export const FormField = <T extends FieldValues>({
-  formItemKey,
-  control,
   name,
   label,
+  control,
+  component,
+  formItemKey,
   description,
   reverseLabel,
-  component,
 }: FormFieldProps<T>) => {
   return (
     <ShadcnFormField
-      control={control}
       name={name}
+      control={control}
       render={({ field }) => (
         <FormItem key={formItemKey}>
           {reverseLabel ? (

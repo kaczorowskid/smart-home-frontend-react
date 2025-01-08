@@ -1,8 +1,8 @@
 import {
-  CreateDevicePayload,
-  UpdateDevicePayload,
+  type CreateDevicePayload,
+  type UpdateDevicePayload,
 } from "@/api/types/devices.types";
-import { formFields, FormSchema } from "./BlindForm.schema";
+import { formFields, type FormSchema } from "./BlindForm.schema";
 
 export const defaultValues: FormSchema = {
   [formFields.name]: "",
@@ -22,6 +22,6 @@ export const mapValuesToUpdateForm = (
   selectedId: string
 ): UpdateDevicePayload => ({
   ...values,
-  id: selectedId,
   type: "BLIND",
+  id: selectedId,
 });

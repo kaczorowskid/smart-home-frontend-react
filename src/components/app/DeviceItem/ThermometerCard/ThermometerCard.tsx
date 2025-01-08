@@ -1,18 +1,19 @@
-import { CardWithHeader } from "@/components/common/CardWithHeader";
-import { Dropdown } from "@/components/common/Dropdown";
-import { Loader2, Thermometer } from "lucide-react";
-import { ThermometerCardProps } from "./ThermometerCard.types";
-import { dateFormatter } from "@/utils/date.utils";
 import { FormattedMessage } from "react-intl";
+import { dateFormatter } from "@/utils/date.utils";
+import { Loader2, Thermometer } from "lucide-react";
+import { Dropdown } from "@/components/common/Dropdown";
+import { CardWithHeader } from "@/components/common/CardWithHeader";
+import { type ThermometerCardProps } from "./ThermometerCard.types";
 
 export const ThermometerCard = ({
   name,
-  thermometerData,
   items,
   isLocalKey,
+  thermometerData,
 }: ThermometerCardProps) => {
   return (
     <CardWithHeader
+      hasSmallHeader
       icon={Thermometer}
       title={
         isLocalKey ? (
@@ -28,7 +29,6 @@ export const ThermometerCard = ({
           <span>{name}</span>
         )
       }
-      hasSmallHeader
     >
       {!thermometerData?.length ? (
         <div className="flex justify-center items-center">

@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
-import { PasswordCheckerProps } from "./PasswordChecker.types";
-import { checkPassword, renderColorMapper } from "./PasswordChecker.utils";
 import { Tooltip } from "@/components/common/Tooltip";
+import { type PasswordCheckerProps } from "./PasswordChecker.types";
+import { checkPassword, renderColorMapper } from "./PasswordChecker.utils";
 
 export const PasswordChecker = ({ password }: PasswordCheckerProps) => (
   <div className="flex py-2">

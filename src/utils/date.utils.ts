@@ -1,12 +1,12 @@
 import { format } from "date-fns";
 
 export const dateFormatter = {
-  hourAndDate: (dateToFormat: Date | undefined) => {
+  onlyHour: (dateToFormat: Date | undefined) => {
     if (!dateToFormat) {
       return null;
     }
 
-    return format(dateToFormat, "HH:mm dd.MM.yyyy");
+    return format(dateToFormat, "HH:mm");
   },
   onlyDate: (dateToFormat: Date | undefined) => {
     if (!dateToFormat) {
@@ -15,12 +15,12 @@ export const dateFormatter = {
 
     return format(dateToFormat, "dd.MM.yyyy");
   },
-  onlyHour: (dateToFormat: Date | undefined) => {
+  hourAndDate: (dateToFormat: Date | undefined) => {
     if (!dateToFormat) {
       return null;
     }
 
-    return format(dateToFormat, "HH:mm");
+    return format(dateToFormat, "HH:mm dd.MM.yyyy");
   },
   dateRange: (from: Date | undefined, to: Date | undefined) => {
     if (!from || !to) {

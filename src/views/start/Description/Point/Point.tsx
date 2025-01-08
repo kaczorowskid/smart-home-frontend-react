@@ -1,4 +1,4 @@
-import { PointProps } from "./Point.types";
+import { type PointProps } from "./Point.types";
 
 export const Point = ({ index, title, desription }: PointProps) => (
   <p className="mt-10 flex">

@@ -1,10 +1,10 @@
-import { AlertDialog } from "@/components/ui/alert-dialog";
-import { ComponentProps, ReactNode } from "react";
+import { type ReactNode, type ComponentProps } from "react";
+import { type AlertDialog } from "@/components/ui/alert-dialog";
 
-export type AlertDialogProps = {
+export type AlertDialogProps = ComponentProps<typeof AlertDialog> & {
   title: ReactNode;
-  description: ReactNode;
   onOk: () => void;
   trigger?: ReactNode;
   isLoading?: boolean;
-} & ComponentProps<typeof AlertDialog>;
+  description: ReactNode;
+};

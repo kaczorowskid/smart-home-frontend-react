@@ -1,15 +1,15 @@
-import { ChartType } from "@/types/common.types";
-import { DisplayedDevicesKey } from "@/utils/localStorageKeys";
-import { LucideIcon } from "lucide-react";
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
+import { type LucideIcon } from "lucide-react";
+import { type ChartType } from "@/types/common.types";
+import { type DisplayedDevicesKey } from "@/utils/localStorageKeys";
 
 export type DeviceChartProps = {
-  chartType: ChartType;
-  description: ReactNode;
   icon: LucideIcon;
-  dateFrom: Date | undefined;
-  dateTo: Date | undefined;
   extra?: ReactNode;
   deviceId?: string;
+  chartType: ChartType;
+  description: ReactNode;
+  dateTo: Date | undefined;
+  dateFrom: Date | undefined;
   deviceLocalKey?: DisplayedDevicesKey;
 };

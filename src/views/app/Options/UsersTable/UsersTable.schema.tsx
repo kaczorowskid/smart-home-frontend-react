@@ -1,44 +1,44 @@
-import { ColumnType } from "@/components/common/Table/Table.types";
-import { User } from "@/api/types/common.types";
 import { FormattedMessage } from "react-intl";
-import { userVerifyMapper } from "./UsersTable.utils";
 import { Badge } from "@/components/ui/badge";
+import { type User } from "@/api/types/common.types";
+import { type ColumnType } from "@/components/common/Table/Table.types";
+import { userVerifyMapper } from "./UsersTable.utils";
 
 export const columns: ColumnType<User>[] = [
   {
-    title: <FormattedMessage id="table.user-name" />,
-    dataIndex: "name",
     key: "name",
+    dataIndex: "name",
+    title: <FormattedMessage id="table.user-name" />,
   },
   {
-    title: <FormattedMessage id="table.user-surname" />,
-    dataIndex: "surname",
     key: "surname",
+    dataIndex: "surname",
+    title: <FormattedMessage id="table.user-surname" />,
   },
   {
-    title: <FormattedMessage id="table.email" />,
     key: "email",
     dataIndex: "email",
+    title: <FormattedMessage id="table.email" />,
   },
   {
-    title: <FormattedMessage id="table.role" />,
-    dataIndex: "role",
     key: "role",
+    dataIndex: "role",
+    title: <FormattedMessage id="table.role" />,
     render: (role: User["role"]) => (
       <Badge variant="outline">{role.name}</Badge>
     ),
   },
   {
-    title: <FormattedMessage id="table.verify" />,
-    dataIndex: "isVerified",
     key: "isVerified",
+    dataIndex: "isVerified",
+    title: <FormattedMessage id="table.verify" />,
     render: (isVerified: User["isVerified"]) => (
       <Badge variant="outline">{userVerifyMapper(isVerified)}</Badge>
     ),
   },
   {
-    title: <FormattedMessage id="table.id" />,
-    dataIndex: "id",
     key: "id",
+    dataIndex: "id",
+    title: <FormattedMessage id="table.id" />,
   },
 ];

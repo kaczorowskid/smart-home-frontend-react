@@ -1,15 +1,15 @@
-import { Pagination } from "@/components/ui/pagination";
-import { ComponentProps } from "react";
+import { type ComponentProps } from "react";
+import { type Pagination } from "@/components/ui/pagination";
 
-export type PaginationProps = {
+export type ItemType =
+  | "page"
+  | "next"
+  | "previous"
+  | "end-ellipsis"
+  | "start-ellipsis";
+
+export type PaginationProps = ComponentProps<typeof Pagination> & {
   count: number;
   defaultPage: number;
   onPaginationChange: (value: number) => void;
-} & ComponentProps<typeof Pagination>;
-
-export type ItemType =
-  | "previous"
-  | "start-ellipsis"
-  | "page"
-  | "end-ellipsis"
-  | "next";
+};

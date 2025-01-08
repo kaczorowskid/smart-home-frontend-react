@@ -1,5 +1,5 @@
 import { useUserStore } from "@/stores/user";
-import { PrivateRouteProps } from "./PrivateRoute.types";
+import { type PrivateRouteProps } from "./PrivateRoute.types";
 
 export const PrivateRoute = ({
   isUserLoggedInElement,

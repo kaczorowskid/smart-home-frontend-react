@@ -1,11 +1,11 @@
-import { menuItems } from "./Navigation.const";
-import { NavigationItem } from "./NavigationItem";
-import { UserInfo } from "./UserInfo";
-import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { X, Menu } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Logout } from "./Logout";
+import { UserInfo } from "./UserInfo";
+import { menuItems } from "./Navigation.const";
+import { NavigationItem } from "./NavigationItem";
 import { PermissionsWrapper } from "../PermissionsWrapper";
 
 export const Navigation = () => {
@@ -29,9 +29,9 @@ export const Navigation = () => {
       <div className="w-full flex items-center justify-between py-5">
         <UserInfo />
         {isOpen ? (
-          <X className="block lg:hidden" onClick={handleCloseMenu} />
+          <X onClick={handleCloseMenu} className="block lg:hidden" />
         ) : (
-          <Menu className="block lg:hidden" onClick={handleOpenMenu} />
+          <Menu onClick={handleOpenMenu} className="block lg:hidden" />
         )}
       </div>
       <nav
