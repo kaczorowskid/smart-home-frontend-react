@@ -12,7 +12,8 @@ import { formTitleMapper } from "./DeviceForm.utils";
 
 export const DeviceForm = ({ open, onClose, selectedId }: CommonFormProps) => {
   const { data } = useGetOneDevice({ id: selectedId });
-  const [itemType, setItemType] = useState<DeviceType>("THERMOMETER");
+  const [selectedItemType, setItemType] = useState<DeviceType>("THERMOMETER");
+  const itemType = data?.type || selectedItemType;
 
   const handleClose = () => {
     onClose();
@@ -23,7 +24,7 @@ export const DeviceForm = ({ open, onClose, selectedId }: CommonFormProps) => {
     <Dialog
       open={open || !!selectedId}
       className="w-[90%] lg:w-full"
-      title={formTitleMapper[data?.type || itemType]}
+      title={formTitleMapper[itemType]}
       onOpenChange={(status) => {
         if (!status) {
           handleClose();

@@ -189,12 +189,12 @@ export const useDeleteUser = (): UseMutationResult<
         />
       );
     },
-    onSuccess: async ({ name }) => {
+    onSuccess: async ({ email }) => {
       toast.success(
         <FormattedMessage
           id="success.delete"
           values={{
-            success: () => <SuccessNotification>{name}</SuccessNotification>,
+            success: () => <SuccessNotification>{email}</SuccessNotification>,
           }}
         />
       );
