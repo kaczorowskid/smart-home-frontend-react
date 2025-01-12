@@ -11,5 +11,10 @@
   "table.email": "Email",
   "table.role": "Role",
   "table.verify": "Verify",
-  "table.permissions": "Permissions"
+  "table.permissions": "Permissions",
+  "table.verified": "Verified",
+  "table.not-verified": "Not verified",
+  "table.status": "Status",
+  "table.online": "Online",
+  "table.offline": "Offline"
 }

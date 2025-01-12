@@ -24,9 +24,7 @@ export const columns: ColumnType<User>[] = [
     key: "role",
     dataIndex: "role",
     title: <FormattedMessage id="table.role" />,
-    render: (role: User["role"]) => (
-      <Badge variant="outline">{role.name}</Badge>
-    ),
+    render: (role: User["role"]) => <Badge>{role.name}</Badge>,
   },
   {
     key: "isVerified",

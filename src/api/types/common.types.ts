@@ -53,10 +53,10 @@ export type Blind = {
   name: string;
   value: number;
   type: "BLIND";
-  // status: DeviceStatus;
   createdAt: Date;
   updatedAt: Date;
   deviceId: string;
+  status: DeviceStatus;
 };
 
 export type ThermometerData = {
@@ -85,11 +85,11 @@ export type User = {
 export type Thermometer = {
   id: string;
   name: string;
-  // status: DeviceStatus;
   createdAt: Date;
   updatedAt: Date;
   deviceId: string;
   type: "THERMOMETER";
+  status: DeviceStatus;
   data?: ThermometerData[];
 };
 
