@@ -1,7 +1,7 @@
 import { axiosInstance } from "@/lib/axios";
 import { useUserStore } from "@/stores/user";
-import { useEffect, useLayoutEffect } from "react";
 import { useAuthorizeUser } from "@/api/hooks/auth.hooks";
+import { useRef, useEffect, useLayoutEffect } from "react";
 import { refreshUserAccessToken } from "@/api/handlers/auth.handlers";
 
 export const useCheckUserAuth = () => {
@@ -30,7 +30,7 @@ export const useCheckUserAuth = () => {
 };
 
 export const useRefreshAccessToken = () => {
-  let retry = false;
+  const retry = useRef(false);
 
   useLayoutEffect(() => {
     const refreshInterceptor = axiosInstance.interceptors.response.use(
@@ -38,15 +38,17 @@ export const useRefreshAccessToken = () => {
       async (error) => {
         const originalRequest = error.config;
 
-        if (error.response.status === 401 && !retry) {
-          retry = true;
+        if (error.response?.status === 401 && !retry.current) {
+          retry.current = true;
 
           try {
             await refreshUserAccessToken();
+            retry.current = false;
 
             return axiosInstance(originalRequest);
           } catch (err) {
             console.log("err ", err);
+            retry.current = false;
           }
         }
 
