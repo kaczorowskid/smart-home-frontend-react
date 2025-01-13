@@ -10,5 +10,6 @@
   "component.battery": "Bateria: ",
   "component.search-placeholder": "Wyszukaj...",
   "component.logout": "Wyloguj",
-  "component.do-you-want-to-log-out": "Czy chcesz się wylogować?"
+  "component.do-you-want-to-log-out": "Czy chcesz się wylogować?",
+  "component.logs": "Logi"
 }
