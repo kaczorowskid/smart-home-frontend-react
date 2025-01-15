@@ -90,7 +90,7 @@ export type Thermometer = {
   deviceId: string;
   type: "THERMOMETER";
   status: DeviceStatus;
-  data?: ThermometerData[];
+  data: ThermometerData[];
 };
 
 export type Room = {

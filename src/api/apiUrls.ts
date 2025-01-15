@@ -8,6 +8,10 @@ export const apiUrls = {
     permissions: "/role/permission",
     getRole: (id: string) => `/role/${id}`,
   },
+  thermometerData: {
+    base: "/thermometer-data",
+    getOneSensor: (id: string) => `/thermometer-data/${id}`,
+  },
   auth: {
     login: "/auth/login",
     logout: "/auth/logout",

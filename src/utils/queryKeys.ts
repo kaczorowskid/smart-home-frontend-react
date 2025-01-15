@@ -12,4 +12,5 @@ export const queryKeys = {
   getAllPermissions: "getAllPermissions",
   getAllThermometers: "getAllThermometers",
   getDeviceDataForGraph: "getDeviceDataForGraph",
+  getOneSensorDataByDeviceId: "getOneSensorDataByDeviceId",
 };

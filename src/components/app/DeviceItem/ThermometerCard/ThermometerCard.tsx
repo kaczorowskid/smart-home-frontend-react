@@ -5,12 +5,20 @@ import { Dropdown } from "@/components/common/Dropdown";
 import { CardWithHeader } from "@/components/common/CardWithHeader";
 import { ThermometerLogs } from "./ThermometerLogs";
 import { type ThermometerCardProps } from "./ThermometerCard.types";
+import { DeviceStatusNotification } from "./DeviceStatusNotification";
+
+const { onlyHour } = dateFormatter;
 
 export const ThermometerCard = ({
   name,
+  date,
   items,
+  battery,
+  humidity,
+  deviceId,
   isLocalKey,
-  thermometerData,
+  temperature,
+  deviceStatus,
 }: ThermometerCardProps) => (
   <CardWithHeader
     hasSmallHeader
@@ -30,30 +38,34 @@ export const ThermometerCard = ({
       )
     }
   >
-    {!thermometerData?.length ? (
+    {!temperature ? (
       <div className="flex justify-center items-center">
         <Loader2 className="h-20 w-20 animate-spin" />
       </div>
     ) : (
       <>
-        <div className="flex justify-between">
-          <div className="text-6xl font-bold mb-5">
-            {thermometerData?.[0]?.temperature}
+        <div className="flex items-end mb-5">
+          <div className="mb-2 mr-2">
+            <DeviceStatusNotification deviceStatus={deviceStatus} />
           </div>
-          <ThermometerLogs thermometerData={thermometerData} />
+          <div className="w-full flex items-end justify-between">
+            <div className="text-6xl font-bold">{temperature}</div>
+            <ThermometerLogs deviceId={deviceId} />
+          </div>
         </div>
+
         <p className="flex text-xs text-muted-foreground justify-between">
           <span>
             <FormattedMessage id="component.humidity" />
-            {thermometerData?.[0]?.humidity}%
+            {humidity}%
           </span>
           <span>
             <FormattedMessage id="component.last" />
-            {dateFormatter.onlyHour(thermometerData?.[0]?.date || new Date())}
+            {onlyHour(date)}
           </span>
           <span>
             <FormattedMessage id="component.battery" />
-            {thermometerData?.[0]?.battery}%
+            {battery}%
           </span>
         </p>
       </>
