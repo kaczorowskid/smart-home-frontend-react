@@ -32,14 +32,24 @@ export const DeviceItem = ({
           blindValue={blind.value}
         />
       )}
-      thermometer={(thermometer) => (
-        <ThermometerCard
-          items={items}
-          isLocalKey={isLocalKey}
-          name={thermometer.name}
-          thermometerData={thermometer?.data}
-        />
-      )}
+      thermometer={(thermometer) => {
+        const { date, battery, humidity, temperature } =
+          thermometer?.data?.[0] || [];
+
+        return (
+          <ThermometerCard
+            date={date}
+            items={items}
+            deviceId={id}
+            battery={battery}
+            humidity={humidity}
+            isLocalKey={isLocalKey}
+            name={thermometer.name}
+            temperature={temperature}
+            deviceStatus={thermometer.status}
+          />
+        );
+      }}
     />
   );
 };

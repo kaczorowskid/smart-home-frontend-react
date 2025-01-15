@@ -83,6 +83,10 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      boxShadow: {
+        roundedRed: '0 0 5px 5px rgb(255 0 0 / 0.75)',
+        roundedGreen: '0 0 5px 5px rgb(0 255 0 / 0.75)'
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],
