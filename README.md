@@ -1,6 +1,6 @@
 ![logo](https://github.com/user-attachments/assets/cb173f37-f937-4da2-b989-d094c1281e8a)
 
-![start_page](https://github.com/user-attachments/assets/48376ac7-adc3-4a7e-97ba-664fb9cad865)
+![start_page](https://github.com/user-attachments/assets/c7e30b4d-416c-4558-9945-4da82e0c5356)
 
 # Smart Home
 
@@ -123,7 +123,7 @@ VITE_API=<BACKEND_API_URL>
 ## Galerry
 
 Start page:
-![start_page](https://github.com/user-attachments/assets/48376ac7-adc3-4a7e-97ba-664fb9cad865)
+![start_page](https://github.com/user-attachments/assets/c7e30b4d-416c-4558-9945-4da82e0c5356)
 
 Login screen:
 ![login_screen](https://github.com/user-attachments/assets/2c453ea4-ede5-4468-9438-c83107ad44fa)
@@ -132,7 +132,7 @@ Register (verify) screen:
 ![register_screen](https://github.com/user-attachments/assets/e808d973-8c50-49ad-abd6-d9fe4c1722c1)
 
 Dashboard screen:
-![dashboard](https://github.com/user-attachments/assets/4cae87ce-dacf-4b3a-bdd5-61054c8d166d)
+![dashboard](https://github.com/user-attachments/assets/c40b0ca6-a9a5-4e71-9a71-e5c891b2ec34)
 
 Graphs screen:
 ![graphs](https://github.com/user-attachments/assets/034e7852-d5c9-4b8b-b5a4-8b92a432b474)
