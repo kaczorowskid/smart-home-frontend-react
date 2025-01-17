@@ -103,14 +103,13 @@ yarn preview
 
 ## Docker
 
-1. Build the Docker image:
+1. Build and run the container locally:
+
    ```bash
-   docker build --build-arg VITE_API=<BACKEND_API_URL> -t smart-home-frontend .
+   docker compose --env-file .env -f docker-compose.develop.frontend.yaml up -d --build
    ```
-2. Run the container:
-   ```bash
-   docker run -d --name frontend -p 5173:5173 smart-home-fontend
-   ```
+
+   The frontend service will be available at `http://localhost:8080` by default.
 
 ## Environment Variables
 
