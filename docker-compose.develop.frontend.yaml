@@ -1,0 +1,10 @@
+services:
+  smart-house-frontend:
+    container_name: frontend
+    build:
+      context: .
+      args:
+        VITE_API: ${VITE_API}
+    ports:
+      - 8080:80
+    restart: unless-stopped

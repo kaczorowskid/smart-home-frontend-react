@@ -36,6 +36,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Copy docker-compose to VPS
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: ${{ secrets.VPS_PORT }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "docker-compose.deploy.yaml"
+          target: "app"
+
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v0.1.5
         with:
@@ -44,7 +57,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/smart-house-frontend:latest
-            docker stop smart-house-frontend || true
-            docker rm smart-house-frontend || true
-            docker run -d --name smart-house-frontend -p 8080:80 ${{ secrets.DOCKER_USERNAME }}/smart-house-frontend:latest
+            cd app
+            docker-compose --env-file ../envs/smart-house/.env.production.frontend -f ../app/docker-compose.deploy.frontend.yaml down
+            docker-compose --env-file ../envs/smart-house/.env.production.frontend -f ../app/docker-compose.deploy.frontend.yaml pull
+            docker-compose --env-file ../envs/smart-house/.env.production.frontend -f ../app/docker-compose.deploy.frontend.yaml up -d

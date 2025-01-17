@@ -1,0 +1,7 @@
+services:
+  smart-house-frontend:
+    container_name: frontend
+    image: ${FRONTEND_IMAGE}
+    ports:
+      - 8080:80
+    restart: unless-stopped
