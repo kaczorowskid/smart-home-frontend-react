@@ -25,10 +25,6 @@ export const Login = () => {
     form.reset(defaultValues);
   };
 
-  const handleSave = () => {
-    form.handleSubmit(onSubmit)();
-  };
-
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-4xl font-semibold tracking-tight my-5">
@@ -37,26 +33,28 @@ export const Login = () => {
       <Card>
         <CardContent className="w-[90vw] p-10 lg:w-[500px]">
           <Form {...form}>
-            <FormField
-              control={form.control}
-              name={formFields.email}
-              component={(field) => <Input {...field} />}
-              label={formatMessage({ id: "formField.email" })}
-            />
-            <FormField
-              control={form.control}
-              name={formFields.password}
-              label={formatMessage({ id: "formField.password" })}
-              component={(field) => <Input type="password" {...field} />}
-            />
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+              <FormField
+                control={form.control}
+                name={formFields.email}
+                component={(field) => <Input {...field} />}
+                label={formatMessage({ id: "formField.email" })}
+              />
+              <FormField
+                control={form.control}
+                name={formFields.password}
+                label={formatMessage({ id: "formField.password" })}
+                component={(field) => <Input type="password" {...field} />}
+              />
+              <Button
+                type="submit"
+                isLoading={isPending}
+                className="my-5 w-full"
+              >
+                <FormattedMessage id="view.login" />
+              </Button>
+            </form>
           </Form>
-          <Button
-            onClick={handleSave}
-            isLoading={isPending}
-            className="my-5 w-full"
-          >
-            <FormattedMessage id="view.login" />
-          </Button>
         </CardContent>
       </Card>
     </div>
