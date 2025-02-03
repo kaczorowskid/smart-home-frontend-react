@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import { type UserStoreProps } from "./userStore.type";
+import { type UserStore, type UserStoreProps } from "./userStore.type";
 
-export const useUserStore = create<UserStoreProps>((set) => ({
+const initialStore: UserStore = {
   id: "",
   name: "",
   email: "",
@@ -13,10 +13,20 @@ export const useUserStore = create<UserStoreProps>((set) => ({
     name: "",
     permissions: [],
   },
-  setUser: (userData) => {
+};
+
+export const useUserStore = create<UserStoreProps>((set) => ({
+  ...initialStore,
+  setUser: ({ id, name, role, email, surname, isLoggedIn, isVerified }) => {
     set((state) => ({
       ...state,
-      ...userData,
+      id,
+      name,
+      role,
+      email,
+      surname,
+      isLoggedIn,
+      isVerified,
     }));
   },
 }));
