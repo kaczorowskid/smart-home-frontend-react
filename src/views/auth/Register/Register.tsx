@@ -45,10 +45,6 @@ export const Register = () => {
     form.reset(defaultValues);
   };
 
-  const handleSave = () => {
-    form.handleSubmit(onSubmit)();
-  };
-
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-4xl font-semibold tracking-tight my-5">
@@ -57,63 +53,62 @@ export const Register = () => {
       <Card>
         <CardContent className="w-[90vw] p-10 lg:w-[500px]">
           <Form {...form}>
-            <FormField
-              control={form.control}
-              name={formFields.name}
-              component={(field) => <Input {...field} />}
-              label={formatMessage({ id: "formField.user-name" })}
-            />
-            <FormField
-              control={form.control}
-              name={formFields.surname}
-              component={(field) => <Input {...field} />}
-              label={formatMessage({ id: "formField.user-surname" })}
-            />
-            <FormField
-              control={form.control}
-              name={formFields.email}
-              label={formatMessage({ id: "formField.email" })}
-              component={(field) => (
-                <Input {...field} disabled value={data?.email} />
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+              <FormField
+                control={form.control}
+                name={formFields.name}
+                component={(field) => <Input {...field} />}
+                label={formatMessage({ id: "formField.user-name" })}
+              />
+              <FormField
+                control={form.control}
+                name={formFields.surname}
+                component={(field) => <Input {...field} />}
+                label={formatMessage({ id: "formField.user-surname" })}
+              />
+              <FormField
+                control={form.control}
+                name={formFields.email}
+                label={formatMessage({ id: "formField.email" })}
+                component={(field) => (
+                  <Input {...field} disabled value={data?.email} />
+                )}
+              />
+              <FormField
+                control={form.control}
+                name={formFields.password}
+                label={formatMessage({ id: "formField.password" })}
+                component={(field) => <Input type="password" {...field} />}
+              />
+              {!!currentPassword && (
+                <PasswordChecker password={currentPassword} />
               )}
-            />
-            <FormField
-              control={form.control}
-              name={formFields.password}
-              label={formatMessage({ id: "formField.password" })}
-              component={(field) => <Input type="password" {...field} />}
-            />
-            {!!currentPassword && (
-              <PasswordChecker password={currentPassword} />
-            )}
-            <FormField
-              control={form.control}
-              name={formFields.confirmPassword}
-              label={formatMessage({ id: "formField.confirm-password" })}
-              component={(field) => <Input type="password" {...field} />}
-            />
-          </Form>
-          <div className="flex justify-between my-5">
-            <span>
-              <FormattedMessage id="view.role" />
-            </span>
-            <Badge>{data?.role.name}</Badge>
-          </div>
-          <div className="flex my-5 items-center">
-            <Separator className="shrink" />
-            <Link to={routesPath.auth.login} className="px-5 text-nowrap">
-              <FormattedMessage id="view.back-to-login" />
-            </Link>
-            <Separator className="shrink" />
-          </div>
+              <FormField
+                control={form.control}
+                name={formFields.confirmPassword}
+                label={formatMessage({ id: "formField.confirm-password" })}
+                component={(field) => <Input type="password" {...field} />}
+              />
 
-          <Button
-            className=" w-full"
-            onClick={handleSave}
-            isLoading={isPending}
-          >
-            <FormattedMessage id="view.register" />
-          </Button>
+              <div className="flex justify-between my-5">
+                <span>
+                  <FormattedMessage id="view.role" />
+                </span>
+                <Badge>{data?.role.name}</Badge>
+              </div>
+              <div className="flex my-5 items-center">
+                <Separator className="shrink" />
+                <Link to={routesPath.auth.login} className="px-5 text-nowrap">
+                  <FormattedMessage id="view.back-to-login" />
+                </Link>
+                <Separator className="shrink" />
+              </div>
+
+              <Button type="submit" className=" w-full" isLoading={isPending}>
+                <FormattedMessage id="view.register" />
+              </Button>
+            </form>
+          </Form>
         </CardContent>
       </Card>
     </div>
