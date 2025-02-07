@@ -1,5 +1,5 @@
 import { type ReactNode } from "react";
-import { type GetOneDevicesResponse } from "@/api/types/devices.types";
+import { type GetOneDeviceResponse } from "@/api/types/devices.types";
 import {
   type Blind,
   type DeviceType,
@@ -8,7 +8,7 @@ import {
 
 export type FormProviderProps = {
   selectedType: DeviceType;
-  data?: GetOneDevicesResponse;
+  data?: GetOneDeviceResponse;
   blindForm: (record?: Blind) => ReactNode;
   thermometerForm: (record?: Thermometer) => ReactNode;
 };

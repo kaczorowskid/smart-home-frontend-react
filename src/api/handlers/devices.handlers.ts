@@ -9,8 +9,8 @@ import {
   type DeleteDeviceResponse,
   type GetAllBlindsResponse,
   type UpdateDeviceResponse,
+  type GetOneDeviceResponse,
   type GetAllDevicesResponse,
-  type GetOneDevicesResponse,
   type GetAllThermometersResponse,
   type GetDeviceDataForGraphPayload,
   type GetDeviceDataForGraphResponse,
@@ -30,7 +30,7 @@ export const getAllBlinds = async (): Promise<GetAllBlindsResponse> =>
 
 export const getOneDevice = async (
   payload: GetOneDevicePayload
-): Promise<GetOneDevicesResponse> =>
+): Promise<GetOneDeviceResponse> =>
   request.get(apiUrls.devices.getDevice(payload.id));
 
 export const createDevice = async (

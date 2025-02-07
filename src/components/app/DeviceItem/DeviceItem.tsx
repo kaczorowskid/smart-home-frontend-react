@@ -40,9 +40,11 @@ export const DeviceItem = ({
           <ThermometerCard
             date={date}
             items={items}
-            deviceId={id}
             battery={battery}
+            deviceId={id || ""}
             humidity={humidity}
+            min={thermometer.min}
+            max={thermometer.max}
             isLocalKey={isLocalKey}
             name={thermometer.name}
             temperature={temperature}

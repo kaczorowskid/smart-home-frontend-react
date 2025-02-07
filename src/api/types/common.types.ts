@@ -82,17 +82,6 @@ export type User = {
   isVerified: boolean;
 };
 
-export type Thermometer = {
-  id: string;
-  name: string;
-  createdAt: Date;
-  updatedAt: Date;
-  deviceId: string;
-  type: "THERMOMETER";
-  status: DeviceStatus;
-  data: ThermometerData[];
-};
-
 export type Room = {
   id: string;
   name: string;
@@ -107,4 +96,23 @@ export type Room = {
     thermometerId: string;
     thermometer: Thermometer;
   }[];
+};
+
+export type Thermometer = {
+  id: string;
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+  deviceId: string;
+  type: "THERMOMETER";
+  status: DeviceStatus;
+  data: ThermometerData[];
+  min?: {
+    humidity: number;
+    temperature: number;
+  };
+  max?: {
+    humidity: number;
+    temperature: number;
+  };
 };

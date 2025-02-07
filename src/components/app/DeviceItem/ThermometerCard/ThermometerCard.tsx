@@ -1,8 +1,9 @@
 import { FormattedMessage } from "react-intl";
 import { dateFormatter } from "@/utils/date.utils";
-import { Loader2, Thermometer } from "lucide-react";
 import { Dropdown } from "@/components/common/Dropdown";
+import { formatSensorValue } from "@/utils/formatSensorValueutil";
 import { CardWithHeader } from "@/components/common/CardWithHeader";
+import { Loader2, ArrowUp, ArrowDown, Thermometer } from "lucide-react";
 import { ThermometerLogs } from "./ThermometerLogs";
 import { type ThermometerCardProps } from "./ThermometerCard.types";
 import { DeviceStatusNotification } from "./DeviceStatusNotification";
@@ -10,6 +11,8 @@ import { DeviceStatusNotification } from "./DeviceStatusNotification";
 const { onlyHour } = dateFormatter;
 
 export const ThermometerCard = ({
+  min,
+  max,
   name,
   date,
   items,
@@ -28,7 +31,10 @@ export const ThermometerCard = ({
         <Dropdown
           items={items}
           triggerComponent={
-            <div className="cursor-pointer hover:text-muted-foreground">
+            <div className="flex cursor-pointer hover:text-muted-foreground">
+              <div className="ml-1 mt-1 mr-3">
+                <DeviceStatusNotification deviceStatus={deviceStatus} />
+              </div>
               {name}
             </div>
           }
@@ -38,18 +44,27 @@ export const ThermometerCard = ({
       )
     }
   >
-    {!temperature ? (
+    {!(temperature && humidity) ? (
       <div className="flex justify-center items-center">
         <Loader2 className="h-20 w-20 animate-spin" />
       </div>
     ) : (
       <>
         <div className="flex items-end mb-5">
-          <div className="mb-2 mr-2">
-            <DeviceStatusNotification deviceStatus={deviceStatus} />
+          <div className="mr-2">
+            <div className="flex gap-1 text-green-500 ">
+              <ArrowUp />
+              <span>{formatSensorValue(max?.temperature)}</span>
+            </div>
+            <div className="flex gap-1 text-red-500 ">
+              <ArrowDown />
+              <span>{formatSensorValue(min?.temperature)}</span>
+            </div>
           </div>
           <div className="w-full flex items-end justify-between">
-            <div className="text-6xl font-bold">{temperature}</div>
+            <div className="text-6xl font-bold">
+              {formatSensorValue(temperature)}
+            </div>
             <ThermometerLogs deviceId={deviceId} />
           </div>
         </div>
@@ -57,7 +72,7 @@ export const ThermometerCard = ({
         <p className="flex text-xs text-muted-foreground justify-between">
           <span>
             <FormattedMessage id="component.humidity" />
-            {humidity}%
+            {formatSensorValue(humidity)}%
           </span>
           <span>
             <FormattedMessage id="component.last" />
