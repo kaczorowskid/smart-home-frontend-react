@@ -12,7 +12,7 @@ export type UpdateDeviceResponse = CommonDevice;
 
 export type DeleteDeviceResponse = CommonDevice;
 
-export type GetOneDevicesResponse = CommonDevice;
+export type GetOneDeviceResponse = CommonDevice;
 
 export type GetAllDevicesResponse = CommonDevice[];
 

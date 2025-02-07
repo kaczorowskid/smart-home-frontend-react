@@ -34,8 +34,8 @@ import {
   type DeleteDeviceResponse,
   type GetAllBlindsResponse,
   type UpdateDeviceResponse,
+  type GetOneDeviceResponse,
   type GetAllDevicesResponse,
-  type GetOneDevicesResponse,
   type GetAllThermometersResponse,
   type GetDeviceDataForGraphPayload,
   type GetDeviceDataForGraphResponse,
@@ -43,7 +43,7 @@ import {
 
 export const useGetOneDevice = (
   payload: GetOneDevicePayload
-): UseQueryResult<GetOneDevicesResponse> =>
+): UseQueryResult<GetOneDeviceResponse> =>
   useQuery({
     enabled: !!payload.id,
     queryFn: () => getOneDevice(payload),
