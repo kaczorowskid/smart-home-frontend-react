@@ -1,7 +1,14 @@
 import { type UserStore } from "@/stores/user";
 import { QueryClient } from "@tanstack/react-query";
 
-export const queryClient = new QueryClient();
+export const createTestQueryClient = () =>
+  new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+      },
+    },
+  });
 
 export const defaultStore: UserStore = {
   name: "Test",

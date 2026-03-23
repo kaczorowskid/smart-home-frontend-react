@@ -1,10 +1,10 @@
-import { it, vi, expect, describe } from "vitest";
+import { vi, it, expect, describe } from "vitest";
 import { screen, within, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { renderWithProviders } from "@/tests/customRender/customRender";
 import { ControlButtons } from "./ControlButtons";
 
-describe.skip("ControlButtons component", () => {
+describe("ControlButtons component", () => {
   const defaultProps = {
     isCreate: false,
     onCreate: vi.fn(),
@@ -30,7 +30,9 @@ describe.skip("ControlButtons component", () => {
     renderWithProviders(<ControlButtons {...defaultProps} isCreate={false} />);
 
     const updateButton = screen.getByRole("button", { name: "Update" });
-    const deleteButton = screen.getByRole("button", { name: "Delete" });
+    const deleteButton = screen.getByRole("button", {
+      name: "Delete Test Entity",
+    });
 
     expect(updateButton).toBeInTheDocument();
     expect(deleteButton).toBeInTheDocument();
@@ -69,19 +71,25 @@ describe.skip("ControlButtons component", () => {
   it("displays modal after clicked 'Delete' button", async () => {
     renderWithProviders(<ControlButtons {...defaultProps} isCreate={false} />);
 
-    const deleteButton = screen.getByRole("button", { name: "Delete" });
+    const deleteButton = screen.getByRole("button", {
+      name: "Delete Test Entity",
+    });
     expect(deleteButton).toBeInTheDocument();
 
     fireEvent.click(deleteButton);
-    expect(screen.getByText("Are you sure?")).toBeInTheDocument();
+
+    const dialog = screen.getByRole("alertdialog");
+    expect(within(dialog).getByText("Are you sure?")).toBeInTheDocument();
     expect(
-      screen.getByText(`Delete ${defaultProps.entity}`)
+      within(dialog).getByText("Delete Test Entity")
     ).toBeInTheDocument();
 
-    const cancelButton = screen.getByRole("button", { name: "Cancel" });
+    const cancelButton = within(dialog).getByRole("button", {
+      name: "Cancel",
+    });
     expect(cancelButton).toBeInTheDocument();
 
-    const okButton = screen.getByRole("button", { name: "Ok" });
+    const okButton = within(dialog).getByRole("button", { name: "Ok" });
     expect(okButton).toBeInTheDocument();
 
     fireEvent.click(okButton);
